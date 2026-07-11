@@ -1,0 +1,555 @@
+import React, { useState, useMemo, memo, useCallback, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { 
+  ArrowLeft, 
+  Search, 
+  Tag, 
+  ShoppingCart, 
+  Sparkles, 
+  Eye, 
+  Check, 
+  Clock, 
+  Globe, 
+  MapPin, 
+  FileText, 
+  Laptop, 
+  Compass, 
+  User, 
+  Download,
+  CheckCircle2,
+  X
+} from "lucide-react";
+
+interface ShopItem {
+  id: string;
+  name: string;
+  subtitle: string;
+  description: string;
+  price: number;
+  img: string;
+  category: "templates" | "services" | "digital-downloads";
+  badge: string;
+  features: string[];
+  durationOrFormat: string;
+}
+
+const SHOP_PRODUCTS: ShopItem[] = [
+  {
+    id: "travel-diary",
+    name: "Custom Travel Diary / Journal",
+    subtitle: "Physical or digital template for logging trips",
+    description: "An elegantly crafted space for modern explorers. Record your physical sensations, cultural reflections, dining memories, and photo logs. Comes with both a premium printable PDF design and a beautifully structured Notion digital workspace diary.",
+    price: 999,
+    img: "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=600&q=80",
+    category: "templates",
+    badge: "Printable & Notion",
+    features: [
+      "Custom sensory log layout",
+      "Dynamic photo gallery placeholder",
+      "Interactive map pin templates",
+      "Print-ready high-resolution PDF format"
+    ],
+    durationOrFormat: "Digital PDF & Notion Template"
+  },
+  {
+    id: "visa-consultation",
+    name: "Personalized Visa Consultation Service",
+    subtitle: "Expert assistance for visa applications",
+    description: "Navigate complex visa requirements with absolute ease. I will provide direct expert review of your documentation, write highly professional cover letters, map out precise itinerary proofs, and prepare you for any consulate interviews.",
+    price: 2499,
+    img: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80",
+    category: "services",
+    badge: "1-on-1 Consultation",
+    features: [
+      "Thorough document review & audit",
+      "Custom-drafted cover letter templates",
+      "Consistent itinerary matching checks",
+      "Direct email and chat support for 30 days"
+    ],
+    durationOrFormat: "30-Day Virtual Assistance"
+  },
+  {
+    id: "itinerary-planning",
+    name: "Custom Itinerary Planning Service",
+    subtitle: "Tailor-made day-by-day travel plans",
+    description: "Skip the generic routes. Get a premium, completely bespoke day-by-day itinerary designed entirely around your specific travel style, budget, and culinary preferences. Completely curated with hidden spots, transit instructions, and stay links.",
+    price: 3999,
+    img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=600&q=80",
+    category: "services",
+    badge: "Bespoke Curation",
+    features: [
+      "Custom daily activity blueprints",
+      "Handpicked hidden culinary stops",
+      "Detailed transit & route breakdowns",
+      "Curated luxury and boutique stay matches"
+    ],
+    durationOrFormat: "Tailor-Made PDF Guide"
+  },
+  {
+    id: "itinerary-guide",
+    name: "Pre-made Travel Itinerary Guide",
+    subtitle: "Downloadable PDF guide for top destinations",
+    description: "The ultimate ready-to-use travel companion. This downloadable high-fidelity PDF maps out tested routes, optimal photography timings, local cultural etiquette tips, and trusted emergency contacts for popular travel regions.",
+    price: 499,
+    img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80",
+    category: "digital-downloads",
+    badge: "Instant Download",
+    features: [
+      "Tested 7-day and 14-day route maps",
+      "Hour-by-hour photo lighting guide",
+      "Handy budget-friendly local tips",
+      "Active hyperlinked navigation coordinates"
+    ],
+    durationOrFormat: "80-Page Interactive PDF"
+  },
+  {
+    id: "photo-presets",
+    name: "Lightroom Photo Presets Pack",
+    subtitle: "Mobile/Desktop filters for travel photography",
+    description: "Transform your raw mobile and camera photos into cinematic visual stories with a single click. Developed over five years of active travel, this set includes 10 versatile custom filters suited for lush tropical environments, historical architecture, and golden hours.",
+    price: 1499,
+    img: "https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=600&q=80",
+    category: "digital-downloads",
+    badge: "10 Signature Filters",
+    features: [
+      "Works with free Lightroom Mobile app",
+      "Fully compatible with Lightroom Desktop",
+      "Tuned for skin-tones and dramatic skies",
+      "Step-by-step PDF setup instructions included"
+    ],
+    durationOrFormat: ".DNG & .XMP Files"
+  },
+  {
+    id: "budget-tracker",
+    name: "Travel Budget & Expense Tracker",
+    subtitle: "Spreadsheet/Notion template",
+    description: "Never worry about overspending on your adventures. This highly intuitive tracker maps out flight estimations, accommodation deposits, culinary spends, and souvenir logs, featuring automatic multi-currency conversion charts.",
+    price: 299,
+    img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80",
+    category: "templates",
+    badge: "Best Seller",
+    features: [
+      "Smart multi-currency exchange formulas",
+      "Dynamic expense category breakdowns",
+      "Pre-departure savings plan checklist",
+      "Responsive Notion & Google Sheets editions"
+    ],
+    durationOrFormat: "Notion & Google Sheets Link"
+  },
+  {
+    id: "packing-checklist",
+    name: "Packing Checklist & Travel Planner",
+    subtitle: "Printable digital download",
+    description: "Organize your packing and preparation flawlessly. A clean, printable PDF planner with category-specific packing checks (electronics, clothing, documents, medical) alongside pre-departure tasks, home-checklist tasks, and emergency cards.",
+    price: 199,
+    img: "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=600&q=80",
+    category: "templates",
+    badge: "Essential Checklist",
+    features: [
+      "Structured minimalist checklist blocks",
+      "Electronic & camera gear checklist",
+      "Pre-travel household security checks",
+      "Beautiful typography, ready to print"
+    ],
+    durationOrFormat: "Printable A4 / US Letter PDF"
+  },
+  {
+    id: "travel-coaching",
+    name: "1-on-1 Travel Coaching Session",
+    subtitle: "30-minute video call for trip consultation",
+    description: "Book a private 30-minute video session to talk travel with me. Whether you need to audit an itinerary, ask about budget tricks, seek camera/composition advice, or explore solo female/male safety tips, let's map out your next adventure.",
+    price: 1999,
+    img: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80",
+    category: "services",
+    badge: "Live Video Session",
+    features: [
+      "Interactive 30-minute Zoom/Google Meet call",
+      "Personalized Q&A tailoring your questions",
+      "Written summary with custom links sent post-call",
+      "Recording of the call session made available"
+    ],
+    durationOrFormat: "30-Min Live Consultation"
+  },
+  {
+    id: "digital-map",
+    name: "Digital Travel Map/Guide",
+    subtitle: "Curated Google Maps pins for hidden spots",
+    description: "Ditch the overcrowded tourist traps. Gain lifetime access to a custom curated Google Maps list containing precise geographic pins pointing directly to hidden overlooks, local cafes, safe parking spots, and pristine photography angles.",
+    price: 699,
+    img: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=600&q=80",
+    category: "digital-downloads",
+    badge: "Lifetime Access Map",
+    features: [
+      "Over 120+ secret coordinates cataloged",
+      "Regular automated updates included",
+      "Direct mapping app synchronization",
+      "Detailed notes and photo tips attached to pins"
+    ],
+    durationOrFormat: "Private Google Maps Overlay"
+  },
+  {
+    id: "ultimate-ebook",
+    name: "E-Book: The Ultimate Travel Guide",
+    subtitle: "Insider tips and packing secrets",
+    description: "My masterwork on luxury and adventure travel. Packed with actionable flight-hacking guidelines, minimalist luggage packing frameworks, accommodation negotiation rules, and masterclass chapters on smartphone travel photography.",
+    price: 799,
+    img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80",
+    category: "digital-downloads",
+    badge: "Comprehensive E-Book",
+    features: [
+      "Over 150 pages of real insider travel secrets",
+      "Step-by-step lightweight packing guides",
+      "Secrets of high-end stay upgrades",
+      "EPUB, PDF, and Kindle compatible formats"
+    ],
+    durationOrFormat: "EPUB & PDF Digital Book"
+  }
+];
+
+interface ShopViewProps {
+  onBackToHome: () => void;
+  onAddToCart: (item: { name: string; price: number; img: string }) => void;
+  onOpenCheckout: () => void;
+  cartCount: number;
+}
+
+export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartCount }: ShopViewProps) => {
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [searchQuery, setSearchQuery] = useState<string>(" ");
+  const [selectedProduct, setSelectedProduct] = useState<ShopItem | null>(null);
+  const [addedItemName, setAddedItemName] = useState<string | null>(null);
+
+  // Clean initial states
+  useEffect(() => {
+    setSearchQuery("");
+  }, []);
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Filter products based on selected tab and search text
+  const filteredProducts = useMemo(() => {
+    return SHOP_PRODUCTS.filter(product => {
+      const matchCategory = selectedCategory === "all" || product.category === selectedCategory;
+      const matchQuery = 
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchCategory && matchQuery;
+    });
+  }, [selectedCategory, searchQuery]);
+
+  const handleAddToCartWithFeedback = useCallback((item: ShopItem) => {
+    onAddToCart({
+      name: item.name,
+      price: item.price,
+      img: item.img
+    });
+    setAddedItemName(item.name);
+    setTimeout(() => setAddedItemName(null), 2000);
+  }, [onAddToCart]);
+
+  return (
+    <div className="min-h-screen bg-bg text-white pt-24 pb-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        
+        {/* Navigation back and Cart summary trigger */}
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex justify-between items-center mb-12 pb-6 border-b border-white/5"
+        >
+          <button 
+            onClick={onBackToHome}
+            className="inline-flex items-center gap-2 group text-zinc-400 hover:text-accent font-ui font-semibold text-xs uppercase tracking-widest transition-colors"
+          >
+            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+            Back to Home
+          </button>
+
+          {cartCount > 0 && (
+            <button 
+              onClick={onOpenCheckout}
+              className="inline-flex items-center gap-2.5 px-4 py-2 bg-accent/10 border border-accent/40 text-accent font-bold font-ui text-[11px] uppercase tracking-widest hover:bg-accent hover:text-black transition-all rounded-sm"
+            >
+              <ShoppingCart size={14} /> Checkout Basket ({cartCount})
+            </button>
+          )}
+        </motion.div>
+
+        {/* Cinematic Header Block */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-accent/10 border border-accent/20 text-accent font-bold font-ui text-[10px] uppercase tracking-widest rounded-sm mb-4">
+              <Sparkles size={12} className="animate-pulse" /> Travel Tools & Resources
+            </span>
+            <h1 className="text-4xl md:text-7xl font-serif leading-tight tracking-tight mb-4">
+              The Traveler's <span className="italic text-zinc-500">Shop.</span>
+            </h1>
+            <p className="text-zinc-500 font-serif italic text-sm md:text-base leading-relaxed">
+              "Curated resources, digital trackers, signature photography presets, and tailored coaching services designed to optimize your visual storytelling and physical journeys."
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Filter and Search Controls Row */}
+        <div className="flex flex-col md:flex-row gap-6 justify-between items-center bg-[#060606] border border-zinc-900 p-4 md:p-6 rounded-sm mb-12">
+          {/* Category tabs */}
+          <div className="flex flex-wrap gap-2 w-full md:w-auto">
+            {[
+              { id: "all", label: "All Items" },
+              { id: "templates", label: "Templates" },
+              { id: "digital-downloads", label: "Digital Guides" },
+              { id: "services", label: "Planning Services" }
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => handleCategoryChange(tab.id)}
+                className={`px-4 py-2 text-[10px] uppercase font-bold tracking-wider rounded-sm transition-all font-ui border ${
+                  selectedCategory === tab.id 
+                    ? "bg-accent text-black border-accent" 
+                    : "bg-black text-zinc-400 border-zinc-900 hover:text-white"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Live Search */}
+          <div className="relative w-full md:w-80">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-600" size={14} />
+            <input 
+              type="text"
+              placeholder="Search travel assets..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className="w-full bg-black border border-zinc-900 focus:border-accent/40 focus:outline-none py-2.5 pl-10 pr-4 text-xs font-sans text-white rounded-sm placeholder-zinc-600 transition-colors"
+            />
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-white"
+              >
+                <X size={12} />
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Empty Search Safeguard */}
+        {filteredProducts.length === 0 ? (
+          <div className="text-center py-20 bg-[#060606] border border-zinc-900 rounded-sm">
+            <Compass size={40} className="mx-auto text-zinc-800 mb-4 animate-spin-slow" />
+            <h3 className="font-serif text-lg mb-2">No matching products found</h3>
+            <p className="text-xs text-zinc-600 max-w-xs mx-auto mb-6">
+              No results found for "{searchQuery}". Try exploring other premium categories.
+            </p>
+            <button
+              onClick={() => { setSelectedCategory("all"); setSearchQuery(""); }}
+              className="px-5 py-2 border border-zinc-800 hover:border-accent hover:text-accent font-ui text-[10px] uppercase tracking-widest transition-colors font-bold"
+            >
+              Reset Filters
+            </button>
+          </div>
+        ) : (
+          /* Products Grid */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {filteredProducts.map((item, idx) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: Math.min(idx * 0.05, 0.3) }}
+                className="group flex flex-col bg-[#060606] border border-zinc-900 rounded-sm overflow-hidden hover:border-accent/50 transition-all duration-300"
+              >
+                {/* Visual Cover */}
+                <div className="aspect-[4/3] overflow-hidden relative bg-zinc-950">
+                  <img 
+                    src={item.img} 
+                    alt={item.name} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  {/* Category Badge overlay */}
+                  <span className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm border border-zinc-850 px-3 py-1 text-[8px] uppercase tracking-widest font-ui font-extrabold text-accent">
+                    {item.badge}
+                  </span>
+                </div>
+
+                {/* Info block */}
+                <div className="p-6 flex-grow flex flex-col justify-between">
+                  <div>
+                    <span className="text-[9px] text-zinc-500 font-bold font-ui uppercase tracking-widest block mb-1">
+                      {item.category.replace("-", " ")}
+                    </span>
+                    <h3 className="text-lg font-serif mb-2 leading-snug group-hover:text-accent transition-colors">
+                      {item.name}
+                    </h3>
+                    <p className="text-zinc-400 font-sans text-xs line-clamp-2 leading-relaxed mb-4">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-zinc-900 flex flex-col gap-3">
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold font-ui">Investment</span>
+                      <span className="text-xl font-bold font-ui text-accent">₹{item.price.toLocaleString("en-IN")}</span>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2 mt-2">
+                      <button
+                        onClick={() => setSelectedProduct(item)}
+                        className="py-3 text-[10px] font-bold font-ui uppercase tracking-widest border border-zinc-850 hover:border-zinc-500 hover:text-white transition-all text-center flex items-center justify-center gap-1.5"
+                      >
+                        <Eye size={12} /> Details
+                      </button>
+                      <button
+                        onClick={() => handleAddToCartWithFeedback(item)}
+                        className="py-3 bg-white text-slate-950 text-[10px] font-bold font-ui uppercase tracking-widest hover:bg-accent hover:text-black transition-all text-center flex items-center justify-center gap-1.5"
+                      >
+                        <ShoppingCart size={12} /> Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+      </div>
+
+      {/* QUICK VIEW SLIDE-OVER / MODAL DETAIL PORTAL */}
+      <AnimatePresence>
+        {selectedProduct && (
+          <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+            {/* Backdrop Blur */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProduct(null)}
+              className="absolute inset-0 bg-black/85 backdrop-blur-sm"
+            />
+
+            {/* Modal Body */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative w-full max-w-3xl bg-[#090909] border border-zinc-850 rounded-sm overflow-hidden z-10 grid md:grid-cols-12 shadow-2xl"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={() => setSelectedProduct(null)}
+                className="absolute top-4 right-4 z-20 p-2 bg-black/80 hover:bg-zinc-800 border border-zinc-800 rounded-full transition-colors text-zinc-400 hover:text-white"
+              >
+                <X size={16} />
+              </button>
+
+              {/* Cover Column (5 units) */}
+              <div className="md:col-span-5 aspect-[4/3] md:aspect-auto relative bg-zinc-950">
+                <img 
+                  src={selectedProduct.img} 
+                  alt={selectedProduct.name} 
+                  className="w-full h-full object-cover opacity-80"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                
+                <div className="absolute bottom-6 left-6 pr-6">
+                  <span className="inline-block px-2.5 py-1 bg-accent text-black text-[8px] uppercase tracking-widest font-ui font-black rounded-sm mb-2">
+                    {selectedProduct.badge}
+                  </span>
+                  <p className="text-[10px] text-zinc-400 font-mono uppercase tracking-widest">
+                    {selectedProduct.durationOrFormat}
+                  </p>
+                </div>
+              </div>
+
+              {/* Info Column (7 units) */}
+              <div className="md:col-span-7 p-6 md:p-8 flex flex-col justify-between max-h-[85vh] md:max-h-[600px] overflow-y-auto no-scrollbar">
+                <div>
+                  <span className="text-[9px] text-zinc-500 font-extrabold font-ui uppercase tracking-[0.25em] block mb-1">
+                    {selectedProduct.category.toUpperCase().replace("-", " ")}
+                  </span>
+                  <h2 className="text-2xl font-serif text-white mb-2 leading-tight">
+                    {selectedProduct.name}
+                  </h2>
+                  <p className="text-xs text-accent font-bold font-ui mb-4">
+                    {selectedProduct.subtitle}
+                  </p>
+                  
+                  <p className="text-zinc-400 text-xs font-sans leading-relaxed mb-6">
+                    {selectedProduct.description}
+                  </p>
+
+                  <div className="mb-6">
+                    <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold font-ui mb-3">What's Included</p>
+                    <ul className="space-y-2">
+                      {selectedProduct.features.map((feat, i) => (
+                        <li key={i} className="flex gap-2.5 items-start text-zinc-300 text-xs font-sans">
+                          <CheckCircle2 size={14} className="text-accent flex-shrink-0 mt-0.5" />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-zinc-900 flex flex-col sm:flex-row gap-4 items-center justify-between">
+                  <div className="text-center sm:text-left">
+                    <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold font-ui">Settled Investment</p>
+                    <p className="text-2xl font-black font-ui text-accent mt-0.5">₹{selectedProduct.price.toLocaleString("en-IN")}</p>
+                  </div>
+
+                  <div className="flex gap-2 w-full sm:w-auto">
+                    <button
+                      onClick={() => {
+                        handleAddToCartWithFeedback(selectedProduct);
+                        setSelectedProduct(null);
+                      }}
+                      className="flex-grow sm:flex-grow-0 px-6 py-4 bg-white hover:bg-accent text-slate-950 hover:text-black font-bold font-ui text-[10px] uppercase tracking-widest transition-all rounded-sm flex items-center justify-center gap-2"
+                    >
+                      <ShoppingCart size={14} /> Add to Cart
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Dynamic Tiny Toast Notification just in case feedback is needed */}
+      <AnimatePresence>
+        {addedItemName && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[120] bg-zinc-950 border border-accent/40 text-white px-5 py-4 rounded-sm shadow-2xl flex items-center gap-3 max-w-sm font-sans"
+          >
+            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <p className="text-xs uppercase tracking-widest font-ui font-semibold">Added {addedItemName} to Cart!</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+    </div>
+  );
+});
+
+ShopView.displayName = "ShopView";
