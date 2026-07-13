@@ -9,31 +9,42 @@ interface ExpeditionHubProps {
   onOpenCheckout?: () => void;
 }
 
-const ExpeditionHub = ({ cartItems = [], onAddToCart, onOpenCheckout }: ExpeditionHubProps) => {
-  const presetItem = {
-    name: "2026 Lightroom Presets",
-    price: 1499,
-    img: "https://images.unsplash.com/photo-1706803501715-8d0e4445e446?auto=format&fit=crop&w=800&q=80"
-  };
+// Lifted static data outside of component body:
+// This maintains a stable object reference across renders, preventing
+// useCallback hook cache misses and unnecessary re-renders.
+const PRESET_ITEM = {
+  name: "2026 Lightroom Presets",
+  price: 1499,
+  img: "https://images.unsplash.com/photo-1706803501715-8d0e4445e446?auto=format&fit=crop&w=800&q=80"
+};
 
+/**
+ * ExpeditionHub Component:
+ * Acts as the centralized landing widget connecting physical and digital collectibles.
+ * Combines floating responsive shopping cart notifications, global aesthetic section titles,
+ * and passes optimized callbacks into the nested Ecosystem/Cart interfaces.
+ */
+const ExpeditionHub = ({ cartItems = [], onAddToCart, onOpenCheckout }: ExpeditionHubProps) => {
+  // Stable cached callback to add presets to the shopping cart
   const handleAddToCart = useCallback(() => {
     if (onAddToCart) {
-      onAddToCart(presetItem);
+      onAddToCart(PRESET_ITEM);
     }
-  }, [onAddToCart, presetItem]);
+  }, [onAddToCart]);
 
+  // Stable cached callback to add items and immediately proceed to the checkout panel
   const handleBuyNow = useCallback(() => {
     if (onAddToCart) {
-      onAddToCart(presetItem);
+      onAddToCart(PRESET_ITEM);
     }
     if (onOpenCheckout) {
       onOpenCheckout();
     }
-  }, [onAddToCart, onOpenCheckout, presetItem]);
+  }, [onAddToCart, onOpenCheckout]);
 
   return (
     <section id="expedition-hub" className="bg-bg py-24 border-t border-white/5 relative">
-      {/* Floating Cart Icon */}
+      {/* Floating Cart Icon: Animated using Framer Motion's AnimatePresence for smooth mounting/unmounting */}
       <AnimatePresence>
         {cartItems.length > 0 && (
           <motion.button
@@ -51,6 +62,7 @@ const ExpeditionHub = ({ cartItems = [], onAddToCart, onOpenCheckout }: Expediti
         )}
       </AnimatePresence>
 
+      {/* Main Section Header */}
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -71,6 +83,7 @@ const ExpeditionHub = ({ cartItems = [], onAddToCart, onOpenCheckout }: Expediti
         </div>
       </motion.div>
 
+      {/* Interactive visual canvas for merchandise/interactive blocks */}
       <Ecosystem onAddToCart={handleAddToCart} onBuyNow={handleBuyNow} />
     </section>
   );

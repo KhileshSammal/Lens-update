@@ -17,7 +17,9 @@ import {
   Menu,
   ShoppingCart,
   ShoppingBag,
-  Search
+  Search,
+  Sun,
+  Moon
 } from "lucide-react";
 import React, { useState, useEffect, useMemo, useCallback, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
@@ -156,6 +158,8 @@ interface HeaderProps {
   onNavigate: (view: AppView, targetHash?: string) => void;
   onSelectPost?: (postId: string | null) => void;
   totalCartItems?: number;
+  theme: "dark" | "light";
+  toggleTheme: () => void;
 }
 
 /**
@@ -163,7 +167,7 @@ interface HeaderProps {
  * Global responsive sticky header. Implements passive scroll-event tracking to dynamically
  * layer translucent backdrop textures once scrolled past 50px of physical Y space.
  */
-const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0 }: HeaderProps) => {
+const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0, theme, toggleTheme }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -237,13 +241,19 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
     onNavigate("home");
   };
 
+  const isLightHeader = isScrolled && theme === "light";
+  const headerTextColor = isLightHeader ? "text-zinc-900" : "text-white";
+  const headerBorderColor = isLightHeader ? "bg-zinc-200" : "bg-white/40";
+
   return (
     <>
       <header 
         className={`fixed w-full z-50 px-4 py-3 md:px-12 transition-all duration-500 ${
           isScrolled 
-            ? "bg-black/95 backdrop-blur-md py-2 shadow-2xl" 
-            : "bg-gradient-to-b from-black/95 to-transparent md:py-6"
+            ? theme === "light"
+              ? "bg-white/95 backdrop-blur-md py-2 shadow-md border-b border-zinc-200"
+              : "bg-black/95 backdrop-blur-md py-2 shadow-2xl" 
+            : "bg-gradient-to-b from-black/50 via-black/10 to-transparent md:py-6"
         }`}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -251,9 +261,9 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
             onClick={handleLogoClick}
             className="flex items-center space-x-3 md:space-x-5 cursor-pointer group"
           >
-            <div className="text-xl md:text-3xl font-bold tracking-tighter font-ui text-white border-b-2 border-accent leading-none pb-1 group-hover:text-accent transition-colors">KS</div>
-            <div className="hidden sm:block h-8 w-[1px] bg-white/40"></div>
-            <div className="hidden sm:block text-[10px] md:text-sm font-bold font-ui uppercase tracking-[0.4em] text-white group-hover:text-accent transition-colors">Lens & Latitude</div>
+            <div className={`text-xl md:text-3xl font-bold tracking-tighter font-ui border-b-2 border-accent leading-none pb-1 group-hover:text-accent transition-colors ${headerTextColor}`}>KS</div>
+            <div className={`hidden sm:block h-8 w-[1px] ${headerBorderColor}`}></div>
+            <div className={`hidden sm:block text-[10px] md:text-sm font-bold font-ui uppercase tracking-[0.4em] group-hover:text-accent transition-colors ${headerTextColor}`}>Lens & Latitude</div>
           </div>
           
           <nav className="hidden lg:flex space-x-8 xl:space-x-10 text-[11px] uppercase tracking-[0.25em] font-ui items-center">
@@ -270,16 +280,17 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
                 );
               }
               const isActive = (item.name === "Shop" && currentView === "shop");
+              const linkColor = isActive 
+                ? "text-accent" 
+                : isLightHeader
+                  ? "text-zinc-800 hover:text-accent"
+                  : "text-white hover:text-accent";
               return (
                 <a 
                   key={item.name}
                   href={item.href} 
                   onClick={(e) => handleLinkClick(e, item)}
-                  className={`group relative flex items-center gap-2 font-semibold transition-colors ${
-                    isActive 
-                      ? "text-accent" 
-                      : "text-white hover:text-accent"
-                  }`}
+                  className={`group relative flex items-center gap-2 font-semibold transition-colors ${linkColor}`}
                 >
                   <item.icon size={14} className="text-accent" /> 
                   {item.name}
@@ -292,11 +303,32 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
           </nav>
 
           <div className="flex items-center space-x-2 md:space-x-4">
+            {/* User-facing Theme Toggle Button */}
+            <button 
+              onClick={toggleTheme}
+              aria-label="Toggle Theme"
+              className={`p-2 rounded-full transition-all duration-300 flex items-center justify-center hover:scale-110 cursor-pointer ${
+                isLightHeader 
+                  ? "bg-zinc-100 hover:bg-zinc-200 text-zinc-800" 
+                  : "bg-white/5 hover:bg-white/10 text-accent"
+              }`}
+            >
+              {theme === "light" ? (
+                <Moon size={15} className="text-zinc-800 animate-pulse" />
+              ) : (
+                <Sun size={15} className="text-accent animate-pulse" />
+              )}
+            </button>
+
             {/* Desktop Cart Indicator */}
             <button 
               onClick={() => onNavigate("checkout")}
               className={`relative p-2 flex items-center gap-1.5 font-ui text-[11px] uppercase tracking-[0.25em] font-semibold transition-colors ${
-                currentView === "checkout" ? "text-accent" : "text-white hover:text-accent"
+                currentView === "checkout" 
+                  ? "text-accent" 
+                  : isLightHeader 
+                    ? "text-zinc-800 hover:text-accent" 
+                    : "text-white hover:text-accent"
               }`}
             >
               <ShoppingCart size={15} className="text-accent hover:scale-110 transition-transform" />
@@ -315,7 +347,11 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
             <button 
               aria-label="Menu" 
               onClick={() => setIsMobileMenuOpen(prev => !prev)}
-              className="lg:hidden text-white flex items-center gap-2 text-[10px] font-bold font-ui tracking-widest bg-black/60 backdrop-blur-sm px-3 py-2 rounded-sm border border-white/10 active:bg-white/20 transition-colors"
+              className={`lg:hidden flex items-center gap-2 text-[10px] font-bold font-ui tracking-widest backdrop-blur-sm px-3 py-2 rounded-sm border transition-colors ${
+                isLightHeader
+                  ? "bg-white/80 border-zinc-200 text-zinc-900 active:bg-zinc-100"
+                  : "bg-black/60 border-white/10 text-white active:bg-white/20"
+              }`}
             >
               {isMobileMenuOpen ? <CloseIcon size={16} /> : <Menu size={16} />} 
               {isMobileMenuOpen ? "CLOSE" : "MENU"}
@@ -331,7 +367,9 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 bg-black/98 z-40 flex flex-col justify-between overflow-y-auto pt-28 pb-12 px-8 md:px-16 no-scrollbar"
+            className={`fixed inset-0 z-40 flex flex-col justify-between overflow-y-auto pt-28 pb-12 px-8 md:px-16 no-scrollbar transition-colors ${
+              theme === "light" ? "bg-white" : "bg-black/98"
+            }`}
           >
             <div className="flex flex-col flex-1">
               {/* Premium Mobile Search Feature */}
@@ -343,12 +381,18 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
                     placeholder="Search trips, destinations, or shop..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full bg-white/5 border border-white/10 rounded-sm py-3 pl-11 pr-10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-accent transition-colors font-sans"
+                    className={`w-full border rounded-sm py-3 pl-11 pr-10 text-sm placeholder-zinc-500 focus:outline-none focus:border-accent transition-colors font-sans ${
+                      theme === "light"
+                        ? "bg-zinc-100 border-zinc-200 text-zinc-900"
+                        : "bg-white/5 border-white/10 text-white"
+                    }`}
                   />
                   {searchQuery && (
                     <button 
                       onClick={() => setSearchQuery("")}
-                      className="absolute right-3.5 text-zinc-400 hover:text-white"
+                      className={`absolute right-3.5 hover:scale-110 transition-transform ${
+                        theme === "light" ? "text-zinc-600 hover:text-zinc-900" : "text-zinc-400 hover:text-white"
+                      }`}
                     >
                       <CloseIcon size={16} />
                     </button>
@@ -359,19 +403,27 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
               {searchQuery.trim() !== "" ? (
                 <div className="flex-1 space-y-6 animate-fadeIn py-2">
                   <div>
-                    <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-accent/80 font-bold mb-3">Trip Diaries ({filteredTrips.length})</h3>
+                    <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-accent font-bold mb-3">Trip Diaries ({filteredTrips.length})</h3>
                     {filteredTrips.length > 0 ? (
                       <div className="grid gap-2">
                         {filteredTrips.map(trip => (
                           <div 
                             key={trip.id}
                             onClick={() => navigateToTrip(trip.id)}
-                            className="flex items-center gap-3 bg-white/5 hover:bg-white/10 p-2 rounded border border-white/5 transition-all cursor-pointer group"
+                            className={`flex items-center gap-3 p-2 rounded border transition-all cursor-pointer group ${
+                              theme === "light"
+                                ? "bg-zinc-100 hover:bg-zinc-200 border-zinc-200"
+                                : "bg-white/5 hover:bg-white/10 border-white/5"
+                            }`}
                           >
                             <img src={trip.img} alt={trip.title} className="w-12 h-12 object-cover rounded-sm group-hover:scale-105 transition-transform" referrerPolicy="no-referrer" />
                             <div>
-                              <p className="text-sm font-serif text-white group-hover:text-accent transition-colors">{trip.title}</p>
-                              <p className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">{trip.subtitle}</p>
+                              <p className={`text-sm font-serif group-hover:text-accent transition-colors ${
+                                theme === "light" ? "text-zinc-900" : "text-white"
+                              }`}>{trip.title}</p>
+                              <p className={`text-[10px] font-mono uppercase tracking-wider ${
+                                theme === "light" ? "text-zinc-500" : "text-zinc-400"
+                              }`}>{trip.subtitle}</p>
                             </div>
                           </div>
                         ))}
@@ -382,18 +434,24 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
                   </div>
 
                   <div>
-                    <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-accent/80 font-bold mb-3">Shop Items ({filteredShopItems.length})</h3>
+                    <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-accent font-bold mb-3">Shop Items ({filteredShopItems.length})</h3>
                     {filteredShopItems.length > 0 ? (
                       <div className="grid gap-2">
                         {filteredShopItems.map(item => (
                           <div 
                             key={item.name}
                             onClick={() => navigateToShopItem()}
-                            className="flex items-center gap-3 bg-white/5 hover:bg-white/10 p-2 rounded border border-white/5 transition-all cursor-pointer group"
+                            className={`flex items-center gap-3 p-2 rounded border transition-all cursor-pointer group ${
+                              theme === "light"
+                                ? "bg-zinc-100 hover:bg-zinc-200 border-zinc-200"
+                                : "bg-white/5 hover:bg-white/10 border-white/5"
+                            }`}
                           >
                             <img src={item.img} alt={item.name} className="w-12 h-12 object-cover rounded-sm group-hover:scale-105 transition-transform" referrerPolicy="no-referrer" />
                             <div className="flex-1">
-                              <p className="text-sm font-sans text-white group-hover:text-accent transition-colors font-medium">{item.name}</p>
+                              <p className={`text-sm font-sans group-hover:text-accent transition-colors font-medium ${
+                                theme === "light" ? "text-zinc-900" : "text-white"
+                              }`}>{item.name}</p>
                               <p className="text-[10px] font-mono text-accent font-bold">{item.price}</p>
                             </div>
                           </div>
@@ -411,7 +469,9 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
                       key={item.name}
                       href={item.href}
                       onClick={(e) => handleLinkClick(e, item)}
-                      className="flex items-center gap-4 text-white hover:text-accent font-semibold transition-colors"
+                      className={`flex items-center gap-4 font-semibold transition-colors ${
+                        theme === "light" ? "text-zinc-900 hover:text-accent" : "text-white hover:text-accent"
+                      }`}
                     >
                       <item.icon size={20} className="text-accent" />
                       {item.name}
@@ -426,7 +486,11 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
                       onNavigate("checkout");
                     }}
                     className={`flex items-center gap-4 font-semibold transition-colors ${
-                      currentView === "checkout" ? "text-accent" : "text-white hover:text-accent"
+                      currentView === "checkout" 
+                        ? "text-accent" 
+                        : theme === "light" 
+                          ? "text-zinc-900 hover:text-accent" 
+                          : "text-white hover:text-accent"
                     }`}
                   >
                     <ShoppingCart size={20} className="text-accent" />
@@ -436,9 +500,13 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
               )}
             </div>
 
-            <div className="mt-12 pt-8 border-t border-white/10 flex flex-col gap-4 text-zinc-500 font-ui text-xs">
-              <p className="uppercase tracking-[0.3em] text-zinc-400">Collaborate with Khilesh</p>
-              <a href="mailto:khileshsammal.work@gmail.com" className="hover:text-white transition-colors">khileshsammal.work@gmail.com</a>
+            <div className={`mt-12 pt-8 border-t flex flex-col gap-4 font-ui text-xs ${
+              theme === "light" ? "border-zinc-200 text-zinc-500" : "border-white/10 text-zinc-500"
+            }`}>
+              <p className={`uppercase tracking-[0.3em] font-semibold ${theme === "light" ? "text-zinc-600" : "text-zinc-400"}`}>Collaborate with Khilesh</p>
+              <a href="mailto:khileshsammal.work@gmail.com" className={`transition-colors ${
+                theme === "light" ? "text-zinc-800 hover:text-accent" : "text-white hover:text-accent"
+              }`}>khileshsammal.work@gmail.com</a>
               <div className="flex gap-4 mt-2">
                 {SOCIAL_LINKS.map(link => (
                   <a key={link.label} href={link.href} target="_blank" className="text-zinc-500 hover:text-accent transition-colors">
@@ -457,7 +525,7 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
 Header.displayName = "Header";
 
 const Hero = memo(() => (
-  <section className="relative h-[100dvh] flex items-center justify-center overflow-hidden">
+  <section className="relative h-[100dvh] flex items-center justify-center overflow-hidden always-dark">
     <div className="absolute inset-0 z-0">
       <img 
         src="https://images.unsplash.com/photo-1596642240875-da7d44fe845f?auto=format&fit=crop&w=1920&q=80" 
@@ -553,7 +621,7 @@ const Directory = memo(({ onSelectTrip }: DirectoryProps) => {
   );
 
   return (
-    <section id="directory" className="py-16 md:py-24 bg-[#0f0f0f]">
+    <section id="directory" className="py-16 md:py-24 bg-card-bg">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -579,20 +647,20 @@ const Directory = memo(({ onSelectTrip }: DirectoryProps) => {
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-0.5 bg-zinc-800 border-y border-zinc-800">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-0.5 bg-border-main border-y border-border-main">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative aspect-[4/5] bg-zinc-900 flex items-center justify-center text-center p-6"
+          className="relative aspect-[4/5] bg-card-bg flex items-center justify-center text-center p-4 sm:p-6"
         >
           <div className="flex flex-col items-center">
-            <div className="w-12 h-12 rounded-full border border-accent/30 flex items-center justify-center mb-4">
-              <Calendar className="text-accent" size={24} />
+            <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full border border-accent/30 flex items-center justify-center mb-2 sm:mb-4">
+              <Calendar className="text-accent" size={16} />
             </div>
-            <h3 className="text-xl font-serif text-zinc-300">The Next Chapter</h3>
-            <p className="text-[10px] uppercase tracking-widest text-accent mt-2 font-ui font-bold">Dropping Q3 2026</p>
+            <h3 className="text-base sm:text-xl font-serif text-text-main">The Next Chapter</h3>
+            <p className="text-[8px] sm:text-[10px] uppercase tracking-widest text-accent mt-1 sm:mt-2 font-ui font-bold">Dropping Q3 2026</p>
           </div>
         </motion.div>
 
@@ -605,7 +673,7 @@ const Directory = memo(({ onSelectTrip }: DirectoryProps) => {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6 }}
               key={trip.id}
-              className="relative aspect-[4/5] bg-black group overflow-hidden"
+              className="relative aspect-[4/5] bg-black group overflow-hidden always-dark"
             >
               <img 
                 src={trip.img} 
@@ -614,24 +682,24 @@ const Directory = memo(({ onSelectTrip }: DirectoryProps) => {
                 loading="lazy"
                 decoding="async"
               />
-              <div className="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-black via-black/10 to-transparent">
-                <span className="text-[10px] uppercase tracking-[0.3em] mb-1 text-accent font-bold font-ui">{trip.subtitle}</span>
-                <h3 className="text-xl font-serif mb-4 leading-tight">{trip.title}</h3>
+              <div className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-end bg-gradient-to-t from-black via-black/10 to-transparent">
+                <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.3em] mb-1 text-accent font-bold font-ui">{trip.subtitle}</span>
+                <h3 className="text-base sm:text-xl font-serif mb-2 sm:mb-4 leading-tight text-white">{trip.title}</h3>
                 {trip.id === 1 || trip.id === 2 || trip.id === 3 || trip.id === 4 || trip.id === 5 || trip.id === 6 || trip.id === 7 ? (
                   <button 
                     onClick={() => onSelectTrip(trip.id)}
-                    className="px-5 py-2.5 text-[11px] font-bold font-ui uppercase tracking-widest border border-white/40 hover:bg-white hover:text-black transition-all w-fit flex items-center gap-2 cursor-pointer text-left"
+                    className="px-3 py-1.5 sm:px-5 sm:py-2.5 text-[9px] sm:text-[11px] font-bold font-ui uppercase tracking-widest border border-white/40 hover:bg-white hover:text-black transition-all w-fit flex items-center gap-1.5 sm:gap-2 cursor-pointer text-left"
                   >
-                    View <Eye size={16} />
+                    View <Eye size={12} className="sm:w-4 sm:h-4" />
                   </button>
                 ) : (
                   <a 
                     href={trip.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="px-5 py-2.5 text-[11px] font-bold font-ui uppercase tracking-widest border border-white/40 hover:bg-white hover:text-black transition-all w-fit flex items-center gap-2"
+                    className="px-3 py-1.5 sm:px-5 sm:py-2.5 text-[9px] sm:text-[11px] font-bold font-ui uppercase tracking-widest border border-white/40 hover:bg-white hover:text-black transition-all w-fit flex items-center gap-1.5 sm:gap-2"
                   >
-                    View <Eye size={16} />
+                    View <Eye size={12} className="sm:w-4 sm:h-4" />
                   </a>
                 )}
               </div>
@@ -665,7 +733,7 @@ const Blog = memo(({ onSelectPost }: BlogProps) => {
         </div>
         <button 
           onClick={() => onSelectPost("archive-list")}
-          className="text-zinc-500 hover:text-accent font-ui font-bold text-xs uppercase tracking-widest border border-white/10 hover:border-accent/40 px-5 py-2.5 transition-all w-fit"
+          className="text-text-dim hover:text-accent font-ui font-bold text-xs uppercase tracking-widest border border-border-main hover:border-accent/40 px-5 py-2.5 transition-all w-fit"
         >
           View All Posts
         </button>
@@ -682,7 +750,7 @@ const Blog = memo(({ onSelectPost }: BlogProps) => {
             transition={{ duration: 0.8, delay: idx * 0.15, ease: "easeOut" }}
             className="group cursor-pointer"
           >
-            <div className="aspect-video overflow-hidden mb-5 rounded-sm bg-zinc-900 border border-white/5">
+            <div className="aspect-video overflow-hidden mb-5 rounded-sm bg-card-bg border border-border-main">
               <img 
                 src={post.img} 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
@@ -693,11 +761,11 @@ const Blog = memo(({ onSelectPost }: BlogProps) => {
             </div>
             <div className="flex items-center space-x-3 mb-3 text-[9px] uppercase tracking-widest text-accent font-bold font-ui">
               <span className="flex items-center gap-1"><Tag size={12} /> {post.tag}</span>
-              <span className="w-1.5 h-1.5 bg-zinc-700 rounded-full"></span>
+              <span className="w-1.5 h-1.5 bg-border-main rounded-full"></span>
               <span className="text-text-dim font-normal flex items-center gap-1"><Clock size={12} /> {post.read}</span>
             </div>
             <h3 className="text-xl md:text-2xl font-serif mb-4 leading-tight transition-all group-hover:text-accent">{post.title}</h3>
-            <span className="text-[10px] uppercase tracking-widest font-bold border-b-2 border-zinc-800 pb-1 group-hover:text-accent group-hover:border-accent inline-flex items-center gap-2 font-ui transition-all">
+            <span className="text-[10px] uppercase tracking-widest font-bold border-b-2 border-border-main pb-1 group-hover:text-accent group-hover:border-accent inline-flex items-center gap-2 font-ui transition-all">
               Read Post <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
             </span>
           </motion.article>
@@ -710,7 +778,7 @@ const Blog = memo(({ onSelectPost }: BlogProps) => {
 Blog.displayName = "Blog";
 
 const Shop = memo(({ onAddToCart }: { onAddToCart: (item: any) => void }) => (
-  <section id="shop" className="py-16 md:py-32 bg-[#050505] px-5 md:px-24">
+  <section id="shop" className="py-16 md:py-32 bg-bg px-5 md:px-24">
     <div className="max-w-7xl mx-auto">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
@@ -733,9 +801,9 @@ const Shop = memo(({ onAddToCart }: { onAddToCart: (item: any) => void }) => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-            className="group bg-[#0a0a0a] border border-zinc-900 p-5 transition-all duration-300 rounded-sm hover:border-accent"
+            className="group bg-card-bg border border-border-main p-5 transition-all duration-300 rounded-sm hover:border-accent"
           >
-            <div className="aspect-square mb-6 overflow-hidden bg-zinc-900 flex items-center justify-center">
+            <div className="aspect-square mb-6 overflow-hidden bg-bg border border-border-main/50 flex items-center justify-center">
               <img 
                 src={item.img} 
                 className="w-3/4 opacity-80 group-hover:scale-110 transition-transform" 
@@ -752,7 +820,7 @@ const Shop = memo(({ onAddToCart }: { onAddToCart: (item: any) => void }) => (
                 price: parseInt(item.price.replace(/[^\d]/g, ""), 10),
                 img: item.img
               })}
-              className="w-full py-4 text-[10px] font-bold font-ui uppercase tracking-widest border border-zinc-800 hover:bg-accent hover:text-black transition-all flex items-center justify-center gap-2"
+              className="w-full py-4 text-[10px] font-bold font-ui uppercase tracking-widest border border-border-main text-text-main hover:bg-accent hover:text-black transition-all flex items-center justify-center gap-2"
             >
               <item.icon size={14} /> {item.btn}
             </button>
@@ -766,7 +834,7 @@ const Shop = memo(({ onAddToCart }: { onAddToCart: (item: any) => void }) => (
 Shop.displayName = "Shop";
 
 const FAQItem = memo(({ faq, index, isOpen, onToggle }: { faq: any, index: number, isOpen: boolean, onToggle: () => void }) => (
-  <div className="border border-zinc-900 bg-[#0f0f0f] rounded-sm overflow-hidden">
+  <div className="border border-border-main bg-card-bg rounded-sm overflow-hidden">
     <button 
       onClick={onToggle}
       className="w-full flex justify-between items-center p-5 md:p-6 text-left focus:outline-none"
@@ -842,8 +910,8 @@ const FAQ = memo(() => {
 
 FAQ.displayName = "FAQ";
 
-const Contact = memo(() => (
-  <section id="contact" className="bg-black py-16 md:py-32 px-5 md:px-24 border-t border-zinc-900">
+const Contact = memo(({ onNavigate }: { onNavigate?: (view: AppView, targetHash?: string) => void }) => (
+  <section id="contact" className="bg-bg py-16 md:py-32 px-5 md:px-24 border-t border-border-main">
     <div className="max-w-7xl mx-auto">
       <div className="grid lg:grid-cols-12 gap-10 md:gap-16 items-start">
         <motion.div 
@@ -854,8 +922,8 @@ const Contact = memo(() => (
           className="lg:col-span-5"
         >
           <span className="text-accent uppercase tracking-widest text-[10px] font-bold mb-4 block font-ui">Let's Connect</span>
-          <h2 className="text-4xl md:text-7xl font-serif leading-[1.1] mb-5 md:mb-8">Follow the <br /><span className="italic text-zinc-500">Expedition.</span></h2>
-          <p className="text-zinc-500 text-base md:text-lg font-serif italic max-w-sm">The journey is the lens through which we find ourselves.</p>
+          <h2 className="text-4xl md:text-7xl font-serif leading-[1.1] mb-5 md:mb-8">Follow the <br /><span className="italic text-text-dim">Expedition.</span></h2>
+          <p className="text-text-dim text-base md:text-lg font-serif italic max-w-sm">The journey is the lens through which we find ourselves.</p>
         </motion.div>
 
         <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
@@ -868,14 +936,14 @@ const Contact = memo(() => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-              className="bg-[#0a0a0a] border border-zinc-900 p-8 md:p-10 flex flex-col justify-between aspect-square group rounded-sm hover:border-accent transition-all duration-500"
+              className="bg-card-bg border border-border-main p-8 md:p-10 flex flex-col justify-between aspect-square group rounded-sm hover:border-accent transition-all duration-500"
             >
               <div className="flex justify-between items-start">
                 <social.icon size={32} className="text-accent" />
-                <ArrowUpRight className="text-zinc-700 group-hover:text-accent transition-colors" size={20} />
+                <ArrowUpRight className="text-text-dim/60 group-hover:text-accent transition-colors" size={20} />
               </div>
               <div className="mt-8">
-                <p className="font-ui text-[9px] uppercase tracking-widest text-zinc-500 mb-2 font-bold">{social.name}</p>
+                <p className="font-ui text-[9px] uppercase tracking-widest text-text-dim mb-2 font-bold">{social.name}</p>
                 <h3 className="font-serif text-xl md:text-3xl transition-all leading-tight">{social.handle}</h3>
                 <div className="h-1 w-0 group-hover:w-full bg-accent mt-4 transition-all duration-500"></div>
               </div>
@@ -884,13 +952,132 @@ const Contact = memo(() => (
         </div>
       </div>
 
-      <div className="mt-16 md:mt-24 pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-[10px] md:text-sm uppercase tracking-[0.2em] md:tracking-[0.4em] text-accent font-bold font-ui flex items-center gap-3">
-          <Globe size={20} /> Lens & Latitude — 2025
+      {/* THREE FOOTER COLUMNS SECTION */}
+      <div className="mt-16 md:mt-24 pt-12 border-t border-border-main/50 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
+        {/* GROUP 1: ABOUT LENS & LATITUDE */}
+        <div className="space-y-4">
+          <h4 className="text-accent uppercase tracking-widest text-[10px] md:text-xs font-bold font-ui">About Lens & Latitude</h4>
+          <p className="text-text-dim text-sm font-serif leading-relaxed">
+            Real journeys, honest travel experiences, and visual stories from places I've personally explored. Documented through my lens, one destination at a time.
+          </p>
         </div>
-        <div className="flex gap-6 md:gap-10">
-          <a href="mailto:khileshsammal.work@gmail.com" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors">Email Me</a>
-          <a href="mailto:khileshsammal.work@gmail.com" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors">Collaborations</a>
+
+        {/* GROUP 2: EXPLORE */}
+        <div className="space-y-4">
+          <h4 className="text-accent uppercase tracking-widest text-[10px] md:text-xs font-bold font-ui">Explore</h4>
+          <ul className="space-y-2.5 text-sm">
+            <li>
+              <a 
+                href="#directory" 
+                onClick={(e) => {
+                  if (onNavigate) {
+                    e.preventDefault();
+                    onNavigate("home", "#directory");
+                  }
+                }}
+                className="text-text-dim hover:text-accent font-sans transition-colors"
+              >
+                Destinations
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#blog" 
+                onClick={(e) => {
+                  if (onNavigate) {
+                    e.preventDefault();
+                    onNavigate("blog-archive");
+                  }
+                }}
+                className="text-text-dim hover:text-accent font-sans transition-colors"
+              >
+                Travel Journal
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#gallery" 
+                onClick={(e) => {
+                  if (onNavigate) {
+                    e.preventDefault();
+                    onNavigate("home", "#gallery");
+                  }
+                }}
+                className="text-text-dim hover:text-accent font-sans transition-colors"
+              >
+                Travel Photography
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#about" 
+                onClick={(e) => {
+                  if (onNavigate) {
+                    e.preventDefault();
+                    onNavigate("home", "#about");
+                  }
+                }}
+                className="text-text-dim hover:text-accent font-sans transition-colors"
+              >
+                About Me
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#contact" 
+                onClick={(e) => {
+                  if (onNavigate) {
+                    e.preventDefault();
+                    onNavigate("home", "#contact");
+                  }
+                }}
+                className="text-text-dim hover:text-accent font-sans transition-colors"
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* GROUP 3: JOIN THE JOURNEY */}
+        <div className="space-y-4">
+          <h4 className="text-accent uppercase tracking-widest text-[10px] md:text-xs font-bold font-ui">Join the Journey</h4>
+          <p className="text-text-dim text-sm font-serif leading-relaxed">
+            Get new travel stories, destination guides, and photography updates straight to your inbox.
+          </p>
+          <form 
+            onSubmit={(e) => {
+              e.preventDefault();
+              // No fake success message as instructed when no backend is connected
+            }}
+            className="flex gap-2"
+          >
+            <input 
+              type="email" 
+              required
+              placeholder="Your email address" 
+              className="bg-card-bg border border-border-main rounded-sm px-3.5 py-2.5 text-xs text-white placeholder-text-dim/50 focus:outline-none focus:border-accent w-full font-sans transition-colors"
+            />
+            <button 
+              type="submit" 
+              className="bg-accent hover:bg-accent/90 text-black px-5 py-2.5 rounded-sm text-xs uppercase tracking-widest font-bold font-ui cursor-pointer transition-colors"
+            >
+              Join
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div className="mt-16 md:mt-24 pt-8 border-t border-border-main flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="text-[10px] md:text-sm uppercase tracking-[0.2em] md:tracking-[0.4em] text-accent font-bold font-ui flex items-center gap-3">
+          <Globe size={20} /> Lens & Latitude — 2026
+        </div>
+        <div className="flex flex-wrap justify-center gap-6 md:gap-10">
+          <a href="mailto:khileshsammal.work@gmail.com" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors text-text-main">Email Me</a>
+          <a href="mailto:khileshsammal.work@gmail.com" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors text-text-main">Collaborations</a>
+          <a href="/privacy-policy" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors text-text-main">Privacy Policy</a>
+          <a href="/terms" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors text-text-main">Terms of Use</a>
+          <a href="/disclaimer" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors text-text-main">Disclaimer</a>
         </div>
       </div>
     </div>
@@ -900,13 +1087,13 @@ const Contact = memo(() => (
 Contact.displayName = "Contact";
 
 const Footer = memo(() => (
-  <footer className="bg-black pb-12 px-6 md:px-24 border-t border-zinc-900/50">
-    <div className="pt-8 flex flex-col md:flex-row justify-between items-center text-[9px] md:text-[10px] text-zinc-700 uppercase tracking-widest font-ui font-bold gap-4 text-center">
+  <footer className="bg-card-bg pb-12 px-6 md:px-24 border-t border-border-main/50">
+    <div className="pt-8 flex flex-col md:flex-row justify-between items-center text-[9px] md:text-[10px] text-text-dim/60 uppercase tracking-widest font-ui font-bold gap-4 text-center">
       <p>&copy; 2026 KHILESH SAMMAL. ALL RIGHTS RESERVED.</p>
       <div className="flex space-x-4 md:space-x-6">
-        <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-        <a href="#" className="hover:text-white transition-colors">Shipping</a>
-        <a href="mailto:khileshsammal.work@gmail.com" className="hover:text-white transition-colors">Contact</a>
+        <a href="#" className="hover:text-text-main transition-colors">Privacy Policy</a>
+        <a href="#" className="hover:text-text-main transition-colors">Shipping</a>
+        <a href="mailto:khileshsammal.work@gmail.com" className="hover:text-text-main transition-colors">Contact</a>
       </div>
     </div>
   </footer>
@@ -945,6 +1132,36 @@ export default function App() {
 
   // 4. 'toastMessage' is a temporary notification message that floats on the screen when items are added/removed.
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  // 5. 'theme' manages the website color mode ('dark' or 'light')
+  const [theme, setTheme] = useState<"dark" | "light">(() => {
+    try {
+      const stored = localStorage.getItem("latitude_theme");
+      return (stored as "dark" | "light") || "dark";
+    } catch {
+      return "dark";
+    }
+  });
+
+  // Toggle theme action callback to easily switch color palettes
+  const toggleTheme = useCallback(() => {
+    setTheme(prev => prev === "dark" ? "light" : "dark");
+  }, []);
+
+  // Update theme class on HTML document element when state changes
+  useEffect(() => {
+    try {
+      localStorage.setItem("latitude_theme", theme);
+    } catch (e) {
+      console.error(e);
+    }
+    const root = document.documentElement;
+    if (theme === "light") {
+      root.classList.add("light");
+    } else {
+      root.classList.remove("light");
+    }
+  }, [theme]);
 
   // --- SIDE EFFECTS (useEffect) ---
   // useEffect lets you run code after the component renders, useful for synchronizing with external APIs, localStorage, or timers.
@@ -1064,6 +1281,8 @@ export default function App() {
         onNavigate={handleNavigate} 
         onSelectPost={handleSelectPost} 
         totalCartItems={totalCartItems}
+        theme={theme}
+        toggleTheme={toggleTheme}
       />
       <main>
         {view === "home" ? (
@@ -1095,7 +1314,7 @@ export default function App() {
             />
             <Blog onSelectPost={handleSelectPost} />
             <FAQ />
-            <Contact />
+            <Contact onNavigate={handleNavigate} />
           </>
         ) : view === "blog-archive" ? (
           <BlogArchive 

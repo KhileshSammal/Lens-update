@@ -255,14 +255,14 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
   }, [onAddToCart]);
 
   return (
-    <div className="min-h-screen bg-bg text-white pt-24 pb-32">
+    <div className="min-h-screen bg-bg text-text-main pt-24 pb-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         
         {/* Navigation back and Cart summary trigger */}
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex justify-between items-center mb-12 pb-6 border-b border-white/5"
+          className="flex justify-between items-center mb-12 pb-6 border-b border-border-main"
         >
           <button 
             onClick={onBackToHome}
@@ -302,7 +302,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
         </div>
 
         {/* Filter and Search Controls Row */}
-        <div className="flex flex-col md:flex-row gap-6 justify-between items-center bg-[#060606] border border-zinc-900 p-4 md:p-6 rounded-sm mb-12">
+        <div className="flex flex-col md:flex-row gap-6 justify-between items-center bg-card-bg border border-border-main p-4 md:p-6 rounded-sm mb-12">
           {/* Category tabs */}
           <div className="flex flex-wrap gap-2 w-full md:w-auto">
             {[
@@ -317,7 +317,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
                 className={`px-4 py-2 text-[10px] uppercase font-bold tracking-wider rounded-sm transition-all font-ui border ${
                   selectedCategory === tab.id 
                     ? "bg-accent text-black border-accent" 
-                    : "bg-black text-zinc-400 border-zinc-900 hover:text-white"
+                    : "bg-bg text-text-dim border-border-main hover:text-text-main"
                 }`}
               >
                 {tab.label}
@@ -333,7 +333,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
               placeholder="Search travel assets..."
               value={searchQuery}
               onChange={handleSearchChange}
-              className="w-full bg-black border border-zinc-900 focus:border-accent/40 focus:outline-none py-2.5 pl-10 pr-4 text-xs font-sans text-white rounded-sm placeholder-zinc-600 transition-colors"
+              className="w-full bg-bg border border-border-main focus:border-accent/40 focus:outline-none py-2.5 pl-10 pr-4 text-xs font-sans text-text-main rounded-sm placeholder-zinc-500 transition-colors"
             />
             {searchQuery && (
               <button 
@@ -348,7 +348,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
 
         {/* Empty Search Safeguard */}
         {filteredProducts.length === 0 ? (
-          <div className="text-center py-20 bg-[#060606] border border-zinc-900 rounded-sm">
+          <div className="text-center py-20 bg-card-bg border border-border-main rounded-sm">
             <Compass size={40} className="mx-auto text-zinc-800 mb-4 animate-spin-slow" />
             <h3 className="font-serif text-lg mb-2">No matching products found</h3>
             <p className="text-xs text-zinc-600 max-w-xs mx-auto mb-6">
@@ -370,10 +370,10 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: Math.min(idx * 0.05, 0.3) }}
-                className="group flex flex-col bg-[#060606] border border-zinc-900 rounded-sm overflow-hidden hover:border-accent/50 transition-all duration-300"
+                className="group flex flex-col bg-card-bg border border-border-main rounded-sm overflow-hidden hover:border-accent/50 transition-all duration-300"
               >
                 {/* Visual Cover */}
-                <div className="aspect-[4/3] overflow-hidden relative bg-zinc-950">
+                <div className="aspect-[4/3] overflow-hidden relative bg-bg">
                   <img 
                     src={item.img} 
                     alt={item.name} 
@@ -401,7 +401,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-zinc-900 flex flex-col gap-3">
+                  <div className="pt-4 border-t border-border-main flex flex-col gap-3">
                     <div className="flex justify-between items-baseline">
                       <span className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold font-ui">Investment</span>
                       <span className="text-xl font-bold font-ui text-accent">₹{item.price.toLocaleString("en-IN")}</span>
@@ -410,13 +410,13 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
                     <div className="grid grid-cols-2 gap-2 mt-2">
                       <button
                         onClick={() => setSelectedProduct(item)}
-                        className="py-3 text-[10px] font-bold font-ui uppercase tracking-widest border border-zinc-850 hover:border-zinc-500 hover:text-white transition-all text-center flex items-center justify-center gap-1.5"
+                        className="py-3 text-[10px] font-bold font-ui uppercase tracking-widest border border-border-main hover:border-zinc-500 hover:text-white text-text-main hover:text-accent transition-all text-center flex items-center justify-center gap-1.5 animate-none"
                       >
                         <Eye size={12} /> Details
                       </button>
                       <button
                         onClick={() => handleAddToCartWithFeedback(item)}
-                        className="py-3 bg-white text-slate-950 text-[10px] font-bold font-ui uppercase tracking-widest hover:bg-accent hover:text-black transition-all text-center flex items-center justify-center gap-1.5"
+                        className="py-3 bg-text-main text-bg text-[10px] font-bold font-ui uppercase tracking-widest hover:bg-accent hover:text-black transition-all text-center flex items-center justify-center gap-1.5"
                       >
                         <ShoppingCart size={12} /> Add to Cart
                       </button>
@@ -449,18 +449,18 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
               transition={{ type: "spring", duration: 0.5 }}
-              className="relative w-full max-w-3xl bg-[#090909] border border-zinc-850 rounded-sm overflow-hidden z-10 grid md:grid-cols-12 shadow-2xl"
+              className="relative w-full max-w-3xl bg-card-bg border border-border-main rounded-sm overflow-hidden z-10 grid md:grid-cols-12 shadow-2xl animate-none"
             >
               {/* Close Button */}
               <button 
                 onClick={() => setSelectedProduct(null)}
-                className="absolute top-4 right-4 z-20 p-2 bg-black/80 hover:bg-zinc-800 border border-zinc-800 rounded-full transition-colors text-zinc-400 hover:text-white"
+                className="absolute top-4 right-4 z-20 p-2 bg-card-bg/80 hover:bg-bg border border-border-main rounded-full transition-colors text-text-dim hover:text-text-main"
               >
                 <X size={16} />
               </button>
 
               {/* Cover Column (5 units) */}
-              <div className="md:col-span-5 aspect-[4/3] md:aspect-auto relative bg-zinc-950">
+              <div className="md:col-span-5 aspect-[4/3] md:aspect-auto relative bg-bg">
                 <img 
                   src={selectedProduct.img} 
                   alt={selectedProduct.name} 
@@ -484,7 +484,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
                   <span className="text-[9px] text-zinc-500 font-extrabold font-ui uppercase tracking-[0.25em] block mb-1">
                     {selectedProduct.category.toUpperCase().replace("-", " ")}
                   </span>
-                  <h2 className="text-2xl font-serif text-white mb-2 leading-tight">
+                  <h2 className="text-2xl font-serif text-text-main mb-2 leading-tight">
                     {selectedProduct.name}
                   </h2>
                   <p className="text-xs text-accent font-bold font-ui mb-4">
@@ -508,7 +508,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-zinc-900 flex flex-col sm:flex-row gap-4 items-center justify-between">
+                <div className="pt-6 border-t border-border-main flex flex-col sm:flex-row gap-4 items-center justify-between">
                   <div className="text-center sm:text-left">
                     <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold font-ui">Settled Investment</p>
                     <p className="text-2xl font-black font-ui text-accent mt-0.5">₹{selectedProduct.price.toLocaleString("en-IN")}</p>
@@ -520,7 +520,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
                         handleAddToCartWithFeedback(selectedProduct);
                         setSelectedProduct(null);
                       }}
-                      className="flex-grow sm:flex-grow-0 px-6 py-4 bg-white hover:bg-accent text-slate-950 hover:text-black font-bold font-ui text-[10px] uppercase tracking-widest transition-all rounded-sm flex items-center justify-center gap-2"
+                      className="flex-grow sm:flex-grow-0 px-6 py-4 bg-text-main hover:bg-accent text-bg hover:text-black font-bold font-ui text-[10px] uppercase tracking-widest transition-all rounded-sm flex items-center justify-center gap-2"
                     >
                       <ShoppingCart size={14} /> Add to Cart
                     </button>
@@ -540,7 +540,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[120] bg-zinc-950 border border-accent/40 text-white px-5 py-4 rounded-sm shadow-2xl flex items-center gap-3 max-w-sm font-sans"
+            className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[120] bg-card-bg border border-accent/40 text-text-main px-5 py-4 rounded-sm shadow-2xl flex items-center gap-3 max-w-sm font-sans"
           >
             <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <p className="text-xs uppercase tracking-widest font-ui font-semibold">Added {addedItemName} to Cart!</p>

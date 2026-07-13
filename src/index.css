@@ -1,20 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap');
 @import "tailwindcss";
 
+/* Theme definitions using standard CSS custom properties */
+:root {
+  --bg-color: #0c0c0e;
+  --text-main-color: #ffffff;
+  --text-dim-color: #a1a1aa;
+  --card-bg-color: #121214;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --accent-color: #ffcc00;
+}
+
+.light {
+  --bg-color: #f8fafc;
+  --text-main-color: #0f172a;
+  --text-dim-color: #475569;
+  --card-bg-color: #ffffff;
+  --border-color: rgba(15, 23, 42, 0.08);
+  --accent-color: #b45309; /* Deep rich gold/amber-700 for beautiful, high-contrast readability in Light Mode */
+}
+
+/* Always Dark block layout reset for cinematic overlays and banners */
+.always-dark,
+.light .always-dark {
+  --bg-color: #0c0c0e !important;
+  --text-main-color: #ffffff !important;
+  --text-dim-color: #a1a1aa !important;
+  --card-bg-color: #121214 !important;
+  --border-color: rgba(255, 255, 255, 0.08) !important;
+  --accent-color: #ffcc00 !important;
+  color: #ffffff !important;
+}
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", serif;
   --font-ui: "Montserrat", sans-serif;
   
-  --color-accent: #ffcc00;
-  --color-bg: #0a0a0a;
-  --color-text-main: #ffffff;
-  --color-text-dim: #a0a0a0;
+  --color-accent: var(--accent-color);
+  --color-bg: var(--bg-color);
+  --color-text-main: var(--text-main-color);
+  --color-text-dim: var(--text-dim-color);
+  --color-card-bg: var(--card-bg-color);
+  --color-border-main: var(--border-color);
 }
 
 @layer base {
   body {
-    @apply bg-bg text-text-main font-sans antialiased overflow-x-hidden;
+    @apply bg-bg text-text-main font-sans antialiased overflow-x-hidden transition-colors duration-300;
   }
   
   .serif {
@@ -33,5 +66,149 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+}
+
+/* HIGH-CONTRAST LIGHT MODE COMPATIBILITY LAYER */
+.light {
+  /* Dynamic Background Class Overrides for Cards, Modals, and Widgets */
+  .bg-black,
+  .bg-zinc-950,
+  .bg-zinc-900,
+  .bg-slate-900,
+  .bg-slate-950,
+  .bg-\[\#0a0a0a\],
+  .bg-\[\#030303\],
+  .bg-\[\#070707\],
+  .bg-\[\#121212\],
+  .bg-\[\#0f0f0f\],
+  .bg-\[\#050505\],
+  .bg-\[\#0c0c0c\],
+  .bg-\[\#090909\],
+  .bg-\[\#060606\],
+  .bg-zinc-900\/50,
+  .bg-zinc-950\/40,
+  .bg-slate-900\/50,
+  .bg-slate-950\/40,
+  .bg-black\/40,
+  .bg-white\/\[0\.01\],
+  .bg-white\/\[0\.02\],
+  .bg-white\/\[0\.03\],
+  .bg-white\/\[0\.04\],
+  .bg-white\/\[0\.05\],
+  .bg-white\/\[0\.08\],
+  .bg-white\/5,
+  .bg-white\/10 {
+    background-color: var(--card-bg-color) !important;
+  }
+
+  /* Support for mapping coaching banner or other dark dual gradients to flat cards */
+  .bg-gradient-to-r.from-zinc-950 {
+    background-image: none !important;
+    background-color: var(--card-bg-color) !important;
+  }
+
+  /* Dynamic Background Class Overrides for Page-Level Layouts & Section Wrappers */
+  .bg-\[\#07090b\],
+  .bg-\[\#0a0c10\],
+  .bg-\[\#090b0e\],
+  .bg-\[\#080a0c\],
+  .bg-\[\#0c0c0e\] {
+    background-color: var(--bg-color) !important;
+  }
+
+  /* Core page structures and dynamic section containers */
+  .min-h-screen,
+  section {
+    &.bg-black,
+    &.bg-bg,
+    &.bg-zinc-950,
+    &.bg-\[\#07090b\],
+    &.bg-\[\#0a0c10\],
+    &.bg-\[\#090b0e\],
+    &.bg-\[\#080a0c\],
+    &.bg-\[\#0c0c0e\] {
+      background-color: var(--bg-color) !important;
+    }
+  }
+
+  /* Specific White/Light/Slate text overrides for crisp dark text in Light Mode */
+  .text-white,
+  .text-zinc-50,
+  .text-zinc-100,
+  .text-zinc-200,
+  .text-zinc-300,
+  .text-neutral-50,
+  .text-neutral-100,
+  .text-neutral-200,
+  .text-slate-50,
+  .text-slate-100,
+  .text-slate-200,
+  .text-slate-300 {
+    color: var(--text-main-color) !important;
+  }
+
+  /* Muted Zinc/Neutral/Slate text overrides */
+  .text-zinc-400,
+  .text-zinc-500,
+  .text-neutral-400,
+  .text-slate-400,
+  .text-slate-500 {
+    color: var(--text-dim-color) !important;
+  }
+
+  /* High contrast amber/gold text overrides in light mode for excellent readability */
+  .text-amber-50,
+  .text-amber-100,
+  .text-amber-200,
+  .text-amber-300,
+  .text-amber-400,
+  .text-amber-500,
+  [class*="text-amber-400/"],
+  [class*="text-amber-500/"],
+  [class*="text-amber-300/"],
+  [class*="text-amber-50/"] {
+    color: var(--accent-color) !important;
+  }
+
+  /* Ensure Headings are extremely sharp and prominent */
+  h1, h2, h3, h4, h5, h6 {
+    &.text-white,
+    &.text-zinc-100,
+    &.text-zinc-200,
+    &.text-slate-200 {
+      color: var(--text-main-color) !important;
+    }
+  }
+
+  /* Custom input components background override */
+  :not(.always-dark *) input,
+  :not(.always-dark *) select,
+  :not(.always-dark *) textarea {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border-color: rgba(15, 23, 42, 0.15) !important;
+  }
+
+  /* Transparent Border Overrides */
+  .border-white\/5,
+  .border-white\/10,
+  .border-white\/20,
+  .border-zinc-800,
+  .border-zinc-900,
+  .border-zinc-850,
+  .border-zinc-700,
+  .border-neutral-800 {
+    border-color: var(--border-color) !important;
+  }
+
+  /* Overlay states */
+  .bg-zinc-900\/30 {
+    background-color: rgba(15, 23, 42, 0.05) !important;
+  }
+
+  /* List & button interactive hover states */
+  .hover\:bg-white\/5:hover {
+    background-color: rgba(15, 23, 42, 0.05) !important;
   }
 }

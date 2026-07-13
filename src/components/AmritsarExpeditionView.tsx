@@ -175,7 +175,7 @@ export const AmritsarExpeditionView = memo(({ onBackToHome }: AmritsarExpedition
         </motion.div>
 
         {/* Hero Banner Section */}
-        <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950">
+        <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950 always-dark">
           <img 
             src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&q=80&w=2000" 
             alt="Amritsar Expedition" 

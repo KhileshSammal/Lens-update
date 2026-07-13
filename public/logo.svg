@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" rx="10" fill="#0c0c0e" />
+  <text x="50" y="52" font-family="'Playfair Display', serif" font-size="28" font-weight="900" fill="#ffcc00" text-anchor="middle" dominant-baseline="middle">KS</text>
+  <path d="M 25,70 L 75,70" stroke="#ffcc00" stroke-width="2" />
+</svg>

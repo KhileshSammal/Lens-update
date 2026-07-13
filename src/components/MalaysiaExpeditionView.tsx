@@ -135,7 +135,7 @@ export const MalaysiaExpeditionView = memo(({ onBackToHome }: MalaysiaExpedition
         </motion.div>
 
         {/* Hero Banner Section */}
-        <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950">
+        <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950 always-dark">
           <img 
             src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&q=80&w=2000" 
             alt="Malaysia Expedition" 

@@ -117,7 +117,7 @@ export const RishikeshExpeditionView = memo(({ onBackToHome }: RishikeshExpediti
         </motion.div>
 
         {/* Hero Banner Section */}
-        <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950">
+        <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950 always-dark">
           <img 
             src="https://images.unsplash.com/photo-1716573260891-23ad993e8833?auto=format&fit=crop&q=80&w=2000" 
             alt="Rishikesh Expedition" 

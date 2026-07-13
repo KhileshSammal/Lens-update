@@ -187,7 +187,7 @@ export const PatalBhuvaneshwarExpeditionView = memo(({ onBackToHome }: PatalBhuv
         </motion.div>
 
         {/* Hero Banner Section */}
-        <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950">
+        <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950 always-dark">
           <img 
             src="https://images.unsplash.com/photo-1714744715493-ad89b7ff503e?auto=format&fit=crop&q=80&w=2000" 
             alt="Patal Bhuvaneshwar Expedition" 

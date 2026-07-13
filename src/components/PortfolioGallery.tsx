@@ -759,7 +759,7 @@ export const PortfolioGallery = memo(() => {
         {/* Pure CSS Masonry Image Gallery with Framer Motion transitions */}
         <motion.div 
           layout
-          className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 [column-fill:_balance] space-y-4"
+          className="columns-2 sm:columns-2 md:columns-3 lg:columns-4 gap-3 sm:gap-4 [column-fill:_balance] space-y-3 sm:space-y-4"
         >
           <AnimatePresence mode="popLayout">
             {filteredPhotos.map((photo) => (
@@ -770,7 +770,7 @@ export const PortfolioGallery = memo(() => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, type: "spring", stiffness: 100, damping: 15 }}
-                className="break-inside-avoid relative overflow-hidden group rounded-2xl border border-slate-200/60 shadow-sm hover:border-slate-400/40 cursor-pointer bg-zinc-900 transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-amber-400/5 mb-4"
+                className="break-inside-avoid relative overflow-hidden group rounded-2xl border border-slate-200/60 shadow-sm hover:border-slate-400/40 cursor-pointer bg-zinc-900 transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl hover:shadow-amber-400/5 mb-3 sm:mb-4"
                 onClick={() => handleOpenLightbox(photo.id)}
               >
                 {/* Media Element (Image / Video / GIF) */}
@@ -856,7 +856,7 @@ export const PortfolioGallery = memo(() => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-lg flex flex-col items-center justify-center p-4 md:p-8"
+            className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-lg flex flex-col items-center justify-center p-4 md:p-8 always-dark"
             onClick={handleCloseLightbox}
           >
             {/* Close Button */}
@@ -943,27 +943,6 @@ export const PortfolioGallery = memo(() => {
                 <h3 className="text-lg md:text-xl font-serif text-white leading-tight font-semibold">
                   {filteredPhotos[lightboxIndex].title}
                 </h3>
-                
-                {/* Advanced Metadata Suite */}
-                {currentMetadata && (
-                  <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[10px] text-zinc-400 font-mono mt-3 pt-3 border-t border-white/5">
-                    <span className="flex items-center gap-1">
-                      <Camera size={10} className="text-amber-400/70" />
-                      {currentMetadata.gear}
-                    </span>
-                    <span className="hidden md:inline">•</span>
-                    <span>{currentMetadata.settings}</span>
-                    <span className="hidden md:inline">•</span>
-                    <span className="flex items-center gap-1 text-zinc-500">
-                      <Compass size={10} />
-                      {currentMetadata.coords}
-                    </span>
-                  </div>
-                )}
-
-                <p className="text-zinc-500 text-[10px] mt-2 font-mono">
-                  Capture {lightboxIndex + 1} of {filteredPhotos.length}
-                </p>
               </div>
             </div>
           </motion.div>
