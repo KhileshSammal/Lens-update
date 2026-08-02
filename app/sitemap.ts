@@ -11,9 +11,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/terms",
     "/disclaimer",
     "/blog",
-    "/blog/amritsar-grace-guide",
-    "/blog/goa-slow-living-blueprint",
-    "/blog/kerala-monsoon-expedition",
+    "/blog/vietnam-secrets-2025",
+    "/blog/phuket-expedition-guide",
+    "/blog/solo-asia-packing",
+    "/blog/camera-gear-2025",
+    "/blog/patal-bhuvneswar-cave-secrets",
+    "/blog/slow-travel-philosophy",
+    "/blog/malaysia-expedition-2025",
+    "/blog/amritsar-grace-2025",
+    "/blog/kerala-backwaters-2025",
+    "/blog/goa-vibrance-2025",
+    "/blog/nainital-heights-2025",
   ];
 
   return routes.map((route) => ({
