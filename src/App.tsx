@@ -49,6 +49,7 @@ import { VietnamExpeditionView } from "./components/VietnamExpeditionView";
 import { ExploringSoonView } from "./components/ExploringSoonView";
 import { PortfolioGallery } from "./components/PortfolioGallery";
 import { BioView } from "./components/BioView";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // --- Optimized Components ---
 
@@ -1444,6 +1445,7 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+      <SpeedInsights />
     </div>
   );
 }
