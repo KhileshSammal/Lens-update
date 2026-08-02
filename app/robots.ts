@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/admin/", "/checkout/success"],
     },
-    sitemap: "https://lensandlatitude.com/sitemap.xml",
+    sitemap: "https://lensandlattitude.in/sitemap.xml",
   };
 }

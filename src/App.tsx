@@ -46,6 +46,7 @@ import { PatalBhuvaneshwarExpeditionView } from "./components/PatalBhuvaneshwarE
 import { RishikeshExpeditionView } from "./components/RishikeshExpeditionView";
 import { GoaExpeditionView } from "./components/GoaExpeditionView";
 import { VietnamExpeditionView } from "./components/VietnamExpeditionView";
+import { ExploringSoonView } from "./components/ExploringSoonView";
 import { PortfolioGallery } from "./components/PortfolioGallery";
 import { BioView } from "./components/BioView";
 
@@ -152,7 +153,7 @@ const BlogDropdownItem = ({ item, currentView, handleLinkClick, onSelectPost }: 
   );
 };
 
-type AppView = "home" | "blog-archive" | "checkout" | "shop" | "thailand-diaries" | "malaysia-expedition" | "amritsar-expedition" | "kerala-expedition" | "patal-bhuvaneshwar-expedition" | "rishikesh-expedition" | "goa-expedition" | "vietnam-expedition" | "bio";
+type AppView = "home" | "blog-archive" | "checkout" | "shop" | "thailand-diaries" | "malaysia-expedition" | "amritsar-expedition" | "kerala-expedition" | "patal-bhuvaneshwar-expedition" | "rishikesh-expedition" | "goa-expedition" | "vietnam-expedition" | "mulki-expedition" | "andaman-expedition" | "philippines-expedition" | "nepal-expedition" | "bio";
 
 interface HeaderProps {
   currentView: AppView;
@@ -201,6 +202,10 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
     else if (id === 6) onNavigate("rishikesh-expedition");
     else if (id === 7) onNavigate("goa-expedition");
     else if (id === 8) onNavigate("vietnam-expedition");
+    else if (id === 10) onNavigate("mulki-expedition");
+    else if (id === 11) onNavigate("andaman-expedition");
+    else if (id === 12) onNavigate("philippines-expedition");
+    else if (id === 13) onNavigate("nepal-expedition");
     else onNavigate("home");
   };
 
@@ -687,7 +692,7 @@ const Directory = memo(({ onSelectTrip }: DirectoryProps) => {
               <div className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-end bg-gradient-to-t from-black via-black/10 to-transparent">
                 <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.3em] mb-1 text-accent font-bold font-ui">{trip.subtitle}</span>
                 <h3 className="text-base sm:text-xl font-serif mb-2 sm:mb-4 leading-tight text-white">{trip.title}</h3>
-                {trip.id === 1 || trip.id === 2 || trip.id === 3 || trip.id === 4 || trip.id === 5 || trip.id === 6 || trip.id === 7 || trip.id === 8 ? (
+                {trip.id === 1 || trip.id === 2 || trip.id === 3 || trip.id === 4 || trip.id === 5 || trip.id === 6 || trip.id === 7 || trip.id === 8 || trip.id === 10 || trip.id === 11 || trip.id === 12 || trip.id === 13 ? (
                   <button 
                     onClick={() => onSelectTrip(trip.id)}
                     className="px-3 py-1.5 sm:px-5 sm:py-2.5 text-[9px] sm:text-[11px] font-bold font-ui uppercase tracking-widest border border-white/40 hover:bg-white hover:text-black transition-all w-fit flex items-center gap-1.5 sm:gap-2 cursor-pointer text-left"
@@ -1308,6 +1313,14 @@ export default function App() {
                 handleNavigate("goa-expedition");
               } else if (id === 8) {
                 handleNavigate("vietnam-expedition");
+              } else if (id === 10) {
+                handleNavigate("mulki-expedition");
+              } else if (id === 11) {
+                handleNavigate("andaman-expedition");
+              } else if (id === 12) {
+                handleNavigate("philippines-expedition");
+              } else if (id === 13) {
+                handleNavigate("nepal-expedition");
               }
             }} />
             <PortfolioGallery />
@@ -1363,6 +1376,42 @@ export default function App() {
           />
         ) : view === "vietnam-expedition" ? (
           <VietnamExpeditionView 
+            onBackToHome={() => handleNavigate("home")}
+          />
+        ) : view === "mulki-expedition" ? (
+          <ExploringSoonView 
+            locationName="Mulki Expedition"
+            subtitle="Karnataka Surfing Haven"
+            bgImage="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+            category="India Expeditions"
+            expectedDate="Late 2026"
+            onBackToHome={() => handleNavigate("home")}
+          />
+        ) : view === "andaman-expedition" ? (
+          <ExploringSoonView 
+            locationName="Andaman Islands"
+            subtitle="Emerald Archipelago"
+            bgImage="https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&w=1200&q=80"
+            category="India Expeditions"
+            expectedDate="Early 2027"
+            onBackToHome={() => handleNavigate("home")}
+          />
+        ) : view === "philippines-expedition" ? (
+          <ExploringSoonView 
+            locationName="Philippines Expedition"
+            subtitle="Tropical Archipelagos"
+            bgImage="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1200&q=80"
+            category="International Expeditions"
+            expectedDate="Mid 2027"
+            onBackToHome={() => handleNavigate("home")}
+          />
+        ) : view === "nepal-expedition" ? (
+          <ExploringSoonView 
+            locationName="Nepal Heights"
+            subtitle="Himalayan Sanctuary"
+            bgImage="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80"
+            category="International Expeditions"
+            expectedDate="Autumn 2026"
             onBackToHome={() => handleNavigate("home")}
           />
         ) : view === "bio" ? (

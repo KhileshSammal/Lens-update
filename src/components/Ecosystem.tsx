@@ -50,7 +50,7 @@ const Ecosystem = ({ onAddToCart, onBuyNow }: { onAddToCart: () => void, onBuyNo
         },
         "offers": {
           "@type": "Offer",
-          "url": "https://lensandlattitude.vercel.app/shop",
+          "url": "https://lensandlattitude.in/shop",
           "priceCurrency": "INR",
           "price": "1499",
           "availability": "https://schema.org/InStock"

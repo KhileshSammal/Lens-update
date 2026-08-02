@@ -16,18 +16,18 @@ export const metadata: Metadata = {
   title: "Lens & Latitude | Curated Expeditions & Travel Shop",
   description: "Curated resources, digital trackers, signature photography presets, and tailored travel blueprints designed to optimize your visual storytelling and physical journeys by Khilesh Sammal.",
   keywords: ["Travel Blog", "Travel Journal", "Photography Presets", "Amritsar Travel", "Goa Expeditions", "Thailand Diaries", "Travel Blueprints", "Khilesh Sammal"],
-  authors: [{ name: "Khilesh Sammal", url: "https://lensandlatitude.com" }],
+  authors: [{ name: "Khilesh Sammal", url: "https://lensandlattitude.in" }],
   creator: "Khilesh Sammal",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://lensandlatitude.com",
+    url: "https://lensandlattitude.in",
     title: "Lens & Latitude | Curated Expeditions & Travel Shop",
     description: "Curated resources, digital trackers, signature photography presets, and tailored travel blueprints designed to optimize your visual storytelling and physical journeys.",
     siteName: "Lens & Latitude",
     images: [
       {
-        url: "https://lensandlatitude.com/og-image.jpg",
+        url: "https://lensandlattitude.in/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Lens & Latitude Travel Chronicles",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lens & Latitude | Curated Expeditions & Travel Shop",
     description: "Curated resources, digital trackers, signature photography presets, and tailored travel blueprints designed to optimize your visual storytelling.",
-    images: ["https://lensandlatitude.com/og-image.jpg"],
+    images: ["https://lensandlattitude.in/og-image.jpg"],
     creator: "@khileshsammal",
   },
   robots: {
