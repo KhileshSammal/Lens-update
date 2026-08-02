@@ -1,0 +1,12 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /checkout/success
+
+# Crawl-delay for polite crawling if needed
+# Crawl-delay: 1
+
+# Sitemap URL for Google and other search engines
+Sitemap: https://lensandlattitude.in/sitemap.xml
