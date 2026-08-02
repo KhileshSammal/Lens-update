@@ -568,59 +568,83 @@ export const DETAILED_BLOG_POSTS: BlogPost[] = [
   },
   {
     id: "vietnam-secrets-2025",
-    title: "Vietnam Secrets - 2025",
+    title: "Vietnam Expedition - July 2026 Itinerary (2 Persons)",
     tag: "Expeditions",
-    read: "9 Min Read",
-    date: "September 18, 2025",
+    read: "10 Min Read",
+    date: "July 17 – 26, 2026",
     img: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80",
-    excerpt: "7-Night Northern & Central Explorer. Motor-dense alleys of Hanoi, an overnight cruise in Halong Bay, and candlelit canals of historic Hoi An.",
+    excerpt: "Complete 9-Day Journey Blueprint for 2 Persons (July 17–26, 2026). Route: Delhi → Ho Chi Minh City → Hanoi → Ha Long Bay → Ninh Binh → Hanoi → Delhi.",
     author: "Khilesh Sammal",
     sections: [
       {
         type: "text",
-        title: "The Incredible Energy of Vietnam",
-        body: "Vietnam is a mesmerizing sensory explosion, where ancient French colonial architecture, steaming street food stands, and dense motorcycle lanes blend into an unforgettable rhythm. Over 7 nights, we cover Northern Vietnam's classical soul in Hanoi, spectacular landscape scenery in Halong Bay, and Central Vietnam's romantic, postcard streets of Hoi An."
+        title: "Vietnam Expedition July 2026 Overview (2 Persons)",
+        body: "A comprehensive 9-day summer expedition for 2 persons across Vietnam's core regions — from the bustling urban energy of Ho Chi Minh City (Saigon) to the classical capital Hanoi, the emerald monoliths of Ha Long Bay, and the karst dragon peaks of Ninh Binh."
       },
       {
         type: "quote",
-        body: "Vietnam has a way of changing your pulse rate. The constant horn noise of Hanoi eventually settles into a deep, meditative flow."
+        body: "Route Loop: Delhi (DEL) ➔ Ho Chi Minh City (SGN) ➔ Hanoi (HAN) ➔ Ha Long Bay ➔ Ninh Binh ➔ Hanoi (HAN) ➔ Delhi (DEL). Total Estimated Budget: ~₹1,20,000 INR (For 2 Persons)."
       },
       {
         type: "bullet-list",
-        title: "Premium Bases of Choice",
+        title: "Confirmed Stay Accommodations (Booked for 2 Persons)",
         items: [
-          "Hanoi: Sofitel Legend Metropole Hanoi - high-profile French colonial elegance right in the center of the French Quarter.",
-          "Halong Bay: Heritage Cruises Binh Chuan - boutique wooden ship featuring a stunning rooftop salt-water pool and antique art galleries.",
-          "Hoi An Historic: Anantara Hoi An Resort - luxury French-influenced architecture positioned on the quiet-flowing Thu Bon River."
+          "Jul 18: Bay View Hotel, District 1, Ho Chi Minh City (₹1,800 / ₹4,000 ✅ Booked)",
+          "Jul 19: Hotel Sail / Hanoi Sail, Old Quarter, Hanoi (₹2,700 ✅ Booked)",
+          "Jul 20: Hotel Sail, Old Quarter, Hanoi (₹2,800 ✅ Booked)",
+          "Jul 21: Aurora Cruise Ship, Ha Long Bay (Overnight Cruise - Included in ₹24k Package)",
+          "Jul 22: Muong Thanh Grand Bai Chay, Ha Long Beach (₹3,400 ✅ Booked)",
+          "Jul 23: Tam Coc Marine Villa, Ninh Binh (₹3,000 ✅ Booked)",
+          "Jul 24: SI Grand Hotel, Ninh Binh (₹2,250 ✅ Booked)",
+          "Jul 25: Radisson Blu, IGI Airport Delhi Transit (₹4,000 / ₹8,000 ✅ Booked)"
         ]
       },
       {
         type: "image",
-        imageUrl: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80",
-        imageCaption: "Bright hand-crafted silk lanterns illuminating the romantic riverside streets of Hoi An Ancient Town at night."
+        imageUrl: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80",
+        imageCaption: "Majestic limestone karst monoliths rising from the emerald waters of Ha Long Bay, Vietnam."
       },
       {
         type: "bullet-list",
-        title: "The 7-Night Journey Log",
+        title: "Day-by-Day Journey Log (Jul 17 – Jul 25)",
         items: [
-          "Day 1: Land in Noi Bai Airport (HAN), VIP transit to Sofitel Metropole. Explore the bustling 36 Streets of the Old Quarter by cyclos, ending with cold local Bia Hoi beer.",
-          "Day 2: Morning visit to the Temple of Literature. Spend the afternoon sipping sweet egg coffee on Hanoi's famous Train Street, followed by late evening street food exploration.",
-          "Day 3: Luxury limousine drive to Halong Bay. Board Binh Chuan ship, kayak around limestone lagoons, and sleep under stars on the silent waters of Lan Ha Bay.",
-          "Day 4: Dawn Tai Chi exercises on the wooden deck. Navigate the rock caverns of Sung Sot Cave, return to Hanoi, fly south to Da Nang, and transit to Hoi An.",
-          "Day 5: Catch a slow, scenic cycling tour through rural banana orchards. Get fitted for hand-tailored linen suits, and walk Hoi An's narrow streets under lit lanterns.",
-          "Day 6: Day excursion to the spectacular Ba Na Hills, taking photos on the famous stone hands of the Golden Bridge, returning to Hoi An for a romantic paper-lantern boat cruise.",
-          "Day 7: Cooking masterclass at An My organic farming village. Ride circular bamboo basket boats down coconut forests, followed by a beachfront BBQ dinner.",
-          "Day 8: Grab hot Banh Mi sandwiches, buy local Vietnamese coffee beans, and take off from Da Nang International Airport (DAD)."
+          "Jul 17 (Night) — Delhi Departure: Reach IGI T3 by 9:00 PM. 12:05 AM (Jul 18) flight departs Delhi (DEL) to Ho Chi Minh City (SGN).",
+          "Jul 18 — Ho Chi Minh City (Saigon): Land at SGN, Grab to Bay View Hotel District 1. Visit local cafes, central mall, War Remnants Museum or Independence Palace. Evening at Ben Thanh Night Market & Oasis Cafe dinner. Night City Tour Bus (₹600).",
+          "Jul 19 — Saigon ➔ Hanoi: 4:00 AM early flight to Hanoi (HAN). Grab to Hanoi Sail in Old Quarter. Rest, then walk Hoan Kiem Lake & Ngoc Son Temple. Dinner: Bun Cha at Hanoi Night Market. Night City Tour Bus.",
+          "Jul 20 — Hanoi Exploration: Temple of Literature & Banh Mi 25 Cafe in the morning. Book Ha Long Bay Cruise. Evening at Train Street coffee, Mega Grand World Show (Free Oct2 bus from Opera House). Dinner at Maazi Indian Restaurant.",
+          "Jul 21 — Ha Long Bay (Aurora Cruise): 8:00 AM pickup from hotel to Ha Long Bay. Board Aurora Cruise for kayaking, swimming, and cave exploration. Sunset party & dinner on deck.",
+          "Jul 22 — Ha Long Bay (Shore Stay): Sunrise Tai Chi & boat breakfast. Disembark 11:30 AM. Check into Muong Thanh Grand Bai Chay. Hike Bai Tho Mountain (Poem Mountain) for panoramic bay views. Evening at Bai Chay Beach & Vannakam Indian Food.",
+          "Jul 23 — Ha Long ➔ Ninh Binh: 9:00 AM Limousine Bus to Ninh Binh (~3.5 hrs). Check into Tam Coc Marine Villa. Rent bicycle to explore lotus ponds in peak bloom. Dinner at Saffron Indian Restaurant.",
+          "Jul 24 — Ninh Binh (Trang An & Mua Cave): Mua Cave (Hang Mua) 500-step climb for 'Lying Dragon' view. Afternoon Trang An Grottoes boat tour (UNESCO site) & cycling Hoa Lu Ancient City. Dinner at Saffron Indian Restaurant.",
+          "Jul 25 — Ninh Binh ➔ Hanoi ➔ Delhi: Morning rest. 12:00 PM Limousine bus to Noi Bai Airport (HAN). 7:40 PM flight Hanoi to Delhi. Stay at Radisson Blu IGI."
         ]
       },
       {
         type: "bullet-list",
-        title: "Gastronomic Secrets of Vietnam",
+        title: "Estimated Budget Breakdown (INR - For 2 Persons)",
         items: [
-          "Pho Bo: Warm rice noodle beef broth infused with charred ginger, cinnamon, star anise, and fresh sweet herbs.",
-          "Bun Cha: Grilled pork patties served in rich fish sauce broth, paired with fresh vermicelli noodles and greens.",
-          "Ca Phe Trung: Rich, frothy egg yolk whipped with local robusta coffee and sweetened condensed milk.",
-          "Banh Mi: Crispy French baguette filled with pate, fresh cucumber, coriander, pickled carrots, and chili pork."
+          "Flights (International DEL-SGN/HAN-DEL & Domestic): ~₹32,000 ✅ Booked (2 Persons)",
+          "Cruise (Aurora Cruise Package): ~₹24,000 ✅ Booked (2 Persons)",
+          "Hotels (7 Nights Total): ~₹20,000 ✅ Booked (2 Persons)",
+          "Food & Drinks (Banh Mi 25, Maazi, Vannakam, Saffron, Oasis): ~₹10,000 (2 Persons)",
+          "Internal Transport (Grab, Limousine Buses, City Tour Buses): ~₹10,000 (2 Persons)",
+          "Activities & Entry Fees (Boat tours, Mua Cave, Trang An): ~₹10,000 (2 Persons)",
+          "Visa Fee: ~₹5,000 ✅ Booked (₹2,500 x 2 Persons)",
+          "Travel Insurance: ~₹1,500 (2 Persons)",
+          "Misc / Shopping / 7-Eleven: ~₹5,000 (2 Persons)",
+          "TOTAL ESTIMATED BUDGET: ~₹1,20,000 INR Total (~₹60,000 per person)"
+        ]
+      },
+      {
+        type: "bullet-list",
+        title: "Featured Cafes & Local Dining Highlights",
+        items: [
+          "Banh Mi 25 (Hanoi Old Quarter) — Famous authentic crispy baguettes.",
+          "Maazi Indian Restaurant (Hanoi) — Rich Indian curries and naan.",
+          "Vannakam Indian Food (Ha Long Beach) — South Indian specialties on the coast.",
+          "Saffron Indian Restaurant (Ninh Binh) — Authentic Indian dining in Tam Coc.",
+          "Oasis Cafe (Saigon, District 1) — Atmospheric cafe for dinner & drinks.",
+          "7-Eleven Stops — Convenient daily coffee, ice teas, and snacks."
         ]
       }
     ]

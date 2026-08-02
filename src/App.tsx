@@ -45,6 +45,7 @@ import { KeralaExpeditionView } from "./components/KeralaExpeditionView";
 import { PatalBhuvaneshwarExpeditionView } from "./components/PatalBhuvaneshwarExpeditionView";
 import { RishikeshExpeditionView } from "./components/RishikeshExpeditionView";
 import { GoaExpeditionView } from "./components/GoaExpeditionView";
+import { VietnamExpeditionView } from "./components/VietnamExpeditionView";
 import { PortfolioGallery } from "./components/PortfolioGallery";
 import { BioView } from "./components/BioView";
 
@@ -151,7 +152,7 @@ const BlogDropdownItem = ({ item, currentView, handleLinkClick, onSelectPost }: 
   );
 };
 
-type AppView = "home" | "blog-archive" | "checkout" | "shop" | "thailand-diaries" | "malaysia-expedition" | "amritsar-expedition" | "kerala-expedition" | "patal-bhuvaneshwar-expedition" | "rishikesh-expedition" | "goa-expedition" | "bio";
+type AppView = "home" | "blog-archive" | "checkout" | "shop" | "thailand-diaries" | "malaysia-expedition" | "amritsar-expedition" | "kerala-expedition" | "patal-bhuvaneshwar-expedition" | "rishikesh-expedition" | "goa-expedition" | "vietnam-expedition" | "bio";
 
 interface HeaderProps {
   currentView: AppView;
@@ -199,6 +200,7 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
     else if (id === 5) onNavigate("patal-bhuvaneshwar-expedition");
     else if (id === 6) onNavigate("rishikesh-expedition");
     else if (id === 7) onNavigate("goa-expedition");
+    else if (id === 8) onNavigate("vietnam-expedition");
     else onNavigate("home");
   };
 
@@ -685,7 +687,7 @@ const Directory = memo(({ onSelectTrip }: DirectoryProps) => {
               <div className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-end bg-gradient-to-t from-black via-black/10 to-transparent">
                 <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.3em] mb-1 text-accent font-bold font-ui">{trip.subtitle}</span>
                 <h3 className="text-base sm:text-xl font-serif mb-2 sm:mb-4 leading-tight text-white">{trip.title}</h3>
-                {trip.id === 1 || trip.id === 2 || trip.id === 3 || trip.id === 4 || trip.id === 5 || trip.id === 6 || trip.id === 7 ? (
+                {trip.id === 1 || trip.id === 2 || trip.id === 3 || trip.id === 4 || trip.id === 5 || trip.id === 6 || trip.id === 7 || trip.id === 8 ? (
                   <button 
                     onClick={() => onSelectTrip(trip.id)}
                     className="px-3 py-1.5 sm:px-5 sm:py-2.5 text-[9px] sm:text-[11px] font-bold font-ui uppercase tracking-widest border border-white/40 hover:bg-white hover:text-black transition-all w-fit flex items-center gap-1.5 sm:gap-2 cursor-pointer text-left"
@@ -1304,6 +1306,8 @@ export default function App() {
                 handleNavigate("rishikesh-expedition");
               } else if (id === 7) {
                 handleNavigate("goa-expedition");
+              } else if (id === 8) {
+                handleNavigate("vietnam-expedition");
               }
             }} />
             <PortfolioGallery />
@@ -1355,6 +1359,10 @@ export default function App() {
           />
         ) : view === "goa-expedition" ? (
           <GoaExpeditionView 
+            onBackToHome={() => handleNavigate("home")}
+          />
+        ) : view === "vietnam-expedition" ? (
+          <VietnamExpeditionView 
             onBackToHome={() => handleNavigate("home")}
           />
         ) : view === "bio" ? (

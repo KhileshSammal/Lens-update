@@ -40,6 +40,15 @@ const POSTS_DATA: Record<string, { title: string; date: string; content: string[
       "Using local public water taxis offers an authentic, near-zero carbon transit experience that directly funds state watermen.",
       "Pack water-sealed camera covers to document the intense monsoon clouds without equipment failure."
     ]
+  },
+  "vietnam-secrets-2025": {
+    title: "Vietnam Expedition: July 2026 Blueprint",
+    date: "July 17 – 26, 2026",
+    content: [
+      "A complete 9-day summer expedition across Vietnam's iconic destinations: Ho Chi Minh City (Saigon), Hanoi, Ha Long Bay, and Ninh Binh.",
+      "Route loop: Delhi ➔ Ho Chi Minh City ➔ Hanoi ➔ Ha Long Bay ➔ Ninh Binh ➔ Hanoi ➔ Delhi. Total estimated budget: ~₹1,20,000 INR.",
+      "Key highlights include Saigon city bus tours, Hanoi Old Quarter & Banh Mi 25, overnight Aurora Cruise in Ha Long Bay, climbing 500 steps up Mua Cave, and cycling lotus field paths in Tam Coc."
+    ]
   }
 };
 

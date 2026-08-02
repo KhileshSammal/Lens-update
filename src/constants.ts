@@ -38,7 +38,7 @@ export const TRIPS = [
   { id: 5, category: "india", title: "Patal Bhuwneswar - 2025", subtitle: "Uttarakhand", img: "https://images.unsplash.com/photo-1714744715493-ad89b7ff503e?auto=format&fit=crop&w=600&q=80", link: "https://patal-bhuvneswar.vercel.app/" },
   { id: 6, category: "india", title: "Rishikesh - 2025", subtitle: "Uttarakhand", img: "https://images.unsplash.com/photo-1716573260891-23ad993e8833?auto=format&fit=crop&w=600&q=80", link: "https://rishikesh-orpin.vercel.app/" },
   { id: 7, category: "india", title: "The Jagannath Puri to Sea Expedition", subtitle: "Lens & Latitude — East Coast to West Coast Loop", img: "https://images.unsplash.com/photo-1582972236019-ea4af5ffe587?auto=format&fit=crop&w=600&q=80", link: "#" },
-  { id: 8, category: "international", title: "Vietnam - 2026", subtitle: "Hidden Gems", img: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80", link: "#" },
+  { id: 8, category: "international", title: "Vietnam Expedition - July 2026", subtitle: "Saigon, Hanoi, Ha Long & Ninh Binh (2 Persons)", img: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80", link: "#" },
   { id: 9, category: "india", title: "Nainital Heights - 2025", subtitle: "Uttarakhand", img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=600&q=80", link: "#" },
 ];
 

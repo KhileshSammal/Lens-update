@@ -1,5 +1,5 @@
 import { useState, useMemo, memo } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { 
   ArrowLeft, 
   Search, 
@@ -34,6 +34,8 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
   const [searchQuery, setSearchQuery] = useState("");
   // Local state for selecting the filter category (e.g. "Travel Tips", "Photography")
   const [selectedTag, setSelectedTag] = useState("All");
+  // Local state for tracking share copy action
+  const [copied, setCopied] = useState(false);
 
   // Get current active blog post if selected
   const activePost = useMemo(() => {
@@ -71,7 +73,8 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
       }).catch(console.error);
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert("Link copied to clipboard!");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
     }
   };
 
@@ -239,6 +242,21 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
             </div>
           </div>
         </div>
+
+        {/* Small floating copy success notification */}
+        <AnimatePresence>
+          {copied && (
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
+              className="fixed bottom-10 right-10 z-50 bg-zinc-950 border border-accent/40 text-white px-5 py-3 rounded-sm shadow-2xl flex items-center gap-3 max-w-sm font-sans"
+            >
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <p className="text-[10px] uppercase tracking-widest font-ui font-bold">Link Copied to Clipboard!</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     );
   }
