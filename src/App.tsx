@@ -47,6 +47,7 @@ import { RishikeshExpeditionView } from "./components/RishikeshExpeditionView";
 import { GoaExpeditionView } from "./components/GoaExpeditionView";
 import { PortfolioGallery } from "./components/PortfolioGallery";
 import { BioView } from "./components/BioView";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // --- Optimized Components ---
 
@@ -1387,6 +1388,7 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+      <SpeedInsights />
     </div>
   );
 }
