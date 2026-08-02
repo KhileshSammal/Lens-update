@@ -47,6 +47,7 @@ import { RishikeshExpeditionView } from "./components/RishikeshExpeditionView";
 import { GoaExpeditionView } from "./components/GoaExpeditionView";
 import { PortfolioGallery } from "./components/PortfolioGallery";
 import { BioView } from "./components/BioView";
+import { Analytics } from "@vercel/analytics/react";
 
 // --- Optimized Components ---
 
@@ -1387,6 +1388,7 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+      <Analytics />
     </div>
   );
 }
