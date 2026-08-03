@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { motion } from "motion/react";
 import { ArrowLeft, Compass, Sparkles, Clock, MapPin, Camera } from "lucide-react";
+import { SocialShareButtons } from "./SocialShareButtons";
 
 interface ExploringSoonViewProps {
   locationName: string;
@@ -34,7 +35,7 @@ export const ExploringSoonView = memo(({
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex justify-between items-center mb-12 pb-6 border-b border-white/10"
+          className="flex flex-wrap justify-between items-center gap-4 mb-12 pb-6 border-b border-white/10"
         >
           <button 
             onClick={onBackToHome}
@@ -44,9 +45,7 @@ export const ExploringSoonView = memo(({
             Back to Journeys
           </button>
           
-          <span className="text-[10px] uppercase tracking-[0.25em] text-amber-400 font-bold font-ui">
-            {category} • Expedition Preview
-          </span>
+          <SocialShareButtons title={`${locationName} Expedition Preview — Lens & Latitude`} variant="minimal" />
         </motion.div>
 
         {/* Hero Card */}
@@ -112,10 +111,20 @@ export const ExploringSoonView = memo(({
             <span>Expected Release: <strong className="text-amber-400">{expectedDate}</strong></span>
           </div>
 
-          <div className="pt-8 border-t border-white/10 flex flex-wrap justify-center items-center gap-6 text-xs text-zinc-500 font-ui">
+          <div className="pt-8 border-t border-white/10 flex flex-wrap justify-center items-center gap-6 text-xs text-zinc-500 font-ui mb-8">
             <span className="flex items-center gap-1.5"><MapPin size={12} className="text-amber-400" /> On-Ground Verification</span>
             <span className="flex items-center gap-1.5"><Camera size={12} className="text-amber-400" /> High-Res Photography Index</span>
             <span className="flex items-center gap-1.5"><Sparkles size={12} className="text-amber-400" /> Curated Budget Blueprints</span>
+          </div>
+
+          <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <button 
+              onClick={onBackToHome}
+              className="inline-flex items-center gap-2 text-zinc-400 hover:text-amber-400 font-ui font-semibold text-xs uppercase tracking-widest transition-colors cursor-pointer"
+            >
+              <ArrowLeft size={14} /> Back to Journeys
+            </button>
+            <SocialShareButtons title={`${locationName} Expedition Preview — Lens & Latitude`} />
           </div>
         </motion.div>
       </div>

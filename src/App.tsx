@@ -19,7 +19,8 @@ import {
   ShoppingBag,
   Search,
   Sun,
-  Moon
+  Moon,
+  CheckCircle2
 } from "lucide-react";
 import React, { useState, useEffect, useMemo, useCallback, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
@@ -840,15 +841,44 @@ const Shop = memo(({ onAddToCart }: { onAddToCart: (item: any) => void }) => (
 
 Shop.displayName = "Shop";
 
-const FAQItem = memo(({ faq, index, isOpen, onToggle }: { faq: any, index: number, isOpen: boolean, onToggle: () => void }) => (
-  <div className="border border-border-main bg-card-bg rounded-sm overflow-hidden">
+import { PolicyModal, PolicyTab } from "./components/PolicyModal";
+
+// --- SUB-COMPONENTS & LAYOUT BLOCKS ---
+
+/**
+ * FAQItem Component:
+ * Single interactive accordion item for the Travel FAQ section.
+ * Renders question index, category badge, dynamic expand/collapse arrow, and rich text answer.
+ */
+const FAQItem = memo(({ 
+  faq, 
+  index, 
+  isOpen, 
+  onToggle 
+}: { 
+  faq: { q: string; a: string; category?: string }; 
+  index: number; 
+  isOpen: boolean; 
+  onToggle: () => void; 
+}) => (
+  <div className="border border-border-main bg-card-bg rounded-sm overflow-hidden transition-all duration-300 hover:border-accent/40">
     <button 
       onClick={onToggle}
-      className="w-full flex justify-between items-center p-5 md:p-6 text-left focus:outline-none"
+      className="w-full flex justify-between items-center p-5 md:p-6 text-left focus:outline-none cursor-pointer"
+      aria-expanded={isOpen}
     >
-      <span className="font-bold font-ui text-[10px] md:text-sm uppercase tracking-widest leading-relaxed pr-4">{index + 1}. {faq.q}</span>
+      <div className="flex flex-col gap-1 pr-4">
+        {faq.category && (
+          <span className="text-[9px] uppercase tracking-widest text-amber-400 font-bold font-ui">
+            {faq.category}
+          </span>
+        )}
+        <span className="font-bold font-ui text-[10px] md:text-sm uppercase tracking-widest leading-relaxed text-text-main">
+          {index + 1}. {faq.q}
+        </span>
+      </div>
       <ChevronDown 
-        className={`transition-transform duration-300 text-zinc-600 ${isOpen ? "rotate-180 text-accent" : ""}`} 
+        className={`transition-transform duration-300 text-zinc-500 shrink-0 ${isOpen ? "rotate-180 text-amber-400" : ""}`} 
         size={16} 
       />
     </button>
@@ -858,10 +888,11 @@ const FAQItem = memo(({ faq, index, isOpen, onToggle }: { faq: any, index: numbe
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
           className="overflow-hidden"
         >
-          <div className="px-5 md:px-6 pb-6">
-            <p className="text-text-dim leading-relaxed text-sm md:text-base">{faq.a}</p>
+          <div className="px-5 md:px-6 pb-6 pt-1 border-t border-white/5">
+            <p className="text-text-dim leading-relaxed text-sm md:text-base font-sans">{faq.a}</p>
           </div>
         </motion.div>
       )}
@@ -871,44 +902,127 @@ const FAQItem = memo(({ faq, index, isOpen, onToggle }: { faq: any, index: numbe
 
 FAQItem.displayName = "FAQItem";
 
+/**
+ * FAQ Component (Reorganized Travel FAQ):
+ * Features:
+ * - Dynamic category tab navigation (All Questions, Platform & Philosophy, Photography & Gear, Travel & Planning, Copyright & Collaborations)
+ * - Live keyword search bar filtering questions and answers in real-time
+ * - Accordion state management with smooth Framer Motion animations
+ */
 const FAQ = memo(() => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
+  // Categories list for filtering
+  const categories = useMemo(() => [
+    "All",
+    "Platform & Philosophy",
+    "Photography & Gear",
+    "Travel & Planning",
+    "Copyright & Collaborations"
+  ], []);
+
+  // Filtered FAQs based on selected category tab and search input
+  const filteredFaqs = useMemo(() => {
+    return FAQS.filter(faq => {
+      const matchesCategory = selectedCategory === "All" || faq.category === selectedCategory;
+      const matchesSearch = !searchQuery.trim() || 
+        faq.q.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        faq.a.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [selectedCategory, searchQuery]);
+
+  // Toggle open accordion item
   const handleToggle = useCallback((index: number) => {
     setOpenIndex(prev => prev === index ? null : index);
   }, []);
 
   return (
-    <section id="faq" className="py-16 md:py-32 px-5 md:px-24 bg-bg">
-      <div className="max-w-3xl mx-auto">
+    <section id="faq" className="py-16 md:py-32 px-5 md:px-24 bg-bg border-t border-border-main/50">
+      <div className="max-w-4xl mx-auto">
+        {/* Section Title Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mb-10"
+          className="mb-10 text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-serif mb-2">Travel FAQ</h2>
-          <p className="text-accent text-xs md:text-sm italic font-ui font-medium">Common questions about the journey.</p>
+          <span className="text-accent uppercase tracking-widest text-[10px] font-bold mb-3 block font-ui">Knowledge Hub</span>
+          <h2 className="text-3xl md:text-5xl font-serif mb-3">Reorganized Travel FAQ</h2>
+          <p className="text-zinc-400 text-xs md:text-sm italic font-serif max-w-lg mx-auto">
+            Clear answers regarding travel logistics, photography gear, copyrights, and collaborations.
+          </p>
         </motion.div>
 
+        {/* Search Input & Category Navigation Controls */}
+        <div className="mb-8 space-y-4">
+          {/* Live Search Bar */}
+          <div className="relative max-w-md mx-auto">
+            <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500" />
+            <input
+              type="text"
+              placeholder="Search travel FAQ questions..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-card-bg border border-border-main rounded-sm pl-10 pr-4 py-2.5 text-xs text-text-main placeholder-text-dim/50 focus:outline-none focus:border-accent font-sans transition-colors"
+            />
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-zinc-500 hover:text-white"
+              >
+                Clear
+              </button>
+            )}
+          </div>
+
+          {/* Category Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 pt-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => {
+                  setSelectedCategory(cat);
+                  setOpenIndex(null);
+                }}
+                className={`px-3.5 py-1.5 rounded-sm text-[10px] uppercase tracking-widest font-bold font-ui transition-all cursor-pointer ${
+                  selectedCategory === cat 
+                    ? "bg-amber-400 text-black shadow-md font-extrabold" 
+                    : "bg-card-bg text-zinc-400 hover:text-white border border-border-main/50"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Accordion Questions List */}
         <div className="space-y-3 md:space-y-4">
-          {FAQS.map((faq, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
-            >
-              <FAQItem 
-                faq={faq} 
-                index={i} 
-                isOpen={openIndex === i} 
-                onToggle={() => handleToggle(i)} 
-              />
-            </motion.div>
-          ))}
+          {filteredFaqs.length > 0 ? (
+            filteredFaqs.map((faq, i) => (
+              <motion.div
+                key={faq.q}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+              >
+                <FAQItem 
+                  faq={faq} 
+                  index={i} 
+                  isOpen={openIndex === i} 
+                  onToggle={() => handleToggle(i)} 
+                />
+              </motion.div>
+            ))
+          ) : (
+            <div className="text-center py-12 border border-dashed border-border-main rounded-sm text-zinc-500 text-xs">
+              No matching FAQ entries found for "{searchQuery}". Try searching for photography, visa, or gear.
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -917,7 +1031,118 @@ const FAQ = memo(() => {
 
 FAQ.displayName = "FAQ";
 
-const Contact = memo(({ onNavigate }: { onNavigate?: (view: AppView, targetHash?: string) => void }) => (
+/**
+ * NewsletterForm Component:
+ * Handles subscriber submissions with local storage persistence and mock/API response states.
+ */
+const NewsletterForm = () => {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+  const [savedEmail, setSavedEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    const existing = localStorage.getItem("newsletter_subscriber");
+    if (existing) {
+      setSubscribed(true);
+      setSavedEmail(existing);
+    }
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes("@")) return;
+
+    setLoading(true);
+    setErrorMsg(null);
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to subscribe");
+      }
+
+      localStorage.setItem("newsletter_subscriber", data.email || email);
+      setSavedEmail(data.email || email);
+      setSubscribed(true);
+      setEmail("");
+    } catch (err: any) {
+      console.error("Newsletter submission error:", err);
+      setErrorMsg(err.message || "Failed to subscribe. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (subscribed) {
+    return (
+      <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-lg p-3.5 text-xs font-sans">
+        <div className="flex items-center gap-2 text-emerald-400 font-bold font-ui mb-1">
+          <CheckCircle2 size={16} />
+          <span>You're Subscribed!</span>
+        </div>
+        <p className="text-zinc-300 text-[11px] leading-relaxed">
+          Subscribed with <strong className="text-white">{savedEmail}</strong>. You will receive travel dispatches directly in your inbox.
+        </p>
+        <button
+          onClick={() => {
+            localStorage.removeItem("newsletter_subscriber");
+            setSubscribed(false);
+          }}
+          className="mt-2 text-[10px] uppercase font-bold text-amber-400 hover:underline cursor-pointer"
+        >
+          Change email
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+      <div className="flex gap-2">
+        <input 
+          type="email" 
+          required
+          disabled={loading}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Your email address" 
+          className="bg-card-bg border border-border-main rounded-sm px-3.5 py-2.5 text-xs text-white placeholder-text-dim/50 focus:outline-none focus:border-accent w-full font-sans transition-colors disabled:opacity-50"
+        />
+        <button 
+          type="submit" 
+          disabled={loading}
+          className="bg-accent hover:bg-accent/90 text-black px-5 py-2.5 rounded-sm text-xs uppercase tracking-widest font-bold font-ui cursor-pointer transition-colors whitespace-nowrap disabled:opacity-50 flex items-center gap-2"
+        >
+          {loading ? "Joining..." : "Join"}
+        </button>
+      </div>
+      {errorMsg && (
+        <p className="text-[11px] text-red-400 font-sans mt-1">{errorMsg}</p>
+      )}
+    </form>
+  );
+};
+
+/**
+ * Contact Component:
+ * Displays social media triggers, subscription box, and quick exploration directory.
+ */
+const Contact = memo(({ 
+  onNavigate,
+  onOpenPolicy
+}: { 
+  onNavigate?: (view: AppView, targetHash?: string) => void;
+  onOpenPolicy?: (tab: PolicyTab) => void;
+}) => (
   <section id="contact" className="bg-bg py-16 md:py-32 px-5 md:px-24 border-t border-border-main">
     <div className="max-w-7xl mx-auto">
       <div className="grid lg:grid-cols-12 gap-10 md:gap-16 items-start">
@@ -1029,20 +1254,6 @@ const Contact = memo(({ onNavigate }: { onNavigate?: (view: AppView, targetHash?
                 About Me
               </a>
             </li>
-            <li>
-              <a 
-                href="#contact" 
-                onClick={(e) => {
-                  if (onNavigate) {
-                    e.preventDefault();
-                    onNavigate("home", "#contact");
-                  }
-                }}
-                className="text-text-dim hover:text-accent font-sans transition-colors"
-              >
-                Contact
-              </a>
-            </li>
           </ul>
         </div>
 
@@ -1052,39 +1263,22 @@ const Contact = memo(({ onNavigate }: { onNavigate?: (view: AppView, targetHash?
           <p className="text-text-dim text-sm font-serif leading-relaxed">
             Get new travel stories, destination guides, and photography updates straight to your inbox.
           </p>
-          <form 
-            onSubmit={(e) => {
-              e.preventDefault();
-              // No fake success message as instructed when no backend is connected
-            }}
-            className="flex gap-2"
-          >
-            <input 
-              type="email" 
-              required
-              placeholder="Your email address" 
-              className="bg-card-bg border border-border-main rounded-sm px-3.5 py-2.5 text-xs text-white placeholder-text-dim/50 focus:outline-none focus:border-accent w-full font-sans transition-colors"
-            />
-            <button 
-              type="submit" 
-              className="bg-accent hover:bg-accent/90 text-black px-5 py-2.5 rounded-sm text-xs uppercase tracking-widest font-bold font-ui cursor-pointer transition-colors"
-            >
-              Join
-            </button>
-          </form>
+          <NewsletterForm />
         </div>
       </div>
 
-      <div className="mt-16 md:mt-24 pt-8 border-t border-border-main flex flex-col md:flex-row justify-between items-center gap-6">
+      {/* QUICK CONTACT ACTIONS BAR */}
+      <div className="mt-16 pt-8 border-t border-border-main flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-[10px] md:text-sm uppercase tracking-[0.2em] md:tracking-[0.4em] text-accent font-bold font-ui flex items-center gap-3">
           <Globe size={20} /> Lens & Latitude — 2026
         </div>
-        <div className="flex flex-wrap justify-center gap-6 md:gap-10">
-          <a href="mailto:khileshsammal.work@gmail.com" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors text-text-main">Email Me</a>
-          <a href="mailto:khileshsammal.work@gmail.com" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors text-text-main">Collaborations</a>
-          <a href="/privacy-policy" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors text-text-main">Privacy Policy</a>
-          <a href="/terms" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors text-text-main">Terms of Use</a>
-          <a href="/disclaimer" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors text-text-main">Disclaimer</a>
+        <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+          <a href="mailto:khileshsammal.work@gmail.com" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors text-text-main">
+            Email Me
+          </a>
+          <a href="mailto:khileshsammal.work@gmail.com" className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold font-ui hover:text-accent transition-colors text-text-main">
+            Collaborations
+          </a>
         </div>
       </div>
     </div>
@@ -1093,14 +1287,47 @@ const Contact = memo(({ onNavigate }: { onNavigate?: (view: AppView, targetHash?
 
 Contact.displayName = "Contact";
 
-const Footer = memo(() => (
-  <footer className="bg-card-bg pb-12 px-6 md:px-24 border-t border-border-main/50">
-    <div className="pt-8 flex flex-col md:flex-row justify-between items-center text-[9px] md:text-[10px] text-text-dim/60 uppercase tracking-widest font-ui font-bold gap-4 text-center">
-      <p>&copy; 2026 KHILESH SAMMAL. ALL RIGHTS RESERVED.</p>
-      <div className="flex space-x-4 md:space-x-6">
-        <a href="#" className="hover:text-text-main transition-colors">Privacy Policy</a>
-        <a href="#" className="hover:text-text-main transition-colors">Shipping</a>
-        <a href="mailto:khileshsammal.work@gmail.com" className="hover:text-text-main transition-colors">Contact</a>
+/**
+ * Footer Component:
+ * Clean, non-redundant site footer containing copyright notice and direct legal policy triggers.
+ */
+const Footer = memo(({ onOpenPolicy }: { onOpenPolicy: (tab: PolicyTab) => void }) => (
+  <footer className="bg-card-bg py-8 px-6 md:px-24 border-t border-border-main/50">
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[9px] md:text-[10px] text-text-dim/80 uppercase tracking-widest font-ui font-bold gap-4 text-center">
+      <p>&copy; 2026 KHILESH SAMMAL • LENS & LATITUDE. ALL RIGHTS RESERVED.</p>
+      
+      {/* Consolidated Non-Redundant Policy Links */}
+      <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+        <button 
+          onClick={() => onOpenPolicy("privacy")} 
+          className="hover:text-amber-400 transition-colors cursor-pointer"
+        >
+          Privacy Policy
+        </button>
+        <button 
+          onClick={() => onOpenPolicy("terms")} 
+          className="hover:text-amber-400 transition-colors cursor-pointer"
+        >
+          Terms of Use
+        </button>
+        <button 
+          onClick={() => onOpenPolicy("disclaimer")} 
+          className="hover:text-amber-400 transition-colors cursor-pointer"
+        >
+          Disclaimer
+        </button>
+        <button 
+          onClick={() => onOpenPolicy("shipping")} 
+          className="hover:text-amber-400 transition-colors cursor-pointer"
+        >
+          Shipping Policy
+        </button>
+        <button 
+          onClick={() => onOpenPolicy("returns")} 
+          className="hover:text-amber-400 transition-colors cursor-pointer"
+        >
+          7-Day Return Policy
+        </button>
       </div>
     </div>
   </footer>
@@ -1140,7 +1367,10 @@ export default function App() {
   // 4. 'toastMessage' is a temporary notification message that floats on the screen when items are added/removed.
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // 5. 'theme' manages the website color mode ('dark' or 'light')
+  // 5. 'policyModalTab' controls whether the centralized legal PolicyModal is open and which tab is selected ('privacy', 'terms', 'disclaimer', 'shipping', 'returns')
+  const [policyModalTab, setPolicyModalTab] = useState<PolicyTab | null>(null);
+
+  // 6. 'theme' manages the website color mode ('dark' or 'light')
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     try {
       const stored = localStorage.getItem("latitude_theme");
@@ -1149,6 +1379,11 @@ export default function App() {
       return "dark";
     }
   });
+
+  // Action callback to open policy modal on a specific tab
+  const handleOpenPolicy = useCallback((tab: PolicyTab) => {
+    setPolicyModalTab(tab);
+  }, []);
 
   // Toggle theme action callback to easily switch color palettes
   const toggleTheme = useCallback(() => {
@@ -1331,7 +1566,7 @@ export default function App() {
             />
             <Blog onSelectPost={handleSelectPost} />
             <FAQ />
-            <Contact onNavigate={handleNavigate} />
+            <Contact onNavigate={handleNavigate} onOpenPolicy={handleOpenPolicy} />
           </>
         ) : view === "blog-archive" ? (
           <BlogArchive 
@@ -1428,7 +1663,14 @@ export default function App() {
           />
         )}
       </main>
-      <Footer />
+      <Footer onOpenPolicy={handleOpenPolicy} />
+
+      {/* Centralized Policy Modal for Privacy, Terms, Shipping, Return & Disclaimer Policies */}
+      <PolicyModal 
+        isOpen={!!policyModalTab}
+        initialTab={policyModalTab || "privacy"}
+        onClose={() => setPolicyModalTab(null)}
+      />
 
       {/* Sleek Floating Toast Success Feedback */}
       <AnimatePresence>

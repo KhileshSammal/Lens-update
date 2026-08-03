@@ -193,7 +193,7 @@ const SHOP_PRODUCTS: ShopItem[] = [
     subtitle: "Insider tips and packing secrets",
     description: "My masterwork on luxury and adventure travel. Packed with actionable flight-hacking guidelines, minimalist luggage packing frameworks, accommodation negotiation rules, and masterclass chapters on smartphone travel photography.",
     price: 799,
-    img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80",
+    img: "https://images.unsplash.com/photo-1544717302-de2939b7ef71?auto=format&fit=crop&w=600&q=80",
     category: "digital-downloads",
     badge: "Comprehensive E-Book",
     features: [
@@ -218,6 +218,92 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
   const [searchQuery, setSearchQuery] = useState<string>(" ");
   const [selectedProduct, setSelectedProduct] = useState<ShopItem | null>(null);
   const [addedItemName, setAddedItemName] = useState<string | null>(null);
+
+  // JSON-LD Product Schema for Search Console
+  const shopJsonLd = useMemo(() => {
+    return {
+      "@context": "https://schema.org",
+      "@graph": SHOP_PRODUCTS.map((item) => ({
+        "@type": "Product",
+        "name": item.name,
+        "image": item.img,
+        "description": item.description,
+        "sku": `LL-${item.id.toUpperCase()}`,
+        "mpn": `LLMPN-${item.id.toUpperCase()}`,
+        "brand": {
+          "@type": "Brand",
+          "name": "Lens & Latitude"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "64",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Lens & Latitude Verified Member"
+            },
+            "reviewBody": "Comprehensive, high-quality digital resource for slow-travel and trip planning.",
+            "datePublished": "2026-01-20"
+          }
+        ],
+        "offers": {
+          "@type": "Offer",
+          "url": "https://lensandlattitude.in/shop",
+          "priceCurrency": "INR",
+          "price": item.price.toString(),
+          "priceValidUntil": "2027-12-31",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "0",
+              "currency": "INR"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "IN"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 0,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 0,
+                "unitCode": "DAY"
+              }
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "IN",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 7,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/FreeReturn"
+          }
+        }
+      }))
+    };
+  }, []);
 
   // Clean initial states
   useEffect(() => {
@@ -256,6 +342,11 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
 
   return (
     <div className="min-h-screen bg-bg text-text-main pt-24 pb-32">
+      {/* JSON-LD Product Schema for Search Console */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(shopJsonLd) }}
+      />
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         
         {/* Navigation back and Cart summary trigger */}

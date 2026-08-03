@@ -18,6 +18,7 @@ import {
   Milestone,
   Bike
 } from "lucide-react";
+import { SocialShareButtons } from "./SocialShareButtons";
 
 interface PhaseItinerary {
   day: number;
@@ -108,7 +109,7 @@ export const GoaExpeditionView = memo(({ onBackToHome }: GoaExpeditionViewProps)
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex justify-between items-center mb-16 pb-6 border-b border-white/5"
+          className="flex flex-wrap justify-between items-center gap-4 mb-16 pb-6 border-b border-white/5"
         >
           <button 
             onClick={onBackToHome}
@@ -118,9 +119,7 @@ export const GoaExpeditionView = memo(({ onBackToHome }: GoaExpeditionViewProps)
             Back to Journeys
           </button>
           
-          <span className="text-[10px] uppercase tracking-[0.25em] text-amber-400 font-bold font-ui">
-            Expedition Chronicle • Goa
-          </span>
+          <SocialShareButtons title="Puri & Goa Circuit Expedition — Lens & Latitude" variant="minimal" />
         </motion.div>
 
         {/* Hero Banner Section */}
@@ -399,6 +398,17 @@ export const GoaExpeditionView = memo(({ onBackToHome }: GoaExpeditionViewProps)
 
           </div>
         </section>
+
+        {/* Footer & Social Share */}
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <button 
+            onClick={onBackToHome}
+            className="inline-flex items-center gap-2 border border-white/15 hover:border-amber-400 hover:text-amber-400 px-6 py-3 rounded-md text-xs font-bold font-ui uppercase tracking-widest transition-all cursor-pointer"
+          >
+            <ArrowLeft size={14} /> Back to Journeys
+          </button>
+          <SocialShareButtons title="Puri & Goa Circuit Expedition — Lens & Latitude" />
+        </div>
 
       </div>
     </div>

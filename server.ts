@@ -32,6 +32,85 @@ async function startServer() {
   // SECURE API ENDPOINTS
   // ==========================================================================
   
+  // Server-side subscriber list in memory
+  const subscribers = new Set<string>();
+
+  /**
+   * POST /api/subscribe
+   * Integrates with Mailchimp, ConvertKit, or fallback server-side email storage.
+   */
+  app.post("/api/subscribe", async (req, res) => {
+    try {
+      const { email } = req.body;
+      if (!email || typeof email !== "string" || !email.includes("@")) {
+        return res.status(400).json({ error: "Please provide a valid email address." });
+      }
+
+      const normalizedEmail = email.trim().toLowerCase();
+      subscribers.add(normalizedEmail);
+      console.log(`[Newsletter Subscription] Registered: ${normalizedEmail}`);
+
+      // Check for Mailchimp configuration
+      const mailchimpKey = process.env.MAILCHIMP_API_KEY;
+      const mailchimpAudience = process.env.MAILCHIMP_AUDIENCE_ID;
+      const mailchimpServer = process.env.MAILCHIMP_SERVER_PREFIX || (mailchimpKey ? mailchimpKey.split("-")[1] : "");
+
+      if (mailchimpKey && mailchimpAudience && mailchimpServer) {
+        const mcResponse = await fetch(`https://${mailchimpServer}.api.mailchimp.com/3.0/lists/${mailchimpAudience}/members`, {
+          method: "POST",
+          headers: {
+            "Authorization": `apikey ${mailchimpKey}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email_address: normalizedEmail,
+            status: "subscribed"
+          })
+        });
+
+        if (!mcResponse.ok) {
+          const mcData = await mcResponse.json().catch(() => ({}));
+          console.warn("[Mailchimp] API Response:", mcData);
+        } else {
+          console.log("[Mailchimp] Successfully synced subscriber.");
+        }
+      }
+
+      // Check for ConvertKit configuration
+      const convertkitKey = process.env.CONVERTKIT_API_KEY;
+      const convertkitFormId = process.env.CONVERTKIT_FORM_ID;
+
+      if (convertkitKey && convertkitFormId) {
+        const ckResponse = await fetch(`https://api.convertkit.com/v3/forms/${convertkitFormId}/subscribe`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            api_key: convertkitKey,
+            email: normalizedEmail
+          })
+        });
+
+        if (!ckResponse.ok) {
+          const ckData = await ckResponse.json().catch(() => ({}));
+          console.warn("[ConvertKit] API Response:", ckData);
+        } else {
+          console.log("[ConvertKit] Successfully synced subscriber.");
+        }
+      }
+
+      res.json({ 
+        success: true, 
+        message: "Thank you for subscribing to Lens & Latitude dispatches!",
+        email: normalizedEmail
+      });
+    } catch (error: any) {
+      console.error("Newsletter Subscription Error:", error);
+      res.status(500).json({ error: "Failed to process subscription. Please try again." });
+    }
+  });
+
   /**
    * POST /api/checkout
    * Creates a secure, hosted Stripe checkout session for shopping cart checkouts.

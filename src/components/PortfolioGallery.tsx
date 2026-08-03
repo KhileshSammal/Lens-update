@@ -58,15 +58,6 @@ const SEED_PHOTOS: Photo[] = [
     category: "Thailand",
     title: "Grand Palace Golden Spire Bangkok", 
     aspect: "aspect-[3/5]", 
-    url: "/images/thailand/photo_grand_palace.jpg" // Local absolute path example
-  },
-  { 
-    id: "t-4-backup", 
-    tripId: "thailand", 
-    tripTitle: "Thailand",
-    category: "Thailand",
-    title: "Grand Palace Golden Spire Bangkok", 
-    aspect: "aspect-[3/5]", 
     url: "https://images.unsplash.com/photo-1563492065561-76aa00174ec6?auto=format&fit=crop&w=800&q=80" 
   },
   { 
@@ -374,9 +365,9 @@ const SEED_PHOTOS: Photo[] = [
     tripId: "nainital", 
     tripTitle: "Nainital",
     category: "Kumaon Hills",
-    title: "Sparkling Emerald Waters of Naini Lake", 
+    title: "Sparkling Emerald Waters & Himalayan Ridges of Nainital", 
     aspect: "aspect-[4/3]", 
-    url: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80" 
+    url: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80" 
   },
   { 
     id: "n-2", 
@@ -488,7 +479,7 @@ const SEED_PHOTOS: Photo[] = [
     category: "Puri & Goa Circuit",
     title: "Ancient Holy Temple Spires and Spreads", 
     aspect: "aspect-[4/3]", 
-    url: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=800&q=80" 
+    url: "https://images.unsplash.com/photo-1621847468516-1ed5d0df56fe?auto=format&fit=crop&w=800&q=80" 
   },
   { 
     id: "jp-2", 

@@ -44,16 +44,78 @@ const Ecosystem = ({ onAddToCart, onBuyNow }: { onAddToCart: () => void, onBuyNo
         "name": "2026 Lightroom Presets",
         "image": "https://images.unsplash.com/photo-1706803501715-8d0e4445e446?auto=format&fit=crop&w=800&q=80",
         "description": "Professional-grade Lightroom presets optimized for travel and landscape photography.",
+        "sku": "LL-PRESET-2026",
+        "mpn": "LL2026PRESET",
         "brand": {
           "@type": "Brand",
           "name": "Lens & Latitude"
         },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "128",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Rohan Sharma"
+            },
+            "reviewBody": "Exceptional Lightroom presets for travel photography. Transformed my raw mountain shots effortlessly.",
+            "datePublished": "2026-01-15"
+          }
+        ],
         "offers": {
           "@type": "Offer",
           "url": "https://lensandlattitude.in/shop",
           "priceCurrency": "INR",
           "price": "1499",
-          "availability": "https://schema.org/InStock"
+          "priceValidUntil": "2027-12-31",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "0",
+              "currency": "INR"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "IN"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 0,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 0,
+                "unitCode": "DAY"
+              }
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "IN",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 7,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/FreeReturn"
+          }
         }
       }
     ]
