@@ -68,7 +68,7 @@ const ExpeditionHub = ({ cartItems = [], onAddToCart, onOpenCheckout }: Expediti
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="max-w-7xl mx-auto px-6 md:px-12 mb-20"
+        className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8 mb-20"
       >
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
           <div>

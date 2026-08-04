@@ -50,6 +50,7 @@ import { VietnamExpeditionView } from "./components/VietnamExpeditionView";
 import { ExploringSoonView } from "./components/ExploringSoonView";
 import { PortfolioGallery } from "./components/PortfolioGallery";
 import { BioView } from "./components/BioView";
+import { parseCurrentRoute, routeToPath, updatePageSeo, AppView } from "./utils/routerSeo";
 
 // --- Optimized Components ---
 
@@ -154,7 +155,6 @@ const BlogDropdownItem = ({ item, currentView, handleLinkClick, onSelectPost }: 
   );
 };
 
-type AppView = "home" | "blog-archive" | "checkout" | "shop" | "thailand-diaries" | "malaysia-expedition" | "amritsar-expedition" | "kerala-expedition" | "patal-bhuvaneshwar-expedition" | "rishikesh-expedition" | "goa-expedition" | "vietnam-expedition" | "mulki-expedition" | "andaman-expedition" | "philippines-expedition" | "nepal-expedition" | "bio";
 
 interface HeaderProps {
   currentView: AppView;
@@ -574,7 +574,7 @@ const Hero = memo(() => (
 Hero.displayName = "Hero";
 
 const About = memo(({ onReadBio }: { onReadBio: () => void }) => (
-  <section id="about" className="py-16 md:py-32 px-5 md:px-24 grid md:grid-cols-2 gap-10 md:gap-16 items-center max-w-7xl mx-auto">
+  <section id="about" className="py-16 md:py-32 px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 md:gap-16 items-center max-w-[1440px] mx-auto">
     <motion.div 
       initial={{ opacity: 0, x: -30 }}
       whileInView={{ opacity: 1, x: 0 }}
@@ -635,7 +635,7 @@ const Directory = memo(({ onSelectTrip }: DirectoryProps) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="px-5 md:px-24 mb-10 md:mb-12 max-w-7xl mx-auto"
+        className="px-4 sm:px-6 lg:px-8 mb-10 md:mb-12 w-full max-w-[92%] mx-auto"
       >
         <h2 className="text-3xl md:text-5xl font-serif mb-2">The Directory</h2>
         <p className="text-accent mb-8 text-xs md:text-sm italic flex items-center gap-2 font-ui font-semibold">
@@ -727,7 +727,7 @@ interface BlogProps {
 
 const Blog = memo(({ onSelectPost }: BlogProps) => {
   return (
-    <section id="blog" className="py-16 md:py-32 px-5 md:px-24 max-w-7xl mx-auto">
+    <section id="blog" className="py-16 md:py-32 px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -786,8 +786,8 @@ const Blog = memo(({ onSelectPost }: BlogProps) => {
 Blog.displayName = "Blog";
 
 const Shop = memo(({ onAddToCart }: { onAddToCart: (item: any) => void }) => (
-  <section id="shop" className="py-16 md:py-32 bg-bg px-5 md:px-24">
-    <div className="max-w-7xl mx-auto">
+  <section id="shop" className="py-16 md:py-32 bg-bg px-4 sm:px-6 lg:px-8">
+    <div className="max-w-[1440px] mx-auto">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -940,7 +940,7 @@ const FAQ = memo(() => {
   }, []);
 
   return (
-    <section id="faq" className="py-16 md:py-32 px-5 md:px-24 bg-bg border-t border-border-main/50">
+    <section id="faq" className="py-16 md:py-32 px-4 sm:px-6 lg:px-8 bg-bg border-t border-border-main/50">
       <div className="max-w-4xl mx-auto">
         {/* Section Title Header */}
         <motion.div 
@@ -951,7 +951,7 @@ const FAQ = memo(() => {
           className="mb-10 text-center"
         >
           <span className="text-accent uppercase tracking-widest text-[10px] font-bold mb-3 block font-ui">Knowledge Hub</span>
-          <h2 className="text-3xl md:text-5xl font-serif mb-3">Reorganized Travel FAQ</h2>
+          <h2 className="text-3xl md:text-5xl font-serif mb-3">Travel FAQ</h2>
           <p className="text-zinc-400 text-xs md:text-sm italic font-serif max-w-lg mx-auto">
             Clear answers regarding travel logistics, photography gear, copyrights, and collaborations.
           </p>
@@ -1143,8 +1143,8 @@ const Contact = memo(({
   onNavigate?: (view: AppView, targetHash?: string) => void;
   onOpenPolicy?: (tab: PolicyTab) => void;
 }) => (
-  <section id="contact" className="bg-bg py-16 md:py-32 px-5 md:px-24 border-t border-border-main">
-    <div className="max-w-7xl mx-auto">
+  <section id="contact" className="bg-bg py-16 md:py-32 px-4 sm:px-6 lg:px-8 border-t border-border-main">
+    <div className="max-w-[1440px] mx-auto">
       <div className="grid lg:grid-cols-12 gap-10 md:gap-16 items-start">
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
@@ -1292,8 +1292,8 @@ Contact.displayName = "Contact";
  * Clean, non-redundant site footer containing copyright notice and direct legal policy triggers.
  */
 const Footer = memo(({ onOpenPolicy }: { onOpenPolicy: (tab: PolicyTab) => void }) => (
-  <footer className="bg-card-bg py-8 px-6 md:px-24 border-t border-border-main/50">
-    <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[9px] md:text-[10px] text-text-dim/80 uppercase tracking-widest font-ui font-bold gap-4 text-center">
+  <footer className="bg-card-bg py-8 px-4 sm:px-6 lg:px-8 border-t border-border-main/50">
+    <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center text-[9px] md:text-[10px] text-text-dim/80 uppercase tracking-widest font-ui font-bold gap-4 text-center">
       <p>&copy; 2026 KHILESH SAMMAL • LENS & LATITUDE. ALL RIGHTS RESERVED.</p>
       
       {/* Consolidated Non-Redundant Policy Links */}
@@ -1348,10 +1348,38 @@ export default function App() {
   // When a state variable changes, React automatically re-renders the component to update the UI.
 
   // 1. 'view' tracks which page or view we are currently showing (e.g., 'home', 'shop', 'thailand-diaries', etc.)
-  const [view, setView] = useState<AppView>("home");
+  const [view, setView] = useState<AppView>(() => {
+    const route = parseCurrentRoute(window.location.pathname, window.location.hash);
+    return route.view;
+  });
 
   // 2. 'activeBlogPostId' tracks the ID of the specific blog post the user is reading. If null, we show the list of posts.
-  const [activeBlogPostId, setActiveBlogPostId] = useState<string | null>(null);
+  const [activeBlogPostId, setActiveBlogPostId] = useState<string | null>(() => {
+    const route = parseCurrentRoute(window.location.pathname, window.location.hash);
+    return route.activeBlogPostId;
+  });
+
+  // Synchronize browser URL and dynamic SEO tags whenever view or activeBlogPostId changes
+  useEffect(() => {
+    const path = routeToPath(view, activeBlogPostId);
+    if (window.location.pathname !== path && !window.location.hash.startsWith("#/")) {
+      window.history.replaceState({}, "", path);
+    }
+    updatePageSeo(view, activeBlogPostId);
+  }, [view, activeBlogPostId]);
+
+  // Listen for browser back / forward navigation (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      const route = parseCurrentRoute(window.location.pathname, window.location.hash);
+      setView(route.view);
+      setActiveBlogPostId(route.activeBlogPostId);
+      updatePageSeo(route.view, route.activeBlogPostId);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   // 3. 'cart' stores the list of items the user added to their travel shop cart.
   // We initialize it using a function (lazy initialization) so it only reads from localStorage on the first render.
@@ -1474,12 +1502,18 @@ export default function App() {
 
   /**
    * handleNavigate:
-   * Transition views and triggers delayed scrolling anchors for asynchronous landing mount cycles.
+   * Transition views, update browser URL bar, sync SEO tags, and scroll smoothly.
    */
   const handleNavigate = useCallback((targetView: AppView, targetHash?: string) => {
     setView(targetView);
+    setActiveBlogPostId(null);
+    const newPath = routeToPath(targetView, null);
+    if (window.location.pathname !== newPath) {
+      window.history.pushState({}, "", newPath);
+    }
+    updatePageSeo(targetView, null);
+
     if (targetView === "home") {
-      setActiveBlogPostId(null);
       if (targetHash) {
         // Wait briefly for the home components to mount, then scroll smoothly to the target section
         setTimeout(() => {
@@ -1492,28 +1526,33 @@ export default function App() {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } else {
-      setActiveBlogPostId(null); // Reset detail view to show list list
       window.scrollTo({ top: 0 });
     }
   }, []);
 
   /**
    * handleSelectPost:
-   * Directly mounts the BlogArchive component and locks a target postId to display
-   * the complete detailed travel entries (like the Phuket Expedition Guide).
+   * Mounts the BlogArchive component, updates URL bar to /blog or /blog/blog_id, and syncs SEO metadata.
    */
   const handleSelectPost = useCallback((postId: string | null) => {
-    if (!postId) {
-      setActiveBlogPostId(null);
-    } else if (postId === "archive-list") {
+    if (!postId || postId === "archive-list") {
       setActiveBlogPostId(null);
       setView("blog-archive");
-      window.scrollTo({ top: 0 });
+      const newPath = routeToPath("blog-archive", null);
+      if (window.location.pathname !== newPath) {
+        window.history.pushState({}, "", newPath);
+      }
+      updatePageSeo("blog-archive", null);
     } else {
       setActiveBlogPostId(postId);
       setView("blog-archive");
-      window.scrollTo({ top: 0 });
+      const newPath = routeToPath("blog-archive", postId);
+      if (window.location.pathname !== newPath) {
+        window.history.pushState({}, "", newPath);
+      }
+      updatePageSeo("blog-archive", postId);
     }
+    window.scrollTo({ top: 0 });
   }, []);
 
   return (

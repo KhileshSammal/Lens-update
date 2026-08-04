@@ -119,7 +119,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
           </div>
 
           {/* Uncluttered Article Body */}
-          <div className="prose prose-invert max-w-none text-zinc-300 leading-relaxed text-base sm:text-lg font-sans space-y-8">
+          <div className="prose prose-invert max-w-none text-zinc-300 leading-relaxed text-lg sm:text-xl font-sans space-y-8">
             {activePost.sections.map((section, index) => {
               switch (section.type) {
                 case "text":
@@ -137,7 +137,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                 case "quote":
                   return (
                     <div key={index} className="border-l-2 border-amber-400 pl-6 py-3 my-6 bg-zinc-900/40 rounded-r-md">
-                      <p className="font-serif italic text-lg sm:text-xl text-amber-100 leading-relaxed">
+                      <p className="font-serif italic text-xl sm:text-2xl text-amber-100 leading-relaxed">
                         "{section.body}"
                       </p>
                     </div>
@@ -153,7 +153,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                       )}
                       <ul className="space-y-2.5">
                         {section.items?.map((item, key) => (
-                          <li key={key} className="flex items-start gap-3 text-zinc-300 text-sm sm:text-base">
+                          <li key={key} className="flex items-start gap-3 text-zinc-300 text-base sm:text-lg">
                             <span className="mt-1 text-amber-400 flex-shrink-0">
                               <CheckCircle size={15} />
                             </span>
@@ -292,7 +292,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                   <h3 className="text-xl sm:text-2xl font-serif font-bold text-zinc-100 group-hover:text-amber-400 transition-colors leading-snug mb-2.5">
                     {post.title}
                   </h3>
-                  <p className="text-zinc-400 text-sm leading-relaxed line-clamp-3 mb-4 font-normal">
+                  <p className="text-zinc-300 text-base sm:text-lg leading-relaxed line-clamp-3 mb-4 font-normal">
                     {post.excerpt}
                   </p>
                 </div>

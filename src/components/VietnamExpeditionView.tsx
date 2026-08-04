@@ -14,7 +14,8 @@ import {
   Ship,
   Coffee,
   CheckCircle2,
-  Ticket
+  Ticket,
+  ExternalLink
 } from "lucide-react";
 import { SocialShareButtons } from "./SocialShareButtons";
 
@@ -45,7 +46,7 @@ const ITINERARY_DATA: PhaseItinerary[] = [
     title: "Delhi Departure to Saigon",
     location: "Delhi IGI Terminal 3 ➔ Flight to SGN",
     stay: "In-Flight Transit",
-    stayStatus: "Flight Booked ✅",
+    stayStatus: "Flight Confirmed",
     narrative: "Reach IGI Airport Terminal 3 by 9:00 PM on July 17. 12:05 AM (Jul 18) flight departs Delhi (DEL) to Ho Chi Minh City (SGN). Get ready for an early morning arrival in Southern Vietnam.",
     tags: ["DEL Terminal 3", "12:05 AM Flight", "Delhi to Saigon"],
     icon: Plane
@@ -56,7 +57,7 @@ const ITINERARY_DATA: PhaseItinerary[] = [
     title: "Ho Chi Minh City (Saigon) Arrival",
     location: "Ho Chi Minh City (District 1)",
     stay: "Bay View Hotel, District 1",
-    stayStatus: "₹4,000 ✅ BOOKED",
+    stayStatus: "₹4,500",
     narrative: "Land at Tan Son Nhat Airport (SGN), take a Grab to Bay View Hotel in District 1 to drop off bags. Spend the afternoon visiting local cafes, central malls, and historical hubs like War Remnants Museum or Independence Palace. In the evening, explore Ben Thanh Night Market and enjoy dinner at Oasis Cafe. Cap off the night on the Saigon Open City Tour Bus.",
     tags: ["SGN Airport Grab", "District 1", "War Remnants Museum", "Ben Thanh Market", "Oasis Cafe", "City Tour Bus (₹600)"],
     icon: MapPin
@@ -67,7 +68,7 @@ const ITINERARY_DATA: PhaseItinerary[] = [
     title: "Saigon ➔ Hanoi Transit & Old Quarter",
     location: "Ho Chi Minh City ➔ Hanoi Old Quarter",
     stay: "Hanoi Sail Hotel",
-    stayStatus: "₹2,700 ✅ BOOKED",
+    stayStatus: "₹2,800",
     narrative: "Catch a 4:00 AM early domestic flight to Hanoi (HAN). Grab to Hanoi Sail in the heart of the Old Quarter. Take a short nap and rest, then stroll around Hoan Kiem Lake and visit Ngoc Son Temple. Enjoy traditional Bun Cha for dinner and explore the lively Hanoi Weekend Night Market, followed by a Hanoi City Tour Bus ride.",
     tags: ["4 AM Flight to HAN", "Old Quarter", "Hoan Kiem Lake", "Bun Cha Dinner", "Hanoi Night Market"],
     icon: Plane
@@ -77,8 +78,8 @@ const ITINERARY_DATA: PhaseItinerary[] = [
     dateStr: "JUL 20",
     title: "Hanoi Cultural Immersion & Train Street",
     location: "Hanoi Capital Region",
-    stay: "Hotel Sail, Hanoi",
-    stayStatus: "✅ BOOKED",
+    stay: "Hanoi Sail Hotel",
+    stayStatus: "₹2,800",
     narrative: "Start the morning at the historical Temple of Literature, followed by coffee and crispy baguettes at the famous Banh Mi 25 Cafe. Finalize booking for the Ha Long Bay cruise. In the evening, experience Train Street coffee, attend the Mega Grand World show (using free Oct2 bus from Opera House Hanoi), and conclude with an authentic Indian dinner at Maazi Indian Restaurant.",
     tags: ["Temple of Literature", "Banh Mi 25", "Train Street Coffee", "Mega Grand World", "Maazi Indian Dinner"],
     icon: Coffee
@@ -89,7 +90,7 @@ const ITINERARY_DATA: PhaseItinerary[] = [
     title: "Ha Long Bay Overnight Cruise",
     location: "Hanoi ➔ Ha Long Bay (Lan Ha / Bai Tu Long)",
     stay: "Aurora Cruise Ship (Overnight)",
-    stayStatus: "Included in Cruise (₹24,000 Package)",
+    stayStatus: "Included in Cruise Package",
     narrative: "8:00 AM hotel pickup for limousine bus to Ha Long Bay. Board the Aurora Cruise ship at noon. Spend the afternoon kayaking through limestone karst arches, swimming in turquoise waters, and exploring hidden rock caverns. Enjoy a sunset party and gourmet seafood dinner on the open deck under the stars.",
     tags: ["Aurora Cruise Ship", "Limousine Pickup", "Karst Kayaking", "Cave Exploration", "Deck Sunset Party"],
     icon: Ship
@@ -100,7 +101,7 @@ const ITINERARY_DATA: PhaseItinerary[] = [
     title: "Ha Long Bay Shore Stay & Poem Mountain Hike",
     location: "Ha Long Bay ➔ Bai Chay Beach",
     stay: "Muong Thanh Grand Bai Chay",
-    stayStatus: "₹3,400 ✅ BOOKED",
+    stayStatus: "₹3,400",
     narrative: "Wake up for sunrise Tai Chi and breakfast on the cruise deck. Disembark at 11:30 AM and check into Muong Thanh Grand Bai Chay hotel. Hike Bai Tho Mountain (Poem Mountain) for an incredible high-angle view over Ha Long Bay. Spend the evening exploring Bai Chay Beach and dinner at Vannakam Indian Food.",
     tags: ["Sunrise Tai Chi", "Disembark 11:30 AM", "Bai Tho Mountain Hike", "Bai Chay Beach", "Vannakam Indian Food"],
     icon: Waves
@@ -111,7 +112,7 @@ const ITINERARY_DATA: PhaseItinerary[] = [
     title: "Ha Long Bay ➔ Ninh Binh Lotus Ponds",
     location: "Ha Long ➔ Ninh Binh (Tam Coc)",
     stay: "Tam Coc Marine Villa",
-    stayStatus: "₹3,000 ✅ BOOKED",
+    stayStatus: "₹3,000",
     narrative: "Board a 9:00 AM Limousine Bus from Ha Long to Ninh Binh (~3.5 hrs transit). Check into Tam Coc Marine Villa homestay. Rent a bicycle to ride through local village paths and admire the massive lotus ponds in peak July bloom. Conclude the day with a relaxed dinner at Saffron Indian Restaurant.",
     tags: ["Limousine Bus (~3.5 hrs)", "Tam Coc Marine Villa", "Bicycle Rental", "Peak Lotus Bloom", "Saffron Indian Restaurant"],
     icon: Compass
@@ -121,9 +122,9 @@ const ITINERARY_DATA: PhaseItinerary[] = [
     dateStr: "JUL 24",
     title: "Ninh Binh: Trang An Grottoes & Mua Cave Peak",
     location: "Ninh Binh (Hang Mua & Trang An)",
-    stay: "SI Grand Hotel",
-    stayStatus: "₹2,250 ✅ BOOKED",
-    narrative: "Begin early at Mua Cave (Hang Mua), climbing 500 stone steps to reach the legendary 'Lying Dragon' peak viewpoint over Tam Coc. In the afternoon, take a sampan boat tour through the UNESCO World Heritage Trang An Grottoes and cycle around Hoa Lu Ancient City before returning. Enjoy local dinner at Saffron Indian Restaurant.",
+    stay: "Tam Coc Marine Villa",
+    stayStatus: "₹3,000",
+    narrative: "Begin early at Mua Cave (Hang Mua), climbing 500 stone steps to reach the legendary 'Lying Dragon' peak viewpoint over Tam Coc. In the afternoon, take a sampan boat tour through the UNESCO World Heritage Trang An Grottoes and cycle around Hoa Lu Ancient City before returning to Tam Coc Marine Villa. Enjoy local dinner at Saffron Indian Restaurant.",
     tags: ["Mua Cave 500 Steps", "Lying Dragon Peak", "Trang An Boat Tour", "Hoa Lu Ancient City", "Saffron Indian"],
     icon: Sparkles
   },
@@ -133,7 +134,7 @@ const ITINERARY_DATA: PhaseItinerary[] = [
     title: "Ninh Binh ➔ Hanoi Airport ➔ Delhi Return",
     location: "Ninh Binh ➔ HAN Airport ➔ Delhi IGI",
     stay: "Radisson Blu, IGI Delhi (Transit)",
-    stayStatus: "₹8,000 ✅ BOOKED",
+    stayStatus: "₹8,000",
     narrative: "Enjoy a relaxed morning in Ninh Binh. At 12:00 PM, take a Limousine Bus directly to Noi Bai International Airport (HAN). Board the 7:40 PM flight back to Delhi. Land at IGI Airport late night and check into Radisson Blu IGI for a comfortable transit recovery.",
     tags: ["12 PM Limousine Bus", "7:40 PM HAN Flight", "Delhi Arrival", "Radisson Blu IGI"],
     icon: Plane
@@ -141,35 +142,62 @@ const ITINERARY_DATA: PhaseItinerary[] = [
 ];
 
 const BUDGET_LEDGER: BudgetLedgerItem[] = [
-  { category: "International & Domestic Flights", cost: "₹32,000", detail: "DEL ↔ SGN/HAN & SGN-HAN Connection (2 Persons)", isBooked: true, icon: Plane },
-  { category: "Ha Long Bay Aurora Cruise", cost: "₹24,000", detail: "Overnight Luxury Cruise, Kayaking, Cave Tour & All Meals (2 Persons)", isBooked: true, icon: Ship },
-  { category: "Hotels & Homestays (7 Nights)", cost: "₹20,000", detail: "District 1 Saigon, Hanoi Sail, Bai Chay, Tam Coc & Delhi (2 Persons)", isBooked: true, icon: Building },
-  { category: "Food & Dining", cost: "₹10,000", detail: "Banh Mi 25, Maazi, Vannakam, Saffron, Oasis Cafe & Street Food (2 Persons)", isBooked: false, icon: UtensilsCrossed },
-  { category: "Internal Transport", cost: "₹10,000", detail: "Grab cabs, Hanoi/Ha Long/Ninh Binh Limousine Buses, City Tour Buses (2 Persons)", isBooked: false, icon: Compass },
-  { category: "Activities & Boat Entry", cost: "₹10,000", detail: "Trang An Boat Tour, Hang Mua Entry, City Tour Bus tickets (2 Persons)", isBooked: false, icon: Ticket },
-  { category: "Visa Fees", cost: "₹5,000", detail: "Official Vietnam E-Visa approval (₹2,500 x 2 Persons)", isBooked: true, icon: Receipt },
-  { category: "Travel Insurance", cost: "₹1,500", detail: "Comprehensive medical and travel protection (2 Persons)", isBooked: false, icon: CheckCircle2 },
-  { category: "Misc / Shopping / 7-Eleven", cost: "₹5,000", detail: "Daily convenience stops, coffee beans, souvenirs (2 Persons)", isBooked: false, icon: Coffee },
+  { category: "International & Domestic Flights", cost: "₹33,500", detail: "DEL ↔ SGN/HAN & SGN-HAN Connection (2 Persons)", icon: Plane },
+  { category: "Ha Long Bay Aurora Cruise", cost: "₹24,000", detail: "Overnight Luxury Cruise, Kayaking, Cave Tour & All Meals (2 Persons)", icon: Ship },
+  { category: "Hotels & Stays (7 Nights)", cost: "₹27,500", detail: "Bay View (₹4.5k), Hanoi Sail (₹5.6k), Bai Chay (₹3.4k), Tam Coc Marine Villa (₹6k) & Radisson Blu (₹8k)", icon: Building },
+  { category: "Food & Dining", cost: "₹20,000", detail: "Banh Mi 25, Maazi, Vannakam, Saffron, Oasis Cafe & Street Food (2 Persons)", icon: UtensilsCrossed },
+  { category: "Internal Transport", cost: "₹10,000", detail: "Grab cabs, Hanoi/Ha Long/Ninh Binh Limousine Buses, City Tour Buses (2 Persons)", icon: Compass },
+  { category: "Activities & Boat Entry", cost: "₹20,000", detail: "Trang An Boat Tour, Hang Mua Entry, City Tour Bus tickets (2 Persons)", icon: Ticket },
+  { category: "Shopping & Souvenirs", cost: "₹10,000", detail: "Local night markets, traditional crafts, silk & coffee beans (2 Persons)", icon: Coffee },
+  { category: "Visa Fees", cost: "₹5,000", detail: "Official Vietnam E-Visa approval (₹2,500 x 2 Persons)", icon: Receipt },
 ];
 
 const STAYS_BREAKDOWN = [
-  { date: "Jul 18", hotel: "Bay View Hotel (District 1, Saigon)", cost: "₹1,800 booked (₹4,000 value)", status: "Booked ✅ (2 Pax)" },
-  { date: "Jul 19", hotel: "Hanoi Sail (Old Quarter, Hanoi)", cost: "₹2,700 - ₹2,800 booked", status: "Booked ✅ (2 Pax)" },
-  { date: "Jul 20", hotel: "Hotel Sail (Old Quarter, Hanoi)", cost: "₹2,800 booked", status: "Booked ✅ (2 Pax)" },
-  { date: "Jul 21", hotel: "Aurora Cruise Ship (Ha Long Bay)", cost: "Included in ₹24k Cruise", status: "Booked ✅ (2 Pax)" },
-  { date: "Jul 22", hotel: "Muong Thanh Grand Bai Chay (Ha Long)", cost: "₹3,400 booked", status: "Booked ✅ (2 Pax)" },
-  { date: "Jul 23", hotel: "Tam Coc Marine Villa (Ninh Binh)", cost: "₹3,000 booked", status: "Booked ✅ (2 Pax)" },
-  { date: "Jul 24", hotel: "SI Grand Hotel (Ninh Binh)", cost: "₹2,250 booked", status: "Booked ✅ (2 Pax)" },
-  { date: "Jul 25", hotel: "Radisson Blu (IGI Airport Delhi)", cost: "₹4,000 booked (₹8,000 value)", status: "Booked ✅ (2 Pax)" },
+  { date: "Jul 18", hotel: "Bay View Hotel (District 1, Saigon)", cost: "₹4,500", status: "Confirmed" },
+  { date: "Jul 19", hotel: "Hanoi Sail (Old Quarter, Hanoi)", cost: "₹2,800", status: "Confirmed" },
+  { date: "Jul 20", hotel: "Hanoi Sail (Old Quarter, Hanoi)", cost: "₹2,800", status: "Confirmed" },
+  { date: "Jul 21", hotel: "Aurora Cruise Ship (Ha Long Bay)", cost: "Included in Cruise", status: "Confirmed" },
+  { date: "Jul 22", hotel: "Muong Thanh Grand Bai Chay (Ha Long)", cost: "₹3,400", status: "Confirmed" },
+  { date: "Jul 23", hotel: "Tam Coc Marine Villa (Ninh Binh)", cost: "₹3,000", status: "Confirmed" },
+  { date: "Jul 24", hotel: "Tam Coc Marine Villa (Ninh Binh)", cost: "₹3,000", status: "Confirmed" },
+  { date: "Jul 25", hotel: "Radisson Blu (IGI Airport Delhi)", cost: "₹8,000", status: "Confirmed" },
 ];
 
 const DINING_HIGHLIGHTS = [
-  { name: "Banh Mi 25", location: "Hanoi Old Quarter", desc: "World-famous crispy baguettes filled with pate, grilled pork, and fresh cilantro." },
-  { name: "Maazi Indian Restaurant", location: "Hanoi", desc: "Authentic North Indian curries, garlic naans, and rich thalis." },
-  { name: "Vannakam Indian Food", location: "Ha Long Beach", desc: "Coastal South Indian flavors, dosas, and curries by Bai Chay." },
-  { name: "Saffron Indian Restaurant", location: "Ninh Binh (Tam Coc)", desc: "Warm hospitality and flavorful Indian dining near lotus ponds." },
-  { name: "Oasis Cafe", location: "Saigon (District 1)", desc: "Lush tropical ambiance for evening coffee and romantic dinners." },
-  { name: "7-Eleven Convenience", location: "Nationwide", desc: "Daily quick stops for iced milk coffee, green teas, and quick snacks." }
+  { 
+    name: "Banh Mi 25", 
+    location: "Hanoi Old Quarter", 
+    desc: "World-famous banh mi and iced coconut coffe and iced matcha",
+    url: "https://www.instagram.com/banhmi25/?hl=en"
+  },
+  { 
+    name: "Maazi Indian Restaurant", 
+    location: "Hanoi", 
+    desc: "Authentic North Indian curries, garlic naans, and rich thalis.",
+    url: "https://www.instagram.com/maazioldquarter/?hl=en"
+  },
+  { 
+    name: "Vannakam Indian Food", 
+    location: "Ha Long Beach", 
+    desc: "Coastal South Indian flavors, dosas, and curries by Bai Chay." 
+  },
+  { 
+    name: "Saffron Indian Restaurant", 
+    location: "Ninh Binh (Tam Coc)", 
+    desc: "Warm hospitality and flavorful Indian dining near lotus ponds.",
+    url: "https://www.facebook.com/saffronrestaurantninhbinh"
+  },
+  { 
+    name: "Oasis Cafe", 
+    location: "Saigon", 
+    desc: "Lush tropical ambiance for evening coffee and romantic dinners.",
+    url: "https://www.instagram.com/oasiscafevn/?hl=en"
+  },
+  { 
+    name: "7-Eleven Convenience", 
+    location: "Nationwide", 
+    desc: "Daily quick stops for iced milk coffee, green teas, and quick snacks." 
+  }
 ];
 
 interface VietnamExpeditionViewProps {
@@ -191,7 +219,7 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
       {/* Background Film Grain Overlay */}
       <div className="fixed inset-0 pointer-events-none opacity-5 z-50 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] [background-size:16px_16px]" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Navigation Back Header */}
         <motion.div 
@@ -232,14 +260,14 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
               Vietnam <br /> <span className="text-amber-200 font-normal italic">Expedition 2026</span>
             </h1>
 
-            <p className="text-white/70 text-xs md:text-sm font-light max-w-2xl leading-relaxed mb-6">
+            <p className="text-white/80 text-base md:text-lg font-light max-w-4xl leading-relaxed mb-6">
               Delhi ➔ Ho Chi Minh City ➔ Hanoi ➔ Ha Long Bay ➔ Ninh Binh ➔ Delhi. Exploring limestone karsts, lotus blooms, night markets, and heritage bays.
             </p>
 
             <div className="flex flex-wrap gap-8 border-t border-white/15 pt-5 w-fit">
               <div>
                 <span className="text-[9px] text-amber-400/70 uppercase tracking-widest block mb-1">Estimated Budget (2 Persons)</span>
-                <span className="text-lg md:text-2xl font-bold text-white font-mono">~₹ 1,20,000 <span className="text-xs text-amber-400 font-sans font-normal">(~₹60k/person)</span></span>
+                <span className="text-lg md:text-2xl font-bold text-white font-mono">~₹ 1,50,000 <span className="text-xs text-amber-400 font-sans font-normal">(~₹75k/person)</span></span>
               </div>
               <div>
                 <span className="text-[9px] text-amber-400/70 uppercase tracking-widest block mb-1">Group & Regions</span>
@@ -247,7 +275,7 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
               </div>
               <div>
                 <span className="text-[9px] text-amber-400/70 uppercase tracking-widest block mb-1">Flights & Hotels</span>
-                <span className="text-xs md:text-sm text-amber-400 font-semibold font-ui">100% Booked ✅</span>
+                <span className="text-xs md:text-sm text-amber-400 font-semibold font-ui">Confirmed Itinerary</span>
               </div>
             </div>
           </div>
@@ -327,7 +355,7 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
                 </div>
               </div>
 
-              <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-8 font-sans">
+              <p className="text-zinc-300 text-base md:text-lg leading-relaxed mb-8 font-sans">
                 {activeDay.narrative}
               </p>
 
@@ -344,11 +372,20 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
 
         {/* Accommodations & Stays Breakdown Grid */}
         <section className="mb-20">
-          <div className="mb-8">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-amber-400 font-bold font-ui block mb-2">
-              Stay Ledger (2 Persons)
-            </span>
-            <h2 className="text-2xl md:text-4xl font-serif text-white">Confirmed Hotel Stays (7 Nights • 2 Pax)</h2>
+          <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-amber-400 font-bold font-ui block mb-2">
+                Accommodation Ledger (7 Nights)
+              </span>
+              <h2 className="text-2xl md:text-4xl font-serif text-white">Confirmed Hotel Stays</h2>
+            </div>
+            
+            <div className="bg-amber-400/10 border border-amber-400/30 rounded-2xl px-6 py-3 flex items-center gap-4 w-fit">
+              <div>
+                <span className="text-[9px] uppercase tracking-widest text-amber-400 font-bold font-ui block">Total Accommodation Cost</span>
+                <span className="text-xl md:text-2xl font-bold font-mono text-white">₹27,500 <span className="text-xs text-amber-300 font-sans font-normal">(7 Nights)</span></span>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -359,7 +396,7 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
                   <span className="text-[10px] font-mono text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/20">{stay.status}</span>
                 </div>
                 <h4 className="text-sm font-serif font-semibold text-white mb-2 leading-snug">{stay.hotel}</h4>
-                <p className="text-xs text-zinc-400 font-mono">{stay.cost}</p>
+                <p className="text-xs text-zinc-300 font-mono font-bold">{stay.cost}</p>
               </div>
             ))}
           </div>
@@ -376,17 +413,45 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {DINING_HIGHLIGHTS.map((item, idx) => (
-              <div key={idx} className="bg-zinc-900/60 border border-white/10 rounded-2xl p-6 relative overflow-hidden group hover:border-amber-400/50 transition-all">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400">
-                    <UtensilsCrossed size={18} />
+              <div key={idx} className="bg-zinc-900/60 border border-white/10 rounded-2xl p-6 relative overflow-hidden group hover:border-amber-400/50 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-9 h-9 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 flex-shrink-0">
+                      <UtensilsCrossed size={18} />
+                    </div>
+                    <div>
+                      <h4 className="text-base font-serif font-bold text-white group-hover:text-amber-300 transition-colors">
+                        {item.url ? (
+                          <a 
+                            href={item.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="inline-flex items-center gap-1.5 hover:text-amber-300 underline decoration-amber-400/40 hover:decoration-amber-400 transition-all"
+                          >
+                            {item.name} <ExternalLink size={13} className="text-amber-400 flex-shrink-0" />
+                          </a>
+                        ) : (
+                          item.name
+                        )}
+                      </h4>
+                      <span className="text-[10px] uppercase tracking-wider text-amber-400/80 font-mono">{item.location}</span>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-base font-serif font-bold text-white group-hover:text-amber-300 transition-colors">{item.name}</h4>
-                    <span className="text-[10px] uppercase tracking-wider text-amber-400/80 font-mono">{item.location}</span>
-                  </div>
+                  <p className="text-sm text-zinc-300 leading-relaxed font-sans mb-3">{item.desc}</p>
                 </div>
-                <p className="text-xs text-zinc-400 leading-relaxed font-sans">{item.desc}</p>
+                {item.url && (
+                  <div className="pt-3 border-t border-white/5 flex items-center justify-between">
+                    <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-ui">Social / Page</span>
+                    <a 
+                      href={item.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-[11px] text-amber-400 hover:text-amber-300 font-semibold font-ui inline-flex items-center gap-1 hover:underline"
+                    >
+                      Visit Profile <ExternalLink size={11} />
+                    </a>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -398,7 +463,7 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
             <span className="text-[10px] uppercase tracking-[0.3em] text-amber-400 font-bold font-ui block mb-2">
               Financial Breakdown (2 Persons)
             </span>
-            <h2 className="text-2xl md:text-4xl font-serif text-white">Estimated Budget Ledger (~₹1,20,000 for 2 Persons)</h2>
+            <h2 className="text-2xl md:text-4xl font-serif text-white">Estimated Budget Ledger (~₹1,50,000 Total for 2 Persons)</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -411,14 +476,9 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
                       <div className="w-10 h-10 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400">
                         <IconComp size={20} />
                       </div>
-                      {item.isBooked && (
-                        <span className="text-[10px] uppercase font-mono tracking-wider text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20 font-bold">
-                          Booked ✅
-                        </span>
-                      )}
                     </div>
-                    <h4 className="text-sm font-serif font-bold text-white mb-1">{item.category}</h4>
-                    <p className="text-xs text-zinc-400 leading-relaxed mb-4">{item.detail}</p>
+                    <h4 className="text-base font-serif font-bold text-white mb-1">{item.category}</h4>
+                    <p className="text-sm text-zinc-300 leading-relaxed mb-4">{item.detail}</p>
                   </div>
                   <div className="pt-3 border-t border-white/5 flex items-center justify-between">
                     <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-ui">Allocation</span>

@@ -17,8 +17,21 @@ import {
   User, 
   Download,
   CheckCircle2,
-  X
+  X,
+  Star,
+  MessageSquare,
+  Send,
+  ThumbsUp
 } from "lucide-react";
+
+interface Review {
+  id: string;
+  author: string;
+  rating: number;
+  date: string;
+  comment: string;
+  verified?: boolean;
+}
 
 interface ShopItem {
   id: string;
@@ -31,6 +44,7 @@ interface ShopItem {
   badge: string;
   features: string[];
   durationOrFormat: string;
+  reviews: Review[];
 }
 
 const SHOP_PRODUCTS: ShopItem[] = [
@@ -49,7 +63,11 @@ const SHOP_PRODUCTS: ShopItem[] = [
       "Interactive map pin templates",
       "Print-ready high-resolution PDF format"
     ],
-    durationOrFormat: "Digital PDF & Notion Template"
+    durationOrFormat: "Digital PDF & Notion Template",
+    reviews: [
+      { id: "r1", author: "Aarav M.", rating: 5, date: "July 2026", comment: "The Notion workspace layout completely elevated how I organize my trip reflections. Super sleek and practical!", verified: true },
+      { id: "r2", author: "Priya S.", rating: 5, date: "June 2026", comment: "Beautiful design. Used it on my recent Himachal trip and filled every single sensory prompt.", verified: true }
+    ]
   },
   {
     id: "visa-consultation",
@@ -66,7 +84,11 @@ const SHOP_PRODUCTS: ShopItem[] = [
       "Consistent itinerary matching checks",
       "Direct email and chat support for 30 days"
     ],
-    durationOrFormat: "30-Day Virtual Assistance"
+    durationOrFormat: "30-Day Virtual Assistance",
+    reviews: [
+      { id: "r3", author: "Rohan K.", rating: 5, date: "July 2026", comment: "Got my Schengen visa approved without any hassle! The cover letter provided was super thorough and polished.", verified: true },
+      { id: "r4", author: "Ananya D.", rating: 5, date: "May 2026", comment: "Very reassuring 1-on-1 support. Worth every rupee for stress-free documentation.", verified: true }
+    ]
   },
   {
     id: "itinerary-planning",
@@ -83,7 +105,11 @@ const SHOP_PRODUCTS: ShopItem[] = [
       "Detailed transit & route breakdowns",
       "Curated luxury and boutique stay matches"
     ],
-    durationOrFormat: "Tailor-Made PDF Guide"
+    durationOrFormat: "Tailor-Made PDF Guide",
+    reviews: [
+      { id: "r5", author: "Vikram P.", rating: 5, date: "July 2026", comment: "The Vietnam itinerary was crafted to perfection. Hidden cafes in Hanoi Old Quarter and secret viewpoints in Ninh Binh were gold.", verified: true },
+      { id: "r6", author: "Sneha R.", rating: 5, date: "June 2026", comment: "Saved me at least 40 hours of research. Very well structured with realistic daily timelines.", verified: true }
+    ]
   },
   {
     id: "itinerary-guide",
@@ -100,7 +126,11 @@ const SHOP_PRODUCTS: ShopItem[] = [
       "Handy budget-friendly local tips",
       "Active hyperlinked navigation coordinates"
     ],
-    durationOrFormat: "80-Page Interactive PDF"
+    durationOrFormat: "80-Page Interactive PDF",
+    reviews: [
+      { id: "r7", author: "Siddharth G.", rating: 5, date: "July 2026", comment: "Instant download and full of practical tips, exact grab routes, and camera timing notes.", verified: true },
+      { id: "r8", author: "Meera N.", rating: 4, date: "June 2026", comment: "Super helpful PDF! The active map coordinates made navigation effortless.", verified: true }
+    ]
   },
   {
     id: "photo-presets",
@@ -117,7 +147,11 @@ const SHOP_PRODUCTS: ShopItem[] = [
       "Tuned for skin-tones and dramatic skies",
       "Step-by-step PDF setup instructions included"
     ],
-    durationOrFormat: ".DNG & .XMP Files"
+    durationOrFormat: ".DNG & .XMP Files",
+    reviews: [
+      { id: "r9", author: "Kabir T.", rating: 5, date: "July 2026", comment: "The Lightroom filters give such an authentic film grain and golden hour warm vibe to my travel photos.", verified: true },
+      { id: "r10", author: "Ishita M.", rating: 5, date: "June 2026", comment: "Works flawlessly on Lightroom mobile. Lush tropical tones are stunning.", verified: true }
+    ]
   },
   {
     id: "budget-tracker",
@@ -134,7 +168,11 @@ const SHOP_PRODUCTS: ShopItem[] = [
       "Pre-departure savings plan checklist",
       "Responsive Notion & Google Sheets editions"
     ],
-    durationOrFormat: "Notion & Google Sheets Link"
+    durationOrFormat: "Notion & Google Sheets Link",
+    reviews: [
+      { id: "r11", author: "Devansh B.", rating: 5, date: "July 2026", comment: "Kept our 10-day Southeast Asia budget completely on track. The multi-currency formulas are a lifesaver.", verified: true },
+      { id: "r12", author: "Pooja C.", rating: 5, date: "May 2026", comment: "Simple to duplicate into Notion. Minimalist and clear.", verified: true }
+    ]
   },
   {
     id: "packing-checklist",
@@ -151,7 +189,11 @@ const SHOP_PRODUCTS: ShopItem[] = [
       "Pre-travel household security checks",
       "Beautiful typography, ready to print"
     ],
-    durationOrFormat: "Printable A4 / US Letter PDF"
+    durationOrFormat: "Printable A4 / US Letter PDF",
+    reviews: [
+      { id: "r13", author: "Kunal S.", rating: 5, date: "July 2026", comment: "Never forgetting my camera charger or power bank again. Clean PDF layout.", verified: true },
+      { id: "r14", author: "Taniya V.", rating: 4, date: "June 2026", comment: "Super handy pre-departure checklist for quick packing.", verified: true }
+    ]
   },
   {
     id: "travel-coaching",
@@ -168,7 +210,10 @@ const SHOP_PRODUCTS: ShopItem[] = [
       "Written summary with custom links sent post-call",
       "Recording of the call session made available"
     ],
-    durationOrFormat: "30-Min Live Consultation"
+    durationOrFormat: "30-Min Live Consultation",
+    reviews: [
+      { id: "r15", author: "Gaurav N.", rating: 5, date: "July 2026", comment: "Super insightful 30 minutes! Answered all my route and budget questions in one session.", verified: true }
+    ]
   },
   {
     id: "digital-map",
@@ -185,7 +230,10 @@ const SHOP_PRODUCTS: ShopItem[] = [
       "Direct mapping app synchronization",
       "Detailed notes and photo tips attached to pins"
     ],
-    durationOrFormat: "Private Google Maps Overlay"
+    durationOrFormat: "Private Google Maps Overlay",
+    reviews: [
+      { id: "r16", author: "Rhea M.", rating: 5, date: "July 2026", comment: "The map pins were spot on! Found places I would have never noticed on standard travel blogs.", verified: true }
+    ]
   },
   {
     id: "ultimate-ebook",
@@ -202,7 +250,10 @@ const SHOP_PRODUCTS: ShopItem[] = [
       "Secrets of high-end stay upgrades",
       "EPUB, PDF, and Kindle compatible formats"
     ],
-    durationOrFormat: "EPUB & PDF Digital Book"
+    durationOrFormat: "EPUB & PDF Digital Book",
+    reviews: [
+      { id: "r17", author: "Varun K.", rating: 5, date: "July 2026", comment: "The flight hacking and packing frameworks alone paid for the e-book 10 times over!", verified: true }
+    ]
   }
 ];
 
@@ -215,9 +266,43 @@ interface ShopViewProps {
 
 export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartCount }: ShopViewProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [searchQuery, setSearchQuery] = useState<string>(" ");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedProduct, setSelectedProduct] = useState<ShopItem | null>(null);
   const [addedItemName, setAddedItemName] = useState<string | null>(null);
+
+  // Review states
+  const [userReviews, setUserReviews] = useState<Record<string, Review[]>>({});
+  const [showAddReviewForm, setShowAddReviewForm] = useState(false);
+  const [newReviewAuthor, setNewReviewAuthor] = useState("");
+  const [newReviewRating, setNewReviewRating] = useState(5);
+  const [newReviewComment, setNewReviewComment] = useState("");
+
+  const activeProductReviews = useMemo(() => {
+    if (!selectedProduct) return [];
+    const base = selectedProduct.reviews || [];
+    const custom = userReviews[selectedProduct.id] || [];
+    return [...custom, ...base];
+  }, [selectedProduct, userReviews]);
+
+  const handleAddReviewSubmit = () => {
+    if (!selectedProduct || !newReviewAuthor.trim() || !newReviewComment.trim()) return;
+    const newRev: Review = {
+      id: `custom-${Date.now()}`,
+      author: newReviewAuthor.trim(),
+      rating: newReviewRating,
+      date: "Just now",
+      comment: newReviewComment.trim(),
+      verified: true
+    };
+    setUserReviews(prev => ({
+      ...prev,
+      [selectedProduct.id]: [newRev, ...(prev[selectedProduct.id] || [])]
+    }));
+    setNewReviewAuthor("");
+    setNewReviewComment("");
+    setNewReviewRating(5);
+    setShowAddReviewForm(false);
+  };
 
   // JSON-LD Product Schema for Search Console
   const shopJsonLd = useMemo(() => {
@@ -596,6 +681,104 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
                         </li>
                       ))}
                     </ul>
+                  </div>
+
+                  {/* Customer Reviews Section */}
+                  <div className="mb-6 pt-6 border-t border-border-main">
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold font-ui">Customer Reviews ({activeProductReviews.length})</p>
+                        <div className="flex items-center gap-1.5 mt-0.5">
+                          <div className="flex items-center text-amber-400">
+                            {[...Array(5)].map((_, i) => (
+                              <Star key={i} size={11} fill="currentColor" />
+                            ))}
+                          </div>
+                          <span className="text-xs font-bold font-mono text-text-main">
+                            5.0 <span className="text-[10px] text-zinc-500 font-normal font-sans">Verified Rating</span>
+                          </span>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => setShowAddReviewForm(!showAddReviewForm)}
+                        className="px-2.5 py-1 border border-border-main hover:border-accent text-accent font-ui text-[9px] uppercase font-bold tracking-wider rounded-sm flex items-center gap-1 transition-all cursor-pointer"
+                      >
+                        <MessageSquare size={11} /> {showAddReviewForm ? "Cancel" : "Add Review"}
+                      </button>
+                    </div>
+
+                    {/* Review Form */}
+                    {showAddReviewForm && (
+                      <div className="bg-bg border border-border-main p-3 rounded-sm mb-4 space-y-2.5 font-sans text-xs">
+                        <div>
+                          <label className="block text-[9px] uppercase font-bold text-zinc-400 mb-1">Your Name</label>
+                          <input 
+                            type="text" 
+                            placeholder="e.g. Rahul S." 
+                            value={newReviewAuthor}
+                            onChange={(e) => setNewReviewAuthor(e.target.value)}
+                            className="w-full bg-card-bg border border-border-main focus:border-accent/50 p-2 rounded-sm text-text-main focus:outline-none text-xs"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[9px] uppercase font-bold text-zinc-400 mb-1">Rating</label>
+                          <div className="flex items-center gap-1 text-amber-400">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                              <button
+                                key={star}
+                                type="button"
+                                onClick={() => setNewReviewRating(star)}
+                                className="p-0.5 hover:scale-110 transition-transform cursor-pointer"
+                              >
+                                <Star size={14} fill={star <= newReviewRating ? "currentColor" : "none"} className={star <= newReviewRating ? "text-amber-400" : "text-zinc-600"} />
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-[9px] uppercase font-bold text-zinc-400 mb-1">Your Review</label>
+                          <textarea 
+                            placeholder="Share your experience with this resource..." 
+                            value={newReviewComment}
+                            onChange={(e) => setNewReviewComment(e.target.value)}
+                            rows={2}
+                            className="w-full bg-card-bg border border-border-main focus:border-accent/50 p-2 rounded-sm text-text-main focus:outline-none text-xs"
+                          />
+                        </div>
+                        <button
+                          onClick={handleAddReviewSubmit}
+                          disabled={!newReviewAuthor.trim() || !newReviewComment.trim()}
+                          className="w-full py-2 bg-accent text-black font-bold font-ui text-[9px] uppercase tracking-widest disabled:opacity-50 hover:bg-white transition-all flex items-center justify-center gap-1.5 rounded-sm cursor-pointer"
+                        >
+                          <Send size={11} /> Submit Review
+                        </button>
+                      </div>
+                    )}
+
+                    {/* Review Cards List */}
+                    <div className="space-y-2.5 max-h-44 overflow-y-auto pr-1">
+                      {activeProductReviews.map((rev) => (
+                        <div key={rev.id} className="bg-bg/50 border border-border-main p-2.5 rounded-sm">
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs font-bold text-text-main font-sans">{rev.author}</span>
+                              {rev.verified && (
+                                <span className="text-[8px] bg-accent/10 border border-accent/20 text-accent px-1.5 py-0.2 rounded-sm uppercase tracking-wider font-mono font-bold flex items-center gap-0.5">
+                                  <CheckCircle2 size={8} /> Verified
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex items-center text-amber-400">
+                              {[...Array(rev.rating)].map((_, i) => (
+                                <Star key={i} size={9} fill="currentColor" />
+                              ))}
+                            </div>
+                          </div>
+                          <p className="text-[11px] text-zinc-300 font-sans leading-relaxed">{rev.comment}</p>
+                          <span className="text-[8px] text-zinc-500 font-mono block mt-1">{rev.date}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 

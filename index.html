@@ -30,6 +30,82 @@
     <meta property="twitter:title" content="Lens & Latitude | Khilesh Sammal" />
     <meta property="twitter:description" content="A premium travel portfolio, slow-travel diaries, professional performance marketing, and subterranean visual gallery of regional and international expeditions." />
     <meta property="twitter:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&h=630&q=80" />
+
+    <!-- Structured Data Markup (Schema.org JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://lensandlattitude.in/#website",
+          "url": "https://lensandlattitude.in/",
+          "name": "Lens & Latitude",
+          "description": "A premium travel portfolio, slow-travel diaries, professional performance marketing, and subterranean visual gallery of regional and international expeditions.",
+          "publisher": {
+            "@id": "https://lensandlattitude.in/#organization"
+          },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://lensandlattitude.in/#organization",
+          "name": "Lens & Latitude",
+          "url": "https://lensandlattitude.in/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://lensandlattitude.in/favicon.svg"
+          },
+          "founder": {
+            "@type": "Person",
+            "name": "Khilesh Sammal",
+            "jobTitle": "Travel Writer & Performance Marketing Specialist",
+            "url": "https://lensandlattitude.in/"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://lensandlattitude.in/#author",
+          "name": "Khilesh Sammal",
+          "jobTitle": "Travel Writer, Photographer & Digital Nomad",
+          "worksFor": {
+            "@id": "https://lensandlattitude.in/#organization"
+          },
+          "url": "https://lensandlattitude.in/"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://lensandlattitude.in/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://lensandlattitude.in/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Expeditions",
+              "item": "https://lensandlattitude.in/#expeditions"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Shop",
+              "item": "https://lensandlattitude.in/shop"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Blog",
+              "item": "https://lensandlattitude.in/blog"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -23,8 +23,8 @@ export const NAV_ITEMS = [
   { name: "About", href: "#about", icon: User },
   { name: "Destinations", href: "#directory", icon: MapPin },
   { name: "Gallery", href: "#gallery", icon: Camera },
-  { name: "Blog", href: "#blog", icon: BookOpen },
-  { name: "Shop", href: "#shop", icon: ShoppingBag },
+  { name: "Blog", href: "/blog", icon: BookOpen },
+  { name: "Shop", href: "/shop", icon: ShoppingBag },
   { name: "Contact", href: "#contact", icon: Mail },
 ];
 
@@ -43,19 +43,19 @@ export const SOCIAL_LINKS = [
  * Destination catalog featuring both Indian and International expeditions.
  */
 export const TRIPS = [
-  { id: 1, category: "international", title: "Thailand Diaries - 2025", subtitle: "Paradise Phuket", img: "https://images.unsplash.com/photo-1681459878397-14dc6d270fe4?auto=format&fit=crop&w=600&q=80", link: "https://thailand-trip-delta.vercel.app/" },
-  { id: 2, category: "international", title: "The Malaysia Expedition - 2025", subtitle: "Cultural Hub", img: "https://images.unsplash.com/photo-1580496297468-1e05179cfd81?auto=format&fit=crop&w=600&q=80", link: "https://malaysia-trip.vercel.app/" },
-  { id: 3, category: "india", title: "Amritsar Grace - 2025", subtitle: "Punjab", img: "https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=600&q=80", link: "#" },
-  { id: 4, category: "india", title: "Kerala & Kanyakumari - 2026", subtitle: "Southern Coast", img: "https://images.unsplash.com/photo-1695180289266-9dbe35c73a66?auto=format&fit=crop&w=600&q=80", link: "#" },
-  { id: 5, category: "india", title: "Patal Bhuwneswar - 2025", subtitle: "Uttarakhand", img: "https://images.unsplash.com/photo-1714744715493-ad89b7ff503e?auto=format&fit=crop&w=600&q=80", link: "https://patal-bhuvneswar.vercel.app/" },
-  { id: 6, category: "india", title: "Rishikesh - 2025", subtitle: "Uttarakhand", img: "https://images.unsplash.com/photo-1716573260891-23ad993e8833?auto=format&fit=crop&w=600&q=80", link: "https://rishikesh-orpin.vercel.app/" },
-  { id: 7, category: "india", title: "The Jagannath Puri to Sea Expedition", subtitle: "Lens & Latitude — East Coast to West Coast Loop", img: "https://images.unsplash.com/photo-1621847468516-1ed5d0df56fe?auto=format&fit=crop&w=600&q=80", link: "#" },
-  { id: 8, category: "international", title: "Vietnam Expedition - July 2026", subtitle: "Saigon, Hanoi, Ha Long & Ninh Binh (2 Persons)", img: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80", link: "#" },
+  { id: 1, category: "international", title: "Thailand Diaries - 2025", subtitle: "Paradise Phuket", img: "https://images.unsplash.com/photo-1681459878397-14dc6d270fe4?auto=format&fit=crop&w=600&q=80", link: "/destination/thailand" },
+  { id: 2, category: "international", title: "The Malaysia Expedition - 2025", subtitle: "Cultural Hub", img: "https://images.unsplash.com/photo-1580496297468-1e05179cfd81?auto=format&fit=crop&w=600&q=80", link: "/destination/malaysia" },
+  { id: 3, category: "india", title: "Amritsar Grace - 2025", subtitle: "Punjab", img: "https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=600&q=80", link: "/destination/amritsar" },
+  { id: 4, category: "india", title: "Kerala & Kanyakumari - 2026", subtitle: "Southern Coast", img: "https://images.unsplash.com/photo-1695180289266-9dbe35c73a66?auto=format&fit=crop&w=600&q=80", link: "/destination/kerala" },
+  { id: 5, category: "india", title: "Patal Bhuwneswar - 2025", subtitle: "Uttarakhand", img: "https://images.unsplash.com/photo-1714744715493-ad89b7ff503e?auto=format&fit=crop&w=600&q=80", link: "/destination/patal-bhuvaneshwar" },
+  { id: 6, category: "india", title: "Rishikesh - 2025", subtitle: "Uttarakhand", img: "https://images.unsplash.com/photo-1716573260891-23ad993e8833?auto=format&fit=crop&w=600&q=80", link: "/destination/rishikesh" },
+  { id: 7, category: "india", title: "The Jagannath Puri to Sea Expedition", subtitle: "Lens & Latitude — East Coast to West Coast Loop", img: "https://images.unsplash.com/photo-1621847468516-1ed5d0df56fe?auto=format&fit=crop&w=600&q=80", link: "/destination/goa" },
+  { id: 8, category: "international", title: "Vietnam Expedition - July 2026", subtitle: "Saigon, Hanoi, Ha Long & Ninh Binh (2 Persons)", img: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80", link: "/destination/vietnam" },
   { id: 9, category: "india", title: "Nainital Heights - 2025", subtitle: "Uttarakhand", img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80", link: "#" },
-  { id: 10, category: "india", title: "Mulki Expedition", subtitle: "Karnataka Surfing Haven", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80", link: "#" },
-  { id: 11, category: "india", title: "Andaman Islands", subtitle: "Emerald Archipelago", img: "https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&w=600&q=80", link: "#" },
-  { id: 12, category: "international", title: "Philippines Expedition", subtitle: "Tropical Archipelagos", img: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=600&q=80", link: "#" },
-  { id: 13, category: "international", title: "Nepal Heights", subtitle: "Himalayan Sanctuary", img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80", link: "#" },
+  { id: 10, category: "india", title: "Mulki Expedition", subtitle: "Karnataka Surfing Haven", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80", link: "/destination/mulki" },
+  { id: 11, category: "india", title: "Andaman Islands", subtitle: "Emerald Archipelago", img: "https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&w=600&q=80", link: "/destination/andaman" },
+  { id: 12, category: "international", title: "Philippines Expedition", subtitle: "Tropical Archipelagos", img: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=600&q=80", link: "/destination/philippines" },
+  { id: 13, category: "international", title: "Nepal Heights", subtitle: "Himalayan Sanctuary", img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80", link: "/destination/nepal" },
 ];
 
 /**

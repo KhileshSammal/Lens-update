@@ -583,20 +583,20 @@ export const DETAILED_BLOG_POSTS: BlogPost[] = [
       },
       {
         type: "quote",
-        body: "Route Loop: Delhi (DEL) ➔ Ho Chi Minh City (SGN) ➔ Hanoi (HAN) ➔ Ha Long Bay ➔ Ninh Binh ➔ Hanoi (HAN) ➔ Delhi (DEL). Total Estimated Budget: ~₹1,20,000 INR (For 2 Persons)."
+        body: "Route Loop: Delhi (DEL) ➔ Ho Chi Minh City (SGN) ➔ Hanoi (HAN) ➔ Ha Long Bay ➔ Ninh Binh ➔ Hanoi (HAN) ➔ Delhi (DEL). Total Estimated Budget: ~₹1,50,000 INR (For 2 Persons)."
       },
       {
         type: "bullet-list",
         title: "Confirmed Stay Accommodations (Booked for 2 Persons)",
         items: [
-          "Jul 18: Bay View Hotel, District 1, Ho Chi Minh City (₹1,800 / ₹4,000 ✅ Booked)",
-          "Jul 19: Hotel Sail / Hanoi Sail, Old Quarter, Hanoi (₹2,700 ✅ Booked)",
-          "Jul 20: Hotel Sail, Old Quarter, Hanoi (₹2,800 ✅ Booked)",
-          "Jul 21: Aurora Cruise Ship, Ha Long Bay (Overnight Cruise - Included in ₹24k Package)",
-          "Jul 22: Muong Thanh Grand Bai Chay, Ha Long Beach (₹3,400 ✅ Booked)",
-          "Jul 23: Tam Coc Marine Villa, Ninh Binh (₹3,000 ✅ Booked)",
-          "Jul 24: SI Grand Hotel, Ninh Binh (₹2,250 ✅ Booked)",
-          "Jul 25: Radisson Blu, IGI Airport Delhi Transit (₹4,000 / ₹8,000 ✅ Booked)"
+          "Jul 18: Bay View Hotel, District 1, Ho Chi Minh City (₹4,500 Confirmed)",
+          "Jul 19: Hanoi Sail Hotel, Old Quarter, Hanoi (₹2,800 Confirmed)",
+          "Jul 20: Hanoi Sail Hotel, Old Quarter, Hanoi (₹2,800 Confirmed)",
+          "Jul 21: Aurora Cruise Ship, Ha Long Bay (Overnight Cruise - Included in Cruise Package)",
+          "Jul 22: Muong Thanh Grand Bai Chay, Ha Long Beach (₹3,400 Confirmed)",
+          "Jul 23: Tam Coc Marine Villa, Ninh Binh (₹3,000 Confirmed)",
+          "Jul 24: Tam Coc Marine Villa, Ninh Binh (₹3,000 Confirmed)",
+          "Jul 25: Radisson Blu, IGI Airport Delhi Transit (₹8,000 Confirmed)"
         ]
       },
       {
@@ -625,14 +625,14 @@ export const DETAILED_BLOG_POSTS: BlogPost[] = [
         items: [
           "Flights (International DEL-SGN/HAN-DEL & Domestic): ~₹32,000 ✅ Booked (2 Persons)",
           "Cruise (Aurora Cruise Package): ~₹24,000 ✅ Booked (2 Persons)",
-          "Hotels (7 Nights Total): ~₹20,000 ✅ Booked (2 Persons)",
-          "Food & Drinks (Banh Mi 25, Maazi, Vannakam, Saffron, Oasis): ~₹10,000 (2 Persons)",
-          "Internal Transport (Grab, Limousine Buses, City Tour Buses): ~₹10,000 (2 Persons)",
-          "Activities & Entry Fees (Boat tours, Mua Cave, Trang An): ~₹10,000 (2 Persons)",
-          "Visa Fee: ~₹5,000 ✅ Booked (₹2,500 x 2 Persons)",
+          "Hotels (7 Nights Total): ~₹27,500 Confirmed (2 Persons)",
+          "Food & Drinks (Banh Mi 25, Maazi, Vannakam, Saffron, Oasis): ~₹15,000 (2 Persons)",
+          "Internal Transport (Grab, Limousine Buses, City Tour Buses): ~₹15,000 (2 Persons)",
+          "Activities & Entry Fees (Boat tours, Mua Cave, Trang An): ~₹12,000 (2 Persons)",
+          "Visa Fee: ~₹5,000 Confirmed (₹2,500 x 2 Persons)",
           "Travel Insurance: ~₹1,500 (2 Persons)",
-          "Misc / Shopping / 7-Eleven: ~₹5,000 (2 Persons)",
-          "TOTAL ESTIMATED BUDGET: ~₹1,20,000 INR Total (~₹60,000 per person)"
+          "Misc / Shopping / 7-Eleven: ~₹8,000 (2 Persons)",
+          "TOTAL ESTIMATED BUDGET: ~₹1,50,000 INR Total (~₹75,000 per person)"
         ]
       },
       {

@@ -30,7 +30,7 @@ export const ExploringSoonView = memo(({
       {/* Background Film Grain Overlay */}
       <div className="fixed inset-0 pointer-events-none opacity-5 z-50 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] [background-size:16px_16px]" />
 
-      <div className="max-w-5xl mx-auto px-6 lg:px-12 relative z-10">
+      <div className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Navigation Back Header */}
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
@@ -74,7 +74,7 @@ export const ExploringSoonView = memo(({
               {locationName}
             </h1>
 
-            <p className="text-zinc-400 text-xs md:text-sm font-light max-w-xl">
+            <p className="text-zinc-300 text-sm md:text-base font-light max-w-xl">
               Photographic field notes, itinerary maps, and travel blueprints currently being assembled.
             </p>
           </div>
@@ -102,7 +102,7 @@ export const ExploringSoonView = memo(({
             Exploring Soon
           </h2>
 
-          <p className="text-zinc-400 text-sm md:text-base max-w-lg mx-auto leading-relaxed mb-8 font-sans">
+          <p className="text-zinc-300 text-base md:text-lg max-w-lg mx-auto leading-relaxed mb-8 font-sans">
             We are currently curating raw street photographs, accommodation reviews, local food recommendations, and complete day-by-day itineraries for <strong className="text-white font-semibold">{locationName}</strong>.
           </p>
 

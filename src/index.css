@@ -202,13 +202,24 @@
     border-color: var(--border-color) !important;
   }
 
-  /* Overlay states */
-  .bg-zinc-900\/30 {
-    background-color: rgba(15, 23, 42, 0.05) !important;
+  /* Overlay states & cards */
+  .bg-zinc-900\/30,
+  .bg-zinc-900\/40,
+  .bg-zinc-900\/60,
+  .bg-zinc-900\/80 {
+    background-color: #ffffff !important;
+    border-color: rgba(15, 23, 42, 0.1) !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
   }
 
   /* List & button interactive hover states */
-  .hover\:bg-white\/5:hover {
-    background-color: rgba(15, 23, 42, 0.05) !important;
+  .hover\:bg-white\/5:hover,
+  .hover\:bg-white\/10:hover {
+    background-color: rgba(15, 23, 42, 0.06) !important;
+  }
+
+  /* Quote block backgrounds in Light Mode */
+  .bg-zinc-900\/40 {
+    background-color: rgba(180, 83, 9, 0.06) !important;
   }
 }

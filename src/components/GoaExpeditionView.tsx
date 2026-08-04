@@ -103,7 +103,7 @@ export const GoaExpeditionView = memo(({ onBackToHome }: GoaExpeditionViewProps)
       {/* Background Film Grain Overlay */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-50 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] [background-size:16px_16px]" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Navigation back Header */}
         <motion.div 
@@ -144,7 +144,7 @@ export const GoaExpeditionView = memo(({ onBackToHome }: GoaExpeditionViewProps)
               Jagannath Puri <br/> <span className="text-amber-50 font-normal italic">to Sea Loop</span>
             </h1>
 
-            <p className="text-white/60 text-xs md:text-sm font-light max-w-xl leading-relaxed mb-8 font-sans">
+            <p className="text-white/80 text-base md:text-lg font-light max-w-4xl leading-relaxed mb-8 font-sans">
               An epic 5-day dual-coast journey cutting across the spiritual monuments of Odisha to the golden sunset coastlines and historical forts of Goa.
             </p>
 
@@ -247,7 +247,7 @@ export const GoaExpeditionView = memo(({ onBackToHome }: GoaExpeditionViewProps)
                     <div className="space-y-6">
                       <div>
                         <span className="block text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2 font-ui">Narrative</span>
-                        <p className="text-zinc-300 text-sm md:text-base leading-relaxed font-light font-sans">
+                        <p className="text-zinc-300 text-base md:text-lg leading-relaxed font-light font-sans">
                           {activeDay.narrative}
                         </p>
                       </div>
