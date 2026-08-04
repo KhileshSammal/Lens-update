@@ -187,8 +187,18 @@ export function parseCurrentRoute(pathname: string, hash: string): RouteState {
     }
   }
 
-  // Match /destination/:slug
-  if (cleanPath.startsWith("/destination/")) {
+  // Match /destinations or /expeditions or /trips
+  if (cleanPath === "/destinations" || cleanPath === "/expeditions" || cleanPath === "/trips") {
+    return { view: "home", activeBlogPostId: null, targetHash: "#directory" };
+  }
+
+  // Match /destination/:slug or /expedition/:slug or /destinations/:slug or /expeditions/:slug
+  if (
+    cleanPath.startsWith("/destination/") || 
+    cleanPath.startsWith("/expedition/") || 
+    cleanPath.startsWith("/destinations/") || 
+    cleanPath.startsWith("/expeditions/")
+  ) {
     const parts = cleanPath.split("/").filter(Boolean);
     if (parts.length >= 2) {
       const destSlug = parts[1];
