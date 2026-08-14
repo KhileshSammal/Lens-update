@@ -15,7 +15,9 @@ import {
   Coffee,
   CheckCircle2,
   Ticket,
-  ExternalLink
+  ExternalLink,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { SocialShareButtons } from "./SocialShareButtons";
 
@@ -299,30 +301,73 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
         </div>
 
         {/* Day-by-Day Interactive Section */}
-        <section className="mb-20">
-          <div className="mb-8">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-amber-400 font-bold font-ui block mb-2">
-              Journey Timeline
-            </span>
-            <h2 className="text-2xl md:text-4xl font-serif text-white">Day-by-Day Breakdown</h2>
+        <section className="mb-20 destination-itinerary-section">
+          <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-amber-400 font-bold font-ui block mb-2">
+                Journey Timeline
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white">Day-by-Day Breakdown</h2>
+            </div>
+            
+            {/* Quick Step Controls */}
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                onClick={() => setActiveDayIdx(prev => Math.max(0, prev - 1))}
+                disabled={activeDayIdx === 0}
+                className={`p-2.5 rounded-xl border text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                  activeDayIdx === 0 
+                    ? "bg-zinc-900/40 text-zinc-600 border-white/5 cursor-not-allowed" 
+                    : "bg-zinc-900 text-amber-400 border-amber-400/30 hover:bg-amber-400 hover:text-black"
+                }`}
+                aria-label="Previous day"
+              >
+                <ChevronLeft size={16} />
+                <span className="hidden xs:inline text-[11px] font-ui">Prev Day</span>
+              </button>
+              
+              <span className="text-xs font-mono font-bold text-zinc-400 px-2">
+                {activeDayIdx + 1} / {ITINERARY_DATA.length}
+              </span>
+
+              <button
+                onClick={() => setActiveDayIdx(prev => Math.min(ITINERARY_DATA.length - 1, prev + 1))}
+                disabled={activeDayIdx === ITINERARY_DATA.length - 1}
+                className={`p-2.5 rounded-xl border text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
+                  activeDayIdx === ITINERARY_DATA.length - 1 
+                    ? "bg-zinc-900/40 text-zinc-600 border-white/5 cursor-not-allowed" 
+                    : "bg-zinc-900 text-amber-400 border-amber-400/30 hover:bg-amber-400 hover:text-black"
+                }`}
+                aria-label="Next day"
+              >
+                <span className="hidden xs:inline text-[11px] font-ui">Next Day</span>
+                <ChevronRight size={16} />
+              </button>
+            </div>
           </div>
 
-          {/* Days selector tabs */}
-          <div className="flex gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
-            {ITINERARY_DATA.map((item, idx) => (
-              <button
-                key={item.dayNumber}
-                onClick={() => setActiveDayIdx(idx)}
-                className={`px-4 py-3 rounded-xl border text-xs font-bold font-ui shrink-0 transition-all flex flex-col items-start gap-1 cursor-pointer ${
-                  activeDayIdx === idx
-                    ? "bg-amber-400 text-black border-amber-400 shadow-lg shadow-amber-400/20"
-                    : "bg-zinc-900/90 text-zinc-400 border-white/10 hover:border-white/30 hover:text-white"
-                }`}
-              >
-                <span className="text-[9px] uppercase tracking-wider opacity-80">{item.dateStr}</span>
-                <span>{item.dayNumber === 0 ? "Departure" : `Day ${item.dayNumber}`}</span>
-              </button>
-            ))}
+          {/* Days selector tabs - custom touch track with no scrollbars */}
+          <div className="relative mb-8">
+            <div className="flex gap-2.5 overflow-x-auto pb-3 pt-1 scrollbar-none no-scrollbar snap-x snap-mandatory scroll-smooth touch-pan-x">
+              {ITINERARY_DATA.map((item, idx) => (
+                <button
+                  key={item.dayNumber}
+                  onClick={() => setActiveDayIdx(idx)}
+                  className={`px-4 py-3 rounded-xl border text-xs font-bold font-ui shrink-0 snap-start transition-all flex flex-col items-start gap-1 cursor-pointer min-w-[110px] sm:min-w-[125px] ${
+                    activeDayIdx === idx
+                      ? "bg-amber-400 text-black border-amber-400 shadow-lg shadow-amber-400/20 scale-[1.02]"
+                      : "bg-zinc-900/90 text-zinc-400 border-white/10 hover:border-white/30 hover:text-white"
+                  }`}
+                >
+                  <span className={`text-[9px] uppercase tracking-wider ${activeDayIdx === idx ? "text-black/80 font-mono font-extrabold" : "text-zinc-500 font-mono"}`}>
+                    {item.dateStr}
+                  </span>
+                  <span className="text-sm font-extrabold">
+                    {item.dayNumber === 0 ? "Departure" : `Day ${item.dayNumber}`}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Active Day Card */}
@@ -332,12 +377,12 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
-              className="bg-zinc-900/90 border border-white/10 rounded-3xl p-6 md:p-10 relative overflow-hidden backdrop-blur-sm"
+              className="bg-zinc-900/90 border border-white/10 rounded-3xl p-5 sm:p-8 md:p-10 relative overflow-hidden backdrop-blur-sm"
             >
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 pb-6 border-b border-white/10">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-6 border-b border-white/10">
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs font-bold font-mono text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+                    <span className="text-[11px] sm:text-xs font-bold font-mono text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
                       {activeDay.dateStr}
                     </span>
                     <span className="text-xs text-zinc-400 flex items-center gap-1 font-ui">
@@ -345,17 +390,17 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
                       {activeDay.location}
                     </span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-serif text-white font-bold">{activeDay.title}</h3>
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-serif text-white font-bold">{activeDay.title}</h3>
                 </div>
 
-                <div className="bg-black/60 border border-white/10 p-4 rounded-xl text-right">
+                <div className="bg-black/60 border border-white/10 p-3.5 sm:p-4 rounded-xl w-full sm:w-auto text-left sm:text-right shrink-0">
                   <span className="text-[9px] text-zinc-400 uppercase tracking-widest block font-ui">Accommodation</span>
                   <p className="text-xs font-bold text-white font-serif mt-0.5">{activeDay.stay}</p>
                   <span className="text-[10px] text-amber-400 font-mono font-semibold block mt-1">{activeDay.stayStatus}</span>
                 </div>
               </div>
 
-              <p className="text-zinc-300 text-base md:text-lg leading-relaxed mb-8 font-sans">
+              <p className="text-zinc-300 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8 font-sans">
                 {activeDay.narrative}
               </p>
 

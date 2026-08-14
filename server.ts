@@ -1,9 +1,11 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 import { createServer as createViteServer } from "vite";
 import Stripe from "stripe";
 import dotenv from "dotenv";
+import { injectSeoTagsIntoHtml } from "./src/utils/routerSeo";
 
 // Load local environment variables from .env file
 dotenv.config();
@@ -19,7 +21,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 /**
  * Boots the unified full-stack application server.
  * Mounts standard security and body-parser middleware, implements secure checkout APIs,
- * and mounts the dynamic Vite asset-compilation pipeline during development.
+ * serves robots.txt and sitemap.xml with proper content-type headers,
+ * and dynamically injects SSR-level SEO metadata (canonical, title, OpenGraph, JSON-LD) into index.html for search engine indexation.
  */
 async function startServer() {
   const app = express();
@@ -27,6 +30,25 @@ async function startServer() {
 
   // Middleware to automatically parse incoming application/json payloads
   app.use(express.json());
+
+  // Explicit handlers for search engine robots.txt and sitemap.xml
+  app.get("/robots.txt", (req, res) => {
+    const robotsPath = path.join(process.cwd(), "public", "robots.txt");
+    if (fs.existsSync(robotsPath)) {
+      res.type("text/plain").sendFile(robotsPath);
+    } else {
+      res.type("text/plain").send("User-agent: *\nAllow: /\nSitemap: https://lensandlattitude.in/sitemap.xml\n");
+    }
+  });
+
+  app.get("/sitemap.xml", (req, res) => {
+    const sitemapPath = path.join(process.cwd(), "public", "sitemap.xml");
+    if (fs.existsSync(sitemapPath)) {
+      res.type("application/xml").sendFile(sitemapPath);
+    } else {
+      res.status(404).send("Sitemap not found");
+    }
+  });
 
   // ==========================================================================
   // SECURE API ENDPOINTS
@@ -37,7 +59,7 @@ async function startServer() {
 
   /**
    * POST /api/subscribe
-   * Integrates with Mailchimp, ConvertKit, or fallback server-side email storage.
+   * Server-side email newsletter subscription endpoint.
    */
   app.post("/api/subscribe", async (req, res) => {
     try {
@@ -49,56 +71,6 @@ async function startServer() {
       const normalizedEmail = email.trim().toLowerCase();
       subscribers.add(normalizedEmail);
       console.log(`[Newsletter Subscription] Registered: ${normalizedEmail}`);
-
-      // Check for Mailchimp configuration
-      const mailchimpKey = process.env.MAILCHIMP_API_KEY;
-      const mailchimpAudience = process.env.MAILCHIMP_AUDIENCE_ID;
-      const mailchimpServer = process.env.MAILCHIMP_SERVER_PREFIX || (mailchimpKey ? mailchimpKey.split("-")[1] : "");
-
-      if (mailchimpKey && mailchimpAudience && mailchimpServer) {
-        const mcResponse = await fetch(`https://${mailchimpServer}.api.mailchimp.com/3.0/lists/${mailchimpAudience}/members`, {
-          method: "POST",
-          headers: {
-            "Authorization": `apikey ${mailchimpKey}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            email_address: normalizedEmail,
-            status: "subscribed"
-          })
-        });
-
-        if (!mcResponse.ok) {
-          const mcData = await mcResponse.json().catch(() => ({}));
-          console.warn("[Mailchimp] API Response:", mcData);
-        } else {
-          console.log("[Mailchimp] Successfully synced subscriber.");
-        }
-      }
-
-      // Check for ConvertKit configuration
-      const convertkitKey = process.env.CONVERTKIT_API_KEY;
-      const convertkitFormId = process.env.CONVERTKIT_FORM_ID;
-
-      if (convertkitKey && convertkitFormId) {
-        const ckResponse = await fetch(`https://api.convertkit.com/v3/forms/${convertkitFormId}/subscribe`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            api_key: convertkitKey,
-            email: normalizedEmail
-          })
-        });
-
-        if (!ckResponse.ok) {
-          const ckData = await ckResponse.json().catch(() => ({}));
-          console.warn("[ConvertKit] API Response:", ckData);
-        } else {
-          console.log("[ConvertKit] Successfully synced subscriber.");
-        }
-      }
 
       res.json({ 
         success: true, 
@@ -114,8 +86,6 @@ async function startServer() {
   /**
    * POST /api/checkout
    * Creates a secure, hosted Stripe checkout session for shopping cart checkouts.
-   * Leverages server-side secret credentials to securely map pricing, quantities,
-   * and product visual cards without exposing secret keys to client browsers.
    */
   app.post("/api/checkout", async (req, res) => {
     try {
@@ -131,17 +101,15 @@ async function startServer() {
               name: item.name,
               images: [item.image],
             },
-            unit_amount: item.price * 100, // Converts amount to paise (Stripe expects standard smallest currency unit)
+            unit_amount: item.price * 100, // Converts amount to paise
           },
           quantity: item.quantity,
         })),
         mode: "payment",
-        // Direct return flows back to the SPA after successful processing or cancellation
         success_url: `${process.env.APP_URL || "http://localhost:3000"}/?success=true`,
         cancel_url: `${process.env.APP_URL || "http://localhost:3000"}/?canceled=true`,
       });
 
-      // Deliver the secure session checkout redirect url to the client
       res.json({ url: session.url });
     } catch (error: any) {
       console.error("Stripe Checkout Session Creation Error:", error);
@@ -150,22 +118,52 @@ async function startServer() {
   });
 
   // ==========================================================================
-  // ASSET HANDLING & ENGINE MIDDLEWARES
+  // ASSET HANDLING & DYNAMIC SSR SEO INJECTION
   // ==========================================================================
   if (process.env.NODE_ENV !== "production") {
-    // In development mode, spin up the active Vite Dev Server and attach as middleware
+    // In development mode, spin up Vite Dev Server and attach custom HTML transformer for SEO testing
     const vite = await createViteServer({
       server: { middlewareMode: true },
-      appType: "spa",
+      appType: "custom",
     });
+
     app.use(vite.middlewares);
+
+    app.get("*", async (req, res, next) => {
+      if (req.path.startsWith("/api/")) return next();
+      try {
+        const url = req.originalUrl;
+        const rawTemplate = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf-8");
+        const viteTransformed = await vite.transformIndexHtml(url, rawTemplate);
+        const finalHtml = injectSeoTagsIntoHtml(viteTransformed, req.path);
+        res.status(200).set({ "Content-Type": "text/html" }).end(finalHtml);
+      } catch (e: any) {
+        vite.ssrFixStacktrace(e);
+        next(e);
+      }
+    });
   } else {
     // In production mode, statically serve compiled bundle directories (dist)
     const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
-    // Serve index.html SPA entry shell for any wildcard navigation parameters
+    const indexHtmlPath = path.join(distPath, "index.html");
+
+    // Static assets (exclude automatic index.html serving so our dynamic SEO handler runs for all routes)
+    app.use(express.static(distPath, { index: false }));
+
+    // Serve dynamically SEO-injected HTML for all browser and search engine requests
     app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
+      try {
+        if (fs.existsSync(indexHtmlPath)) {
+          const rawHtml = fs.readFileSync(indexHtmlPath, "utf-8");
+          const renderedHtml = injectSeoTagsIntoHtml(rawHtml, req.path);
+          res.status(200).set({ "Content-Type": "text/html" }).send(renderedHtml);
+        } else {
+          res.status(404).send("Application build not found.");
+        }
+      } catch (error) {
+        console.error("Error serving page with SEO injection:", error);
+        res.sendFile(indexHtmlPath);
+      }
     });
   }
 

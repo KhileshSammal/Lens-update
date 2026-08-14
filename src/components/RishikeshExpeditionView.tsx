@@ -161,7 +161,7 @@ export const RishikeshExpeditionView = memo(({ onBackToHome }: RishikeshExpediti
         </div>
 
         {/* Interactive Timeline Section */}
-        <section id="timeline" className="mb-32">
+        <section id="timeline" className="mb-32 destination-itinerary-section">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             
             {/* Sidebar Navigation */}

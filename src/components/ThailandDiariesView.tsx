@@ -159,7 +159,7 @@ export const ThailandDiariesView = memo(({ onBackToHome }: ThailandDiariesViewPr
         </div>
 
         {/* Itinerary Navigator Section */}
-        <section id="itinerary" className="mb-32">
+        <section id="itinerary" className="mb-32 destination-itinerary-section">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             
             {/* Sidebar Navigation */}

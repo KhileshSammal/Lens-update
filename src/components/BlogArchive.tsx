@@ -119,7 +119,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
           </div>
 
           {/* Uncluttered Article Body */}
-          <div className="prose prose-invert max-w-none text-zinc-300 leading-relaxed text-lg sm:text-xl font-sans space-y-8">
+          <div className="blog-article-content prose prose-invert max-w-none text-zinc-300 leading-relaxed text-lg sm:text-xl lg:text-[1.375rem] font-sans space-y-8">
             {activePost.sections.map((section, index) => {
               switch (section.type) {
                 case "text":

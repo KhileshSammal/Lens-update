@@ -348,7 +348,7 @@ export const CheckoutView = ({
             ) : (
               <form onSubmit={handleSimulatedSubmit} className="space-y-8 font-sans">
                 {/* 1. Shipping Section */}
-                <div className="bg-[#090909] border border-zinc-900 p-6 md:p-8 rounded-sm space-y-6">
+                <div className="bg-[#090909] border border-zinc-900 p-4 sm:p-6 md:p-8 rounded-sm space-y-6">
                   <div className="flex items-center gap-3 border-b border-zinc-900 pb-4">
                     <div className="w-8 h-8 rounded-full border border-accent/20 bg-accent/5 flex items-center justify-center">
                       <Truck size={14} className="text-accent" />
@@ -420,7 +420,7 @@ export const CheckoutView = ({
                 </div>
 
                 {/* 2. Payment Section */}
-                <div className="bg-[#090909] border border-zinc-900 p-6 md:p-8 rounded-sm space-y-6">
+                <div className="bg-[#090909] border border-zinc-900 p-4 sm:p-6 md:p-8 rounded-sm space-y-6">
                   <div className="flex items-center gap-3 border-b border-zinc-900 pb-4">
                     <div className="w-8 h-8 rounded-full border border-accent/20 bg-accent/5 flex items-center justify-center">
                       <CreditCard size={14} className="text-accent" />

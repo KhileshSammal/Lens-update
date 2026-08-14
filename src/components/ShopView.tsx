@@ -636,7 +636,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
               </button>
 
               {/* Cover Column (5 units) */}
-              <div className="md:col-span-5 aspect-[4/3] md:aspect-auto relative bg-bg">
+              <div className="md:col-span-5 aspect-[16/9] md:aspect-auto relative bg-bg">
                 <img 
                   src={selectedProduct.img} 
                   alt={selectedProduct.name} 

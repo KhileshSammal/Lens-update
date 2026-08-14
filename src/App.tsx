@@ -156,13 +156,15 @@ const BlogDropdownItem = ({ item, currentView, handleLinkClick, onSelectPost }: 
 };
 
 
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
+
 interface HeaderProps {
   currentView: AppView;
   onNavigate: (view: AppView, targetHash?: string) => void;
   onSelectPost?: (postId: string | null) => void;
   totalCartItems?: number;
-  theme: "dark" | "light";
-  toggleTheme: () => void;
+  theme?: "dark" | "light";
+  toggleTheme?: () => void;
 }
 
 /**
@@ -170,7 +172,11 @@ interface HeaderProps {
  * Global responsive sticky header. Implements passive scroll-event tracking to dynamically
  * layer translucent backdrop textures once scrolled past 50px of physical Y space.
  */
-const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0, theme, toggleTheme }: HeaderProps) => {
+const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0, theme: propsTheme, toggleTheme: propsToggleTheme }: HeaderProps) => {
+  const { theme: ctxTheme, toggleTheme: ctxToggleTheme } = useTheme();
+  const theme = propsTheme ?? ctxTheme;
+  const toggleTheme = propsToggleTheme ?? ctxToggleTheme;
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -504,6 +510,27 @@ const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartItems = 0
                     <ShoppingCart size={20} className="text-accent" />
                     Shopping Cart ({totalCartItems})
                   </a>
+
+                  <button
+                    onClick={toggleTheme}
+                    className={`flex items-center gap-4 font-semibold transition-colors cursor-pointer text-left ${
+                      theme === "light" 
+                        ? "text-zinc-900 hover:text-accent" 
+                        : "text-white hover:text-accent"
+                    }`}
+                  >
+                    {theme === "light" ? (
+                      <>
+                        <Moon size={20} className="text-zinc-800" />
+                        Switch to Dark Mode
+                      </>
+                    ) : (
+                      <>
+                        <Sun size={20} className="text-accent" />
+                        Switch to Light Mode
+                      </>
+                    )}
+                  </button>
                 </nav>
               )}
             </div>
@@ -550,8 +577,8 @@ const Hero = memo(() => (
       transition={{ duration: 1, ease: "easeOut" }}
       className="relative z-10 text-center px-6 max-w-4xl"
     >
-      <h1 className="text-4xl xs:text-5xl md:text-8xl font-serif italic mb-4 text-white drop-shadow-lg">Lens & Latitude</h1>
-      <p className="text-[9px] md:text-base uppercase tracking-[0.2em] md:tracking-[0.5em] text-accent font-bold font-ui">Documenting the Unseen — 2025 - ∞</p>
+      <h1 className="text-3xl sm:text-5xl md:text-8xl font-serif italic mb-4 text-white drop-shadow-lg">Lens & Latitude</h1>
+      <p className="text-[9px] sm:text-xs md:text-base uppercase tracking-[0.2em] md:tracking-[0.5em] text-accent font-bold font-ui">Documenting the Unseen — 2025 - ∞</p>
       
       <div className="mt-8 md:mt-10 flex justify-center space-x-6 md:space-x-8 text-white">
         {SOCIAL_LINKS.map((social) => (
@@ -655,7 +682,7 @@ const Directory = memo(({ onSelectTrip }: DirectoryProps) => {
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-0.5 bg-border-main border-y border-border-main">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-0.5 bg-border-main border-y border-border-main">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -693,7 +720,7 @@ const Directory = memo(({ onSelectTrip }: DirectoryProps) => {
               <div className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-end bg-gradient-to-t from-black via-black/10 to-transparent">
                 <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.3em] mb-1 text-accent font-bold font-ui">{trip.subtitle}</span>
                 <h3 className="text-base sm:text-xl font-serif mb-2 sm:mb-4 leading-tight text-white">{trip.title}</h3>
-                {trip.id === 1 || trip.id === 2 || trip.id === 3 || trip.id === 4 || trip.id === 5 || trip.id === 6 || trip.id === 7 || trip.id === 8 || trip.id === 10 || trip.id === 11 || trip.id === 12 || trip.id === 13 ? (
+                {trip.id === 1 || trip.id === 2 || trip.id === 3 || trip.id === 4 || trip.id === 5 || trip.id === 6 || trip.id === 7 || trip.id === 8 || trip.id === 9 || trip.id === 10 || trip.id === 11 || trip.id === 12 || trip.id === 13 ? (
                   <button 
                     onClick={() => onSelectTrip(trip.id)}
                     className="px-3 py-1.5 sm:px-5 sm:py-2.5 text-[9px] sm:text-[11px] font-bold font-ui uppercase tracking-widest border border-white/40 hover:bg-white hover:text-black transition-all w-fit flex items-center gap-1.5 sm:gap-2 cursor-pointer text-left"
@@ -1342,10 +1369,9 @@ Footer.displayName = "Footer";
  * - view === "home": Renders immersive portfolio landing blocks (Hero, About, Directory, ExpeditionHub, Blog grid spotlight, Shop items, FAQ, Contact/Social triggers).
  * - view === "blog-archive": Launches the high-performance travel journal submodule (BlogArchive).
  */
-export default function App() {
-  // --- STATE MANAGEMENT (useState) ---
-  // useState is a hook that lets you add state variables to functional components.
-  // When a state variable changes, React automatically re-renders the component to update the UI.
+function AppContent() {
+  // --- STATE MANAGEMENT (useTheme + useState) ---
+  const { theme, toggleTheme } = useTheme();
 
   // 1. 'view' tracks which page or view we are currently showing (e.g., 'home', 'shop', 'thailand-diaries', etc.)
   const [view, setView] = useState<AppView>(() => {
@@ -1398,40 +1424,10 @@ export default function App() {
   // 5. 'policyModalTab' controls whether the centralized legal PolicyModal is open and which tab is selected ('privacy', 'terms', 'disclaimer', 'shipping', 'returns')
   const [policyModalTab, setPolicyModalTab] = useState<PolicyTab | null>(null);
 
-  // 6. 'theme' manages the website color mode ('dark' or 'light')
-  const [theme, setTheme] = useState<"dark" | "light">(() => {
-    try {
-      const stored = localStorage.getItem("latitude_theme");
-      return (stored as "dark" | "light") || "dark";
-    } catch {
-      return "dark";
-    }
-  });
-
   // Action callback to open policy modal on a specific tab
   const handleOpenPolicy = useCallback((tab: PolicyTab) => {
     setPolicyModalTab(tab);
   }, []);
-
-  // Toggle theme action callback to easily switch color palettes
-  const toggleTheme = useCallback(() => {
-    setTheme(prev => prev === "dark" ? "light" : "dark");
-  }, []);
-
-  // Update theme class on HTML document element when state changes
-  useEffect(() => {
-    try {
-      localStorage.setItem("latitude_theme", theme);
-    } catch (e) {
-      console.error(e);
-    }
-    const root = document.documentElement;
-    if (theme === "light") {
-      root.classList.add("light");
-    } else {
-      root.classList.remove("light");
-    }
-  }, [theme]);
 
   // --- SIDE EFFECTS (useEffect) ---
   // useEffect lets you run code after the component renders, useful for synchronizing with external APIs, localStorage, or timers.
@@ -1587,6 +1583,8 @@ export default function App() {
                 handleNavigate("goa-expedition");
               } else if (id === 8) {
                 handleNavigate("vietnam-expedition");
+              } else if (id === 9) {
+                handleSelectPost("nainital-heights-2025");
               } else if (id === 10) {
                 handleNavigate("mulki-expedition");
               } else if (id === 11) {
@@ -1726,5 +1724,13 @@ export default function App() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }

@@ -727,17 +727,17 @@ export const PortfolioGallery = memo(() => {
 
         {/* High-grade Frosted Glass Filter Bar (Sticky Container) */}
         <div className="sticky top-20 z-30 flex justify-center mb-12 px-2">
-          <div className="backdrop-blur-md bg-white/75 border border-slate-200/80 p-1.5 rounded-2xl shadow-lg flex flex-wrap gap-1 items-center justify-center max-w-full">
+          <div className="backdrop-blur-md bg-zinc-950/90 border border-white/10 p-1.5 rounded-2xl shadow-2xl flex flex-wrap gap-1 items-center justify-center max-w-full">
             {FILTERS.map(filter => {
               const isActive = activeFilter === filter.id;
               return (
                 <button
                   key={filter.id}
                   onClick={() => setActiveFilter(filter.id)}
-                  className={`px-4 py-2 text-xs font-semibold font-ui tracking-wide rounded-xl transition-all duration-300 cursor-pointer ${
+                  className={`px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold font-ui tracking-wide rounded-xl transition-all duration-300 cursor-pointer ${
                     isActive
-                      ? "bg-slate-900 text-white shadow-md scale-[1.02]"
-                      : "text-slate-600 hover:bg-white/80 hover:text-slate-900"
+                      ? "bg-amber-400 text-black font-extrabold shadow-md scale-[1.02]"
+                      : "text-zinc-400 hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   {filter.label}

@@ -59,13 +59,43 @@
   }
 }
 
-@layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
+/* Laptop screen font boost (+10%) for blog articles & destination itineraries */
+@media (min-width: 1024px) {
+  .blog-article-content,
+  .destination-itinerary-section {
+    font-size: 1.1rem;
   }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+
+  .blog-article-content p,
+  .blog-article-content li,
+  .blog-article-content blockquote,
+  .blog-article-content h1,
+  .blog-article-content h2,
+  .blog-article-content h3,
+  .blog-article-content h4,
+  .destination-itinerary-section p,
+  .destination-itinerary-section li,
+  .destination-itinerary-section h1,
+  .destination-itinerary-section h2,
+  .destination-itinerary-section h3,
+  .destination-itinerary-section h4 {
+    font-size: 110%;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar,
+  .scrollbar-none::-webkit-scrollbar,
+  ::-webkit-scrollbar.no-scrollbar,
+  ::-webkit-scrollbar.scrollbar-none {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .no-scrollbar,
+  .scrollbar-none {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
   }
 }
 

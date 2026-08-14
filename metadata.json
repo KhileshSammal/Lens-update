@@ -1,5 +1,6 @@
 {
   "name": "Lens & Latitude",
   "description": "A premium travel and photography portfolio by Khilesh Sammal, documenting global expeditions and visual stories.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
