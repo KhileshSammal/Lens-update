@@ -67,13 +67,13 @@ export const BLOG_POSTS = [
     title: "How to pack for a 30-day Solo Trip across SE Asia", 
     tag: "Travel Tips", 
     read: "5 Min Read", 
-    img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80" 
+    img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80" 
   },
   { 
     title: "My 2025 Camera Gear: Capturing Luxury in Motion", 
     tag: "Photography", 
     read: "8 Min Read", 
-    img: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" 
+    img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80" 
   },
 ];
 

@@ -1609,7 +1609,8 @@ function AppContent() {
           <BlogArchive 
             onBackToHome={() => handleNavigate("home")} 
             openBlogPostId={activeBlogPostId} 
-            onSelectBlogPost={handleSelectPost} 
+            onSelectBlogPost={handleSelectPost}
+            onNavigate={handleNavigate}
           />
         ) : view === "shop" ? (
           <ShopView 
