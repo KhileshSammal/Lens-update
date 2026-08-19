@@ -214,7 +214,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = memo(({ isOpen, initialTa
                 <div className="space-y-4">
                   <h4 className="text-amber-400 text-xs uppercase font-bold tracking-wider font-ui">4. Contact & Inquiries</h4>
                   <p>
-                    For any privacy inquiries or request to remove your email from our newsletter database, contact Khilesh Sammal directly at <a href="mailto:khileshsammal.work@gmail.com" className="text-amber-400 underline hover:text-amber-300">khileshsammal.work@gmail.com</a>.
+                    For any privacy inquiries or request to remove your email from our newsletter database, contact Khilesh Sammal directly at <a href="mailto:khileshsammal.business@gmail.com" className="text-amber-400 underline hover:text-amber-300">khileshsammal.business@gmail.com</a>.
                   </p>
                 </div>
               </div>
@@ -368,7 +368,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = memo(({ isOpen, initialTa
                 <div className="space-y-4">
                   <h4 className="text-amber-400 text-xs uppercase font-bold tracking-wider font-ui">3. How to Initiate a Return</h4>
                   <p>
-                    Simply send an email to <a href="mailto:khileshsammal.work@gmail.com" className="text-amber-400 underline font-bold hover:text-amber-300">khileshsammal.work@gmail.com</a> with your Order ID and subject header "Return Request - [Order #]". Refunds are processed back to your original payment method within 3–5 business days.
+                    Simply send an email to <a href="mailto:khileshsammal.business@gmail.com" className="text-amber-400 underline font-bold hover:text-amber-300">khileshsammal.business@gmail.com</a> with your Order ID and subject header "Return Request - [Order #]". Refunds are processed back to your original payment method within 3–5 business days.
                   </p>
                 </div>
               </div>

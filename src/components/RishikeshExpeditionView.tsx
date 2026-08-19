@@ -22,6 +22,8 @@ import {
   Sparkles
 } from "lucide-react";
 import { SocialShareButtons } from "./SocialShareButtons";
+import { TripCopyBanner } from "./TripCopyBanner";
+import { DestinationBlogLinkCard } from "./DestinationBlogLinkCard";
 
 interface PhaseItinerary {
   phase: number;
@@ -84,9 +86,10 @@ const LEDGER_CATEGORIES: LedgerCategory[] = [
 
 interface RishikeshExpeditionViewProps {
   onBackToHome: () => void;
+  onOpenBlog?: (postId: string) => void;
 }
 
-export const RishikeshExpeditionView = memo(({ onBackToHome }: RishikeshExpeditionViewProps) => {
+export const RishikeshExpeditionView = memo(({ onBackToHome, onOpenBlog }: RishikeshExpeditionViewProps) => {
   const [activePhaseIdx, setActivePhaseIdx] = useState<number>(0);
 
   const activePhase = useMemo(() => TIMELINE_DATA[activePhaseIdx], [activePhaseIdx]);
@@ -119,7 +122,7 @@ export const RishikeshExpeditionView = memo(({ onBackToHome }: RishikeshExpediti
         <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950 always-dark">
           <img 
             src="https://images.unsplash.com/photo-1716573260891-23ad993e8833?auto=format&fit=crop&q=80&w=2000" 
-            alt="Rishikesh Expedition" 
+            alt="Scenic Himalayan foothills and the sacred Ganges river valley in Rishikesh, Uttarakhand" 
             className="w-full h-full object-cover brightness-[0.22]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#07090b] via-[#07090b]/40 to-transparent" />
@@ -334,6 +337,16 @@ export const RishikeshExpeditionView = memo(({ onBackToHome }: RishikeshExpediti
             </div>
           </div>
         </section>
+
+        {/* FULL BLOG ITINERARY LINK */}
+        <DestinationBlogLinkCard 
+          blogPostId="rishikesh-spiritual-haven"
+          destinationLabel="Rishikesh, Uttarakhand"
+          onOpenBlog={onOpenBlog}
+        />
+
+        {/* CUSTOM ITINERARY PLANNER PROMO */}
+        <TripCopyBanner destination="Rishikesh (Ganges & Foothills)" />
 
         {/* Social Connection Footer Panel */}
         <section className="bg-white/[0.01] border border-white/5 rounded-[2.5rem] p-8 md:p-12">

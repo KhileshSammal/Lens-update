@@ -19,6 +19,8 @@ import {
   Bike
 } from "lucide-react";
 import { SocialShareButtons } from "./SocialShareButtons";
+import { TripCopyBanner } from "./TripCopyBanner";
+import { DestinationBlogLinkCard } from "./DestinationBlogLinkCard";
 
 interface PhaseItinerary {
   day: number;
@@ -91,9 +93,10 @@ const LEDGER_CATEGORIES: LedgerCategory[] = [
 
 interface GoaExpeditionViewProps {
   onBackToHome: () => void;
+  onOpenBlog?: (postId: string) => void;
 }
 
-export const GoaExpeditionView = memo(({ onBackToHome }: GoaExpeditionViewProps) => {
+export const GoaExpeditionView = memo(({ onBackToHome, onOpenBlog }: GoaExpeditionViewProps) => {
   const [activeDayIdx, setActiveDayIdx] = useState<number>(0);
 
   const activeDay = useMemo(() => TIMELINE_DATA[activeDayIdx], [activeDayIdx]);
@@ -126,7 +129,7 @@ export const GoaExpeditionView = memo(({ onBackToHome }: GoaExpeditionViewProps)
         <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950 always-dark">
           <img 
             src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000" 
-            alt="Goa & Puri Expedition" 
+            alt="Sunlit tropical beach and coastal waters along the Goa and Puri coastline" 
             className="w-full h-full object-cover brightness-[0.22]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#07090b] via-[#07090b]/40 to-transparent" />
@@ -341,6 +344,16 @@ export const GoaExpeditionView = memo(({ onBackToHome }: GoaExpeditionViewProps)
             </div>
           </div>
         </section>
+
+        {/* FULL BLOG ITINERARY LINK */}
+        <DestinationBlogLinkCard 
+          blogPostId="goa-vibrance-2025"
+          destinationLabel="Goa & Puri Coast"
+          onOpenBlog={onOpenBlog}
+        />
+
+        {/* CUSTOM ITINERARY PLANNER PROMO */}
+        <TripCopyBanner destination="Goa & Puri Circuit" />
 
         {/* Social Connection Footer Panel */}
         <section className="bg-white/[0.01] border border-white/5 rounded-[2.5rem] p-8 md:p-12">

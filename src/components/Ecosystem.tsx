@@ -161,7 +161,7 @@ const Ecosystem = ({ onAddToCart, onBuyNow }: { onAddToCart: () => void, onBuyNo
       </div>
 
       {/* Digital Shop Card */}
-      <div className="px-6 md:px-12 max-w-7xl mx-auto">
+      <div className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
@@ -228,7 +228,7 @@ const Ecosystem = ({ onAddToCart, onBuyNow }: { onAddToCart: () => void, onBuyNo
               <img 
                 src="https://images.unsplash.com/photo-1706803501715-8d0e4445e446?auto=format&fit=crop&w=800&q=80" 
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" 
-                alt="2026 Presets" 
+                alt="Lens & Latitude limited edition travel photography presets and digital collection" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
               <div className="absolute bottom-10 left-10">

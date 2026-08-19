@@ -24,6 +24,9 @@ import {
 } from "lucide-react";
 import { DETAILED_BLOG_POSTS, BlogPost, BlogSection } from "../blogData";
 import { SocialShareButtons } from "./SocialShareButtons";
+import { TripCopyBanner } from "./TripCopyBanner";
+import { PremiumTravelResourcesSection } from "./PremiumTravelResourcesSection";
+import { getTravelResourcesForPost } from "../data/travelResourcesData";
 
 interface BlogArchiveProps {
   onBackToHome: () => void;
@@ -181,6 +184,25 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
     return commentsList.filter(c => c.postId === activePost.id);
   }, [activePost, commentsList]);
 
+  const travelResources = useMemo(() => {
+    if (!activePost) return null;
+    return getTravelResourcesForPost(activePost.id, activePost.title, activePost.tag);
+  }, [activePost]);
+
+  const tableOfContentsItems = useMemo(() => {
+    if (!activePost) return [];
+    const items = [...(activePost.tableOfContents || [])];
+    if (!items.some(i => i.id === "premium-resources")) {
+      const logIdx = items.findIndex(i => i.id === "logistics-stats");
+      if (logIdx !== -1) {
+        items.splice(logIdx + 1, 0, { id: "premium-resources", title: "Premium Travel Resources" });
+      } else {
+        items.push({ id: "premium-resources", title: "Premium Travel Resources" });
+      }
+    }
+    return items;
+  }, [activePost]);
+
   // Smooth scroll to anchor ID
   const scrollToAnchor = (id: string) => {
     const el = document.getElementById(id);
@@ -195,7 +217,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
   if (activePost) {
     return (
       <div className="min-h-screen bg-bg text-white pt-20 sm:pt-24 pb-32">
-        <div className="max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Back Navigation Bar & Social Sharing */}
           <motion.div 
@@ -259,7 +281,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
           >
             <img 
               src={activePost.img} 
-              alt={activePost.title} 
+              alt={`Featured editorial cover photograph: ${activePost.title}`} 
               className="w-full h-full object-cover"
               loading="eager"
             />
@@ -306,7 +328,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
           </section>
 
           {/* 3. TABLE OF CONTENTS */}
-          {activePost.tableOfContents && activePost.tableOfContents.length > 0 && (
+          {tableOfContentsItems && tableOfContentsItems.length > 0 && (
             <nav className="mb-14 bg-zinc-950/80 border border-zinc-800 rounded-xl p-6 sm:p-7 shadow-lg">
               <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-zinc-800">
                 <ListOrdered size={18} className="text-amber-400" />
@@ -315,7 +337,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                 </h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {activePost.tableOfContents.map((item, idx) => (
+                {tableOfContentsItems.map((item, idx) => (
                   <button
                     key={item.id}
                     onClick={() => scrollToAnchor(item.id)}
@@ -434,7 +456,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                       <div className="aspect-[16/9] w-full rounded-xl overflow-hidden border border-white/10 shadow-xl bg-zinc-950">
                         <img 
                           src={section.imageUrl} 
-                          alt={section.imageCaption || "Field Visual Anchor"} 
+                          alt={section.imageCaption || `Documentary photograph from ${activePost.title}`} 
                           className="w-full h-full object-cover"
                           loading="lazy"
                         />
@@ -546,6 +568,17 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
               </div>
             </section>
           )}
+
+          {/* NEW: PREMIUM TRAVEL RESOURCES SECTION */}
+          {travelResources && (
+            <PremiumTravelResourcesSection 
+              resources={travelResources} 
+              locationName={activePost.title} 
+            />
+          )}
+
+          {/* CUSTOM ITINERARY PLANNER PROMO */}
+          <TripCopyBanner destination={activePost.tag || activePost.title} />
 
           {/* 6. AUTHOR BIO & READER ENGAGEMENT */}
           <section className="mt-16 pt-10 border-t border-white/10">
@@ -686,7 +719,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                       <div className="aspect-[16/10] overflow-hidden mb-4 rounded-md bg-zinc-900 border border-white/5 relative">
                         <img
                           src={post.img}
-                          alt={post.title}
+                          alt={`Cover photograph for article: ${post.title}`}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
@@ -734,7 +767,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
   // ==========================================================================
   return (
     <div className="min-h-screen bg-bg text-white pt-24 pb-32">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Navigation & Title */}
         <div className="mb-12">
@@ -810,7 +843,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                   <div className="aspect-[16/10] overflow-hidden bg-bg relative">
                     <img 
                       src={post.img} 
-                      alt={post.title} 
+                      alt={`Journal article cover for ${post.title}`} 
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />

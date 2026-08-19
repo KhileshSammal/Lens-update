@@ -21,6 +21,8 @@ import {
   Milestone
 } from "lucide-react";
 import { SocialShareButtons } from "./SocialShareButtons";
+import { TripCopyBanner } from "./TripCopyBanner";
+import { DestinationBlogLinkCard } from "./DestinationBlogLinkCard";
 
 interface DayItinerary {
   day: number;
@@ -142,9 +144,10 @@ const LOG_ENTRIES: LogEntry[] = [
 
 interface AmritsarExpeditionViewProps {
   onBackToHome: () => void;
+  onOpenBlog?: (postId: string) => void;
 }
 
-export const AmritsarExpeditionView = memo(({ onBackToHome }: AmritsarExpeditionViewProps) => {
+export const AmritsarExpeditionView = memo(({ onBackToHome, onOpenBlog }: AmritsarExpeditionViewProps) => {
   const [activeDayIdx, setActiveDayIdx] = useState<number>(1); // Day 1 as active by default since Day 0 is transit
 
   const activeDay = useMemo(() => ITINERARY_DATA[activeDayIdx], [activeDayIdx]);
@@ -177,7 +180,7 @@ export const AmritsarExpeditionView = memo(({ onBackToHome }: AmritsarExpedition
         <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950 always-dark">
           <img 
             src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&q=80&w=2000" 
-            alt="Amritsar Expedition" 
+            alt="Sri Harmandir Sahib (The Golden Temple) illuminated against the twilight sky in Amritsar, Punjab" 
             className="w-full h-full object-cover brightness-[0.22]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#090b0e] via-[#090b0e]/40 to-transparent" />
@@ -489,6 +492,16 @@ export const AmritsarExpeditionView = memo(({ onBackToHome }: AmritsarExpedition
             </div>
           </div>
         </section>
+
+        {/* FULL BLOG ITINERARY LINK */}
+        <DestinationBlogLinkCard 
+          blogPostId="amritsar-grace-2025"
+          destinationLabel="Amritsar, Punjab"
+          onOpenBlog={onOpenBlog}
+        />
+
+        {/* CUSTOM ITINERARY PLANNER PROMO */}
+        <TripCopyBanner destination="Amritsar (Golden Temple & Heritage)" />
 
         {/* Social Connection Footer Panel */}
         <section className="bg-white/[0.01] border border-white/5 rounded-[2.5rem] p-8 md:p-12">

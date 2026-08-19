@@ -34,17 +34,23 @@ async function startServer() {
   // Explicit handlers for search engine robots.txt and sitemap.xml
   app.get("/robots.txt", (req, res) => {
     const robotsPath = path.join(process.cwd(), "public", "robots.txt");
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=86400");
+    res.setHeader("X-Robots-Tag", "all");
     if (fs.existsSync(robotsPath)) {
-      res.type("text/plain").sendFile(robotsPath);
+      res.status(200).sendFile(robotsPath);
     } else {
-      res.type("text/plain").send("User-agent: *\nAllow: /\nSitemap: https://lensandlattitude.in/sitemap.xml\n");
+      res.status(200).send("User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: https://lensandlattitude.in/sitemap.xml\n");
     }
   });
 
   app.get("/sitemap.xml", (req, res) => {
     const sitemapPath = path.join(process.cwd(), "public", "sitemap.xml");
+    res.setHeader("Content-Type", "application/xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.setHeader("X-Robots-Tag", "all");
     if (fs.existsSync(sitemapPath)) {
-      res.type("application/xml").sendFile(sitemapPath);
+      res.status(200).sendFile(sitemapPath);
     } else {
       res.status(404).send("Sitemap not found");
     }
@@ -136,7 +142,10 @@ async function startServer() {
         const rawTemplate = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf-8");
         const viteTransformed = await vite.transformIndexHtml(url, rawTemplate);
         const finalHtml = injectSeoTagsIntoHtml(viteTransformed, req.path);
-        res.status(200).set({ "Content-Type": "text/html" }).end(finalHtml);
+        res.status(200).set({
+          "Content-Type": "text/html",
+          "X-Robots-Tag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        }).end(finalHtml);
       } catch (e: any) {
         vite.ssrFixStacktrace(e);
         next(e);
@@ -156,13 +165,19 @@ async function startServer() {
         if (fs.existsSync(indexHtmlPath)) {
           const rawHtml = fs.readFileSync(indexHtmlPath, "utf-8");
           const renderedHtml = injectSeoTagsIntoHtml(rawHtml, req.path);
-          res.status(200).set({ "Content-Type": "text/html" }).send(renderedHtml);
+          res.status(200).set({
+            "Content-Type": "text/html",
+            "X-Robots-Tag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          }).send(renderedHtml);
         } else {
           res.status(404).send("Application build not found.");
         }
       } catch (error) {
         console.error("Error serving page with SEO injection:", error);
-        res.sendFile(indexHtmlPath);
+        res.status(200).set({
+          "Content-Type": "text/html",
+          "X-Robots-Tag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        }).sendFile(indexHtmlPath);
       }
     });
   }

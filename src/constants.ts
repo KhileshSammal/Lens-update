@@ -59,6 +59,34 @@ export const TRIPS = [
 ];
 
 /**
+ * TRIP_ID_TO_VIEW_MAP:
+ * Centralized mapping from trip ID to internal view route, removing duplicate if/else logic across components.
+ */
+export const TRIP_ID_TO_VIEW_MAP: Record<number, string> = {
+  1: "thailand-diaries",
+  2: "malaysia-expedition",
+  3: "amritsar-expedition",
+  4: "kerala-expedition",
+  5: "patal-bhuvaneshwar-expedition",
+  6: "rishikesh-expedition",
+  7: "goa-expedition",
+  8: "vietnam-expedition",
+  10: "mulki-expedition",
+  11: "andaman-expedition",
+  12: "philippines-expedition",
+  13: "nepal-expedition",
+};
+
+/**
+ * TRIP_ID_TO_BLOG_ID_MAP:
+ * Mapping from trip ID to specific journal blog post ID.
+ */
+export const TRIP_ID_TO_BLOG_ID_MAP: Record<number, string> = {
+  9: "nainital-heights-2025",
+};
+
+
+/**
  * BLOG_POSTS:
  * Featured travel articles displayed on the homepage preview grid.
  */

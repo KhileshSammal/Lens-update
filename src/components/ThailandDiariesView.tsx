@@ -22,6 +22,8 @@ import {
   Youtube
 } from "lucide-react";
 import { SocialShareButtons } from "./SocialShareButtons";
+import { TripCopyBanner } from "./TripCopyBanner";
+import { DestinationBlogLinkCard } from "./DestinationBlogLinkCard";
 
 interface DayItinerary {
   day: number;
@@ -87,9 +89,10 @@ const LOG_ENTRIES: LogEntry[] = [
 
 interface ThailandDiariesViewProps {
   onBackToHome: () => void;
+  onOpenBlog?: (postId: string) => void;
 }
 
-export const ThailandDiariesView = memo(({ onBackToHome }: ThailandDiariesViewProps) => {
+export const ThailandDiariesView = memo(({ onBackToHome, onOpenBlog }: ThailandDiariesViewProps) => {
   const [activeDayIdx, setActiveDayIdx] = useState<number>(0);
 
   const activeDay = useMemo(() => ITINERARY_DATA[activeDayIdx], [activeDayIdx]);
@@ -122,7 +125,7 @@ export const ThailandDiariesView = memo(({ onBackToHome }: ThailandDiariesViewPr
         <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950 always-dark">
           <img 
             src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&q=80&w=2000" 
-            alt="Phuket Expedition" 
+            alt="Emerald waters and towering limestone sea cliffs in Phuket, Thailand" 
             className="w-full h-full object-cover brightness-[0.25]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
@@ -403,6 +406,16 @@ export const ThailandDiariesView = memo(({ onBackToHome }: ThailandDiariesViewPr
             </div>
           </div>
         </section>
+
+        {/* FULL BLOG ITINERARY LINK */}
+        <DestinationBlogLinkCard 
+          blogPostId="phuket-expedition-guide"
+          destinationLabel="Phuket, Thailand"
+          onOpenBlog={onOpenBlog}
+        />
+
+        {/* CUSTOM ITINERARY PLANNER PROMO */}
+        <TripCopyBanner destination="Thailand" />
 
         {/* Social Connection Footer Panel */}
         <section className="bg-white/[0.01] border border-white/5 rounded-[2.5rem] p-8 md:p-12">

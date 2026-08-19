@@ -20,6 +20,8 @@ import {
   ChevronRight
 } from "lucide-react";
 import { SocialShareButtons } from "./SocialShareButtons";
+import { TripCopyBanner } from "./TripCopyBanner";
+import { DestinationBlogLinkCard } from "./DestinationBlogLinkCard";
 
 interface PhaseItinerary {
   dayNumber: number;
@@ -204,6 +206,7 @@ const DINING_HIGHLIGHTS = [
 
 interface VietnamExpeditionViewProps {
   onBackToHome: () => void;
+  onOpenBlog?: (postId: string) => void;
 }
 
 /**
@@ -211,7 +214,7 @@ interface VietnamExpeditionViewProps {
  * Displays the complete July 17 - 26, 2026 Vietnam Expedition itinerary, budget, hotel bookings,
  * dining highlights, and interactive day-by-day journey timeline.
  */
-export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionViewProps) => {
+export const VietnamExpeditionView = memo(({ onBackToHome, onOpenBlog }: VietnamExpeditionViewProps) => {
   const [activeDayIdx, setActiveDayIdx] = useState<number>(1);
 
   const activeDay = useMemo(() => ITINERARY_DATA[activeDayIdx], [activeDayIdx]);
@@ -244,7 +247,7 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
         <div className="relative rounded-3xl overflow-hidden mb-16 aspect-[16/9] md:aspect-[21/9] border border-white/10 bg-zinc-950 always-dark">
           <img 
             src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80&w=2000" 
-            alt="Vietnam Expedition 2026" 
+            alt="Towering limestone karsts rising over the emerald waters of northern Vietnam" 
             className="w-full h-full object-cover brightness-[0.35]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
@@ -534,6 +537,16 @@ export const VietnamExpeditionView = memo(({ onBackToHome }: VietnamExpeditionVi
             })}
           </div>
         </section>
+
+        {/* FULL BLOG ITINERARY LINK */}
+        <DestinationBlogLinkCard 
+          blogPostId="vietnam-12-day-expedition"
+          destinationLabel="Vietnam Expedition"
+          onOpenBlog={onOpenBlog}
+        />
+
+        {/* CUSTOM ITINERARY PLANNER PROMO */}
+        <TripCopyBanner destination="Vietnam" />
 
         {/* Expedition Footer & Sharing Bar */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-6">

@@ -1,8 +1,26 @@
-# https://www.robotstxt.org/robotstxt.html
+# Robots.txt for Lens & Latitude (https://lensandlattitude.in)
+# All search engine crawlers and Googlebot are fully allowed to crawl and index all public pages
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /checkout
 
 # Sitemap Location for Search Engine Crawlers
 Sitemap: https://lensandlattitude.in/sitemap.xml
+

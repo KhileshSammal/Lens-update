@@ -21,6 +21,8 @@ import {
   Milestone
 } from "lucide-react";
 import { SocialShareButtons } from "./SocialShareButtons";
+import { TripCopyBanner } from "./TripCopyBanner";
+import { DestinationBlogLinkCard } from "./DestinationBlogLinkCard";
 
 interface DayItinerary {
   day: number;
@@ -160,9 +162,10 @@ const LOG_ENTRIES: LogEntry[] = [
 
 interface KeralaExpeditionViewProps {
   onBackToHome: () => void;
+  onOpenBlog?: (postId: string) => void;
 }
 
-export const KeralaExpeditionView = memo(({ onBackToHome }: KeralaExpeditionViewProps) => {
+export const KeralaExpeditionView = memo(({ onBackToHome, onOpenBlog }: KeralaExpeditionViewProps) => {
   const [activeDayIdx, setActiveDayIdx] = useState<number>(0);
 
   const activeDay = useMemo(() => ITINERARY_DATA[activeDayIdx], [activeDayIdx]);
@@ -195,7 +198,7 @@ export const KeralaExpeditionView = memo(({ onBackToHome }: KeralaExpeditionView
         <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950 always-dark">
           <img 
             src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&q=80&w=2000" 
-            alt="Kerala Expedition" 
+            alt="Serene tropical palm groves and calm waters in the Kerala backwaters" 
             className="w-full h-full object-cover brightness-[0.22]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#080a0c] via-[#080a0c]/40 to-transparent" />
@@ -507,6 +510,16 @@ export const KeralaExpeditionView = memo(({ onBackToHome }: KeralaExpeditionView
             </div>
           </div>
         </section>
+
+        {/* FULL BLOG ITINERARY LINK */}
+        <DestinationBlogLinkCard 
+          blogPostId="kerala-backwaters-2025"
+          destinationLabel="Kerala & Kanyakumari"
+          onOpenBlog={onOpenBlog}
+        />
+
+        {/* CUSTOM ITINERARY PLANNER PROMO */}
+        <TripCopyBanner destination="Kerala & Kanyakumari" />
 
         {/* Social Connection Footer Panel */}
         <section className="bg-white/[0.01] border border-white/5 rounded-[2.5rem] p-8 md:p-12">

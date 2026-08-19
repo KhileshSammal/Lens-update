@@ -22,9 +22,9 @@ interface BioViewProps {
 
 export const BioView = memo(({ onBackToHome }: BioViewProps) => {
   return (
-    <div className="bg-bg text-white min-h-screen pt-24 pb-16 px-4 md:px-12 font-sans selection:bg-accent selection:text-black">
+    <div className="bg-bg text-white min-h-screen pt-24 pb-16 font-sans selection:bg-accent selection:text-black">
       {/* Container holding the layout */}
-      <div className="max-w-5xl mx-auto">
+      <div className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Navigation & Back Action */}
         <motion.div 
@@ -53,13 +53,13 @@ export const BioView = memo(({ onBackToHome }: BioViewProps) => {
             <div className="aspect-[3/4] overflow-hidden rounded-sm border border-white/10 bg-zinc-900 group relative">
               <img 
                 src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=800&q=80" 
-                alt="Khilesh Sammal" 
+                alt="Khilesh Sammal, travel storyteller, photographer, and creator of Lens & Latitude" 
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
               <div className="absolute bottom-4 left-4 right-4">
                 <span className="text-[9px] uppercase tracking-widest text-accent font-bold font-ui">Khilesh Sammal</span>
-                <p className="text-[11px] text-zinc-400 font-serif italic mt-0.5">Part-Time Traveler • Full-Time Engineer & Marketer</p>
+                <p className="text-[11px] text-zinc-400 font-serif italic mt-0.5">Part-Time Traveler • Full-Stack Marketer</p>
               </div>
             </div>
             {/* Background design elements */}
@@ -81,7 +81,7 @@ export const BioView = memo(({ onBackToHome }: BioViewProps) => {
             </h1>
             
             <p className="text-zinc-300 leading-relaxed text-base md:text-lg mb-4">
-              I am a professional software engineer turned performance marketer, combining a data-driven, analytical mindset with a deep-seated passion for slow, intentional journeys and visual storytelling.
+              I am a full-stack marketer working remotely, combining a data-driven, analytical mindset with a deep-seated passion for slow, intentional journeys and visual storytelling. Having worked for Cognizant and Google in 2024–2025, I apply enterprise-grade growth strategies and audience intelligence to digital platforms and travel narratives.
             </p>
             <p className="text-zinc-400 leading-relaxed text-sm md:text-base mb-6">
               My approach to travel isn't about collecting passport stamps or hitting rushed checkpoints. It’s about listening to the quiet, subtle rhythms of each destination—whether traversing ancient subterranean cave shrines in Kumaon, exploring the emerald coastlines of Thailand, or navigating local backwaters in Kerala.
@@ -89,16 +89,16 @@ export const BioView = memo(({ onBackToHome }: BioViewProps) => {
 
             <div className="flex flex-wrap gap-4 items-center">
               <a 
-                href="mailto:khileshsammal.work@gmail.com"
+                href="mailto:khileshsammal.business@gmail.com"
                 className="inline-flex items-center gap-2 bg-accent hover:bg-white text-black px-5 py-3 rounded-sm font-ui text-[10px] md:text-xs uppercase tracking-[0.2em] font-black transition-all"
               >
                 Email Collaboration <ExternalLink size={12} />
               </a>
               <a 
-                href="mailto:khileshsammal.work@gmail.com"
+                href="mailto:khileshsammal.business@gmail.com"
                 className="inline-flex items-center gap-2 border border-white/10 hover:border-accent px-5 py-3 rounded-sm font-ui text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold text-white hover:text-accent transition-all"
               >
-                khileshsammal.work@gmail.com
+                khileshsammal.business@gmail.com
               </a>
             </div>
           </motion.div>
@@ -152,7 +152,7 @@ export const BioView = memo(({ onBackToHome }: BioViewProps) => {
               </div>
               <h3 className="text-lg font-serif font-bold text-zinc-100 mb-2">Technical Rigor</h3>
               <p className="text-zinc-400 text-xs leading-relaxed font-sans">
-                My engineering and performance marketing background gives me a unique perspective on platform algorithms, user design, data-driven optimization, and visual aesthetics—ensuring my content reaches and resonates.
+                My full-stack marketing background gives me a unique perspective on platform algorithms, user design, data-driven optimization, and visual aesthetics—ensuring my content reaches and resonates.
               </p>
             </div>
           </motion.div>
@@ -169,7 +169,7 @@ export const BioView = memo(({ onBackToHome }: BioViewProps) => {
             <span className="text-accent uppercase tracking-widest text-[9px] font-bold font-ui">The Evolution</span>
             <h2 className="text-2xl md:text-4xl font-serif font-medium text-white mt-1 mb-6">How I Unlocked Lens & Latitude</h2>
             <p className="text-zinc-400 text-sm leading-relaxed mb-10">
-              My journey didn't start in front of a camera or in terminal gates. It began behind lines of code, working as a full-time software engineer. Here is how I transitioned from an indoor corporate engineer to a performance marketer and part-time global explorer.
+              My journey combines strategic marketing execution with global exploration. As a full-stack marketer working remotely, I leverage my experience working for Cognizant and Google (2024–2025) to scale digital brands while exploring destinations across the globe.
             </p>
           </div>
 
@@ -179,11 +179,11 @@ export const BioView = memo(({ onBackToHome }: BioViewProps) => {
             <div className="relative">
               <span className="absolute -left-[31px] md:-left-[47px] top-0.5 bg-zinc-950 border-2 border-accent w-4 h-4 rounded-full flex items-center justify-center" />
               <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-2">
-                <span className="font-mono text-xs text-accent font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded">2025 - Present</span>
-                <h3 className="text-lg font-serif text-zinc-200">Launching Lens & Latitude</h3>
+                <span className="font-mono text-xs text-accent font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded">Present</span>
+                <h3 className="text-lg font-serif text-zinc-200">Remote Full-Stack Marketer & Lens & Latitude</h3>
               </div>
               <p className="text-zinc-400 text-xs md:text-sm leading-relaxed max-w-2xl">
-                This collective space was born—a high-end, immersive destination hub representing slow-travel itineraries, deep photographic prints, premium flight planners, gear curation, and a custom subterranean visual gallery.
+                Currently working remotely as a full-stack marketer while curating Lens & Latitude—an immersive travel platform featuring slow-travel blueprints, high-resolution photography, and field-tested guides.
               </p>
             </div>
 
@@ -191,11 +191,11 @@ export const BioView = memo(({ onBackToHome }: BioViewProps) => {
             <div className="relative">
               <span className="absolute -left-[31px] md:-left-[47px] top-0.5 bg-zinc-950 border-2 border-zinc-500 w-4 h-4 rounded-full flex items-center justify-center" />
               <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-2">
-                <span className="font-mono text-xs text-zinc-400 font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded">2022 - 2024</span>
-                <h3 className="text-lg font-serif text-zinc-200">Embarking on Expedition Circuits</h3>
+                <span className="font-mono text-xs text-zinc-400 font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded">2024 - 2025</span>
+                <h3 className="text-lg font-serif text-zinc-200">Cognizant & Google</h3>
               </div>
               <p className="text-zinc-400 text-xs md:text-sm leading-relaxed max-w-2xl">
-                Slow exploration became a reality. I established long-form travel routes across Southeast Asia (Thailand, Malaysia, Vietnam) and regional Indian landmarks (the coastal shrines of Puri, the mystical subways of Kumaon's caves, and backwaters of Kerala). I documented these journeys with high-exif camera metadata.
+                Worked for Cognizant and Google, mastering enterprise-level digital delivery, advanced audience intelligence, search systems, and high-impact performance marketing frameworks.
               </p>
             </div>
 
@@ -203,11 +203,11 @@ export const BioView = memo(({ onBackToHome }: BioViewProps) => {
             <div className="relative">
               <span className="absolute -left-[31px] md:-left-[47px] top-0.5 bg-zinc-950 border-2 border-zinc-500 w-4 h-4 rounded-full flex items-center justify-center" />
               <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-2">
-                <span className="font-mono text-xs text-zinc-400 font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded">2021 - 2022</span>
-                <h3 className="text-lg font-serif text-zinc-200">The Pivot to Performance Marketing</h3>
+                <span className="font-mono text-xs text-zinc-400 font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded">2022 - 2024</span>
+                <h3 className="text-lg font-serif text-zinc-200">Expedition Circuits Across Asia & India</h3>
               </div>
               <p className="text-zinc-400 text-xs md:text-sm leading-relaxed max-w-2xl">
-                Recognizing that engineering logic can be masterfully applied to creative content and customer behavior, I pivoted to professional performance marketing. This unlocked location flexibility, allowing me to align strategic marketing campaigns during the day and photograph deep mountain passes at dusk.
+                Slow exploration became a reality. I established long-form travel routes across Southeast Asia (Thailand, Malaysia, Vietnam) and regional Indian landmarks (Puri coastlines, Kumaon cave temples, and Kerala backwaters).
               </p>
             </div>
 
@@ -215,11 +215,11 @@ export const BioView = memo(({ onBackToHome }: BioViewProps) => {
             <div className="relative">
               <span className="absolute -left-[31px] md:-left-[47px] top-0.5 bg-zinc-950 border-2 border-zinc-500 w-4 h-4 rounded-full flex items-center justify-center" />
               <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-2">
-                <span className="font-mono text-xs text-zinc-400 font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded">2018 - 2021</span>
-                <h3 className="text-lg font-serif text-zinc-200">The Software Engineer Era</h3>
+                <span className="font-mono text-xs text-zinc-400 font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded">2021 - 2022</span>
+                <h3 className="text-lg font-serif text-zinc-200">Full-Stack Growth & Performance Marketing</h3>
               </div>
               <p className="text-zinc-400 text-xs md:text-sm leading-relaxed max-w-2xl">
-                Diving deep into backend architectures, API scaling, and digital engineering systems. While I loved the problem-solving nature of code, my soul yearned for the outdoors. During weekend windows, I escaped to Himalayan peaks, training my eyes to capture the high-altitude morning mists.
+                Built end-to-end full-stack marketing funnels, creative strategy, and multi-channel attribution systems that unlocked location flexibility for remote execution and global travel.
               </p>
             </div>
 
@@ -338,15 +338,15 @@ export const BioView = memo(({ onBackToHome }: BioViewProps) => {
             
             <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/5 border border-white/5 rounded-sm overflow-hidden">
               <div className="bg-[#030303] p-6 space-y-2">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-accent font-bold">Cognizant</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-accent font-bold">Cognizant (2024–2025)</span>
                 <p className="text-zinc-300 text-xs leading-relaxed font-sans">
-                  Mastering enterprise-level digital delivery and technical workflows.
+                  Enterprise-level digital delivery, audience scaling, and performance marketing execution.
                 </p>
               </div>
               <div className="bg-[#030303] p-6 space-y-2">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-accent font-bold">Internal Google Docs</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-accent font-bold">Google (2024–2025)</span>
                 <p className="text-zinc-300 text-xs leading-relaxed font-sans">
-                  Deep access to Google's proprietary methodologies for search and audience intelligence.
+                  Deep mastery of Google's proprietary search algorithms, PMax architectures, and audience intelligence.
                 </p>
               </div>
               <div className="bg-[#030303] p-6 space-y-2">
@@ -488,7 +488,7 @@ export const BioView = memo(({ onBackToHome }: BioViewProps) => {
             </p>
             <div className="flex justify-center gap-4">
               <a 
-                href="mailto:khileshsammal.work@gmail.com"
+                href="mailto:khileshsammal.business@gmail.com"
                 className="bg-accent hover:bg-white text-black px-6 py-3 rounded-sm font-ui text-[10px] uppercase tracking-widest font-black transition-all"
               >
                 Start Conversation

@@ -20,6 +20,8 @@ import {
   Compass
 } from "lucide-react";
 import { SocialShareButtons } from "./SocialShareButtons";
+import { TripCopyBanner } from "./TripCopyBanner";
+import { DestinationBlogLinkCard } from "./DestinationBlogLinkCard";
 
 interface DayItinerary {
   day: number;
@@ -102,9 +104,10 @@ const LOG_ENTRIES: LogEntry[] = [
 
 interface MalaysiaExpeditionViewProps {
   onBackToHome: () => void;
+  onOpenBlog?: (postId: string) => void;
 }
 
-export const MalaysiaExpeditionView = memo(({ onBackToHome }: MalaysiaExpeditionViewProps) => {
+export const MalaysiaExpeditionView = memo(({ onBackToHome, onOpenBlog }: MalaysiaExpeditionViewProps) => {
   const [activeDayIdx, setActiveDayIdx] = useState<number>(0);
 
   const activeDay = useMemo(() => ITINERARY_DATA[activeDayIdx], [activeDayIdx]);
@@ -137,7 +140,7 @@ export const MalaysiaExpeditionView = memo(({ onBackToHome }: MalaysiaExpedition
         <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950 always-dark">
           <img 
             src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&q=80&w=2000" 
-            alt="Malaysia Expedition" 
+            alt="Historic heritage architecture and streetscapes across Malaysia" 
             className="w-full h-full object-cover brightness-[0.22]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c10] via-[#0a0c10]/40 to-transparent" />
@@ -449,6 +452,16 @@ export const MalaysiaExpeditionView = memo(({ onBackToHome }: MalaysiaExpedition
             </div>
           </div>
         </section>
+
+        {/* FULL BLOG ITINERARY LINK */}
+        <DestinationBlogLinkCard 
+          blogPostId="malaysia-expedition-2025"
+          destinationLabel="Malaysia (Kuala Lumpur & Langkawi)"
+          onOpenBlog={onOpenBlog}
+        />
+
+        {/* CUSTOM ITINERARY PLANNER PROMO */}
+        <TripCopyBanner destination="Malaysia (Kuala Lumpur & Penang)" />
 
         {/* Social Connection Footer Panel */}
         <section className="bg-white/[0.01] border border-white/5 rounded-[2.5rem] p-8 md:p-12">

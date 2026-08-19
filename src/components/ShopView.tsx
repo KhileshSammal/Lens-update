@@ -432,7 +432,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(shopJsonLd) }}
       />
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Navigation back and Cart summary trigger */}
         <motion.div 
@@ -552,7 +552,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
                 <div className="aspect-[4/3] overflow-hidden relative bg-bg">
                   <img 
                     src={item.img} 
-                    alt={item.name} 
+                    alt={`Product photo: ${item.name} — ${item.category.replace("-", " ")}`} 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
                     loading="lazy"
                     decoding="async"
@@ -639,7 +639,7 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
               <div className="md:col-span-5 aspect-[16/9] md:aspect-auto relative bg-bg">
                 <img 
                   src={selectedProduct.img} 
-                  alt={selectedProduct.name} 
+                  alt={`Detailed product visual of ${selectedProduct.name}`} 
                   className="w-full h-full object-cover opacity-80"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />

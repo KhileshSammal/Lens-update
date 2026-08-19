@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { motion } from "motion/react";
 import { ArrowLeft, Compass, Sparkles, Clock, MapPin, Camera } from "lucide-react";
 import { SocialShareButtons } from "./SocialShareButtons";
+import { TripCopyBanner } from "./TripCopyBanner";
 
 interface ExploringSoonViewProps {
   locationName: string;
@@ -57,7 +58,7 @@ export const ExploringSoonView = memo(({
         >
           <img 
             src={bgImage} 
-            alt={locationName} 
+            alt={`Upcoming expedition preview for ${locationName} — ${subtitle}`} 
             className="w-full h-full object-cover brightness-[0.4]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
@@ -127,6 +128,9 @@ export const ExploringSoonView = memo(({
             <SocialShareButtons title={`${locationName} Expedition Preview — Lens & Latitude`} />
           </div>
         </motion.div>
+
+        {/* CUSTOM ITINERARY PLANNER PROMO */}
+        <TripCopyBanner destination={locationName} />
       </div>
     </div>
   );

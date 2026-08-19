@@ -372,8 +372,8 @@ export function getSeoMetadata(pathnameOrView: string | AppView, activeBlogPostI
     summary = description;
   } else if (view === "bio") {
     ogType = "profile";
-    title = "About Khilesh Sammal | Solo Traveler & Photographer";
-    description = "Learn more about Khilesh Sammal, creator of Lens & Latitude, sharing authentic travel experiences, mobile photography techniques, and detailed route blueprints.";
+    title = "About Khilesh Sammal | Full-Stack Marketer & Travel Photographer";
+    description = "Khilesh Sammal is a remote full-stack marketer and travel photographer who worked for Cognizant and Google (2024–2025), documenting global travel blueprints and visual stories on Lens & Latitude.";
     ogImage = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80";
     heading = "About Khilesh Sammal";
     summary = description;
@@ -394,8 +394,12 @@ export function getSeoMetadata(pathnameOrView: string | AppView, activeBlogPostI
       "mainEntity": {
         "@type": "Person",
         "name": "Khilesh Sammal",
-        "jobTitle": "Travel Photographer & Expedition Specialist",
-        "url": `${domain}/bio`
+        "jobTitle": "Full-Stack Marketer & Travel Photographer",
+        "url": `${domain}/bio`,
+        "sameAs": [
+          "https://www.instagram.com/mr.khilesh__",
+          "https://www.youtube.com/c/KhileshSammalVlogs2125"
+        ]
       }
     };
   } else if (view === "portfolio") {
@@ -538,6 +542,8 @@ export function updatePageSeo(view: AppView, activeBlogPostId: string | null) {
     el.setAttribute("content", content);
   };
 
+  setMetaTag('meta[name="robots"]', 'name', 'robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+  setMetaTag('meta[name="googlebot"]', 'name', 'googlebot', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
   setMetaTag('meta[name="description"]', 'name', 'description', meta.description);
   setMetaTag('meta[property="og:type"]', 'property', 'og:type', meta.ogType);
   setMetaTag('meta[property="og:title"]', 'property', 'og:title', meta.title);

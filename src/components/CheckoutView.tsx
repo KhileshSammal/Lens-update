@@ -312,8 +312,8 @@ export const CheckoutView = ({
   }
 
   return (
-    <div className="min-h-screen bg-bg text-white pt-28 pb-32 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-bg text-white pt-28 pb-32">
+      <div className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button navigation link */}
         <button 
           onClick={onBackToHome}
@@ -375,7 +375,7 @@ export const CheckoutView = ({
                         required
                         value={email}
                         onChange={e => setEmail(e.target.value)}
-                        placeholder="khileshsammal.work@gmail.com" 
+                        placeholder="khileshsammal.business@gmail.com" 
                         className="w-full bg-[#060606] border border-zinc-850 focus:border-accent focus:outline-none p-3.5 rounded-sm text-sm text-white transition-colors"
                       />
                     </div>
@@ -589,7 +589,7 @@ export const CheckoutView = ({
                       className="flex gap-4 items-center"
                     >
                       <div className="w-16 h-16 bg-zinc-950 border border-zinc-900 rounded-sm overflow-hidden flex-shrink-0">
-                        <img src={item.img} className="w-full h-full object-cover" alt={item.name} />
+                        <img src={item.img} className="w-full h-full object-cover" alt={`Cart item thumbnail for ${item.name}`} />
                       </div>
 
                       <div className="flex-grow space-y-1">
