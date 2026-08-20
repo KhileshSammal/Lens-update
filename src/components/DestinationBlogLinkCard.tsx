@@ -130,21 +130,22 @@ export const DestinationBlogLinkCard = memo(({
                 alt={post.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 loading="lazy"
+                referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
               
               {/* Floating Pill on Image */}
-              <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white font-ui font-bold text-[10px] uppercase tracking-wider flex items-center gap-1.5">
+              <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white font-ui font-bold text-[10px] uppercase tracking-wider flex items-center gap-1.5 always-dark">
                 <Sparkles size={11} className="text-amber-400" />
                 <span>Complete Field Guide</span>
               </div>
 
               {/* Floating Bottom Excerpt on Image */}
-              <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-zinc-950/85 backdrop-blur-md border border-white/10 text-left">
+              <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-zinc-950/85 backdrop-blur-md border border-white/10 text-left always-dark">
                 <span className="text-[10px] font-bold font-ui text-amber-400 uppercase tracking-wider block mb-0.5">
                   Author Field Notes
                 </span>
-                <p className="text-xs text-zinc-200 font-sans line-clamp-1">
+                <p className="text-xs text-white/90 font-sans line-clamp-1">
                   By {post.author} • {post.read} comprehensive breakdown
                 </p>
               </div>

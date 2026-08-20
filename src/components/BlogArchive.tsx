@@ -284,6 +284,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
               alt={`Featured editorial cover photograph: ${activePost.title}`} 
               className="w-full h-full object-cover"
               loading="eager"
+              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
           </motion.div>
@@ -459,6 +460,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                           alt={section.imageCaption || `Documentary photograph from ${activePost.title}`} 
                           className="w-full h-full object-cover"
                           loading="lazy"
+                          referrerPolicy="no-referrer"
                         />
                       </div>
                       {section.imageCaption && (
@@ -722,6 +724,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                           alt={`Cover photograph for article: ${post.title}`}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
+                          referrerPolicy="no-referrer"
                         />
                         <div className="absolute top-3 left-3">
                           <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-black/80 backdrop-blur-md border border-amber-400/30 text-amber-400 font-bold font-ui text-[9px] uppercase tracking-wider rounded">
@@ -844,8 +847,9 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                     <img 
                       src={post.img} 
                       alt={`Journal article cover for ${post.title}`} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                       loading="lazy"
+                      referrerPolicy="no-referrer"
                     />
                     <div className="absolute top-3 left-3">
                       <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-black/80 backdrop-blur-sm border border-border-main text-accent font-bold font-ui text-[9px] uppercase tracking-wider rounded-sm">

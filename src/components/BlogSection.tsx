@@ -47,6 +47,7 @@ export const BlogSection = memo(({ onSelectPost }: BlogSectionProps) => {
                 alt={`Cover photograph for journal article: ${post.title}`} 
                 loading="lazy"
                 decoding="async"
+                referrerPolicy="no-referrer"
               />
             </div>
             <div className="flex items-center space-x-3 mb-3 text-[9px] uppercase tracking-widest text-accent font-bold font-ui">

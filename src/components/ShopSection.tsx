@@ -33,13 +33,14 @@ export const ShopSection = memo(({ onAddToCart }: ShopSectionProps) => (
             transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
             className="group bg-card-bg border border-border-main p-5 transition-all duration-300 rounded-sm hover:border-accent"
           >
-            <div className="aspect-square mb-6 overflow-hidden bg-bg border border-border-main/50 flex items-center justify-center">
+            <div className="aspect-square mb-6 overflow-hidden bg-bg border border-border-main/50 flex items-center justify-center p-3 rounded-sm">
               <img 
                 src={item.img} 
-                className="w-3/4 opacity-80 group-hover:scale-110 transition-transform" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded-sm" 
                 alt={`Curated travel gear item: ${item.name}`} 
                 loading="lazy"
                 decoding="async"
+                referrerPolicy="no-referrer"
               />
             </div>
             <h4 className="text-sm font-serif mb-1 font-bold">{item.name}</h4>

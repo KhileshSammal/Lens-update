@@ -25,7 +25,7 @@ export const NAV_ITEMS = [
   { name: "Gallery", href: "#gallery", icon: Camera },
   { name: "Blog", href: "/blog", icon: BookOpen },
   { name: "Shop", href: "/shop", icon: ShoppingBag },
-  { name: "Contact", href: "#contact", icon: Mail },
+  { name: "Contact", href: "/contact", icon: Mail },
 ];
 
 /**
@@ -110,10 +110,10 @@ export const BLOG_POSTS = [
  * Highlighted travel products rendered in the homepage travel shop section.
  */
 export const SHOP_ITEMS = [
-  { name: "Nomad Backpack v1", price: "₹4,999", img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=400&q=80", icon: ShoppingCart, btn: "Add to Cart" },
-  { name: "Solo Signature Cap", price: "₹899", img: "https://images.unsplash.com/photo-1746187864512-1e1c782dbbed?auto=format&fit=crop&w=400&q=80", icon: ShoppingCart, btn: "Add to Cart" },
-  { name: "Lightroom Presets", price: "₹1,499", img: "https://images.unsplash.com/photo-1706803501715-8d0e4445e446?auto=format&fit=crop&w=400&q=80", icon: Download, btn: "Get Access" },
-  { name: "Lens & Latitude Journal", price: "₹699", img: "https://images.unsplash.com/photo-1637689113621-73951984fcc1?auto=format&fit=crop&w=400&q=80", icon: ShoppingCart, btn: "Add to Cart" },
+  { name: "Nomad Backpack v1", price: "₹4,999", img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80", icon: ShoppingCart, btn: "Add to Cart" },
+  { name: "Solo Signature Cap", price: "₹899", img: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80", icon: ShoppingCart, btn: "Add to Cart" },
+  { name: "Lightroom Presets", price: "₹1,499", img: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=600&q=80", icon: Download, btn: "Get Access" },
+  { name: "Lens & Latitude Journal", price: "₹699", img: "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=600&q=80", icon: ShoppingCart, btn: "Add to Cart" },
 ];
 
 /**

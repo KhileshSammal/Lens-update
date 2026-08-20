@@ -121,11 +121,12 @@ export const RishikeshExpeditionView = memo(({ onBackToHome, onOpenBlog }: Rishi
         {/* Hero Banner Section */}
         <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950 always-dark">
           <img 
-            src="https://images.unsplash.com/photo-1716573260891-23ad993e8833?auto=format&fit=crop&q=80&w=2000" 
+            src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=2000" 
             alt="Scenic Himalayan foothills and the sacred Ganges river valley in Rishikesh, Uttarakhand" 
-            className="w-full h-full object-cover brightness-[0.22]"
+            className="w-full h-full object-cover brightness-[0.75]"
+            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07090b] via-[#07090b]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07090b] via-[#07090b]/40 to-transparent pointer-events-none" />
           
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
             <div className="flex items-center gap-3 mb-4">

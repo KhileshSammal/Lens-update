@@ -28,8 +28,9 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // Middleware to automatically parse incoming application/json payloads
+  // Middleware to automatically parse incoming application/json and urlencoded payloads
   app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
 
   // Explicit handlers for search engine robots.txt and sitemap.xml
   app.get("/robots.txt", (req, res) => {
@@ -68,8 +69,9 @@ async function startServer() {
    * Server-side email newsletter subscription endpoint.
    */
   app.post("/api/subscribe", async (req, res) => {
+    res.setHeader("Content-Type", "application/json");
     try {
-      const { email } = req.body;
+      const email = req.body?.email || req.query?.email;
       if (!email || typeof email !== "string" || !email.includes("@")) {
         return res.status(400).json({ error: "Please provide a valid email address." });
       }
@@ -78,14 +80,14 @@ async function startServer() {
       subscribers.add(normalizedEmail);
       console.log(`[Newsletter Subscription] Registered: ${normalizedEmail}`);
 
-      res.json({ 
+      return res.status(200).json({ 
         success: true, 
         message: "Thank you for subscribing to Lens & Latitude dispatches!",
         email: normalizedEmail
       });
     } catch (error: any) {
       console.error("Newsletter Subscription Error:", error);
-      res.status(500).json({ error: "Failed to process subscription. Please try again." });
+      return res.status(500).json({ error: "Failed to process subscription. Please try again." });
     }
   });
 

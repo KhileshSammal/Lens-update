@@ -589,7 +589,7 @@ export const CheckoutView = ({
                       className="flex gap-4 items-center"
                     >
                       <div className="w-16 h-16 bg-zinc-950 border border-zinc-900 rounded-sm overflow-hidden flex-shrink-0">
-                        <img src={item.img} className="w-full h-full object-cover" alt={`Cart item thumbnail for ${item.name}`} />
+                        <img src={item.img} className="w-full h-full object-cover" alt={`Cart item thumbnail for ${item.name}`} referrerPolicy="no-referrer" />
                       </div>
 
                       <div className="flex-grow space-y-1">

@@ -226,13 +226,14 @@ const Ecosystem = ({ onAddToCart, onBuyNow }: { onAddToCart: () => void, onBuyNo
               className="relative aspect-[4/5] bg-slate-900 rounded-[40px] overflow-hidden border border-slate-800 shadow-2xl"
             >
               <img 
-                src="https://images.unsplash.com/photo-1706803501715-8d0e4445e446?auto=format&fit=crop&w=800&q=80" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" 
+                src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=80" 
+                className="w-full h-full object-cover transition-all duration-700" 
                 alt="Lens & Latitude limited edition travel photography presets and digital collection" 
+                referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
               <div className="absolute bottom-10 left-10">
-                <p className="text-white/50 text-[10px] uppercase tracking-[0.4em] font-bold mb-2">Limited Edition</p>
+                <p className="text-white/70 text-[10px] uppercase tracking-[0.4em] font-bold mb-2">Limited Edition</p>
                 <h3 className="text-white font-serif italic text-3xl">The 2026 Collection</h3>
               </div>
             </motion.div>

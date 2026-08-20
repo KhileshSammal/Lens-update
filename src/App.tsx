@@ -13,6 +13,7 @@ import ExpeditionHub from "./components/ExpeditionHub";
 import { BlogSection } from "./components/BlogSection";
 import { FAQSection } from "./components/FAQSection";
 import { ContactSection } from "./components/ContactSection";
+import { ContactView } from "./components/ContactView";
 import { Footer } from "./components/Footer";
 import { BlogArchive } from "./components/BlogArchive";
 import { CheckoutView } from "./components/CheckoutView";
@@ -27,7 +28,7 @@ import { GoaExpeditionView } from "./components/GoaExpeditionView";
 import { VietnamExpeditionView } from "./components/VietnamExpeditionView";
 import { ExploringSoonView } from "./components/ExploringSoonView";
 import { BioView } from "./components/BioView";
-import { PolicyModal, PolicyTab } from "./components/PolicyModal";
+import { PolicyPageView } from "./components/PolicyPageView";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import { parseCurrentRoute, routeToPath, updatePageSeo, AppView } from "./utils/routerSeo";
 
@@ -63,9 +64,6 @@ function AppContent() {
 
   // 4. Temporary toast notification message
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  // 5. Centralized policy modal state
-  const [policyModalTab, setPolicyModalTab] = useState<PolicyTab | null>(null);
 
   // Synchronize browser URL and dynamic SEO tags whenever view or activeBlogPostId changes
   useEffect(() => {
@@ -141,11 +139,6 @@ function AppContent() {
   const totalCartItems = useMemo(() => {
     return cart.reduce((acc, curr) => acc + curr.quantity, 0);
   }, [cart]);
-
-  // Policy Modal trigger callback
-  const handleOpenPolicy = useCallback((tab: PolicyTab) => {
-    setPolicyModalTab(tab);
-  }, []);
 
   /**
    * handleNavigate:
@@ -233,7 +226,7 @@ function AppContent() {
             />
             <BlogSection onSelectPost={handleSelectPost} />
             <FAQSection />
-            <ContactSection onNavigate={handleNavigate} onOpenPolicy={handleOpenPolicy} />
+            <ContactSection onNavigate={handleNavigate} />
           </>
         );
 
@@ -265,6 +258,14 @@ function AppContent() {
             onUpdateQuantity={handleUpdateQuantity}
             onClearCart={handleClearCart}
             onBackToHome={handleBackToHome}
+          />
+        );
+
+      case "contact":
+        return (
+          <ContactView 
+            onBackToHome={handleBackToHome}
+            onNavigate={handleNavigate}
           />
         );
 
@@ -343,6 +344,21 @@ function AppContent() {
       case "bio":
         return <BioView onBackToHome={handleBackToHome} />;
 
+      case "privacy-policy":
+        return <PolicyPageView policyType="privacy-policy" onNavigate={handleNavigate} />;
+
+      case "terms-of-use":
+        return <PolicyPageView policyType="terms-of-use" onNavigate={handleNavigate} />;
+
+      case "disclaimer":
+        return <PolicyPageView policyType="disclaimer" onNavigate={handleNavigate} />;
+
+      case "shipping-policy":
+        return <PolicyPageView policyType="shipping-policy" onNavigate={handleNavigate} />;
+
+      case "return-policy":
+        return <PolicyPageView policyType="return-policy" onNavigate={handleNavigate} />;
+
       default:
         return (
           <CheckoutView 
@@ -371,14 +387,7 @@ function AppContent() {
         {renderCurrentView()}
       </main>
 
-      <Footer onOpenPolicy={handleOpenPolicy} />
-
-      {/* Centralized Policy Modal */}
-      <PolicyModal 
-        isOpen={!!policyModalTab}
-        initialTab={policyModalTab || "privacy"}
-        onClose={() => setPolicyModalTab(null)}
-      />
+      <Footer onNavigate={handleNavigate} />
 
       {/* Floating Toast Notification */}
       <AnimatePresence>

@@ -72,10 +72,11 @@ export const Directory = memo(({ onSelectTrip }: DirectoryProps) => {
             >
               <img 
                 src={trip.img} 
-                className="w-full h-full object-cover opacity-60 transition-transform duration-1000 group-hover:scale-110" 
+                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" 
                 alt={`Expedition cover photograph of ${trip.title} - ${trip.subtitle}`}
                 loading="lazy"
                 decoding="async"
+                referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-end bg-gradient-to-t from-black via-black/10 to-transparent">
                 <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.3em] mb-1 text-accent font-bold font-ui">{trip.subtitle}</span>

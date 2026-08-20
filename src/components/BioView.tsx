@@ -54,7 +54,8 @@ export const BioView = memo(({ onBackToHome }: BioViewProps) => {
               <img 
                 src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=800&q=80" 
                 alt="Khilesh Sammal, travel storyteller, photographer, and creator of Lens & Latitude" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out group-hover:scale-105"
+                className="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-105"
+                referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
               <div className="absolute bottom-4 left-4 right-4">

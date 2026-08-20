@@ -248,9 +248,10 @@ export const VietnamExpeditionView = memo(({ onBackToHome, onOpenBlog }: Vietnam
           <img 
             src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80&w=2000" 
             alt="Towering limestone karsts rising over the emerald waters of northern Vietnam" 
-            className="w-full h-full object-cover brightness-[0.35]"
+            className="w-full h-full object-cover brightness-[0.75]"
+            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
           
           <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-14">
             <div className="flex items-center gap-3 mb-3">

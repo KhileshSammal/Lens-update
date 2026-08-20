@@ -141,9 +141,10 @@ export const MalaysiaExpeditionView = memo(({ onBackToHome, onOpenBlog }: Malays
           <img 
             src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&q=80&w=2000" 
             alt="Historic heritage architecture and streetscapes across Malaysia" 
-            className="w-full h-full object-cover brightness-[0.22]"
+            className="w-full h-full object-cover brightness-[0.75]"
+            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c10] via-[#0a0c10]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c10] via-[#0a0c10]/40 to-transparent pointer-events-none" />
           
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
             <div className="flex items-center gap-3 mb-4">
@@ -364,7 +365,7 @@ export const MalaysiaExpeditionView = memo(({ onBackToHome, onOpenBlog }: Malays
               <div className="lg:col-span-6">
                 <h2 className="text-4xl md:text-5xl font-serif italic text-white mb-6">The Ledger</h2>
                 <p className="text-slate-400 font-light leading-relaxed mb-10 text-sm md:text-base">
-                  A grand total of <span class="text-white font-medium">₹90,000</span> distributed across flights, boutique stays, essential SIM packages, and curated local safaris.
+                  A grand total of <span className="text-white font-medium">₹90,000</span> distributed across flights, boutique stays, essential SIM packages, and curated local safaris.
                 </p>
                 
                 <div className="space-y-6">

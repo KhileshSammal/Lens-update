@@ -5,6 +5,12 @@ export type AppView =
   | "blog-archive"
   | "shop"
   | "checkout"
+  | "contact"
+  | "privacy-policy"
+  | "terms-of-use"
+  | "disclaimer"
+  | "shipping-policy"
+  | "return-policy"
   | "thailand-diaries"
   | "malaysia-expedition"
   | "amritsar-expedition"
@@ -72,6 +78,12 @@ export const REVERSE_DESTINATION_SLUGS: Record<AppView, string> = {
   "blog-archive": "blog",
   "shop": "shop",
   "checkout": "checkout",
+  "contact": "contact",
+  "privacy-policy": "privacy-policy",
+  "terms-of-use": "terms-of-use",
+  "disclaimer": "disclaimer",
+  "shipping-policy": "shipping-policy",
+  "return-policy": "return-policy",
   "bio": "bio",
   "portfolio": "portfolio",
   "thailand-diaries": "destination/thailand",
@@ -164,6 +176,31 @@ export function parseCurrentRoute(pathname: string, hash: string = ""): RouteSta
   cleanPath = cleanPath.replace(/\/$/, "");
   if (!cleanPath) cleanPath = "/";
 
+  // Match /privacy-policy or /privacy
+  if (cleanPath === "/privacy-policy" || cleanPath === "/privacy" || cleanPath === "/legal/privacy") {
+    return { view: "privacy-policy", activeBlogPostId: null };
+  }
+
+  // Match /terms-of-use or /terms
+  if (cleanPath === "/terms-of-use" || cleanPath === "/terms" || cleanPath === "/legal/terms" || cleanPath === "/terms-and-conditions") {
+    return { view: "terms-of-use", activeBlogPostId: null };
+  }
+
+  // Match /disclaimer
+  if (cleanPath === "/disclaimer" || cleanPath === "/legal/disclaimer") {
+    return { view: "disclaimer", activeBlogPostId: null };
+  }
+
+  // Match /shipping-policy or /shipping
+  if (cleanPath === "/shipping-policy" || cleanPath === "/shipping" || cleanPath === "/shipping-and-fulfillment") {
+    return { view: "shipping-policy", activeBlogPostId: null };
+  }
+
+  // Match /return-policy or /returns
+  if (cleanPath === "/return-policy" || cleanPath === "/returns" || cleanPath === "/7-day-return-policy" || cleanPath === "/refund-policy") {
+    return { view: "return-policy", activeBlogPostId: null };
+  }
+
   // Match /shop
   if (cleanPath === "/shop") {
     return { view: "shop", activeBlogPostId: null };
@@ -172,6 +209,11 @@ export function parseCurrentRoute(pathname: string, hash: string = ""): RouteSta
   // Match /checkout
   if (cleanPath === "/checkout") {
     return { view: "checkout", activeBlogPostId: null };
+  }
+
+  // Match /contact or /contact-us or /inquire
+  if (cleanPath === "/contact" || cleanPath === "/contact-us" || cleanPath === "/inquire") {
+    return { view: "contact", activeBlogPostId: null };
   }
 
   // Match /bio or /about
@@ -241,6 +283,24 @@ export function routeToPath(view: AppView, activeBlogPostId: string | null): str
   }
   if (view === "checkout") {
     return "/checkout";
+  }
+  if (view === "contact") {
+    return "/contact";
+  }
+  if (view === "privacy-policy") {
+    return "/privacy-policy";
+  }
+  if (view === "terms-of-use") {
+    return "/terms-of-use";
+  }
+  if (view === "disclaimer") {
+    return "/disclaimer";
+  }
+  if (view === "shipping-policy") {
+    return "/shipping-policy";
+  }
+  if (view === "return-policy") {
+    return "/return-policy";
   }
   if (view === "bio") {
     return "/bio";
@@ -370,6 +430,120 @@ export function getSeoMetadata(pathnameOrView: string | AppView, activeBlogPostI
     description = "Complete your order securely for travel gear and digital guides on Lens & Latitude.";
     heading = "Checkout — Lens & Latitude";
     summary = description;
+  } else if (view === "contact") {
+    title = "Contact & Custom Travel Inquiries | Lens & Latitude — Khilesh Sammal";
+    description = "Get in touch with Khilesh Sammal for custom expedition planning, photography mentorship, brand collaborations, and tailored Asia travel blueprints.";
+    heading = "Contact & Expedition Inquiries";
+    summary = description;
+    schemaData = {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "@id": `${domain}/contact#contactpage`,
+      "name": title,
+      "description": description,
+      "url": `${domain}/contact`,
+      "publisher": orgSchema,
+      "author": {
+        "@type": "Person",
+        "name": "Khilesh Sammal",
+        "url": `${domain}/bio`
+      }
+    };
+  } else if (view === "privacy-policy") {
+    title = "Privacy Policy & Data Protection | Lens & Latitude";
+    description = "Learn how Lens & Latitude collects, encrypts, and handles your personal information, newsletter subscriptions, and order data in compliance with DPDPA & GDPR.";
+    heading = "Privacy Policy & Data Protection";
+    summary = description;
+    schemaData = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${domain}/privacy-policy#webpage`,
+      "name": title,
+      "description": description,
+      "url": `${domain}/privacy-policy`,
+      "publisher": orgSchema,
+      "author": {
+        "@type": "Person",
+        "name": "Khilesh Sammal",
+        "url": `${domain}/bio`
+      }
+    };
+  } else if (view === "terms-of-use") {
+    title = "Terms of Use & Intellectual Property | Lens & Latitude";
+    description = "Official terms of service governing access to Lens & Latitude, photography licensing, custom itinerary advisory services, and digital downloads.";
+    heading = "Terms of Use & Intellectual Property";
+    summary = description;
+    schemaData = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${domain}/terms-of-use#webpage`,
+      "name": title,
+      "description": description,
+      "url": `${domain}/terms-of-use`,
+      "publisher": orgSchema,
+      "author": {
+        "@type": "Person",
+        "name": "Khilesh Sammal",
+        "url": `${domain}/bio`
+      }
+    };
+  } else if (view === "disclaimer") {
+    title = "Travel & Affiliate Disclaimer | Lens & Latitude";
+    description = "Important disclaimers regarding authentic expedition conditions, adventure travel safety, and affiliate partnership disclosures on Lens & Latitude.";
+    heading = "Travel & Affiliate Disclaimer";
+    summary = description;
+    schemaData = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${domain}/disclaimer#webpage`,
+      "name": title,
+      "description": description,
+      "url": `${domain}/disclaimer`,
+      "publisher": orgSchema,
+      "author": {
+        "@type": "Person",
+        "name": "Khilesh Sammal",
+        "url": `${domain}/bio`
+      }
+    };
+  } else if (view === "shipping-policy") {
+    title = "Shipping & Fulfillment Policy | Lens & Latitude";
+    description = "Fulfillment information for instant digital downloads and delivery timelines for physical travel merchandise across India and worldwide.";
+    heading = "Shipping & Fulfillment Policy";
+    summary = description;
+    schemaData = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${domain}/shipping-policy#webpage`,
+      "name": title,
+      "description": description,
+      "url": `${domain}/shipping-policy`,
+      "publisher": orgSchema,
+      "author": {
+        "@type": "Person",
+        "name": "Khilesh Sammal",
+        "url": `${domain}/bio`
+      }
+    };
+  } else if (view === "return-policy") {
+    title = "7-Day Return & Refund Guarantee | Lens & Latitude";
+    description = "Clear 7-day return, exchange, and refund terms for physical travel gear and satisfaction technical resolution for digital expedition guides.";
+    heading = "7-Day Return & Refund Guarantee";
+    summary = description;
+    schemaData = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${domain}/return-policy#webpage`,
+      "name": title,
+      "description": description,
+      "url": `${domain}/return-policy`,
+      "publisher": orgSchema,
+      "author": {
+        "@type": "Person",
+        "name": "Khilesh Sammal",
+        "url": `${domain}/bio`
+      }
+    };
   } else if (view === "bio") {
     ogType = "profile";
     title = "About Khilesh Sammal | Full-Stack Marketer & Travel Photographer";

@@ -4,14 +4,12 @@ import { ArrowUpRight, Globe } from "lucide-react";
 import { CONTACT_SOCIALS } from "../constants";
 import { NewsletterForm } from "./NewsletterForm";
 import { AppView } from "../utils/routerSeo";
-import { PolicyTab } from "./PolicyModal";
 
 interface ContactSectionProps {
   onNavigate?: (view: AppView, targetHash?: string) => void;
-  onOpenPolicy?: (tab: PolicyTab) => void;
 }
 
-export const ContactSection = memo(({ onNavigate, onOpenPolicy }: ContactSectionProps) => (
+export const ContactSection = memo(({ onNavigate }: ContactSectionProps) => (
   <section id="contact" className="bg-bg py-16 md:py-32 px-4 sm:px-6 lg:px-8 border-t border-border-main">
     <div className="w-full max-w-[92%] mx-auto">
       <div className="grid lg:grid-cols-12 gap-10 md:gap-16 items-start">

@@ -130,9 +130,10 @@ export const GoaExpeditionView = memo(({ onBackToHome, onOpenBlog }: GoaExpediti
           <img 
             src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000" 
             alt="Sunlit tropical beach and coastal waters along the Goa and Puri coastline" 
-            className="w-full h-full object-cover brightness-[0.22]"
+            className="w-full h-full object-cover brightness-[0.75]"
+            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07090b] via-[#07090b]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07090b] via-[#07090b]/40 to-transparent pointer-events-none" />
           
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
             <div className="flex items-center gap-3 mb-4">

@@ -16,7 +16,17 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [theme, setThemeState] = useState<Theme>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      return (stored as Theme) === "light" ? "light" : "dark";
+      const initial: Theme = stored === "light" ? "light" : "dark";
+      if (typeof document !== "undefined") {
+        if (initial === "light") {
+          document.documentElement.classList.add("light");
+          document.body?.classList.add("light");
+        } else {
+          document.documentElement.classList.remove("light");
+          document.body?.classList.remove("light");
+        }
+      }
+      return initial;
     } catch {
       return "dark";
     }
@@ -27,6 +37,15 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setThemeState(newTheme);
     try {
       localStorage.setItem(STORAGE_KEY, newTheme);
+      if (typeof document !== "undefined") {
+        if (newTheme === "light") {
+          document.documentElement.classList.add("light");
+          document.body?.classList.add("light");
+        } else {
+          document.documentElement.classList.remove("light");
+          document.body?.classList.remove("light");
+        }
+      }
       window.dispatchEvent(new CustomEvent("latitude_theme_change", { detail: newTheme }));
     } catch (e) {
       console.error("Failed to persist theme setting:", e);
@@ -36,9 +55,18 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   // Function to toggle between dark and light mode
   const toggleTheme = useCallback(() => {
     setThemeState(prev => {
-      const nextTheme = prev === "dark" ? "light" : "dark";
+      const nextTheme: Theme = prev === "dark" ? "light" : "dark";
       try {
         localStorage.setItem(STORAGE_KEY, nextTheme);
+        if (typeof document !== "undefined") {
+          if (nextTheme === "light") {
+            document.documentElement.classList.add("light");
+            document.body?.classList.add("light");
+          } else {
+            document.documentElement.classList.remove("light");
+            document.body?.classList.remove("light");
+          }
+        }
         window.dispatchEvent(new CustomEvent("latitude_theme_change", { detail: nextTheme }));
       } catch (e) {
         console.error("Failed to persist theme setting:", e);
@@ -49,11 +77,14 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   // Sync DOM document root element class whenever theme state changes
   useEffect(() => {
-    const root = document.documentElement;
-    if (theme === "light") {
-      root.classList.add("light");
-    } else {
-      root.classList.remove("light");
+    if (typeof document !== "undefined") {
+      if (theme === "light") {
+        document.documentElement.classList.add("light");
+        document.body?.classList.add("light");
+      } else {
+        document.documentElement.classList.remove("light");
+        document.body?.classList.remove("light");
+      }
     }
   }, [theme]);
 

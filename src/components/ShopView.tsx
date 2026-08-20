@@ -553,9 +553,10 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
                   <img 
                     src={item.img} 
                     alt={`Product photo: ${item.name} — ${item.category.replace("-", " ")}`} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                     decoding="async"
+                    referrerPolicy="no-referrer"
                   />
                   {/* Category Badge overlay */}
                   <span className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm border border-zinc-850 px-3 py-1 text-[8px] uppercase tracking-widest font-ui font-extrabold text-accent">
@@ -640,9 +641,10 @@ export const ShopView = memo(({ onBackToHome, onAddToCart, onOpenCheckout, cartC
                 <img 
                   src={selectedProduct.img} 
                   alt={`Detailed product visual of ${selectedProduct.name}`} 
-                  className="w-full h-full object-cover opacity-80"
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none" />
                 
                 <div className="absolute bottom-6 left-6 pr-6">
                   <span className="inline-block px-2.5 py-1 bg-accent text-black text-[8px] uppercase tracking-widest font-ui font-black rounded-sm mb-2">

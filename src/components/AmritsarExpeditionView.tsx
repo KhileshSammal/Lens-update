@@ -181,9 +181,10 @@ export const AmritsarExpeditionView = memo(({ onBackToHome, onOpenBlog }: Amrits
           <img 
             src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&q=80&w=2000" 
             alt="Sri Harmandir Sahib (The Golden Temple) illuminated against the twilight sky in Amritsar, Punjab" 
-            className="w-full h-full object-cover brightness-[0.22]"
+            className="w-full h-full object-cover brightness-[0.75]"
+            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#090b0e] via-[#090b0e]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#090b0e] via-[#090b0e]/40 to-transparent pointer-events-none" />
           
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
             <div className="flex items-center gap-3 mb-4">
@@ -404,7 +405,7 @@ export const AmritsarExpeditionView = memo(({ onBackToHome, onOpenBlog }: Amrits
               <div className="lg:col-span-6">
                 <h2 className="text-4xl md:text-5xl font-serif italic text-white mb-6">The Ledger</h2>
                 <p className="text-slate-400 font-light leading-relaxed mb-10 text-sm md:text-base">
-                  A highly structured per-person budget of <span class="text-white font-medium">₹15,000</span> representing extreme efficiency and maximum local luxury by leveraging sleeper transits.
+                  A highly structured per-person budget of <span className="text-white font-medium">₹15,000</span> representing extreme efficiency and maximum local luxury by leveraging sleeper transits.
                 </p>
                 
                 <div className="space-y-6">

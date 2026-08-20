@@ -126,9 +126,10 @@ export const ThailandDiariesView = memo(({ onBackToHome, onOpenBlog }: ThailandD
           <img 
             src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&q=80&w=2000" 
             alt="Emerald waters and towering limestone sea cliffs in Phuket, Thailand" 
-            className="w-full h-full object-cover brightness-[0.25]"
+            className="w-full h-full object-cover brightness-[0.75]"
+            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
           
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
             <div className="flex items-center gap-3 mb-4">

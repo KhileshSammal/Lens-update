@@ -199,9 +199,10 @@ export const KeralaExpeditionView = memo(({ onBackToHome, onOpenBlog }: KeralaEx
           <img 
             src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&q=80&w=2000" 
             alt="Serene tropical palm groves and calm waters in the Kerala backwaters" 
-            className="w-full h-full object-cover brightness-[0.22]"
+            className="w-full h-full object-cover brightness-[0.75]"
+            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#080a0c] via-[#080a0c]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080a0c] via-[#080a0c]/40 to-transparent pointer-events-none" />
           
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
             <div className="flex items-center gap-3 mb-4">
@@ -422,7 +423,7 @@ export const KeralaExpeditionView = memo(({ onBackToHome, onOpenBlog }: KeralaEx
               <div className="lg:col-span-6">
                 <h2 className="text-4xl md:text-5xl font-serif italic text-white mb-6">The Ledger</h2>
                 <p className="text-slate-400 font-light leading-relaxed mb-10 text-sm md:text-base">
-                  A comprehensive per-person budget of <span class="text-white font-medium">₹45,000</span> calculated on a twin-sharing base to secure premium cliffside stays and seamless flights.
+                  A comprehensive per-person budget of <span className="text-white font-medium">₹45,000</span> calculated on a twin-sharing base to secure premium cliffside stays and seamless flights.
                 </p>
                 
                 <div className="space-y-6">

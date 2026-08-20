@@ -15,7 +15,7 @@ interface ExpeditionHubProps {
 const PRESET_ITEM = {
   name: "2026 Lightroom Presets",
   price: 1499,
-  img: "https://images.unsplash.com/photo-1706803501715-8d0e4445e446?auto=format&fit=crop&w=800&q=80"
+  img: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=80"
 };
 
 /**

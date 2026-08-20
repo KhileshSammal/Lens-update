@@ -42,6 +42,7 @@ export const About = memo(({ onReadBio }: AboutProps) => (
         alt="Khilesh Sammal, travel photographer, full-stack marketer, and editor of Lens & Latitude" 
         loading="lazy"
         decoding="async"
+        referrerPolicy="no-referrer"
       />
     </motion.div>
   </section>

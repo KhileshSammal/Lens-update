@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Mail, Sparkles, ArrowRight, FileText, Compass, CheckCircle } from "lucide-react";
+import { Mail, Sparkles, ArrowRight, Instagram, CheckCircle, ExternalLink } from "lucide-react";
 
 interface TripCopyBannerProps {
   destination?: string;
@@ -12,9 +12,10 @@ interface TripCopyBannerProps {
  * "Want to copy this trip?
  *  We turn routes like this into a full day-by-day planner — flights, hotels, tours and maps in one file. 
  *  Grab the downloadable (place) itinerary or have us build a custom version for your dates."
- * Directs inquiries to khileshsammal.business@gmail.com.
+ * Directs custom plan inquiries straight to Instagram DM (@mr.khilesh__) and displays direct email below.
  */
 export const TripCopyBanner = memo(({ destination = "this destination", className = "" }: TripCopyBannerProps) => {
+  const instagramDmUrl = "https://ig.me/m/mr.khilesh__";
   const mailSubject = encodeURIComponent(`Custom Itinerary Planner Request — ${destination}`);
   const mailBody = encodeURIComponent(
     `Hi Khilesh,\n\nI would love to get a full day-by-day planner and custom itinerary for ${destination}.\n\n` +
@@ -65,19 +66,23 @@ export const TripCopyBanner = memo(({ destination = "this destination", classNam
           </div>
         </div>
 
-        {/* Right Side: Direct Email CTA */}
+        {/* Right Side: Instagram DM CTA & Direct Email Info */}
         <div className="lg:col-span-4 flex flex-col items-start lg:items-end justify-center gap-3 w-full">
           <a
-            href={mailtoUrl}
+            href={instagramDmUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Send direct message on Instagram to request custom plan"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-200 text-black font-ui font-black text-xs uppercase tracking-[0.18em] rounded-md transition-all shadow-lg hover:shadow-amber-400/20 hover:scale-[1.02] cursor-pointer"
           >
-            <Mail size={15} />
+            <Instagram size={16} />
             <span>Request Custom Plan</span>
             <ArrowRight size={14} />
           </a>
 
-          <div className="text-[11px] text-zinc-400 font-ui flex items-center gap-1.5">
-            <span>Direct contact:</span>
+          <div className="text-[11px] text-zinc-400 font-ui flex items-center gap-1.5 flex-wrap">
+            <Mail size={12} className="text-amber-400 shrink-0" />
+            <span>Direct Email:</span>
             <a 
               href={mailtoUrl} 
               className="text-amber-400 font-medium hover:underline hover:text-amber-300 transition-colors"
@@ -93,3 +98,4 @@ export const TripCopyBanner = memo(({ destination = "this destination", classNam
 });
 
 TripCopyBanner.displayName = "TripCopyBanner";
+

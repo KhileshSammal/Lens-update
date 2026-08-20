@@ -100,156 +100,220 @@
 }
 
 /* HIGH-CONTRAST LIGHT MODE COMPATIBILITY LAYER */
+html.light,
+body.light,
 .light {
-  /* Dynamic Background Class Overrides for Cards, Modals, and Widgets */
-  .bg-black,
-  .bg-zinc-950,
-  .bg-zinc-900,
-  .bg-slate-900,
-  .bg-slate-950,
-  .bg-\[\#0a0a0a\],
-  .bg-\[\#030303\],
-  .bg-\[\#070707\],
-  .bg-\[\#121212\],
-  .bg-\[\#0f0f0f\],
-  .bg-\[\#050505\],
-  .bg-\[\#0c0c0c\],
-  .bg-\[\#090909\],
-  .bg-\[\#060606\],
-  .bg-zinc-900\/50,
-  .bg-zinc-950\/40,
-  .bg-slate-900\/50,
-  .bg-slate-950\/40,
-  .bg-black\/40,
-  .bg-white\/\[0\.01\],
-  .bg-white\/\[0\.02\],
-  .bg-white\/\[0\.03\],
-  .bg-white\/\[0\.04\],
-  .bg-white\/\[0\.05\],
-  .bg-white\/\[0\.08\],
-  .bg-white\/5,
-  .bg-white\/10 {
-    background-color: var(--card-bg-color) !important;
-  }
+  --bg-color: #f8fafc;
+  --text-main-color: #0f172a;
+  --text-dim-color: #475569;
+  --card-bg-color: #ffffff;
+  --border-color: rgba(15, 23, 42, 0.08);
+  --accent-color: #b45309; /* Deep rich gold/amber-700 for beautiful, high-contrast readability in Light Mode */
+}
 
-  /* Support for mapping coaching banner or other dark dual gradients to flat cards */
-  .bg-gradient-to-r.from-zinc-950 {
-    background-image: none !important;
-    background-color: var(--card-bg-color) !important;
-  }
+/* 1. Always Dark isolation: Hero banner & explicitly dark zones remain cinematic */
+.light .always-dark,
+.light .always-dark * {
+  --bg-color: #0c0c0e !important;
+  --text-main-color: #ffffff !important;
+  --text-dim-color: #a1a1aa !important;
+  --card-bg-color: #121214 !important;
+  --border-color: rgba(255, 255, 255, 0.08) !important;
+  --accent-color: #ffcc00 !important;
+}
 
-  /* Dynamic Background Class Overrides for Page-Level Layouts & Section Wrappers */
-  .bg-\[\#07090b\],
-  .bg-\[\#0a0c10\],
-  .bg-\[\#090b0e\],
-  .bg-\[\#080a0c\],
-  .bg-\[\#0c0c0e\] {
-    background-color: var(--bg-color) !important;
-  }
+.light .always-dark {
+  background-color: #0c0c0e !important;
+  color: #ffffff !important;
+}
 
-  /* Core page structures and dynamic section containers */
-  .min-h-screen,
-  section {
-    &.bg-black,
-    &.bg-bg,
-    &.bg-zinc-950,
-    &.bg-\[\#07090b\],
-    &.bg-\[\#0a0c10\],
-    &.bg-\[\#090b0e\],
-    &.bg-\[\#080a0c\],
-    &.bg-\[\#0c0c0e\] {
-      background-color: var(--bg-color) !important;
-    }
-  }
+/* 2. Light Mode Page-Level Layouts & Section Wrappers (outside always-dark) */
+.light body,
+.light .min-h-screen:not(.always-dark):not(.always-dark *),
+.light section:not(.always-dark):not(.always-dark *),
+.light .bg-black:not(.always-dark):not(.always-dark *),
+.light .bg-\[\#07090b\]:not(.always-dark):not(.always-dark *),
+.light .bg-\[\#0a0c10\]:not(.always-dark):not(.always-dark *),
+.light .bg-\[\#090b0e\]:not(.always-dark):not(.always-dark *),
+.light .bg-\[\#080a0c\]:not(.always-dark):not(.always-dark *),
+.light .bg-\[\#0c0c0e\]:not(.always-dark):not(.always-dark *) {
+  background-color: #f8fafc !important;
+}
 
-  /* Specific White/Light/Slate text overrides for crisp dark text in Light Mode */
-  .text-white,
-  .text-zinc-50,
-  .text-zinc-100,
-  .text-zinc-200,
-  .text-zinc-300,
-  .text-neutral-50,
-  .text-neutral-100,
-  .text-neutral-200,
-  .text-slate-50,
-  .text-slate-100,
-  .text-slate-200,
-  .text-slate-300 {
-    color: var(--text-main-color) !important;
-  }
+/* 3. Light Mode Cards, Containers, Tables, & Modals (Preserving images and photo overlays) */
+.light .bg-zinc-950:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-zinc-900:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-zinc-850:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-zinc-800:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-slate-950:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-slate-900:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-\[\#121214\]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-\[\#18181b\]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-\[\#0a0a0a\]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-\[\#030303\]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-\[\#070707\]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-\[\#121212\]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-\[\#0f0f0f\]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-\[\#050505\]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-\[\#0c0c0c\]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-\[\#090909\]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light .bg-\[\#060606\]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light [class*="bg-zinc-950/"]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light [class*="bg-zinc-900/"]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light [class*="bg-slate-950/"]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]),
+.light [class*="bg-slate-900/"]:not(.always-dark):not(img):not(.absolute):not([class*="inset-0"]) {
+  background-color: #ffffff !important;
+}
 
-  /* Muted Zinc/Neutral/Slate text overrides */
-  .text-zinc-400,
-  .text-zinc-500,
-  .text-neutral-400,
-  .text-slate-400,
-  .text-slate-500 {
-    color: var(--text-dim-color) !important;
-  }
+/* 4. Light Mode Gradient Content Containers (DestinationBlogLinkCard, TripCopyBanner, Practical Tips Card, etc.) */
+.light [class*="bg-gradient-to-"][class*="from-zinc-950"]:not(.always-dark):not(.absolute):not(button):not(a[class*="bg-gradient-to-r"]),
+.light [class*="bg-gradient-to-"][class*="from-black"]:not(.always-dark):not(.absolute):not(button):not(a[class*="bg-gradient-to-r"]),
+.light [class*="bg-gradient-to-"][class*="from-[#0"]:not(.always-dark):not(.absolute):not(button):not(a[class*="bg-gradient-to-r"]) {
+  background-image: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03) !important;
+}
 
-  /* High contrast amber/gold text overrides in light mode for excellent readability */
-  .text-amber-50,
-  .text-amber-100,
-  .text-amber-200,
-  .text-amber-300,
-  .text-amber-400,
-  .text-amber-500,
-  [class*="text-amber-400/"],
-  [class*="text-amber-500/"],
-  [class*="text-amber-300/"],
-  [class*="text-amber-50/"] {
-    color: var(--accent-color) !important;
-  }
+/* 5. Sub-element Pill Badges and Compact Chips in Light Mode */
+.light .rounded-full[class*="bg-zinc-900"]:not(.always-dark):not(.absolute),
+.light .rounded-lg[class*="bg-zinc-900"]:not(.always-dark):not(.absolute),
+.light .rounded-xl[class*="bg-zinc-900"]:not(.always-dark):not(.absolute),
+.light .rounded-2xl[class*="bg-zinc-900"]:not(.always-dark):not(.absolute),
+.light .rounded-xl[class*="bg-white/5"]:not(.always-dark):not(.absolute),
+.light .rounded-lg[class*="bg-white/5"]:not(.always-dark):not(.absolute),
+.light .rounded-2xl[class*="bg-white/"]:not(.always-dark):not(.absolute),
+.light .bg-zinc-900\/40:not(.always-dark):not(.absolute),
+.light .bg-zinc-900\/60:not(.always-dark):not(.absolute),
+.light .bg-zinc-900\/80:not(.always-dark):not(.absolute),
+.light .bg-zinc-900\/90:not(.always-dark):not(.absolute),
+.light [class*="bg-zinc-900/"]:not(.always-dark):not(.absolute):not([class*="inset-0"]),
+.light [class*="bg-zinc-800/"]:not(.always-dark):not(.absolute):not([class*="inset-0"]) {
+  background-color: #f1f5f9 !important;
+  background-image: none !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
 
-  /* Ensure Headings are extremely sharp and prominent */
-  h1, h2, h3, h4, h5, h6 {
-    &.text-white,
-    &.text-zinc-100,
-    &.text-zinc-200,
-    &.text-slate-200 {
-      color: var(--text-main-color) !important;
-    }
-  }
+/* 6. Ensure Images and Image Overlays are fully visible and crystal clear */
+.light img {
+  opacity: 1 !important;
+  display: block;
+}
 
-  /* Custom input components background override */
-  :not(.always-dark *) input,
-  :not(.always-dark *) select,
-  :not(.always-dark *) textarea {
-    background-color: #ffffff !important;
-    color: #0f172a !important;
-    border-color: rgba(15, 23, 42, 0.15) !important;
-  }
+/* Image scrims and dark gradient overlays preserve transparent darkening */
+.light .absolute[class*="from-black"],
+.light .absolute[class*="from-black/"],
+.light .absolute[class*="bg-black/"],
+.light [class*="aspect-"] > .absolute[class*="from-black"],
+.light [class*="aspect-"] > .absolute[class*="bg-black/"] {
+  background-color: transparent !important;
+}
 
-  /* Transparent Border Overrides */
-  .border-white\/5,
-  .border-white\/10,
-  .border-white\/20,
-  .border-zinc-800,
-  .border-zinc-900,
-  .border-zinc-850,
-  .border-zinc-700,
-  .border-neutral-800 {
-    border-color: var(--border-color) !important;
-  }
+/* 6. Text Legibility & Contrast Overrides */
+.light .text-white:not(.always-dark):not(.always-dark *),
+.light .text-zinc-50:not(.always-dark):not(.always-dark *),
+.light .text-zinc-100:not(.always-dark):not(.always-dark *),
+.light .text-zinc-200:not(.always-dark):not(.always-dark *),
+.light .text-zinc-300:not(.always-dark):not(.always-dark *),
+.light .text-slate-50:not(.always-dark):not(.always-dark *),
+.light .text-slate-100:not(.always-dark):not(.always-dark *),
+.light .text-slate-200:not(.always-dark):not(.always-dark *),
+.light .text-slate-250:not(.always-dark):not(.always-dark *),
+.light .text-slate-300:not(.always-dark):not(.always-dark *),
+.light .text-neutral-50:not(.always-dark):not(.always-dark *),
+.light .text-neutral-100:not(.always-dark):not(.always-dark *),
+.light .text-neutral-200:not(.always-dark):not(.always-dark *) {
+  color: #0f172a !important;
+}
 
-  /* Overlay states & cards */
-  .bg-zinc-900\/30,
-  .bg-zinc-900\/40,
-  .bg-zinc-900\/60,
-  .bg-zinc-900\/80 {
-    background-color: #ffffff !important;
-    border-color: rgba(15, 23, 42, 0.1) !important;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
-  }
+.light .text-zinc-400:not(.always-dark):not(.always-dark *),
+.light .text-zinc-500:not(.always-dark):not(.always-dark *),
+.light .text-slate-400:not(.always-dark):not(.always-dark *),
+.light .text-slate-500:not(.always-dark):not(.always-dark *),
+.light .text-neutral-400:not(.always-dark):not(.always-dark *),
+.light [class*="text-white/"]:not(.always-dark):not(.always-dark *) {
+  color: #475569 !important;
+}
 
-  /* List & button interactive hover states */
-  .hover\:bg-white\/5:hover,
-  .hover\:bg-white\/10:hover {
-    background-color: rgba(15, 23, 42, 0.06) !important;
-  }
+.light .text-amber-50:not(.always-dark):not(.always-dark *),
+.light .text-amber-100:not(.always-dark):not(.always-dark *),
+.light .text-amber-200:not(.always-dark):not(.always-dark *),
+.light .text-amber-300:not(.always-dark):not(.always-dark *),
+.light .text-amber-400:not(.always-dark):not(.always-dark *),
+.light .text-amber-500:not(.always-dark):not(.always-dark *),
+.light [class*="text-amber-400/"]:not(.always-dark):not(.always-dark *),
+.light [class*="text-amber-500/"]:not(.always-dark):not(.always-dark *),
+.light [class*="text-amber-300/"]:not(.always-dark):not(.always-dark *),
+.light [class*="text-amber-50/"]:not(.always-dark):not(.always-dark *) {
+  color: #b45309 !important;
+}
 
-  /* Quote block backgrounds in Light Mode */
-  .bg-zinc-900\/40 {
-    background-color: rgba(180, 83, 9, 0.06) !important;
-  }
+/* Ensure Headings are dark and prominent */
+.light h1:not(.always-dark *), 
+.light h2:not(.always-dark *), 
+.light h3:not(.always-dark *), 
+.light h4:not(.always-dark *), 
+.light h5:not(.always-dark *), 
+.light h6:not(.always-dark *) {
+  color: #0f172a;
+}
+
+/* 7. Borders in Light Mode */
+.light [class*="border-white/"]:not(.always-dark):not(.always-dark *),
+.light [class*="border-zinc-800"]:not(.always-dark):not(.always-dark *),
+.light [class*="border-zinc-850"]:not(.always-dark):not(.always-dark *),
+.light [class*="border-zinc-900"]:not(.always-dark):not(.always-dark *),
+.light [class*="border-zinc-700"]:not(.always-dark):not(.always-dark *),
+.light [class*="border-neutral-800"]:not(.always-dark):not(.always-dark *) {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+.light [class*="border-amber-400/"]:not(.always-dark):not(.always-dark *),
+.light [class*="border-amber-500/"]:not(.always-dark):not(.always-dark *) {
+  border-color: rgba(180, 83, 9, 0.25) !important;
+}
+
+/* 8. Gallery Filter Bar & Interactive Elements */
+.light #gallery [class*="bg-zinc-950"],
+.light #gallery [class*="bg-zinc-900"] {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06) !important;
+}
+
+.light #gallery button.text-zinc-400 {
+  color: #475569 !important;
+}
+
+.light #gallery button.text-zinc-400:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* 9. Interactive Hover States in Light Mode */
+.light [class*="hover:bg-white/"]:hover:not(.always-dark):not(.always-dark *),
+.light [class*="hover:bg-zinc-900"]:hover:not(.always-dark):not(.always-dark *) {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* 10. Form Inputs & Textareas */
+.light input:not(.always-dark *),
+.light select:not(.always-dark *),
+.light textarea:not(.always-dark *) {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+}
+
+.light input::placeholder:not(.always-dark *),
+.light textarea::placeholder:not(.always-dark *) {
+  color: #94a3b8 !important;
+}
+
+/* 11. Subtle Card Shadows */
+.light .shadow-xl:not(.always-dark):not(.always-dark *),
+.light .shadow-2xl:not(.always-dark):not(.always-dark *),
+.light .shadow-lg:not(.always-dark):not(.always-dark *) {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
 }

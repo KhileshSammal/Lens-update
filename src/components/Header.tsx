@@ -29,10 +29,17 @@ interface BlogDropdownItemProps {
   currentView: "home" | "blog-archive";
   handleLinkClick: (e: React.MouseEvent, item: any) => void;
   onSelectPost?: (postId: string | null) => void;
+  isLightHeader?: boolean;
 }
 
-const BlogDropdownItem = ({ item, currentView, handleLinkClick, onSelectPost }: BlogDropdownItemProps) => {
+const BlogDropdownItem = ({ item, currentView, handleLinkClick, onSelectPost, isLightHeader }: BlogDropdownItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const linkColor = currentView === "blog-archive" 
+    ? "text-accent" 
+    : isLightHeader 
+      ? "text-zinc-800 hover:text-accent" 
+      : "text-white hover:text-accent";
 
   return (
     <div 
@@ -43,9 +50,7 @@ const BlogDropdownItem = ({ item, currentView, handleLinkClick, onSelectPost }: 
       <a 
         href={item.href} 
         onClick={(e) => handleLinkClick(e, item)}
-        className={`relative flex items-center gap-1.5 font-bold transition-colors ${
-          currentView === "blog-archive" ? "text-accent" : "text-white hover:text-accent"
-        }`}
+        className={`relative flex items-center gap-1.5 font-bold transition-colors ${linkColor}`}
       >
         <item.icon size={13} className="text-accent" /> 
         {item.name}
@@ -56,24 +61,37 @@ const BlogDropdownItem = ({ item, currentView, handleLinkClick, onSelectPost }: 
       </a>
 
       {isOpen && (
-        <div className="absolute top-full left-1/2 -translate-x-1/2 w-[110%] h-4 bg-transparent z-10" />
+        <div className="absolute top-full left-1/2 -translate-x-1/2 w-[120%] h-5 bg-transparent z-10" />
       )}
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 bg-zinc-950/98 backdrop-blur-md rounded-sm border border-white/10 shadow-2xl z-50 py-4 flex flex-col overflow-hidden"
+            initial={{ opacity: 0, y: 12, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.98 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[460px] bg-zinc-950/98 backdrop-blur-xl rounded-xl border border-amber-400/20 shadow-2xl shadow-black/80 z-50 py-3.5 flex flex-col overflow-hidden text-left always-dark"
           >
-            <div className="px-5 pb-3 border-b border-white/5 flex items-center justify-between text-[9px] text-zinc-500 font-bold font-ui uppercase tracking-widest">
-              <span>EXPLORE THE JOURNAL</span>
-              <PenTool size={11} className="text-accent/60" />
+            {/* Top Bar Header */}
+            <div className="px-5 pb-3 border-b border-white/10 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-md bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400">
+                  <PenTool size={12} />
+                </div>
+                <div>
+                  <span className="text-[10px] text-zinc-200 font-extrabold font-ui uppercase tracking-widest block">
+                    Travel Journal & Guides
+                  </span>
+                </div>
+              </div>
+              <span className="text-[9px] uppercase tracking-wider text-amber-400 font-mono font-bold bg-amber-400/10 border border-amber-400/20 px-2 py-0.5 rounded-full">
+                {DETAILED_BLOG_POSTS.length} Field Notes
+              </span>
             </div>
 
-            <div className="max-h-[300px] overflow-y-auto custom-scrollbar flex flex-col py-1">
+            {/* Scrollable Post List */}
+            <div className="max-h-[380px] overflow-y-auto custom-scrollbar flex flex-col py-1 px-2 space-y-1">
               {DETAILED_BLOG_POSTS.map((post) => (
                 <div
                   key={post.id}
@@ -83,31 +101,50 @@ const BlogDropdownItem = ({ item, currentView, handleLinkClick, onSelectPost }: 
                       onSelectPost(post.id);
                     }
                   }}
-                  className="px-5 py-2.5 hover:bg-white/5 transition-all text-left cursor-pointer group/item flex flex-col gap-1 border-b border-white/5 last:border-b-0"
+                  className="p-2.5 rounded-lg hover:bg-white/[0.07] transition-all text-left cursor-pointer group/item flex items-center gap-3.5 border border-transparent hover:border-amber-400/20"
                 >
-                  <div className="flex gap-2 items-center text-[9px] uppercase tracking-wider text-accent font-bold font-ui">
-                    <span>{post.tag}</span>
-                    <span className="w-1.5 h-1.5 bg-zinc-700 rounded-full" />
-                    <span className="text-zinc-500 font-medium normal-case flex items-center gap-1">
-                      <Clock size={10} /> {post.read}
-                    </span>
+                  {/* Thumbnail */}
+                  <div className="w-16 h-16 rounded-md overflow-hidden shrink-0 border border-white/10 bg-zinc-900 relative">
+                    <img 
+                      src={post.img} 
+                      alt={post.title} 
+                      className="w-full h-full object-cover group-hover/item:scale-110 transition-transform duration-500" 
+                      loading="lazy"
+                      decoding="async"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-black/10 group-hover/item:bg-transparent transition-colors" />
                   </div>
-                  <h4 className="text-[11px] leading-relaxed text-zinc-100 font-serif group-hover/item:text-accent font-medium transition-colors">
-                    {post.title}
-                  </h4>
+
+                  {/* Text Details */}
+                  <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[9px] uppercase tracking-wider text-amber-400 font-bold font-ui bg-amber-400/10 px-1.5 py-0.5 rounded">
+                        {post.tag}
+                      </span>
+                      <span className="text-zinc-400 text-[10px] font-sans flex items-center gap-1">
+                        <Clock size={10} className="text-zinc-400" /> {post.read}
+                      </span>
+                    </div>
+                    <h4 className="text-[12px] leading-snug text-zinc-100 font-serif group-hover/item:text-amber-400 font-semibold transition-colors line-clamp-2">
+                      {post.title}
+                    </h4>
+                  </div>
                 </div>
               ))}
             </div>
 
-            <div className="px-5 pt-3 border-t border-white/5 mt-1">
+            {/* Bottom Footer Button */}
+            <div className="px-4 pt-3 border-t border-white/10 mt-1">
               <button 
                 onClick={(e) => {
                   setIsOpen(false);
                   handleLinkClick(e, item);
                 }}
-                className="w-full text-center py-2 text-[9px] uppercase tracking-[0.2em] font-ui font-black text-accent bg-white/5 hover:bg-accent hover:text-black border border-accent/20 transition-all rounded-sm cursor-pointer"
+                className="w-full py-2.5 text-[10px] uppercase tracking-[0.2em] font-ui font-black text-amber-400 bg-amber-400/10 hover:bg-amber-400 hover:text-black border border-amber-400/30 transition-all rounded-md cursor-pointer flex items-center justify-center gap-2 shadow-sm"
               >
-                View Archive List
+                <span>Explore Full Journal Archive</span>
+                <ChevronDown size={12} className="-rotate-90" />
               </button>
             </div>
           </motion.div>
@@ -193,6 +230,8 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
       onNavigate("blog-archive");
     } else if (item.name === "Shop") {
       onNavigate("shop");
+    } else if (item.name === "Contact") {
+      onNavigate("contact");
     } else {
       onNavigate("home", item.href);
     }
@@ -204,7 +243,7 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
     onNavigate("home");
   };
 
-  const isLightHeader = isScrolled && theme === "light";
+  const isLightHeader = theme === "light";
   const headerTextColor = isLightHeader ? "text-zinc-900" : "text-white";
   const headerBorderColor = isLightHeader ? "bg-zinc-200" : "bg-white/40";
 
@@ -212,11 +251,11 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
     <>
       <header 
         className={`fixed w-full z-50 px-4 py-3 md:px-12 transition-all duration-500 ${
-          isScrolled 
-            ? theme === "light"
-              ? "bg-white/95 backdrop-blur-md py-2 shadow-md border-b border-zinc-200"
-              : "bg-black/95 backdrop-blur-md py-2 shadow-2xl" 
-            : "bg-gradient-to-b from-black/50 via-black/10 to-transparent md:py-6"
+          isLightHeader
+            ? "bg-white/95 backdrop-blur-md py-2.5 shadow-sm border-b border-zinc-200"
+            : isScrolled
+              ? "bg-black/95 backdrop-blur-md py-2 shadow-2xl always-dark text-white" 
+              : "bg-gradient-to-b from-black/60 via-black/20 to-transparent md:py-6 always-dark text-white"
         }`}
       >
         <div className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
@@ -239,10 +278,11 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
                     currentView={currentView === "blog-archive" ? "blog-archive" : "home"}
                     handleLinkClick={handleLinkClick}
                     onSelectPost={onSelectPost}
+                    isLightHeader={isLightHeader}
                   />
                 );
               }
-              const isActive = (item.name === "Shop" && currentView === "shop");
+              const isActive = (item.name === "Shop" && currentView === "shop") || (item.name === "Contact" && currentView === "contact");
               const linkColor = isActive 
                 ? "text-accent" 
                 : isLightHeader

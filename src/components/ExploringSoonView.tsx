@@ -59,9 +59,10 @@ export const ExploringSoonView = memo(({
           <img 
             src={bgImage} 
             alt={`Upcoming expedition preview for ${locationName} — ${subtitle}`} 
-            className="w-full h-full object-cover brightness-[0.4]"
+            className="w-full h-full object-cover brightness-[0.75]"
+            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />
 
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-14">
             <div className="flex items-center gap-3 mb-3">

@@ -191,11 +191,12 @@ export const PatalBhuvaneshwarExpeditionView = memo(({ onBackToHome, onOpenBlog 
         {/* Hero Banner Section */}
         <div className="relative rounded-[2.5rem] overflow-hidden mb-24 aspect-[16/8] md:aspect-[21/9] border border-white/5 bg-zinc-950 always-dark">
           <img 
-            src="https://images.unsplash.com/photo-1714744715493-ad89b7ff503e?auto=format&fit=crop&q=80&w=2000" 
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=2000" 
             alt="Ancient cedar pine forests and Himalayan mountain ranges surrounding Patal Bhuvaneshwar in Pithoragarh" 
-            className="w-full h-full object-cover brightness-[0.22]"
+            className="w-full h-full object-cover brightness-[0.75]"
+            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07090b] via-[#07090b]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07090b] via-[#07090b]/40 to-transparent pointer-events-none" />
           
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
             <div className="flex items-center gap-3 mb-4">
@@ -452,7 +453,7 @@ export const PatalBhuvaneshwarExpeditionView = memo(({ onBackToHome, onOpenBlog 
               <div className="lg:col-span-6">
                 <h2 className="text-4xl md:text-5xl font-serif italic text-white mb-6">The Ledger</h2>
                 <p className="text-slate-400 font-light leading-relaxed mb-10 text-sm md:text-base">
-                  A comprehensive per-person budget of <span class="text-white font-medium">₹20,500</span> designed for the 5-day mountain odyssey on a twin-sharing base.
+                  A comprehensive per-person budget of <span className="text-white font-medium">₹20,500</span> designed for the 5-day mountain odyssey on a twin-sharing base.
                 </p>
                 
                 <div className="space-y-6">
