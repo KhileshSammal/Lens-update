@@ -19,13 +19,19 @@
   </url>
   <url>
     <loc>https://lensandlattitude.in/shop</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://lensandlattitude.in/contact</loc>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://lensandlattitude.in/bio</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -241,9 +247,69 @@
   </url>
   <url>
     <loc>https://lensandlattitude.in/blog/first-timer-diy-guide-se-asia</loc>
-    <lastmod>2026-08-17</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lensandlattitude.in/blog/thailand-bangkok-pattaya-koh-chang</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lensandlattitude.in/blog/tomorrowland-thailand-2026-guide</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lensandlattitude.in/blog/edc-thailand-2026-phuket-guide</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lensandlattitude.in/blog/phuket-secret-beaches-local-guide</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lensandlattitude.in/blog/northern-thailand-chiang-mai-chiang-rai</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lensandlattitude.in/blog/malaysia-kl-malacca-ipoh-itinerary</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lensandlattitude.in/blog/penang-george-town-street-food-heritage</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lensandlattitude.in/blog/cameron-highlands-tea-plantations-guide</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lensandlattitude.in/blog/langkawi-geopark-hidden-beaches-guide</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lensandlattitude.in/blog/borneo-sabah-wildlife-kinabatangan-guide</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
 
 </urlset>

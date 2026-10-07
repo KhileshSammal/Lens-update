@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Search, ChevronDown } from "lucide-react";
+import { Search, ChevronDown, HelpCircle, Sparkles, Tag, X } from "lucide-react";
 import { FAQS } from "../constants";
 
 const FAQItem = memo(({ 
@@ -14,27 +14,51 @@ const FAQItem = memo(({
   isOpen: boolean; 
   onToggle: () => void; 
 }) => (
-  <div className="border border-border-main bg-card-bg rounded-sm overflow-hidden transition-all duration-300 hover:border-accent/40">
+  <div 
+    className={`border rounded-2xl overflow-hidden transition-all duration-300 bg-card-bg ${
+      isOpen 
+        ? "border-accent/60 shadow-lg ring-1 ring-accent/20" 
+        : "border-border-main hover:border-accent/40 hover:shadow-md"
+    }`}
+  >
     <button 
       onClick={onToggle}
-      className="w-full flex justify-between items-center p-5 md:p-6 text-left focus:outline-none cursor-pointer"
+      className="w-full flex justify-between items-center p-5 sm:p-6 md:p-7 text-left focus:outline-none cursor-pointer group"
       aria-expanded={isOpen}
     >
-      <div className="flex flex-col gap-1 pr-4">
-        {faq.category && (
-          <span className="text-[9px] uppercase tracking-widest text-amber-400 font-bold font-ui">
-            {faq.category}
-          </span>
-        )}
-        <span className="font-bold font-ui text-[10px] md:text-sm uppercase tracking-widest leading-relaxed text-text-main">
-          {index + 1}. {faq.q}
+      <div className="flex items-start gap-3.5 sm:gap-4.5 pr-4 flex-1">
+        <span className={`text-base sm:text-lg md:text-xl font-serif font-bold transition-colors shrink-0 mt-0.5 ${
+          isOpen ? "text-accent" : "text-accent/80 group-hover:text-accent"
+        }`}>
+          {String(index + 1).padStart(2, "0")}.
         </span>
+
+        <div className="flex flex-col gap-1.5 flex-1">
+          {faq.category && (
+            <div className="flex items-center gap-1.5">
+              <Tag size={11} className="text-accent" />
+              <span className="text-[10px] sm:text-[11px] uppercase tracking-widest text-accent font-bold font-ui">
+                {faq.category}
+              </span>
+            </div>
+          )}
+          <h3 className={`font-serif text-base sm:text-lg md:text-xl font-semibold leading-snug transition-colors text-text-main ${
+            isOpen ? "text-accent" : "group-hover:text-accent"
+          }`}>
+            {faq.q}
+          </h3>
+        </div>
       </div>
-      <ChevronDown 
-        className={`transition-transform duration-300 text-zinc-500 shrink-0 ${isOpen ? "rotate-180 text-amber-400" : ""}`} 
-        size={16} 
-      />
+
+      <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
+        isOpen 
+          ? "bg-accent text-black rotate-180 shadow-sm" 
+          : "bg-bg/80 border border-border-main text-text-dim group-hover:text-text-main group-hover:border-accent/40"
+      }`}>
+        <ChevronDown size={17} />
+      </div>
     </button>
+
     <AnimatePresence>
       {isOpen && (
         <motion.div 
@@ -44,8 +68,12 @@ const FAQItem = memo(({
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="overflow-hidden"
         >
-          <div className="px-5 md:px-6 pb-6 pt-1 border-t border-white/5">
-            <p className="text-text-dim leading-relaxed text-sm md:text-base font-sans">{faq.a}</p>
+          <div className="px-5 sm:px-6 md:px-7 pb-6 sm:pb-7 pt-2 border-t border-border-main/60">
+            <div className="pl-0 sm:pl-9">
+              <p className="text-text-dim leading-relaxed text-sm sm:text-base font-sans antialiased">
+                {faq.a}
+              </p>
+            </div>
           </div>
         </motion.div>
       )}
@@ -56,7 +84,7 @@ const FAQItem = memo(({
 FAQItem.displayName = "FAQItem";
 
 export const FAQSection = memo(() => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -83,43 +111,55 @@ export const FAQSection = memo(() => {
   }, []);
 
   return (
-    <section id="faq" className="py-16 md:py-32 px-4 sm:px-6 lg:px-8 bg-bg border-t border-border-main/50">
-      <div className="max-w-4xl mx-auto">
+    <section id="faq" className="py-16 md:py-28 px-4 sm:px-6 lg:px-8 w-full max-w-[92%] mx-auto">
+      <div className="w-full">
+        {/* Header Title Section */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mb-10 text-center"
+          className="mb-10 md:mb-14 text-center max-w-3xl mx-auto"
         >
-          <span className="text-accent uppercase tracking-widest text-[10px] font-bold mb-3 block font-ui">Knowledge Hub</span>
-          <h2 className="text-3xl md:text-5xl font-serif mb-3">Travel FAQ</h2>
-          <p className="text-zinc-400 text-xs md:text-sm italic font-serif max-w-lg mx-auto">
-            Clear answers regarding travel logistics, photography gear, copyrights, and collaborations.
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-accent font-ui font-bold text-[10px] md:text-xs uppercase tracking-widest mb-4">
+            <Sparkles size={13} className="text-accent" />
+            <span>Field Knowledge Hub</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif tracking-tight leading-tight mb-4 text-text-main">
+            Frequently Asked <span className="italic text-accent">Questions</span>
+          </h2>
+
+          <p className="text-text-dim text-sm sm:text-base md:text-lg font-sans leading-relaxed max-w-2xl mx-auto">
+            Clear, honest answers regarding trip logistics, camera gear, photo editing workflows, copyrights, and bespoke itinerary collaborations.
           </p>
         </motion.div>
 
-        <div className="mb-8 space-y-4">
-          <div className="relative max-w-md mx-auto">
-            <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500" />
+        {/* Filter Controls Bar */}
+        <div className="mb-8 md:mb-12 space-y-4 max-w-4xl mx-auto">
+          {/* Search Box */}
+          <div className="relative max-w-lg mx-auto">
+            <Search size={17} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-dim" />
             <input
               type="text"
-              placeholder="Search travel FAQ questions..."
+              placeholder="Search travel FAQs, gear, visas, itineraries..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-card-bg border border-border-main rounded-sm pl-10 pr-4 py-2.5 text-xs text-text-main placeholder-text-dim/50 focus:outline-none focus:border-accent font-sans transition-colors"
+              className="w-full bg-card-bg border border-border-main rounded-full pl-11 pr-10 py-3 text-xs sm:text-sm text-text-main placeholder-text-dim/60 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all shadow-sm"
             />
             {searchQuery && (
               <button 
                 onClick={() => setSearchQuery("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-zinc-500 hover:text-white cursor-pointer"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 text-text-dim hover:text-text-main rounded-full hover:bg-border-main/30 transition-colors cursor-pointer"
+                aria-label="Clear search"
               >
-                Clear
+                <X size={14} />
               </button>
             )}
           </div>
 
-          <div className="flex flex-wrap justify-center gap-2 pt-2">
+          {/* Categories Pill Buttons */}
+          <div className="flex flex-wrap justify-center gap-2 pt-1">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -127,10 +167,10 @@ export const FAQSection = memo(() => {
                   setSelectedCategory(cat);
                   setOpenIndex(null);
                 }}
-                className={`px-3.5 py-1.5 rounded-sm text-[10px] uppercase tracking-widest font-bold font-ui transition-all cursor-pointer ${
+                className={`px-4 py-2 rounded-full text-[11px] sm:text-xs uppercase tracking-wider font-bold font-ui transition-all cursor-pointer shadow-sm ${
                   selectedCategory === cat 
-                    ? "bg-amber-400 text-black shadow-md font-extrabold" 
-                    : "bg-card-bg text-zinc-400 hover:text-white border border-border-main/50"
+                    ? "bg-accent text-black font-extrabold shadow-md hover:bg-amber-300 scale-105" 
+                    : "bg-card-bg text-text-dim hover:text-text-main border border-border-main hover:border-accent/40"
                 }`}
               >
                 {cat}
@@ -139,14 +179,15 @@ export const FAQSection = memo(() => {
           </div>
         </div>
 
-        <div className="space-y-3 md:space-y-4">
+        {/* FAQ Accordion List - Spacious, full width layout */}
+        <div className="space-y-4 max-w-5xl mx-auto">
           {filteredFaqs.length > 0 ? (
             filteredFaqs.map((faq, i) => (
               <motion.div
                 key={faq.q}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
+                transition={{ duration: 0.3, delay: i * 0.04 }}
               >
                 <FAQItem 
                   faq={faq} 
@@ -157,8 +198,18 @@ export const FAQSection = memo(() => {
               </motion.div>
             ))
           ) : (
-            <div className="text-center py-12 border border-dashed border-border-main rounded-sm text-zinc-500 text-xs">
-              No matching FAQ entries found for "{searchQuery}". Try searching for photography, visa, or gear.
+            <div className="text-center py-14 border border-dashed border-border-main rounded-2xl bg-card-bg text-text-dim text-sm space-y-2">
+              <HelpCircle size={32} className="mx-auto text-accent/60 mb-2" />
+              <p className="font-semibold text-text-main">No matching FAQ entries found</p>
+              <p className="text-xs text-text-dim">
+                Try searching for keywords like "gear", "visa", "editing", or "collaborations".
+              </p>
+              <button 
+                onClick={() => { setSearchQuery(""); setSelectedCategory("All"); }}
+                className="mt-3 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-accent font-ui font-bold text-xs uppercase tracking-wider hover:bg-accent/20 transition-all cursor-pointer"
+              >
+                Reset Filters
+              </button>
             </div>
           )}
         </div>
@@ -168,3 +219,4 @@ export const FAQSection = memo(() => {
 });
 
 FAQSection.displayName = "FAQSection";
+

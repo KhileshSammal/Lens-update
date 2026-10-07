@@ -216,7 +216,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
   // ==========================================================================
   if (activePost) {
     return (
-      <div className="min-h-screen bg-bg text-white pt-20 sm:pt-24 pb-32">
+      <div className="min-h-screen bg-bg text-text-main pt-20 sm:pt-24 pb-32">
         <div className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Back Navigation Bar & Social Sharing */}
@@ -249,7 +249,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
             </div>
 
             {/* Outcome-focused H1 Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-bold leading-[1.18] mb-6 text-zinc-100">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-bold leading-[1.18] mb-6 text-text-main">
               {activePost.title}
             </h1>
             
@@ -769,7 +769,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
   // JOURNAL ARCHIVE GRID VIEW
   // ==========================================================================
   return (
-    <div className="min-h-screen bg-bg text-white pt-24 pb-32">
+    <div className="min-h-screen bg-bg text-text-main pt-24 pb-32">
       <div className="w-full max-w-[92%] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Navigation & Title */}
@@ -787,11 +787,11 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
               <span className="text-[10px] uppercase font-bold tracking-widest text-amber-400 font-ui block mb-2">
                 Field Notes & Publications
               </span>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold tracking-tight text-white">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold tracking-tight text-text-main">
                 The Journal Archive
               </h1>
             </div>
-            <p className="text-zinc-400 text-sm max-w-md font-sans leading-relaxed">
+            <p className="text-text-dim text-sm max-w-md font-sans leading-relaxed">
               In-depth travel strategies, visual essays, and technical packing logs from expeditions across the globe.
             </p>
           </div>

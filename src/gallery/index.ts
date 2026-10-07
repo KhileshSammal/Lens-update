@@ -19,8 +19,7 @@ export * from "./amritsar";
 export * from "./patal_bhuvaneshwar";
 
 /**
- * The unified Gallery Suite data source.
- * Images and videos removed from Gallery Suite per request while retaining destination location structure.
+ * Filterable destination locations in The Gallery Suite
  */
 export const GALLERY_LOCATIONS = [
   "Vietnam",
@@ -33,6 +32,14 @@ export const GALLERY_LOCATIONS = [
   "Patal Bhuvaneshwar"
 ];
 
+/**
+ * Curated signature captures for "All Captures"
+ */
+export const ALL_CAPTURES_PHOTOS: GalleryItem[] = [];
+
+/**
+ * Complete set of all location gallery photographs
+ */
 export const ALL_GALLERY_PHOTOS: GalleryItem[] = [];
 
 /**

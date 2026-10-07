@@ -158,8 +158,17 @@ async function startServer() {
     const distPath = path.join(process.cwd(), "dist");
     const indexHtmlPath = path.join(distPath, "index.html");
 
-    // Static assets (exclude automatic index.html serving so our dynamic SEO handler runs for all routes)
-    app.use(express.static(distPath, { index: false }));
+    // Static assets: Hashed bundles in dist/assets get 1-year immutable caching
+    app.use("/assets", express.static(path.join(distPath, "assets"), {
+      maxAge: "1y",
+      immutable: true,
+    }));
+
+    // Other public static files (images, favicon, sitemap, etc.) get 1-day caching (excluding index.html)
+    app.use(express.static(distPath, { 
+      index: false,
+      maxAge: "1d"
+    }));
 
     // Serve dynamically SEO-injected HTML for all browser and search engine requests
     app.get("*", (req, res) => {
@@ -169,6 +178,7 @@ async function startServer() {
           const renderedHtml = injectSeoTagsIntoHtml(rawHtml, req.path);
           res.status(200).set({
             "Content-Type": "text/html",
+            "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
             "X-Robots-Tag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
           }).send(renderedHtml);
         } else {
@@ -178,6 +188,7 @@ async function startServer() {
         console.error("Error serving page with SEO injection:", error);
         res.status(200).set({
           "Content-Type": "text/html",
+          "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
           "X-Robots-Tag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         }).sendFile(indexHtmlPath);
       }

@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, ChevronLeft, ChevronRight, Camera, MapPin, ZoomIn, Play, Video as VideoIcon } from "lucide-react";
-import { ALL_GALLERY_PHOTOS, GalleryItem, GALLERY_LOCATIONS } from "../gallery";
+import { ALL_GALLERY_PHOTOS, ALL_CAPTURES_PHOTOS, GalleryItem, GALLERY_LOCATIONS } from "../gallery";
 
 // Re-export type for compatibility
 export type Photo = GalleryItem;
@@ -28,10 +28,10 @@ export const PortfolioGallery = memo(() => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  // Filter items by category (all images/videos removed)
+  // Filter items from curated gallery photos
   const filteredPhotos = useMemo(() => {
     if (activeFilter === "all") {
-      return ALL_GALLERY_PHOTOS;
+      return ALL_CAPTURES_PHOTOS;
     }
     return ALL_GALLERY_PHOTOS.filter((photo) => photo.category === activeFilter);
   }, [activeFilter]);
@@ -203,6 +203,13 @@ export const PortfolioGallery = memo(() => {
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                         loading="lazy"
+                        decoding="async"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (photo.fallbackUrl && target.src !== photo.fallbackUrl) {
+                            target.src = photo.fallbackUrl;
+                          }
+                        }}
                       />
                     )}
 
@@ -331,6 +338,12 @@ export const PortfolioGallery = memo(() => {
                   alt={currentPhoto.alt}
                   referrerPolicy="no-referrer"
                   className="max-w-full max-h-[60vh] md:max-h-[65vh] object-contain rounded-2xl border border-white/15 shadow-2xl bg-zinc-950"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (currentPhoto.fallbackUrl && target.src !== currentPhoto.fallbackUrl) {
+                      target.src = currentPhoto.fallbackUrl;
+                    }
+                  }}
                 />
               )}
 

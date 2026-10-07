@@ -9,6 +9,7 @@ export interface GalleryItem {
   title: string;        // Visual title of the media piece
   aspect: string;       // Tailwind aspect ratio class (e.g., "aspect-[3/4]")
   url: string;          // Direct media path or URL
+  fallbackUrl?: string; // High-availability CDN fallback URL
   thumbnailUrl?: string;// Optional thumbnail for videos
   alt: string;          // Descriptive and accessible alt text for search engine optimization
   camera?: string;      // Camera body & lens used

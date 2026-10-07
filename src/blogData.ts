@@ -1583,6 +1583,1127 @@ export const DETAILED_BLOG_POSTS: BlogPost[] = [
       keyGear: "35L backpack, universal GaN charger, zero-forex card, waterproof pouch, first-aid kit"
     },
     closingQuestion: "Which country are you most excited to plan on your own: Thailand, Malaysia, or Vietnam?"
+  },
+
+  // --------------------------------------------------------------------------
+  // THAILAND 1: 8-DAY THAILAND ROAD & ISLAND CIRCUIT: BANGKOK, PAT
+  // --------------------------------------------------------------------------
+  {
+      "id": "thailand-bangkok-pattaya-koh-chang",
+      "title": "8-Day Thailand Road & Island Circuit: Bangkok, Pattaya & Hidden Koh Chang Itinerary",
+      "tag": "Itineraries",
+      "read": "8 Min Read",
+      "date": "Nov 15, 2026",
+      "img": "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1600&h=900&q=80",
+      "excerpt": "From Bangkok's historic temples and street food to Pattaya's coastal sights and the peaceful jungle beaches of Koh Chang without internal flights.",
+      "author": "Khilesh Sammal",
+      "authorRole": "Travel Photographer & Full-Stack Marketer",
+      "authorBio": "Khilesh Sammal is a travel photographer and full-stack marketer who documents authentic travel guides, cultural heritage, and practical itineraries across Asia and beyond.",
+      "introSectionTitle": "The Ultimate Eastern Gulf Overland Circuit",
+      "introHook": "If you want to experience the energy of Bangkok, seaside coastal attractions, and a quiet tropical island without booking expensive internal flights, this 8-day overland circuit is the perfect route. Traveling southeast from Bangkok along the Gulf of Thailand connects city skylines, coastal towns, and lush island beaches with ease.",
+      "highlights": [
+          "Connect Bangkok, Pattaya, and Koh Chang overland in 8 days using comfortable vans and the Trat car ferry.",
+          "Spend 2 days exploring Bangkok's grand temples and Chinatown night markets before heading down the eastern Gulf coast.",
+          "Unwind for 3 full days on Koh Chang with jungle waterfalls, quiet sandy bays, and fresh seafood in Bang Bao fishing village."
+      ],
+      "tableOfContents": [
+          {
+              "id": "about-route",
+              "title": "About the Route: Thailand's Eastern Gulf Corridor"
+          },
+          {
+              "id": "best-time",
+              "title": "Best Time to Visit & Climate"
+          },
+          {
+              "id": "day-by-day-route",
+              "title": "8-Day Day-by-Day Itinerary"
+          },
+          {
+              "id": "ground-transit",
+              "title": "Ground Transit & Koh Chang Ferry Guide"
+          },
+          {
+              "id": "logistics-stats",
+              "title": "Trip Budget & Logistics Table"
+          }
+      ],
+      "sections": [
+          {
+              "type": "text",
+              "id": "about-route",
+              "title": "About the Route: Thailand's Eastern Gulf Corridor",
+              "subtitle": "Contrasting Skylines, Coastal Culture & Lush Jungle",
+              "body": "Thailand's eastern seaboard stretches from the bustling Chao Phraya River in Bangkok through the vibrant coastal city of Pattaya all the way to Trat province and Koh Chang. Koh Chang is Thailand's second largest island after Phuket, yet it remains far more relaxed and peaceful because it is largely covered by virgin rainforest within Mu Ko Chang National Park."
+          },
+          {
+              "type": "callout",
+              "calloutType": "tip",
+              "title": "TRANSIT TIP: Direct Minivan from Ekkamai to Trat",
+              "body": "You can book comfortable air-conditioned minivans or private transfers directly from Bangkok's Ekkamai Eastern Bus Terminal straight to the Ao Thammachat ferry pier in Trat. This avoids airport check-in delays and allows you to enjoy scenic countryside views."
+          },
+          {
+              "type": "image",
+              "imageUrl": "https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=1600&h=900&q=80",
+              "imageCaption": "Intricately hand-carved teak wood architecture of the Sanctuary of Truth in Pattaya."
+          },
+          {
+              "type": "text",
+              "id": "best-time",
+              "title": "Best Time to Visit & Climate",
+              "subtitle": "Sunny Months on the Eastern Gulf Coast",
+              "body": "The ideal travel window for this route is from November through April, when the northeast monsoon brings blue skies, gentle ocean waves, and minimal rain. Koh Chang receives higher rainfall during the green season (June to October), so visiting during the dry winter and spring months ensures calm seas for snorkeling and island hopping."
+          },
+          {
+              "type": "bullet-list",
+              "id": "day-by-day-route",
+              "title": "8-Day Day-by-Day Itinerary",
+              "badge": "Field-Tested Route",
+              "items": [
+                  "Day 1 & 2 (Bangkok): Marvel at Wat Pho's Reclining Buddha, take a longtail boat along the Chao Phraya River, explore Wat Arun at dusk, and dive into street food along Yaowarat Road in Chinatown.",
+                  "Day 3 & 4 (Pattaya & Sattahip): Drive 2 hours southeast to Pattaya. Tour the breathtaking Sanctuary of Truth hand-carved teak temple, grab coffee at cliffside beach clubs in Pratumnak, and watch the sunset from Jomtien Beach.",
+                  "Day 5 to 7 (Koh Chang): Drive 3.5 hours to Ao Thammachat Pier in Trat and take the 30-minute car ferry to Koh Chang. Base yourself near Kai Bae or Klong Prao Beach, swim at Klong Plu waterfall, hike to Kai Bae viewpoint, and dine on fresh grilled crab in the wooden stilt village of Bang Bao.",
+                  "Day 8 (Return to Bangkok): Enjoy a morning ocean dip on White Sand Beach, take the mid-day ferry back to the mainland, and drive back to Bangkok or catch a 50-minute domestic flight from Trat Airport (TDX)."
+              ]
+          },
+          {
+              "type": "text",
+              "id": "ground-transit",
+              "title": "Ground Transit & Koh Chang Ferry Guide",
+              "subtitle": "Smooth Logistics Across Land and Water",
+              "body": "Transport across this corridor is very straightforward. A private air-conditioned van from Bangkok to Pattaya costs around 1,400 to 1,800 THB ($40 to $50 USD). Continuing from Pattaya to the Trat ferry piers takes roughly 3.5 hours on smooth highways. Ferries depart Ao Thammachat Pier every 45 minutes from 6:30 AM to 6:30 PM, charging just 80 THB (~$2.30 USD) per passenger."
+          },
+          {
+              "type": "callout",
+              "calloutType": "warning",
+              "title": "SAFETY TIP: Koh Chang Mountain Roads",
+              "body": "The coastal road crossing between White Sand Beach and Kai Bae on Koh Chang features steep winding mountain curves. If you are not an experienced motorcycle rider, hire the island's white Songthaew shared pickup taxis instead of renting a scooter."
+          },
+          {
+              "type": "image",
+              "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&h=900&q=80",
+              "imageCaption": "Calm tropical waters and golden sands fringed with coconut palms on Koh Chang."
+          }
+      ],
+      "quickStats": {
+          "estimatedBudget": "$550 - $850 USD per person (8-day hotels, transport & meals)",
+          "idealDuration": "8 Days & 7 Nights",
+          "bestMonths": "November through April",
+          "routeAccess": "Fly into Bangkok (BKK or DMK), ground transit to Trat, ferry to Koh Chang",
+          "keyGear": "Dry bag for boat trips, reef-safe sunscreen, comfortable slip-on walking shoes, light linen shirts"
+      },
+      "closingQuestion": "Would you rather relax on the quiet beaches of Koh Chang or explore Bangkok's lively night markets?"
+  },
+
+  // --------------------------------------------------------------------------
+  // THAILAND 2: TOMORROWLAND THAILAND 2026: COMPLETE FESTIVAL GUID
+  // --------------------------------------------------------------------------
+  {
+      "id": "tomorrowland-thailand-2026-guide",
+      "title": "Tomorrowland Thailand 2026: Complete Festival Guide, Dates, Stages & Travel Tips",
+      "tag": "Festivals & Events",
+      "read": "7 Min Read",
+      "date": "Nov 22, 2026",
+      "img": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1600&h=900&q=80",
+      "excerpt": "Everything you need to know about Tomorrowland Thailand 2026 in Chonburi/Pattaya: ticket sales, venue logistics, hotels, and travel planning.",
+      "author": "Khilesh Sammal",
+      "authorRole": "Travel Photographer & Full-Stack Marketer",
+      "authorBio": "Khilesh Sammal is a travel photographer and full-stack marketer who documents authentic travel guides, cultural heritage, and practical itineraries across Asia and beyond.",
+      "introSectionTitle": "The Magic of Tomorrowland Debuts in Asia",
+      "introHook": "Tomorrowland is officially coming to Southeast Asia in December 2026, marking a landmark moment for global electronic dance music. Bringing its world-famous fairy-tale stage designs and premier DJ lineups to Thailand, this multi-day festival promises an unforgettable tropical adventure.",
+      "highlights": [
+          "Tomorrowland officially arrives in Southeast Asia in December 2026 at Wisdom Valley, Sattahip (near Pattaya).",
+          "Pre-register on Tomorrowland's official platform early to secure passes and Global Journey travel packages with hotel transfers.",
+          "Base your stay in Jomtien or Central Pattaya to take official festival shuttle buses directly to and from the venue grounds."
+      ],
+      "tableOfContents": [
+          {
+              "id": "about-festival",
+              "title": "About the Event: Tomorrowland Expands to Asia"
+          },
+          {
+              "id": "dates-location",
+              "title": "Dates, Venue & Location (Wisdom Valley)"
+          },
+          {
+              "id": "ticket-packages",
+              "title": "Ticket Pre-Registration & Global Journey Packages"
+          },
+          {
+              "id": "accommodation-shuttles",
+              "title": "Where to Stay & Festival Shuttles"
+          },
+          {
+              "id": "festival-prep-tips",
+              "title": "Essential Festival Survival & Gear Tips"
+          },
+          {
+              "id": "logistics-stats",
+              "title": "Festival Budget & Quick Stats"
+          }
+      ],
+      "sections": [
+          {
+              "type": "text",
+              "id": "about-festival",
+              "title": "About the Event: Tomorrowland Expands to Asia",
+              "subtitle": "A Historic Milestone for Electronic Music in Thailand",
+              "body": "After years of anticipation, Belgian festival powerhouse Tomorrowland confirmed its expansion into Thailand for December 2026. The Thai government and the Tourism Authority of Thailand (TAT) have partnered with festival organizers to deliver a fully produced, world-class edition featuring the iconic Mainstage storytelling, breathtaking pyrotechnics, and the legendary People of Tomorrow gathering."
+          },
+          {
+              "type": "callout",
+              "calloutType": "tip",
+              "title": "TICKET TIP: Pre-Register Your Tomorrowland Account",
+              "body": "Festival tickets for Tomorrowland always sell out within minutes. Create and verify your Tomorrowland Account on the official website several months before the sale date to access the exclusive pre-sale queue."
+          },
+          {
+              "type": "image",
+              "imageUrl": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1600&h=900&q=80",
+              "imageCaption": "Spectacular lasers, pyrotechnics, and massive festival crowds at a headline EDM performance."
+          },
+          {
+              "type": "text",
+              "id": "dates-location",
+              "title": "Dates, Venue & Location (Wisdom Valley)",
+              "subtitle": "Lush Hills and Open Spaces in Sattahip",
+              "body": "The chosen venue is Wisdom Valley in Sattahip, Chonburi province, located just 25 minutes south of Pattaya and approximately 90 minutes from Bangkok's Suvarnabhumi Airport. Wisdom Valley features expansive green rolling lawns, natural lakes, and wide open event spaces, providing the ideal natural amphitheater for Tomorrowland's elaborate stage architecture."
+          },
+          {
+              "type": "text",
+              "id": "ticket-packages",
+              "title": "Ticket Pre-Registration & Global Journey Packages",
+              "subtitle": "Securing Your Passes with Hassle-Free Travel",
+              "body": "Similar to the Belgian flagship festival, Tomorrowland Thailand will offer both standard Full Madness passes and all-inclusive Global Journey packages. Global Journey packages combine official festival passes with hotel accommodations, airport meet-and-greets, and dedicated shuttle coaches between your hotel and Wisdom Valley, taking all the stress out of daily logistics."
+          },
+          {
+              "type": "bullet-list",
+              "id": "accommodation-shuttles",
+              "title": "Where to Stay & Festival Shuttles",
+              "badge": "Accommodation Blueprint",
+              "items": [
+                  "Jomtien Beach: The most convenient area to stay. Features modern beach resorts, relaxed restaurants, and shorter 20-minute shuttle travel times to Wisdom Valley.",
+                  "Central Pattaya: Great if you want high-energy nightlife, beach clubs, and large international hotels like Hilton Pattaya and Marriott Resort.",
+                  "Bangkok Airport Hotels: A good option for international arrivals who plan to take dedicated daily express coach services straight to the festival gates."
+              ]
+          },
+          {
+              "type": "text",
+              "id": "festival-prep-tips",
+              "title": "Essential Festival Survival & Gear Tips",
+              "subtitle": "Staying Energized Under the Tropical Sun",
+              "body": "December in Thailand offers pleasant evening breezes around 23°C to 25°C, but daytime temperatures can reach 31°C under direct sunlight. Pack high-fidelity earplugs to protect your hearing, comfortable running sneakers for dancing on grassy terrain, and a festival hydration pack to drink water regularly throughout the day."
+          },
+          {
+              "type": "callout",
+              "calloutType": "gear",
+              "title": "GEAR CHECKLIST: Portable Fan & Power Bank",
+              "body": "Bring a 10,000mAh portable power bank and a small rechargeable mini hand fan. Having constant phone battery ensures you can find your friends and book rides easily at the end of the night."
+          }
+      ],
+      "quickStats": {
+          "estimatedBudget": "$850 - $1,400 USD per person (Festival pass, 4-night stay & local shuttles)",
+          "idealDuration": "4 to 5 Days (Thursday to Monday)",
+          "bestMonths": "December 2026",
+          "routeAccess": "Fly into Bangkok (BKK) or U-Tapao Airport (UTP), 30-min transfer to Pattaya",
+          "keyGear": "High-fidelity earplugs, festival hydration backpack, power bank, comfortable sneakers"
+      },
+      "closingQuestion": "Which headlining DJ are you hoping to see perform at Tomorrowland Thailand 2026?"
+  },
+
+  // --------------------------------------------------------------------------
+  // THAILAND 3: EDC THAILAND 2026: ELECTRIC DAISY CARNIVAL PHUKET 
+  // --------------------------------------------------------------------------
+  {
+      "id": "edc-thailand-2026-phuket-guide",
+      "title": "EDC Thailand 2026: Electric Daisy Carnival Phuket Festival Guide & Island Itinerary",
+      "tag": "Festivals & Events",
+      "read": "7 Min Read",
+      "date": "Dec 02, 2026",
+      "img": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&h=900&q=80",
+      "excerpt": "Prepare for Insomniac's Electric Daisy Carnival in Phuket: stage lineups, ticket tiers, Bang Tao beach accommodations, and island recovery tips.",
+      "author": "Khilesh Sammal",
+      "authorRole": "Travel Photographer & Full-Stack Marketer",
+      "authorBio": "Khilesh Sammal is a travel photographer and full-stack marketer who documents authentic travel guides, cultural heritage, and practical itineraries across Asia and beyond.",
+      "introSectionTitle": "Under the Electric Sky on Phuket's Shores",
+      "introHook": "Insomniac Events is bringing the magic of Electric Daisy Carnival (EDC) to Thailand, transforming the tropical island of Phuket into an immersive celebration of neon lights, world-class DJ sets, and carnival rides. This is your ultimate guide to tickets, beachside stays, and festival logistics.",
+      "highlights": [
+          "EDC Thailand lands on the tropical shores of Phuket with world-class kineticFIELD, circuitGROUNDS, and neonGARDEN stages.",
+          "Stay around Bang Tao, Laguna, or Surin Beach to remain close to the venue without dealing with long cross-island taxi rides.",
+          "Pair the 3-day music festival with relaxing island hopping trips to Phang Nga Bay and peaceful sunset dinners."
+      ],
+      "tableOfContents": [
+          {
+              "id": "about-edc",
+              "title": "About the Festival: EDC Comes to Phuket"
+          },
+          {
+              "id": "stages-experience",
+              "title": "Stages, Music Genres & Production"
+          },
+          {
+              "id": "tickets-vip",
+              "title": "GA vs VIP Tickets: What to Expect"
+          },
+          {
+              "id": "where-to-stay",
+              "title": "Where to Stay: Bang Tao, Laguna & Surin"
+          },
+          {
+              "id": "island-itinerary",
+              "title": "Post-Festival Island Recovery Itinerary"
+          },
+          {
+              "id": "logistics-stats",
+              "title": "Estimated Festival Budget & Stats"
+          }
+      ],
+      "sections": [
+          {
+              "type": "text",
+              "id": "about-edc",
+              "title": "About the Festival: EDC Comes to Phuket",
+              "subtitle": "Insomniac's Iconic Electronic Playground in Southeast Asia",
+              "body": "Electric Daisy Carnival (EDC) is one of the world's most famous dance music festivals, known for its motto 'Under the Electric Sky'. EDC Thailand brings this high-energy carnival atmosphere directly to Phuket, combining iconic electronic dance music with tropical palm trees, coastal breezes, and glowing art installations."
+          },
+          {
+              "type": "callout",
+              "calloutType": "tip",
+              "title": "FLIGHT TIP: Book Phuket Direct Flights Early",
+              "body": "January is peak tourist season in Phuket. Book your international or domestic flights to Phuket International Airport (HKT) as soon as your festival tickets are confirmed, as seat prices rise sharply closer to festival dates."
+          },
+          {
+              "type": "image",
+              "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&h=900&q=80",
+              "imageCaption": "Vibrant neon lighting, costumed performers, and festival energy under the night sky."
+          },
+          {
+              "type": "text",
+              "id": "stages-experience",
+              "title": "Stages, Music Genres & Production",
+              "subtitle": "kineticFIELD, circuitGROUNDS & neonGARDEN",
+              "body": "EDC is celebrated for its themed stages. The kineticFIELD stage delivers majestic mainstage EDM, electro-house, and melodic bass backed by massive LED walls and fireworks. The circuitGROUNDS stage features hard-hitting bass and dubstep, while neonGARDEN creates an immersive haven for deep underground house and techno lovers."
+          },
+          {
+              "type": "text",
+              "id": "tickets-vip",
+              "title": "GA vs VIP Tickets: What to Expect",
+              "subtitle": "Why VIP Is Worth the Upgrade in the Tropics",
+              "body": "General Admission (GA) gives you full access to all stages, carnival rides, and food vendors. However, upgrading to VIP Enhanced Experience provides air-conditioned restrooms, dedicated viewing platforms with unobstructed stage sightlines, fast-track festival entry gates, and private cocktail bars—amenities that make a huge difference in tropical humidity."
+          },
+          {
+              "type": "bullet-list",
+              "id": "where-to-stay",
+              "title": "Where to Stay: Bang Tao, Laguna & Surin",
+              "badge": "Location Guide",
+              "items": [
+                  "Bang Tao Beach & Boat Avenue: Walking distance or a 5-minute ride to the festival grounds. Surrounded by upscale cafes, beach clubs, and boutique villas.",
+                  "Laguna Phuket: A luxury resort community featuring free lake ferries, 5-star beachfront resorts (Dusit Thani, Banyan Tree, SAii), and excellent security.",
+                  "Surin Beach: Just 10 minutes south of Bang Tao. Known for crystal-clear turquoise swimming waters, quiet boutique hotels, and great sunset dining."
+              ]
+          },
+          {
+              "type": "text",
+              "id": "island-itinerary",
+              "title": "Post-Festival Island Recovery Itinerary",
+              "subtitle": "Recharge with Island Sunsets and Thai Massages",
+              "body": "After 3 days of nonstop dancing, take 2 extra days to unwind. Book a traditional 2-hour Thai herbal compress massage at a local spa, spend a lazy afternoon sipping fresh young coconuts on Nai Yang Beach, and take a gentle sunset catamaran cruise around Promthep Cape."
+          }
+      ],
+      "quickStats": {
+          "estimatedBudget": "$900 - $1,500 USD per person (Festival pass, 4-night resort stay & local rides)",
+          "idealDuration": "5 Days & 4 Nights",
+          "bestMonths": "January 2026",
+          "routeAccess": "Fly into Phuket International Airport (HKT), 25-minute taxi to Bang Tao/Laguna",
+          "keyGear": "High-fidelity earplugs, holographic festival sunglasses, lightweight linen clothes, portable fan"
+      },
+      "closingQuestion": "Are you planning to attend EDC Thailand for the mainstage EDM or the underground techno beats?"
+  },
+
+  // --------------------------------------------------------------------------
+  // THAILAND 4: PHUKET UNCHARTED: 7 HIDDEN BEACHES, LOCAL NIGHT MA
+  // --------------------------------------------------------------------------
+  {
+      "id": "phuket-secret-beaches-local-guide",
+      "title": "Phuket Uncharted: 7 Hidden Beaches, Local Night Markets & Secret Viewpoints",
+      "tag": "Travel Tips",
+      "read": "6 Min Read",
+      "date": "Dec 10, 2026",
+      "img": "https://images.unsplash.com/photo-1537956965359-7573183d1f57?auto=format&fit=crop&w=1600&h=900&q=80",
+      "excerpt": "Escape the crowded resort strips and discover Phuket's most beautiful quiet coves, hidden jungle trails, authentic night markets, and cliffside viewpoints.",
+      "author": "Khilesh Sammal",
+      "authorRole": "Travel Photographer & Full-Stack Marketer",
+      "authorBio": "Khilesh Sammal is a travel photographer and full-stack marketer who documents authentic travel guides, cultural heritage, and practical itineraries across Asia and beyond.",
+      "introSectionTitle": "Discovering Phuket's Quiet Coastal Magic",
+      "introHook": "While most visitors know Phuket for crowded party beaches like Patong, the island is filled with peaceful secret coves, jungle trails, and quiet seaside villages. Leaving the busy resort strips reveals soft white sands, crystal-clear water, and authentic southern Thai culture.",
+      "highlights": [
+          "Discover peaceful hidden bays like Ao Sane, Banana Beach, and Freedom Beach away from crowded resort zones.",
+          "Hike up to Black Rock Viewpoint (Pa Hin Dam) for an incredible panoramic 360-degree vista of southern Phuket.",
+          "Eat fresh seafood at local prices along Rawai Beach and visit authentic weekend markets like Chillva and Lard Yai."
+      ],
+      "tableOfContents": [
+          {
+              "id": "about-place",
+              "title": "Beyond the Crowds: The Other Side of Phuket"
+          },
+          {
+              "id": "secret-beaches",
+              "title": "7 Quiet & Secluded Beaches in Phuket"
+          },
+          {
+              "id": "viewpoints-hikes",
+              "title": "Scenic Viewpoints: Black Rock & Windmill"
+          },
+          {
+              "id": "local-food-markets",
+              "title": "Authentic Markets & Southern Thai Seafood"
+          },
+          {
+              "id": "scooter-safety",
+              "title": "Scooter Rental & Island Transport Safety"
+          },
+          {
+              "id": "logistics-stats",
+              "title": "Trip Costs & Island Stats Table"
+          }
+      ],
+      "sections": [
+          {
+              "type": "text",
+              "id": "about-place",
+              "title": "Beyond the Crowds: The Other Side of Phuket",
+              "subtitle": "Untouched Coves and Lush Coastal Hills",
+              "body": "Phuket is an island of dramatic contrasts. While major beach resorts attract millions of travelers each year, dozens of secluded rocky bays and hidden sands remain hidden between granite headlands. By renting a scooter or booking local taxis to off-the-beaten-track shores, you can swim in crystal-clear waters and relax under shady almond trees in total serenity."
+          },
+          {
+              "type": "callout",
+              "calloutType": "tip",
+              "title": "PRO TIP: Arrive at Hidden Beaches Before 10:00 AM",
+              "body": "Small hidden beaches have limited natural shade. Arriving around 8:30 AM guarantees the best parking spots, empty sands for photography, and the calmest sea conditions for swimming."
+          },
+          {
+              "type": "bullet-list",
+              "id": "secret-beaches",
+              "title": "7 Quiet & Secluded Beaches in Phuket",
+              "badge": "Secret Coves List",
+              "items": [
+                  "Ao Sane Beach: Tucked behind Nai Harn Beach through the resort tunnel. Rocky cove with calm waters, colorful coral reefs, and fantastic snorkeling right off the shore.",
+                  "Banana Beach (Naithon): A pristine jungle-fringed cove in northwest Phuket hidden below the coastal highway, accessible via a short scenic path through shady palms.",
+                  "Freedom Beach: A stunning crescent of powder-soft white sand surrounded by granite boulders. Access via a steep jungle trail or a quick longtail boat from Patong Pier.",
+                  "Nai Yang Beach: Located inside Sirinat National Park near the airport. Shaded by pine trees with zero jet skis and calm shallow water ideal for relaxing picnics.",
+                  "Laem Ka Beach: A peaceful hidden bay near Rawai offering beautiful views of offshore islands and traditional longtail boats resting in the shallows.",
+                  "Ya Nui Beach: A cozy cove nestled between Windmill Viewpoint and Promthep Cape, great for renting transparent sea kayaks and paddling around Koh Man.",
+                  "Ao Yon Beach: A protected eastern inlet near Cape Panwa with gentle year-round waters, calm waves, and relaxed beachfront cafes."
+              ]
+          },
+          {
+              "type": "image",
+              "imageUrl": "https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=1600&h=900&q=80",
+              "imageCaption": "Crystal-clear turquoise water and tranquil granite boulders at an uncrowded Andaman cove."
+          },
+          {
+              "type": "text",
+              "id": "viewpoints-hikes",
+              "title": "Scenic Viewpoints: Black Rock & Windmill",
+              "subtitle": "Epic Sunsets Above the Andaman Coast",
+              "body": "Skip the overcrowded tourist buses at Promthep Cape and head up to Windmill Viewpoint or Black Rock (Pa Hin Dam). The 15-minute jungle hike to Black Rock rewards you with a jaw-dropping panoramic view over Nai Harn Beach, Promthep Cape, and the distant silhouettes of Koh Racha and Coral Island."
+          },
+          {
+              "type": "text",
+              "id": "local-food-markets",
+              "title": "Authentic Markets & Southern Thai Seafood",
+              "subtitle": "Eat Like a Local in Rawai & Old Phuket Town",
+              "body": "For the freshest seafood on the island, head to Rawai Sea Gypsy Village. Buy fresh red snapper, tiger prawns, and blue swimming crabs directly from local fishermen, then take them across the street to family-run restaurants that grill, steam, and season them with chili-lime garlic sauce for only 100 THB per kilo. On Sunday evenings, visit Lard Yai walking street market in Old Town to taste crispy pork belly and local coconut desserts."
+          },
+          {
+              "type": "callout",
+              "calloutType": "warning",
+              "title": "SAFETY TIP: Helmet & International Driving Permit",
+              "body": "Police checkpoints are frequent across Phuket. Always wear a safety helmet, carry your physical International Driving Permit (IDP), and never drive above your skill level on steep hills."
+          }
+      ],
+      "quickStats": {
+          "estimatedBudget": "$45 - $80 USD per day (Scooter, local seafood & boutique guesthouses)",
+          "idealDuration": "4 to 6 Days",
+          "bestMonths": "November through April (Dry & Sunny)",
+          "routeAccess": "Fly into Phuket (HKT), rent an automatic scooter (125cc) or hire Bolt drivers",
+          "keyGear": "Snorkel mask, dry bag, reef booties, International Driving Permit (IDP), sunscreen"
+      },
+      "closingQuestion": "Which hidden beach would you visit first: Ao Sane or Banana Beach?"
+  },
+
+  // --------------------------------------------------------------------------
+  // THAILAND 5: 7-DAY NORTHERN THAILAND EXPEDITION: CHIANG MAI OLD
+  // --------------------------------------------------------------------------
+  {
+      "id": "northern-thailand-chiang-mai-chiang-rai",
+      "title": "7-Day Northern Thailand Expedition: Chiang Mai Old City, Mist-Covered Peaks & Chiang Rai Temples",
+      "tag": "Expeditions",
+      "read": "8 Min Read",
+      "date": "Dec 18, 2026",
+      "img": "https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=1600&h=900&q=80",
+      "excerpt": "Immerse yourself in Northern Thailand's cultural soul: ancient Lanna temples, ethical elephant sanctuaries, specialty mountain coffee, and Chiang Rai's iconic art.",
+      "author": "Khilesh Sammal",
+      "authorRole": "Travel Photographer & Full-Stack Marketer",
+      "authorBio": "Khilesh Sammal is a travel photographer and full-stack marketer who documents authentic travel guides, cultural heritage, and practical itineraries across Asia and beyond.",
+      "introSectionTitle": "The Cultural Crown of Northern Thailand",
+      "introHook": "Northern Thailand offers a peaceful, culturally rich contrast to the southern beaches. Filled with ancient misty mountain peaks, centuries-old golden Lanna temples, and mouthwatering northern curries, Chiang Mai and Chiang Rai offer one of Asia's most enriching travel journeys.",
+      "highlights": [
+          "Explore Chiang Mai's historic walled old city with over 300 ornate Buddhist temples and vibrant night bazaars.",
+          "Support ethical elephant welfare at hands-off observation sanctuaries in the lush Mae Taeng valley.",
+          "Take the scenic mountain drive to Chiang Rai to marvel at Wat Rong Khun (White Temple) and Wat Rong Suea Ten (Blue Temple)."
+      ],
+      "tableOfContents": [
+          {
+              "id": "about-region",
+              "title": "About Northern Thailand: The Ancient Lanna Kingdom"
+          },
+          {
+              "id": "best-time",
+              "title": "Best Time to Visit & Weather"
+          },
+          {
+              "id": "seven-day-plan",
+              "title": "7-Day Day-by-Day Expedition Itinerary"
+          },
+          {
+              "id": "ethical-wildlife",
+              "title": "Choosing Truly Ethical Elephant Sanctuaries"
+          },
+          {
+              "id": "khao-soi-trail",
+              "title": "The Khao Soi & Northern Food Trail"
+          },
+          {
+              "id": "logistics-stats",
+              "title": "Trip Budget & Logistics Breakdown"
+          }
+      ],
+      "sections": [
+          {
+              "type": "text",
+              "id": "about-region",
+              "title": "About Northern Thailand: The Ancient Lanna Kingdom",
+              "subtitle": "Lush Valleys, Mountain Passes & Lanna Heritage",
+              "body": "Chiang Mai was founded in 1296 as the capital of the ancient Lanna Kingdom ('Land of a Million Rice Fields'). Surrounded by protective brick ramparts and a serene moat, the old city preserves historic wooden temples, teak architecture, and rich traditions. Further north near the borders of Myanmar and Laos lies Chiang Rai, renowned for its extraordinary contemporary temple art and hill-tribe tea plantations."
+          },
+          {
+              "type": "callout",
+              "calloutType": "tip",
+              "title": "WEATHER TIP: Cool Mountain Mornings",
+              "body": "Winter months in Northern Thailand (November to February) bring crisp morning temperatures around 15°C to 18°C. Pack a light fleece or warm cardigan for sunrise trips to Doi Suthep and Doi Inthanon summit."
+          },
+          {
+              "type": "image",
+              "imageUrl": "https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=1600&h=900&q=80",
+              "imageCaption": "Intricate mirrored glass sculptures and pure white spires of Wat Rong Khun (White Temple) in Chiang Rai."
+          },
+          {
+              "type": "text",
+              "id": "best-time",
+              "title": "Best Time to Visit & Weather",
+              "subtitle": "Clear Winter Skies vs Spring Burning Season",
+              "body": "The ideal time to visit Chiang Mai and Chiang Rai is from November to mid-February, when the weather is dry, cool, and crystal clear. Avoid the agricultural burning season from late February through April, when smoke haze settles in the northern mountain valleys."
+          },
+          {
+              "type": "bullet-list",
+              "id": "seven-day-plan",
+              "title": "7-Day Day-by-Day Expedition Itinerary",
+              "badge": "Day-by-Day Guide",
+              "items": [
+                  "Day 1 & 2 (Chiang Mai Old City): Walk among historic temples like Wat Chedi Luang and Wat Phra Singh. Drive up to Wat Phra That Doi Suthep at sunrise to hear morning monk chants, and explore the Sunday Walking Street night market.",
+                  "Day 3 (Ethical Wildlife & Mountain Coffee): Spend a day observing rescued elephants roaming freely at an ethical sanctuary like Elephant Nature Park or ChangChill. In the afternoon, visit the mountain coffee village of Mae Kampong nestled in the misty cloud forest.",
+                  "Day 4 (Doi Inthanon National Park): Take a day trip to the highest peak in Thailand (2,565m). Walk along the wooden Kew Mae Pan nature trail and admire the twin Royal Pagodas surrounded by blooming flower gardens.",
+                  "Day 5 & 6 (Chiang Rai Exploration): Take a comfortable 3-hour Greenbus or private transfer to Chiang Rai. Visit the iconic White Temple (Wat Rong Khun), the vivid sapphire Blue Temple (Wat Rong Suea Ten), and sip oolong tea at Choui Fong tea plantation.",
+                  "Day 7 (Return & Departure): Visit the eccentric Baan Dam Black House museum in Chiang Rai, shop for local handicrafts, and fly out from Chiang Rai International Airport (CEI) or return to Chiang Mai (CNX)."
+              ]
+          },
+          {
+              "type": "text",
+              "id": "ethical-wildlife",
+              "title": "Choosing Truly Ethical Elephant Sanctuaries",
+              "subtitle": "How to Support Responsible Animal Welfare",
+              "body": "Truly ethical sanctuaries never allow elephant riding, performances, or hooks. Look for 'hands-off' observation sanctuaries where visitors observe elephants grazing, foraging, and bathing naturally from a respectful distance. Choosing responsible sanctuaries ensures your tourism dollars directly support animal rescue and rehabilitation."
+          },
+          {
+              "type": "text",
+              "id": "khao-soi-trail",
+              "title": "The Khao Soi & Northern Food Trail",
+              "subtitle": "Creamy Coconut Curry Noodles and Sai Oua Sausage",
+              "body": "No trip to Northern Thailand is complete without savoring Khao Soi: rich, aromatic coconut curry soup served with soft egg noodles, tender chicken or beef, pickled mustard greens, shallots, lime, and crispy noodles on top. Visit famous spots like Khao Soi Khun Yai or Khao Soi Islam in Chiang Mai for an authentic bowl costing under $2 USD."
+          }
+      ],
+      "quickStats": {
+          "estimatedBudget": "$450 - $750 USD per person (7-day boutique hotels, transit & food)",
+          "idealDuration": "7 Days & 6 Nights (4 Nights Chiang Mai, 2 Nights Chiang Rai)",
+          "bestMonths": "November through mid-February",
+          "routeAccess": "Fly into Chiang Mai (CNX), Greenbus VIP coach to Chiang Rai (CEI)",
+          "keyGear": "Light fleece jacket, modest temple clothing (covers shoulders and knees), walking sneakers"
+      },
+      "closingQuestion": "Have you ever tried authentic Northern Thai Khao Soi curry noodles?"
+  },
+
+  // --------------------------------------------------------------------------
+  // MALAYSIA 1: 7-DAY MALAYSIA CIRCUIT ITINERARY: KUALA LUMPUR SKY
+  // --------------------------------------------------------------------------
+  {
+      "id": "malaysia-kl-malacca-ipoh-itinerary",
+      "title": "7-Day Malaysia Circuit Itinerary: Kuala Lumpur Skylines, Malacca History & Ipoh Food",
+      "tag": "Itineraries",
+      "read": "8 Min Read",
+      "date": "Dec 28, 2026",
+      "img": "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1600&h=900&q=80",
+      "excerpt": "The ultimate overland circuit through Peninsular Malaysia: Kuala Lumpur's futuristic skyline, Malacca's colonial waterways, and Ipoh's limestone cave temples and coffee.",
+      "author": "Khilesh Sammal",
+      "authorRole": "Travel Photographer & Full-Stack Marketer",
+      "authorBio": "Khilesh Sammal is a travel photographer and full-stack marketer who documents authentic travel guides, cultural heritage, and practical itineraries across Asia and beyond.",
+      "introSectionTitle": "The Essential Peninsular Malaysia Overland Journey",
+      "introHook": "Peninsular Malaysia features one of Southeast Asia's smoothest transport systems, making an overland route through its three top cultural destinations effortless. From the futuristic skyscrapers of Kuala Lumpur to the UNESCO colonial heritage of Malacca and the limestone caves and culinary riches of Ipoh, this 7-day trip showcases the country's best.",
+      "highlights": [
+          "Connect KL, historic Malacca, and culinary capital Ipoh with smooth express buses and modern ETS electric trains.",
+          "Cruise down the Malacca River and discover centuries of Peranakan, Dutch, and Portuguese heritage.",
+          "Sample authentic Ipoh white coffee, silky Nga Choi Gai (bean sprout chicken), and explore limestone cave sanctuaries."
+      ],
+      "tableOfContents": [
+          {
+              "id": "about-circuit",
+              "title": "About the Circuit: Western Peninsular Malaysia"
+          },
+          {
+              "id": "best-time",
+              "title": "Best Season to Travel & Weather"
+          },
+          {
+              "id": "seven-day-route",
+              "title": "7-Day Day-by-Day Overland Itinerary"
+          },
+          {
+              "id": "train-bus-transit",
+              "title": "Transit Guide: ETS Electric Trains & Express Coaches"
+          },
+          {
+              "id": "culinary-stops",
+              "title": "Unmissable Culinary Highlights in Each City"
+          },
+          {
+              "id": "logistics-stats",
+              "title": "Trip Budget & Logistics Summary"
+          }
+      ],
+      "sections": [
+          {
+              "type": "text",
+              "id": "about-circuit",
+              "title": "About the Circuit: Western Peninsular Malaysia",
+              "subtitle": "Where Centuries of Heritage Meet High-Tech Modernity",
+              "body": "This overland journey highlights the historical development of modern Malaysia. Malacca represents Malaysia's maritime trading origin, where Portuguese, Dutch, British, and Peranakan cultures intertwined. Kuala Lumpur represents the nation's bold economic engine with gleaming twin towers, while Ipoh preserves the golden era of the 19th-century tin mining boom, framed by breathtaking karst limestone hills."
+          },
+          {
+              "type": "callout",
+              "calloutType": "tip",
+              "title": "TRANSIT TIP: Book ETS Platinum Trains in Advance",
+              "body": "The KTM ETS electric train from KL Sentral to Ipoh is fast, smooth, and extremely popular. Book your tickets on the official KTMB Mobile app or website 2 to 3 weeks in advance, especially for Friday and Sunday travel."
+          },
+          {
+              "type": "image",
+              "imageUrl": "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1600&h=900&q=80",
+              "imageCaption": "Colonial Dutch Square with Christ Church and the historic Queen Victoria Fountain in Malacca."
+          },
+          {
+              "type": "text",
+              "id": "best-time",
+              "title": "Best Season to Travel & Weather",
+              "subtitle": "Year-Round Tropical Warmth",
+              "body": "The western belt of Peninsular Malaysia enjoys pleasant tropical weather throughout the year, with temperatures hovering between 28°C and 32°C. The driest months run from December to April, but travel is rewarding in any month—just keep a compact umbrella ready for short afternoon rain showers that quickly clear the air."
+          },
+          {
+              "type": "bullet-list",
+              "id": "seven-day-route",
+              "title": "7-Day Day-by-Day Overland Itinerary",
+              "badge": "Overland Circuit",
+              "items": [
+                  "Day 1 & 2 (Kuala Lumpur): Ascend to the Skybridge of the Petronas Twin Towers, climb the 272 colorful steps of Batu Caves, and explore vibrant street food and shopping around Jalan Alor and Bukit Bintang.",
+                  "Day 3 & 4 (Malacca): Take a comfortable 2-hour luxury coach south to Malacca. Stroll through Dutch Square, tour St. Paul's Hill and A Famosa fortress, take an evening Malacca River boat cruise, and feast on Nyonya laksa on lively Jonker Street.",
+                  "Day 5 & 6 (Ipoh): Travel north via KL on the ETS electric train to Ipoh. Explore stunning cave temples carved into limestone cliffs (Perak Tong and Kek Lok Tong), photograph street murals along Concubine Lane, and taste authentic white coffee.",
+                  "Day 7 (Return to KL / Departure): Take the 2-hour ETS train from Ipoh straight back to KL Sentral, connect directly to the KLIA Ekspres train, and reach the airport in under 30 minutes."
+              ]
+          },
+          {
+              "type": "image",
+              "imageUrl": "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1600&h=900&q=80",
+              "imageCaption": "Breathtaking limestone cliffs and serene reflection ponds surrounding Ipoh's historic temples."
+          },
+          {
+              "type": "text",
+              "id": "train-bus-transit",
+              "title": "Transit Guide: ETS Electric Trains & Express Coaches",
+              "subtitle": "Smooth, Cheap, and Reliable Public Transit",
+              "body": "Malaysia has some of the finest ground transit in Asia. Clean express buses between KL's Terminal Bersepadu Selatan (TBS) and Malacca cost just 10 to 15 MYR ($2.50 to $3.50 USD). The KTM ETS train between KL Sentral and Ipoh takes just 2 hours and 15 minutes, with tickets costing around 35 to 45 MYR ($8 to $10 USD) with spacious air-conditioned seating."
+          },
+          {
+              "type": "text",
+              "id": "culinary-stops",
+              "title": "Unmissable Culinary Highlights in Each City",
+              "subtitle": "From Nyonya Cendol to Silky Tau Fu Fah",
+              "body": "Each city on this circuit has distinct signature dishes. In Malacca, try spicy Nyonya Laksa and sweet Gula Melaka Cendol. In KL, savor fragrant Nasi Lemak and banana leaf rice in Brickfields. In Ipoh, don't miss Nga Choi Gai (poached chicken with crunchy bean sprouts grown in mineral-rich limestone water) and freshly made warm Tau Fu Fah soy pudding."
+          }
+      ],
+      "quickStats": {
+          "estimatedBudget": "$420 - $650 USD per person (7 days hotels, train/bus tickets & meals)",
+          "idealDuration": "7 Days & 6 Nights (2N Kuala Lumpur, 2N Malacca, 2N Ipoh)",
+          "bestMonths": "Year-round (December to April is particularly sunny)",
+          "routeAccess": "Fly into Kuala Lumpur (KUL), overland via ETS train & TBS express coaches",
+          "keyGear": "Slip-on walking shoes for temples, compact umbrella, power bank, comfortable daypack"
+      },
+      "closingQuestion": "Which city's cuisine are you most excited to taste: Malacca's Nyonya food or Ipoh's famous white coffee?"
+  },
+
+  // --------------------------------------------------------------------------
+  // MALAYSIA 2: PENANG HERITAGE & CULINARY GUIDE: THE ULTIMATE STR
+  // --------------------------------------------------------------------------
+  {
+      "id": "penang-george-town-street-food-heritage",
+      "title": "Penang Heritage & Culinary Guide: The Ultimate Street Food & Photo Walk in George Town",
+      "tag": "Photography",
+      "read": "7 Min Read",
+      "date": "Jan 08, 2027",
+      "img": "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1600&h=900&q=80",
+      "excerpt": "A street photographer and foodie's deep dive into George Town, Penang: iconic murals, clan jetties, Chinese clan houses, and legendary hawker stalls.",
+      "author": "Khilesh Sammal",
+      "authorRole": "Travel Photographer & Full-Stack Marketer",
+      "authorBio": "Khilesh Sammal is a travel photographer and full-stack marketer who documents authentic travel guides, cultural heritage, and practical itineraries across Asia and beyond.",
+      "introSectionTitle": "The Living Cultural Tapestry of George Town",
+      "introHook": "George Town is a UNESCO World Heritage dream where vintage Chinese shophouses, British colonial civic buildings, and world-class street food converge. Walking through its vibrant historic lanes with a camera in hand is an unforgettable feast for the senses.",
+      "highlights": [
+          "Photograph famous interactive murals along Armenian Street during the quiet golden morning hours.",
+          "Wander the historic Chew Jetty wooden stilt village and admire the intricate craftsmanship of Khoo Kongsi clan house.",
+          "Taste the holy trinity of Penang hawker cuisine: wok-charred Char Kway Teow, aromatic Assam Laksa, and cendol."
+      ],
+      "tableOfContents": [
+          {
+              "id": "about-george-town",
+              "title": "About George Town: UNESCO World Heritage Living City"
+          },
+          {
+              "id": "photo-walk-route",
+              "title": "Early Morning Street Art & Architecture Photo Walk"
+          },
+          {
+              "id": "clan-jetties-heritage",
+              "title": "The Clan Jetties & Heritage Shophouses"
+          },
+          {
+              "id": "hawker-food-trail",
+              "title": "The Definitive Hawker Food Trail & Where to Eat"
+          },
+          {
+              "id": "camera-light-tips",
+              "title": "Photography Settings for Shophouse Alleys"
+          },
+          {
+              "id": "logistics-stats",
+              "title": "Travel Budget & Food Guide Stats"
+          }
+      ],
+      "sections": [
+          {
+              "type": "text",
+              "id": "about-george-town",
+              "title": "About George Town: UNESCO World Heritage Living City",
+              "subtitle": "Centuries of Maritime Trade and Multicultural Heritage",
+              "body": "Established in 1786 by Francis Light of the British East India Company, George Town grew into a major shipping port that attracted merchants from China, India, Europe, and the Malay Archipelago. Today, the city retains its distinct urban fabric, featuring pastel-painted shophouses with decorative stucco, ancestral Chinese temples, ornate mosques, and peaceful Hindu shrines all sharing the same neighborhood."
+          },
+          {
+              "type": "callout",
+              "calloutType": "tip",
+              "title": "PHOTO TIP: The 7:30 AM Golden Hour Window",
+              "body": "Armenian Street gets crowded with tourists and trishaws after 10:00 AM. Start your photography walk at 7:30 AM to capture soft golden sunlight filtering down narrow alleys with empty streets and local shopkeepers opening their wooden shutters."
+          },
+          {
+              "type": "text",
+              "id": "photo-walk-route",
+              "title": "Early Morning Street Art & Architecture Photo Walk",
+              "subtitle": "Finding Ernest Zacharevic Murals and Iron Caricatures",
+              "body": "Begin your walking route at Armenian Street to capture the famous 'Kids on Bicycle' mural. Continue along Cannon Street to admire the majestic dragon carvings of Leong San Tong Khoo Kongsi, then wander down Muntri Street and Love Lane to photograph 'Old Motorcycle' and the preserved Anglo-Chinese shophouse facades."
+          },
+          {
+              "type": "image",
+              "imageUrl": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&h=900&q=80",
+              "imageCaption": "Freshly prepared sizzling street food and steaming hawker noodles in George Town."
+          },
+          {
+              "type": "text",
+              "id": "clan-jetties-heritage",
+              "title": "The Clan Jetties & Heritage Shophouses",
+              "subtitle": "Historic Communities Living Above the Water",
+              "body": "Chew Jetty is the most famous of six surviving clan jetties along Weld Quay. Built in the 19th century by Chinese dockworkers, these wooden houses stand on wooden stilts over the seawater. Stroll along the central timber walkway at high tide to photograph colorful temple shrines, drying fishing nets, and the tranquil open sea."
+          },
+          {
+              "type": "bullet-list",
+              "id": "hawker-food-trail",
+              "title": "The Definitive Hawker Food Trail & Where to Eat",
+              "badge": "Foodie Hit List",
+              "items": [
+                  "Char Kway Teow: Flat rice noodles stir-fried over intense charcoal heat with duck egg, fresh prawns, cockles, Chinese sausage, and chili paste. Try Siam Road Charcoal Char Kway Teow.",
+                  "Penang Assam Laksa: Tangy, sour tamarind fish broth loaded with shredded mackerel, fresh mint, cucumber, pineapple, and thick prawn paste. Visit Kimpo Famous Assam Laksa.",
+                  "Penang Teochew Chendul: Shaved ice topped with fragrant green pandan rice-flour jelly, soft red beans, coconut milk, and rich smoky palm sugar syrup on Lebuh Keng Kwee.",
+                  "Roti Canai Transfer Road: Flaky, crispy pan-fried flatbread served with piping hot dhal curry, beef rendang, and tender chicken drumsticks."
+              ]
+          },
+          {
+              "type": "text",
+              "id": "camera-light-tips",
+              "title": "Photography Settings for Shophouse Alleys",
+              "subtitle": "Balancing Deep Shadows and Bright Tropical Skies",
+              "body": "Narrow shophouse alleys have high contrast between dark covered walkways ('five-foot ways') and bright midday sunshine. Shoot in aperture priority mode at f/2.8 to f/4 with center-weighted metering, or dial your exposure compensation to -0.7 EV to preserve highlight detail in bright heritage murals."
+          }
+      ],
+      "quickStats": {
+          "estimatedBudget": "$35 - $60 USD per day (Heritage boutique stay & feast of hawker meals)",
+          "idealDuration": "3 to 4 Days",
+          "bestMonths": "December through April (Dry & Sunny)",
+          "routeAccess": "Fly into Penang International Airport (PEN) or ETS train to Butterworth",
+          "keyGear": "35mm or 50mm prime lens, comfortable walking sandals, lightweight cotton shirt, umbrella"
+      },
+      "closingQuestion": "Which Penang dish would you hunt down first: Siam Road Char Kway Teow or tangy Assam Laksa?"
+  },
+
+  // --------------------------------------------------------------------------
+  // MALAYSIA 3: CAMERON HIGHLANDS TRAVEL GUIDE: EMERALD TEA PLANTA
+  // --------------------------------------------------------------------------
+  {
+      "id": "cameron-highlands-tea-plantations-guide",
+      "title": "Cameron Highlands Travel Guide: Emerald Tea Plantations, Mossy Forest Trails & Cool Escapes",
+      "tag": "Expeditions",
+      "read": "6 Min Read",
+      "date": "Jan 16, 2027",
+      "img": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&h=900&q=80",
+      "excerpt": "Escape the tropical humidity and breathe crisp mountain air at 1,500m: BOH Tea plantations, the mystical Mossy Forest, strawberry farms, and jungle hiking.",
+      "author": "Khilesh Sammal",
+      "authorRole": "Travel Photographer & Full-Stack Marketer",
+      "authorBio": "Khilesh Sammal is a travel photographer and full-stack marketer who documents authentic travel guides, cultural heritage, and practical itineraries across Asia and beyond.",
+      "introSectionTitle": "Misty Mountain Ridges and Emerald Valleys",
+      "introHook": "Perched high in the Titiwangsa Mountain Range, Cameron Highlands is Malaysia's premier highland retreat. With cool temperatures rarely exceeding 22°C, rolling green tea estates, and ancient moss-draped cloud forests, it offers a refreshing mountain getaway unlike anywhere else in the country.",
+      "highlights": [
+          "Breathe fresh 18°C mountain air and marvel at sweeping green views across the BOH Sungei Palas Tea Centre.",
+          "Walk the elevated wooden boardwalks through the ancient cloud-covered Mossy Forest on Mount Brinchang.",
+          "Savor traditional English scones with fresh strawberry jam and hot local highland black tea."
+      ],
+      "tableOfContents": [
+          {
+              "id": "about-highlands",
+              "title": "About Cameron Highlands: Malaysia's Cool Mountain Haven"
+          },
+          {
+              "id": "best-time",
+              "title": "Climate, Temperatures & Best Months"
+          },
+          {
+              "id": "tea-plantations",
+              "title": "Visiting the BOH Tea Plantations & Teahouse"
+          },
+          {
+              "id": "mossy-forest",
+              "title": "Exploring the Ancient Mossy Forest of Gunung Brinchang"
+          },
+          {
+              "id": "getting-there",
+              "title": "Winding Mountain Roads: How to Reach from KL & Ipoh"
+          },
+          {
+              "id": "logistics-stats",
+              "title": "Highland Trip Budget & Stats Table"
+          }
+      ],
+      "sections": [
+          {
+              "type": "text",
+              "id": "about-highlands",
+              "title": "About Cameron Highlands: Malaysia's Cool Mountain Haven",
+              "subtitle": "Geography, History & Agricultural Heart",
+              "body": "Surveyed in 1885 by British government surveyor William Cameron, this high plateau sits at an elevation of 1,300 to 1,600 meters above sea level. British colonial officials turned it into a sanatorium and hill station to escape the tropical lowland heat. Today, the towns of Tanah Rata and Brinchang serve as the gateway to vast tea estates, vegetable terraces, and colorful flower nurseries."
+          },
+          {
+              "type": "callout",
+              "calloutType": "gear",
+              "title": "PACKING ESSENTIAL: Warm Layers & Rain Jacket",
+              "body": "Evenings in Cameron Highlands can dip down to 14°C (57°F). Always pack a warm fleece jacket, comfortable long pants, and a waterproof shell jacket for mountain hikes."
+          },
+          {
+              "type": "image",
+              "imageUrl": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&h=900&q=80",
+              "imageCaption": "Vast emerald rolling tea terraces spreading across the morning valleys of Cameron Highlands."
+          },
+          {
+              "type": "text",
+              "id": "best-time",
+              "title": "Climate, Temperatures & Best Months",
+              "subtitle": "Crisp Weather and Weekday Avoidance of Traffic",
+              "body": "Temperatures remain comfortably cool between 15°C and 23°C year-round. The driest weather occurs between February and July. A key tip is to visit on weekdays (Monday to Thursday); on Malaysian school holidays and weekends, the single main road through Tanah Rata and Brinchang experiences heavy traffic congestion."
+          },
+          {
+              "type": "text",
+              "id": "tea-plantations",
+              "title": "Visiting the BOH Tea Plantations & Teahouse",
+              "subtitle": "The Iconic BOH Sungei Palas Experience",
+              "body": "Founded in 1929, BOH (Best of Highlands) is Malaysia's largest tea producer. The BOH Sungei Palas Tea Centre features a stunning cantilevered glass tea cafe that juts out over emerald tea valleys. Tour the tea factory to see how fresh leaves are withered, rolled, fermented, and dried, then sit on the open deck with a pot of aromatic Cameron Highlands tea and warm scones with clotted cream."
+          },
+          {
+              "type": "text",
+              "id": "mossy-forest",
+              "title": "Exploring the Ancient Mossy Forest of Gunung Brinchang",
+              "subtitle": "A Prehistoric Cloud Forest Above 2,000 Meters",
+              "body": "Located on the upper slopes of Mount Brinchang, the Mossy Forest is a mystical cloud forest estimated to be over 200 million years old. Low-hanging clouds and continuous moisture wrap every tree trunk and branch in thick sponges of moss, ferns, and wild orchids. Walk along the 200-meter elevated wooden boardwalk to observe carnivorous pitcher plants and rare highland birds."
+          },
+          {
+              "type": "bullet-list",
+              "id": "getting-there",
+              "title": "Winding Mountain Roads: How to Reach from KL & Ipoh",
+              "badge": "Transit Tips",
+              "items": [
+                  "From Ipoh: The quickest and smoothest route. Express buses and private cars take about 2 hours via the newer Simpang Pulai mountain highway.",
+                  "From Kuala Lumpur: Direct coaches from TBS bus terminal take approximately 3.5 to 4 hours via Tapah or Simpang Pulai.",
+                  "Local Transport: Book a guided 4WD half-day tour to reach the Mossy Forest, as personal cars are not permitted on the narrow summit access road."
+              ]
+          }
+      ],
+      "quickStats": {
+          "estimatedBudget": "$45 - $75 USD per day (Colonial cottage or hotel, tours & afternoon tea)",
+          "idealDuration": "3 Days & 2 Nights",
+          "bestMonths": "February through July (Visit on weekdays to avoid weekend holiday traffic)",
+          "routeAccess": "Express coach or private transfer from Ipoh (2 hours) or KL (3.5 hours)",
+          "keyGear": "Fleece jacket, hiking shoes with good grip, rain poncho, motion sickness pills for curves"
+      },
+      "closingQuestion": "Would you rather hike the elevated boardwalks of the Mossy Forest or relax with tea overlooking BOH plantation?"
+  },
+
+  // --------------------------------------------------------------------------
+  // MALAYSIA 4: LANGKAWI BEYOND DUTY-FREE: GEOPARK MANGROVES, HIDD
+  // --------------------------------------------------------------------------
+  {
+      "id": "langkawi-geopark-hidden-beaches-guide",
+      "title": "Langkawi Beyond Duty-Free: Geopark Mangroves, Hidden Coves & Sunset Sailing",
+      "tag": "Travel Tips",
+      "read": "7 Min Read",
+      "date": "Jan 25, 2027",
+      "img": "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=1600&h=900&q=80",
+      "excerpt": "Discover the wild side of Langkawi: Kilim Karst Geoforest mangrove safaris, peaceful secret coves like Pasir Tengkorak, waterfalls, and sunset catamarans.",
+      "author": "Khilesh Sammal",
+      "authorRole": "Travel Photographer & Full-Stack Marketer",
+      "authorBio": "Khilesh Sammal is a travel photographer and full-stack marketer who documents authentic travel guides, cultural heritage, and practical itineraries across Asia and beyond.",
+      "introSectionTitle": "The Ancient Geological Marvel of the Andaman Sea",
+      "introHook": "While many visitors know Langkawi as a duty-free holiday island, its true treasures lie in its ancient geological landscapes. Recognized as Southeast Asia's first UNESCO Global Geopark, Langkawi features 550-million-year-old limestone sea stacks, dense mangrove waterways, and secret beaches with emerald waters.",
+      "highlights": [
+          "Kayak through 550-million-year-old limestone sea caves and observe wild Brahminy kite sea eagles in Kilim Geopark.",
+          "Skip noisy beach crowds to relax on secluded, pristine sand at Pasir Tengkorak and Tanjung Rhu.",
+          "Experience an Andaman sunset cruise with salt-water jacuzzi nets and fresh grilled seafood."
+      ],
+      "tableOfContents": [
+          {
+              "id": "about-geopark",
+              "title": "About Langkawi UNESCO Global Geopark"
+          },
+          {
+              "id": "mangrove-safari",
+              "title": "Kilim Karst Mangrove Safari & Eagle Watching"
+          },
+          {
+              "id": "hidden-beaches",
+              "title": "Secret Beaches: Pasir Tengkorak, Tanjung Rhu & Datai Bay"
+          },
+          {
+              "id": "waterfalls-hikes",
+              "title": "Seven Wells & Temurun Waterfalls"
+          },
+          {
+              "id": "island-transport",
+              "title": "Self-Drive Rental Cars & Scooter Road Trips"
+          },
+          {
+              "id": "logistics-stats",
+              "title": "Trip Budget & Geopark Quick Stats"
+          }
+      ],
+      "sections": [
+          {
+              "type": "text",
+              "id": "about-geopark",
+              "title": "About Langkawi UNESCO Global Geopark",
+              "subtitle": "550 Million Years of Earth History",
+              "body": "The Langkawi archipelago comprises 99 tropical islands nestled in the Andaman Sea off the northwest coast of Peninsular Malaysia. In 2007, UNESCO designated the island a Global Geopark in recognition of its extraordinary Machinchang Cambrian sandstone formations, towering karst limestone karsts, and ancient rainforest ecosystems that shelter hornbills, flying lemurs, and sea eagles."
+          },
+          {
+              "type": "callout",
+              "calloutType": "tip",
+              "title": "ECO TIP: Choose Quiet Electric or Kayak Mangrove Tours",
+              "body": "Instead of noisy high-speed motorboats, book a guided eco-kayak tour through Kilim Karst Geoforest Park. Kayaking lets you glide quietly through narrow mangrove channels where you can spot mudskippers, fiddler crabs, and kingfishers without disturbing wildlife."
+          },
+          {
+              "type": "image",
+              "imageUrl": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&h=900&q=80",
+              "imageCaption": "Majestic limestone karsts and dense mangrove waterways in Kilim Karst Geoforest Park."
+          },
+          {
+              "type": "text",
+              "id": "mangrove-safari",
+              "title": "Kilim Karst Mangrove Safari & Eagle Watching",
+              "subtitle": "Exploring Gua Kelawar and the Eagle Feeding Haven",
+              "body": "A boat tour along the Kilim River takes you deep into hidden river networks flanked by sheer vertical limestone cliffs. Walk through Gua Kelawar (Bat Cave) to see sleeping fruit bats hanging from stalactites, cruise past the famous floating fish farms, and watch wild Brahminy kite eagles soar and dive gracefully across the open river basin."
+          },
+          {
+              "type": "bullet-list",
+              "id": "hidden-beaches",
+              "title": "Secret Beaches: Pasir Tengkorak, Tanjung Rhu & Datai Bay",
+              "badge": "Pristine Shores",
+              "items": [
+                  "Pasir Tengkorak Beach: A hidden gem on the northern coast with powder-soft golden sand, crystal-clear blue water, and peaceful shaded picnic areas enclosed by ancient rock formations.",
+                  "Tanjung Rhu Beach: A breathtaking stretch of white sand offering clear views of offshore limestone islands. At low tide, you can walk along the sandbar connecting to neighboring islets.",
+                  "Black Sand Beach (Pantai Pasir Hitam): A unique shoreline where dark mineral deposits mix with golden sand, featuring traditional wooden fishing piers and quiet local seafood stalls."
+              ]
+          },
+          {
+              "type": "text",
+              "id": "waterfalls-hikes",
+              "title": "Seven Wells & Temurun Waterfalls",
+              "subtitle": "Cool Jungle Cascades and Natural Rock Pools",
+              "body": "After a morning by the ocean, cool off in Langkawi's freshwater jungle cascades. Telaga Tujuh (Seven Wells Waterfall) features seven natural freshwater pools carved into the granite rock by falling mountain streams. Climb the 638 steps to swim in the natural pools while taking in views over Burau Bay and the surrounding rainforest canopy."
+          },
+          {
+              "type": "text",
+              "id": "island-transport",
+              "title": "Self-Drive Rental Cars & Scooter Road Trips",
+              "subtitle": "The Easiest Island to Drive in Southeast Asia",
+              "body": "Langkawi is paradise for self-drive road trips. Highways are wide, paved, well-marked, and virtually traffic-free outside of Cenang town. Compact automatic rental cars cost around 80 to 120 MYR ($18 to $26 USD) per day, and gasoline in Malaysia is among the most affordable in the world (subsidized RON95 around $0.45 USD per liter)."
+          }
+      ],
+      "quickStats": {
+          "estimatedBudget": "$60 - $110 USD per day (Car rental, beachfront stay & mangrove tours)",
+          "idealDuration": "4 to 5 Days",
+          "bestMonths": "December through April (Sunny & Calm Seas)",
+          "routeAccess": "Fly directly into Langkawi International Airport (LGK) or ferry from Kuala Kedah",
+          "keyGear": "Polarized sunglasses, dry bag (15L), reef-safe sunscreen, comfortable water shoes"
+      },
+      "closingQuestion": "Would you rather kayak through Kilim's limestone mangrove caves or relax on Tanjung Rhu beach?"
+  },
+
+  // --------------------------------------------------------------------------
+  // MALAYSIA 5: BORNEO SABAH WILDLIFE EXPEDITION: KINABATANGAN RIV
+  // --------------------------------------------------------------------------
+  {
+      "id": "borneo-sabah-wildlife-kinabatangan-guide",
+      "title": "Borneo Sabah Wildlife Expedition: Kinabatangan River Safari, Orangutans & Mount Kinabalu",
+      "tag": "Expeditions",
+      "read": "9 Min Read",
+      "date": "Feb 05, 2027",
+      "img": "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1600&h=900&q=80",
+      "excerpt": "An unforgettable expedition into Malaysian Borneo: wild orangutans at Sepilok, pygmy elephants along the Kinabatangan River, and the granite peaks of Mount Kinabalu.",
+      "author": "Khilesh Sammal",
+      "authorRole": "Travel Photographer & Full-Stack Marketer",
+      "authorBio": "Khilesh Sammal is a travel photographer and full-stack marketer who documents authentic travel guides, cultural heritage, and practical itineraries across Asia and beyond.",
+      "introSectionTitle": "The Ancient Rainforest Eden of East Malaysia",
+      "introHook": "Borneo is the third-largest island in the world, home to one of the planet's oldest rainforests dating back over 130 million years. In the Malaysian state of Sabah, wild orangutans swing through emerald canopies, pygmy elephants gather along wide riverbanks, and Mount Kinabalu rises majestically above the clouds.",
+      "highlights": [
+          "Watch rescued orangutans and sun bears thrive in the ancient tropical rainforests of Sepilok, Sandakan.",
+          "Take peaceful dawn and dusk riverboat safaris on the Kinabatangan River to spot wild pygmy elephants and proboscis monkeys.",
+          "Explore UNESCO World Heritage Kinabalu Park and admire Southeast Asia's majestic 4,095-meter granite peak."
+      ],
+      "tableOfContents": [
+          {
+              "id": "about-borneo",
+              "title": "About Sabah, Malaysian Borneo: An Ancient Biodiversity Eden"
+          },
+          {
+              "id": "best-time",
+              "title": "Best Seasons for Borneo Wildlife & Trekking"
+          },
+          {
+              "id": "sepilok-sanctuary",
+              "title": "Sepilok Orangutan & Bornean Sun Bear Sanctuaries"
+          },
+          {
+              "id": "kinabatangan-safari",
+              "title": "Kinabatangan River Safaris & Rainforest Eco-Lodges"
+          },
+          {
+              "id": "mount-kinabalu",
+              "title": "Kinabalu Park & Mountain Climbing Logistics"
+          },
+          {
+              "id": "essential-jungle-gear",
+              "title": "Essential Rainforest Gear & Leech Protection"
+          },
+          {
+              "id": "logistics-stats",
+              "title": "Borneo Expedition Budget & Stats Table"
+          }
+      ],
+      "sections": [
+          {
+              "type": "text",
+              "id": "about-borneo",
+              "title": "About Sabah, Malaysian Borneo: An Ancient Biodiversity Eden",
+              "subtitle": "Evolutionary Wonders Across East Malaysia",
+              "body": "Sabah occupies the northern tip of the island of Borneo. Separated from Peninsular Malaysia by the South China Sea, it contains astonishing biodiversity found nowhere else on Earth. From the rare Rafflesia (the world's largest flower) to native proboscis monkeys and clouded leopards, Sabah offers a wild, untamed nature expedition for conscious adventurers."
+          },
+          {
+              "type": "callout",
+              "calloutType": "gear",
+              "title": "GEAR ESSENTIAL: Leech Socks & Rain Cover",
+              "body": "Tropical rainforest walks can be muddy. Bring tightly woven leech socks (pulled over your pants up to your knees) and a waterproof rain cover for your camera and daypack."
+          },
+          {
+              "type": "image",
+              "imageUrl": "https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?auto=format&fit=crop&w=1600&h=900&q=80",
+              "imageCaption": "Wild Bornean orangutan resting peacefully in the lush rainforest canopy of Sabah."
+          },
+          {
+              "type": "text",
+              "id": "best-time",
+              "title": "Best Seasons for Borneo Wildlife & Trekking",
+              "subtitle": "Dry Season Wildlife Viewing and Mountain Trails",
+              "body": "The best months to explore Sabah are between March and October during the drier season. River levels along the Kinabatangan River are stable, allowing excellent boat maneuvering into oxbow lakes where animals gather to drink and feed. For climbing Mount Kinabalu, clear weather between February and May offers the highest chance of panoramic summit views."
+          },
+          {
+              "type": "text",
+              "id": "sepilok-sanctuary",
+              "title": "Sepilok Orangutan & Bornean Sun Bear Sanctuaries",
+              "subtitle": "World-Class Wildlife Rehabilitation in Sandakan",
+              "body": "Located 25 minutes outside Sandakan, the Sepilok Orangutan Rehabilitation Centre protects orphaned and rescued orangutans in 43 square kilometers of Kabili-Sepilok Forest Reserve. Right next door is the Bornean Sun Bear Conservation Centre, where you can watch the world's smallest bears forage and climb tall trees from elevated viewing walkways."
+          },
+          {
+              "type": "text",
+              "id": "kinabatangan-safari",
+              "title": "Kinabatangan River Safaris & Rainforest Eco-Lodges",
+              "subtitle": "The Wildlife Amazon of Southeast Asia",
+              "body": "The Kinabatangan River is Sabah's longest river (560km). Staying 2 or 3 nights at a riverside eco-lodge near Sukau is the ultimate wildlife experience. Daily electric boat safaris at 6:00 AM and 4:30 PM allow you to drift silently past family herds of Bornean pygmy elephants grazing on the water's edge, silvered langurs, and giant Rhinoceros hornbills perched in fig trees."
+          },
+          {
+              "type": "bullet-list",
+              "id": "mount-kinabalu",
+              "title": "Kinabalu Park & Mountain Climbing Logistics",
+              "badge": "Trekking Checklist",
+              "items": [
+                  "UNESCO World Heritage Status: Kinabalu Park protects over 5,000 vascular plant species across four distinct elevation zones.",
+                  "Summit Climbing Permits: Only 160 climbing permits are issued per day by Sabah Parks. Book your 2D1N climb package 4 to 6 months in advance.",
+                  "Laban Rata Resthouse: Climbers sleep at the 3,272-meter mountain hut before beginning the final pre-dawn scramble up Low's Peak (4,095m) for sunrise.",
+                  "Botanical Mountain Walks: If you prefer not to climb to the summit, enjoy day walks along the Silau Silau trail through mossy mountain gardens and pitcher plant conservatories."
+              ]
+          },
+          {
+              "type": "text",
+              "id": "essential-jungle-gear",
+              "title": "Essential Rainforest Gear & Leech Protection",
+              "subtitle": "Staying Comfortable in Tropical Humidity",
+              "body": "Jungle humidity requires quick-drying synthetic clothing rather than heavy cotton. Pack a headlamp with spare batteries for night walks, binoculars (8x42 or 10x42) for spotting birds high in the canopy, a telephoto camera lens (200mm to 400mm), and natural insect repellent."
+          }
+      ],
+      "quickStats": {
+          "estimatedBudget": "$850 - $1,400 USD per person (5-7 days lodge packages, river safaris & park fees)",
+          "idealDuration": "6 to 8 Days across Kota Kinabalu, Sandakan & Sukau",
+          "bestMonths": "March through October (Drier weather for river safaris and summit climbs)",
+          "routeAccess": "Domestic flights on Malaysia Airlines/AirAsia into Kota Kinabalu (BKI) and Sandakan (SDK)",
+          "keyGear": "Leech socks, telephoto zoom lens (70-300mm+), binoculars, headlamp, waterproof dry bag"
+      },
+      "closingQuestion": "What is your dream Borneo wildlife encounter: spotting a wild orangutan or watching pygmy elephants swim across the river?"
   }
 ];
 

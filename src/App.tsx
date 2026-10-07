@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   TRIP_ID_TO_VIEW_MAP,
@@ -13,24 +13,33 @@ import ExpeditionHub from "./components/ExpeditionHub";
 import { BlogSection } from "./components/BlogSection";
 import { FAQSection } from "./components/FAQSection";
 import { ContactSection } from "./components/ContactSection";
-import { ContactView } from "./components/ContactView";
 import { Footer } from "./components/Footer";
-import { BlogArchive } from "./components/BlogArchive";
-import { CheckoutView } from "./components/CheckoutView";
-import { ShopView } from "./components/ShopView";
-import { ThailandDiariesView } from "./components/ThailandDiariesView";
-import { MalaysiaExpeditionView } from "./components/MalaysiaExpeditionView";
-import { AmritsarExpeditionView } from "./components/AmritsarExpeditionView";
-import { KeralaExpeditionView } from "./components/KeralaExpeditionView";
-import { PatalBhuvaneshwarExpeditionView } from "./components/PatalBhuvaneshwarExpeditionView";
-import { RishikeshExpeditionView } from "./components/RishikeshExpeditionView";
-import { GoaExpeditionView } from "./components/GoaExpeditionView";
-import { VietnamExpeditionView } from "./components/VietnamExpeditionView";
-import { ExploringSoonView } from "./components/ExploringSoonView";
-import { BioView } from "./components/BioView";
-import { PolicyPageView } from "./components/PolicyPageView";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import { parseCurrentRoute, routeToPath, updatePageSeo, AppView } from "./utils/routerSeo";
+
+// Code-split secondary views for high performance & ultra-fast initial page load
+const ContactView = lazy(() => import("./components/ContactView").then(m => ({ default: m.ContactView })));
+const BlogArchive = lazy(() => import("./components/BlogArchive").then(m => ({ default: m.BlogArchive })));
+const CheckoutView = lazy(() => import("./components/CheckoutView").then(m => ({ default: m.CheckoutView })));
+const ShopView = lazy(() => import("./components/ShopView").then(m => ({ default: m.ShopView })));
+const ThailandDiariesView = lazy(() => import("./components/ThailandDiariesView").then(m => ({ default: m.ThailandDiariesView })));
+const MalaysiaExpeditionView = lazy(() => import("./components/MalaysiaExpeditionView").then(m => ({ default: m.MalaysiaExpeditionView })));
+const AmritsarExpeditionView = lazy(() => import("./components/AmritsarExpeditionView").then(m => ({ default: m.AmritsarExpeditionView })));
+const KeralaExpeditionView = lazy(() => import("./components/KeralaExpeditionView").then(m => ({ default: m.KeralaExpeditionView })));
+const PatalBhuvaneshwarExpeditionView = lazy(() => import("./components/PatalBhuvaneshwarExpeditionView").then(m => ({ default: m.PatalBhuvaneshwarExpeditionView })));
+const RishikeshExpeditionView = lazy(() => import("./components/RishikeshExpeditionView").then(m => ({ default: m.RishikeshExpeditionView })));
+const GoaExpeditionView = lazy(() => import("./components/GoaExpeditionView").then(m => ({ default: m.GoaExpeditionView })));
+const VietnamExpeditionView = lazy(() => import("./components/VietnamExpeditionView").then(m => ({ default: m.VietnamExpeditionView })));
+const ExploringSoonView = lazy(() => import("./components/ExploringSoonView").then(m => ({ default: m.ExploringSoonView })));
+const BioView = lazy(() => import("./components/BioView").then(m => ({ default: m.BioView })));
+const PolicyPageView = lazy(() => import("./components/PolicyPageView").then(m => ({ default: m.PolicyPageView })));
+
+const ViewLoadingFallback = () => (
+  <div className="min-h-[60vh] flex flex-col items-center justify-center bg-bg text-text-main py-24 transition-colors">
+    <div className="w-10 h-10 border-2 border-accent/20 border-t-accent rounded-full animate-spin mb-4" />
+    <span className="font-ui text-xs uppercase tracking-widest text-text-dim">Loading Dispatch...</span>
+  </div>
+);
 
 /**
  * AppContent Component:
@@ -103,6 +112,25 @@ function AppContent() {
       return () => clearTimeout(timer);
     }
   }, [toastMessage]);
+
+  // Prefetch primary secondary routes during idle time to ensure instant transitions
+  useEffect(() => {
+    const prefetchRoutes = () => {
+      import("./components/BlogArchive");
+      import("./components/ContactView");
+      import("./components/ShopView");
+      import("./components/ThailandDiariesView");
+      import("./components/MalaysiaExpeditionView");
+    };
+
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        (window as any).requestIdleCallback(prefetchRoutes);
+      } else {
+        setTimeout(prefetchRoutes, 2000);
+      }
+    }
+  }, []);
 
   // Cart operations (memoized callbacks)
   const handleAddToCart = useCallback((item: { name: string; price: number; img: string }) => {
@@ -384,7 +412,9 @@ function AppContent() {
       />
       
       <main>
-        {renderCurrentView()}
+        <Suspense fallback={<ViewLoadingFallback />}>
+          {renderCurrentView()}
+        </Suspense>
       </main>
 
       <Footer onNavigate={handleNavigate} />

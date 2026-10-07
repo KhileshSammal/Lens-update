@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap');
 @import "tailwindcss";
 
 /* Theme definitions using standard CSS custom properties */
@@ -48,6 +47,9 @@
 @layer base {
   body {
     @apply bg-bg text-text-main font-sans antialiased overflow-x-hidden transition-colors duration-300;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   .serif {
@@ -56,6 +58,17 @@
   
   .ui-font {
     @apply font-ui;
+  }
+
+  /* Improved reading comfort & typography flow */
+  .blog-article-content p {
+    line-height: 1.82;
+    letter-spacing: -0.01em;
+  }
+
+  .blog-article-content h2,
+  .blog-article-content h3 {
+    letter-spacing: -0.015em;
   }
 }
 

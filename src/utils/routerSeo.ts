@@ -437,17 +437,29 @@ export function getSeoMetadata(pathnameOrView: string | AppView, activeBlogPostI
     summary = description;
     schemaData = {
       "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "@id": `${domain}/contact#contactpage`,
-      "name": title,
-      "description": description,
-      "url": `${domain}/contact`,
-      "publisher": orgSchema,
-      "author": {
-        "@type": "Person",
-        "name": "Khilesh Sammal",
-        "url": `${domain}/bio`
-      }
+      "@graph": [
+        {
+          "@type": "ContactPage",
+          "@id": `${domain}/contact#contactpage`,
+          "name": title,
+          "description": description,
+          "url": `${domain}/contact`,
+          "publisher": orgSchema,
+          "author": {
+            "@type": "Person",
+            "name": "Khilesh Sammal",
+            "url": `${domain}/bio`
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": `${domain}/contact#breadcrumb`,
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": domain },
+            { "@type": "ListItem", "position": 2, "name": "Contact", "item": `${domain}/contact` }
+          ]
+        }
+      ]
     };
   } else if (view === "privacy-policy") {
     title = "Privacy Policy & Data Protection | Lens & Latitude";
@@ -608,23 +620,38 @@ export function getSeoMetadata(pathnameOrView: string | AppView, activeBlogPostI
         summary = post.excerpt;
         schemaData = {
           "@context": "https://schema.org",
-          "@type": "BlogPosting",
-          "@id": `${domain}/blog/${post.id}#article`,
-          "mainEntityOfPage": `${domain}/blog/${post.id}`,
-          "headline": post.title,
-          "name": post.title,
-          "description": post.excerpt,
-          "image": [post.img],
-          "url": `${domain}/blog/${post.id}`,
-          "author": {
-            "@type": "Person",
-            "name": post.author || "Khilesh Sammal",
-            "url": `${domain}/bio`
-          },
-          "publisher": orgSchema,
-          "datePublished": post.date,
-          "inLanguage": "en-US",
-          "keywords": post.tag
+          "@graph": [
+            {
+              "@type": "BlogPosting",
+              "@id": `${domain}/blog/${post.id}#article`,
+              "mainEntityOfPage": `${domain}/blog/${post.id}`,
+              "headline": post.title,
+              "name": post.title,
+              "description": post.excerpt,
+              "image": [post.img],
+              "url": `${domain}/blog/${post.id}`,
+              "author": {
+                "@type": "Person",
+                "name": post.author || "Khilesh Sammal",
+                "url": `${domain}/bio`
+              },
+              "publisher": orgSchema,
+              "datePublished": post.date,
+              "dateModified": "2026-10-07",
+              "inLanguage": "en-US",
+              "keywords": post.tag,
+              "articleSection": post.tag
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": `${domain}/blog/${post.id}#breadcrumb`,
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": domain },
+                { "@type": "ListItem", "position": 2, "name": "The Journal", "item": `${domain}/blog` },
+                { "@type": "ListItem", "position": 3, "name": post.title, "item": `${domain}/blog/${post.id}` }
+              ]
+            }
+          ]
         };
       } else {
         title = "The Journal — Travel Guides & Insights | Lens & Latitude";
@@ -662,24 +689,37 @@ export function getSeoMetadata(pathnameOrView: string | AppView, activeBlogPostI
     summary = destInfo.description;
     schemaData = {
       "@context": "https://schema.org",
-      "@type": "TouristDestination",
-      "@id": `${domain}${canonicalPath}#destination`,
-      "name": destInfo.title,
-      "description": destInfo.description,
-      "image": [destInfo.image],
-      "url": `${domain}${canonicalPath}`,
-      "publisher": orgSchema,
-      "author": {
-        "@type": "Person",
-        "name": "Khilesh Sammal",
-        "url": `${domain}/bio`
-      },
-      "provider": {
-        "@type": "Person",
-        "name": "Khilesh Sammal",
-        "url": `${domain}/bio`
-      },
-      "touristType": ["Slow Travel", "Solo Traveler", "Photography Expedition", "Backpacking Guide"]
+      "@graph": [
+        {
+          "@type": "TouristDestination",
+          "@id": `${domain}${canonicalPath}#destination`,
+          "name": destInfo.title,
+          "description": destInfo.description,
+          "image": [destInfo.image],
+          "url": `${domain}${canonicalPath}`,
+          "publisher": orgSchema,
+          "author": {
+            "@type": "Person",
+            "name": "Khilesh Sammal",
+            "url": `${domain}/bio`
+          },
+          "provider": {
+            "@type": "Person",
+            "name": "Khilesh Sammal",
+            "url": `${domain}/bio`
+          },
+          "touristType": ["Slow Travel", "Solo Traveler", "Photography Expedition", "Backpacking Guide"]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": `${domain}${canonicalPath}#breadcrumb`,
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": domain },
+            { "@type": "ListItem", "position": 2, "name": "Expeditions", "item": `${domain}/destinations` },
+            { "@type": "ListItem", "position": 3, "name": destInfo.title, "item": `${domain}${canonicalPath}` }
+          ]
+        }
+      ]
     };
   }
 
@@ -727,8 +767,11 @@ export function updatePageSeo(view: AppView, activeBlogPostId: string | null) {
   setMetaTag('meta[property="og:image:alt"]', 'property', 'og:image:alt', meta.title);
   setMetaTag('meta[property="og:logo"]', 'property', 'og:logo', `https://lensandlattitude.in/logo.png`);
   setMetaTag('meta[property="og:site_name"]', 'property', 'og:site_name', 'Lens & Latitude');
+  setMetaTag('meta[property="og:locale"]', 'property', 'og:locale', 'en_US');
 
   setMetaTag('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
+  setMetaTag('meta[name="twitter:site"]', 'name', 'twitter:site', '@mr_khilesh');
+  setMetaTag('meta[name="twitter:creator"]', 'name', 'twitter:creator', '@mr_khilesh');
   setMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', meta.title);
   setMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', meta.description);
   setMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', meta.ogImage);
