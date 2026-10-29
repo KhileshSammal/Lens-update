@@ -24,6 +24,7 @@ export type AppView =
   | "philippines-expedition"
   | "nepal-expedition"
   | "portfolio"
+  | "destinations"
   | "bio";
 
 export interface RouteState {
@@ -86,6 +87,7 @@ export const REVERSE_DESTINATION_SLUGS: Record<AppView, string> = {
   "return-policy": "return-policy",
   "bio": "bio",
   "portfolio": "portfolio",
+  "destinations": "destinations",
   "thailand-diaries": "destination/thailand",
   "malaysia-expedition": "destination/malaysia",
   "amritsar-expedition": "destination/amritsar",
@@ -243,7 +245,7 @@ export function parseCurrentRoute(pathname: string, hash: string = ""): RouteSta
 
   // Match /destinations or /expeditions or /trips
   if (cleanPath === "/destinations" || cleanPath === "/expeditions" || cleanPath === "/trips") {
-    return { view: "home", activeBlogPostId: null, targetHash: "#directory" };
+    return { view: "destinations", activeBlogPostId: null, targetHash: "#directory" };
   }
 
   // Match /destination/:slug, /expedition/:slug, /destinations/:slug, /expeditions/:slug
@@ -307,6 +309,9 @@ export function routeToPath(view: AppView, activeBlogPostId: string | null): str
   }
   if (view === "portfolio") {
     return "/portfolio";
+  }
+  if (view === "destinations") {
+    return "/destinations";
   }
   if (view === "blog-archive") {
     if (activeBlogPostId) {
@@ -607,6 +612,37 @@ export function getSeoMetadata(pathnameOrView: string | AppView, activeBlogPostI
         "name": "Khilesh Sammal",
         "url": `${domain}/bio`
       }
+    };
+  } else if (view === "destinations") {
+    title = "Travel Expeditions & Global Destination Catalog | Lens & Latitude";
+    description = "Explore complete curated expedition dossiers, travel itineraries, and photo chronicles across India and Southeast Asia by Khilesh Sammal.";
+    heading = "Global Expeditions & Travel Destinations";
+    summary = description;
+    schemaData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CollectionPage",
+          "@id": `${domain}/destinations#collection`,
+          "name": title,
+          "description": description,
+          "url": `${domain}/destinations`,
+          "publisher": orgSchema,
+          "author": {
+            "@type": "Person",
+            "name": "Khilesh Sammal",
+            "url": `${domain}/bio`
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": `${domain}/destinations#breadcrumb`,
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": domain },
+            { "@type": "ListItem", "position": 2, "name": "Expeditions", "item": `${domain}/destinations` }
+          ]
+        }
+      ]
     };
   } else if (view === "blog-archive") {
     if (blogId) {

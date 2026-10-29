@@ -23,6 +23,7 @@ export const BlogSection = memo(({ onSelectPost }: BlogSectionProps) => {
         </div>
         <button 
           onClick={() => onSelectPost("archive-list")}
+          aria-label="View all journal articles in archive"
           className="text-text-dim hover:text-accent font-ui font-bold text-xs uppercase tracking-widest border border-border-main hover:border-accent/40 px-5 py-2.5 transition-all w-fit cursor-pointer"
         >
           View All Posts
@@ -34,11 +35,20 @@ export const BlogSection = memo(({ onSelectPost }: BlogSectionProps) => {
           <motion.article 
             key={post.id} 
             onClick={() => onSelectPost(post.id)}
+            role="link"
+            tabIndex={0}
+            aria-label={`Read article: ${post.title}`}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onSelectPost(post.id);
+              }
+            }}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: idx * 0.15, ease: "easeOut" }}
-            className="group cursor-pointer"
+            className="group cursor-pointer focus:outline-none focus:ring-1 focus:ring-accent"
           >
             <div className="aspect-video overflow-hidden mb-5 rounded-sm bg-card-bg border border-border-main">
               <img 

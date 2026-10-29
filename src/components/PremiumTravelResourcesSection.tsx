@@ -11,6 +11,7 @@ import {
   Compass
 } from "lucide-react";
 import { PremiumTravelResource } from "../data/travelResourcesData";
+import { formatInlineText } from "../utils/formatText";
 
 interface PremiumTravelResourcesSectionProps {
   resources: PremiumTravelResource;
@@ -113,7 +114,7 @@ export const PremiumTravelResourcesSection = memo(({ resources, locationName }: 
                     <Check size={16} strokeWidth={2.5} />
                   </span>
                   <div className="font-sans text-zinc-300">
-                    <strong className="text-zinc-100 font-semibold font-ui">{step.timeframe}</strong> — {step.action}
+                    <strong className="text-zinc-100 font-semibold font-ui">{step.timeframe}</strong> — {formatInlineText(step.action)}
                   </div>
                 </div>
               ))}
@@ -151,7 +152,7 @@ export const PremiumTravelResourcesSection = memo(({ resources, locationName }: 
                     {cat.category}
                   </div>
                   <div className="sm:col-span-8 font-sans font-light text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                    {cat.items}
+                    {formatInlineText(cat.items)}
                   </div>
                 </div>
               ))}
@@ -186,7 +187,7 @@ export const PremiumTravelResourcesSection = memo(({ resources, locationName }: 
               {resources.culturalEtiquette.map((rule, idx) => (
                 <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm leading-relaxed text-zinc-300 font-sans">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 shrink-0" />
-                  <span>{rule}</span>
+                  <span>{formatInlineText(rule)}</span>
                 </li>
               ))}
             </ul>
@@ -225,7 +226,7 @@ export const PremiumTravelResourcesSection = memo(({ resources, locationName }: 
                   {idx + 1}
                 </div>
                 <p className="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed">
-                  {tip}
+                  {formatInlineText(tip)}
                 </p>
               </div>
             ))}

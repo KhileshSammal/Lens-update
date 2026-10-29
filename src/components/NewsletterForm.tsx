@@ -112,11 +112,13 @@ export const NewsletterForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your email address" 
+          aria-label="Email address for travel newsletter"
           className="bg-card-bg border border-border-main rounded-sm px-3.5 py-2.5 text-xs text-white placeholder-text-dim/50 focus:outline-none focus:border-accent w-full font-sans transition-colors disabled:opacity-50"
         />
         <button 
           type="submit" 
           disabled={loading}
+          aria-label="Subscribe to newsletter"
           className="bg-accent hover:bg-accent/90 text-black px-5 py-2.5 rounded-sm text-xs uppercase tracking-widest font-bold font-ui cursor-pointer transition-colors whitespace-nowrap disabled:opacity-50 flex items-center gap-2"
         >
           {loading ? "Joining..." : "Join"}

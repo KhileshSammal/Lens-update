@@ -407,13 +407,19 @@ export const DETAILED_BLOG_POSTS: BlogPost[] = [
         title: "Best Time to Visit & Weather",
         subtitle: "Clear Mountain Skies",
         body: "The ideal months to visit Patal Bhuvaneshwar are March to June and September to November. During these months, the mountain roads are dry and safe, and the Himalayan mountain vistas are crystal clear. Avoid the heavy monsoon season of July and August due to potential mountain landslides."
+      },
+      {
+        type: "callout",
+        calloutType: "tip",
+        title: "KATHGODAM TRANSIT & BIKE RENTAL: Reaching Patal Bhuvaneshwar",
+        body: "For riders planning the legendary 185-km Kumaon mountain circuit from Kathgodam through Bhimtal, Almora, and Berinag to Patal Bhuvaneshwar, mountain-ready Royal Enfields and scooters can be rented directly at the Kathgodam railhead from [Uttarakhand Bike Rental](https://uttarakhandbikerental.in/). Having your own two-wheeler provides great flexibility to stop at pine ridge viewpoints and sacred roadside shrines at your own pace."
       }
     ],
     quickStats: {
       estimatedBudget: "₹12,000 - ₹18,000 ($140 - $220 USD for 3-Day Trip from Delhi)",
       idealDuration: "2 to 3 Days (Combine with Chaukori & Gangolihat)",
       bestMonths: "March to June & September to November",
-      routeAccess: "Drive from Kathgodam Railway Station (185 km, 6 hours) or Pantnagar Airport",
+      routeAccess: "Drive or scenic Himalayan ride from Kathgodam Railway Station (185 km, 6 hours via Almora & Berinag; bike rentals available at Kathgodam via [Uttarakhand Bike Rental](https://uttarakhandbikerental.in/))",
       keyGear: "Sturdy walking shoes with good grip, warm mountain fleece, headlamp / small torch"
     },
     closingQuestion: "Have you ever explored an underground cave temple? What was your experience like?"
@@ -984,12 +990,25 @@ export const DETAILED_BLOG_POSTS: BlogPost[] = [
         id: "five-day-itinerary",
         title: "5-Day Travel Plan",
         items: [
-          "Day 1: Arrive via Kathgodam, check in near the Mall Road, and take an evening boat ride on Naini Lake followed by a visit to the historic Naina Devi Temple.",
+          "Day 1: Arrive via Kathgodam railway terminus. For total hill flexibility and to bypass mall road cab queues, travelers often pick up a rental scooty or motorcycle from [Uttarakhand Bike Rental](https://uttarakhandbikerental.in/) located right at Kathgodam, check in near Mallital, and enjoy an evening sunset row on Naini Lake.",
           "Day 2: Take a scenic morning hike to China Peak (Naina Peak, 2,615m) for views of Nanda Devi, then stroll along the quiet Thandi Sadak walking path.",
-          "Day 3: Take a day trip to the quiet outer lakes: paddle on Bhimtal, spot colorful birds in the oak forests of Sattal, and walk around Naukuchiatal.",
+          "Day 3: Take a scenic mountain ride to the quiet outer lakes: paddle on Bhimtal, spot colorful birds in the oak forests of Sattal, and walk around Naukuchiatal.",
           "Day 4: Visit the historic Governor's House (Raj Bhawan) and take the aerial ropeway cable car up to Snow View Point.",
           "Day 5: Shop for local handmade candles, pine cone crafts, and fruit jams at the Tibetan Market before driving down to Kathgodam."
         ]
+      },
+      {
+        type: "text",
+        id: "outer-lakes",
+        title: "The Quiet Outer Lakes: Sattal & Bhimtal",
+        subtitle: "Serene Water Bodies and Forest Trails",
+        body: "While Nainital's central lake is lively and bustling, the surrounding Kumaon hills harbor quieter freshwater havens. Bhimtal, centered around its picturesque island aquarium, offers a slower pace and scenic lakeside cafes. Just 25 minutes further lie Sattal's interconnected forest lakes, an internationally renowned birding corridor surrounded by dense oaks. Riding a two-wheeler between these outer lakes is one of the most rewarding ways to experience the region without waiting for hill taxis."
+      },
+      {
+        type: "callout",
+        calloutType: "tip",
+        title: "KATHGODAM TO BHIMTAL & NAINITAL: Two-Wheeler Hill Route",
+        body: "Kathgodam serves as the gateway railway station for all Kumaon journeys. If you prefer navigating the gentle winding ghats at your own pace, [Uttarakhand Bike Rental](https://uttarakhandbikerental.in/) located at Kathgodam provides well-conditioned mountain bikes and automatic scooters with helmets and documentation, making trips up through Bhowali, Bhimtal, and Nainital hassle-free."
       },
       {
         type: "text",
@@ -1003,7 +1022,7 @@ export const DETAILED_BLOG_POSTS: BlogPost[] = [
       estimatedBudget: "₹18,000 - ₹26,000 ($220 - $310 USD for 2 People)",
       idealDuration: "4 to 5 Days",
       bestMonths: "March to June & September to November",
-      routeAccess: "Train from Delhi to Kathgodam Railway Station (34 km, 1 hour taxi drive)",
+      routeAccess: "Train from Delhi to Kathgodam Railway Station (34 km). Hill taxis and verified two-wheeler rentals ([Uttarakhand Bike Rental](https://uttarakhandbikerental.in/) at Kathgodam) available at station exit",
       keyGear: "Warm fleece jacket, sturdy walking shoes for stone paths, woolen cap for winter months"
     },
     closingQuestion: "Have you ever tasted authentic Kumaoni Bal Mithai or hot Bhatt ki Churkani in Uttarakhand?"

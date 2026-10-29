@@ -27,6 +27,7 @@ import { SocialShareButtons } from "./SocialShareButtons";
 import { TripCopyBanner } from "./TripCopyBanner";
 import { PremiumTravelResourcesSection } from "./PremiumTravelResourcesSection";
 import { getTravelResourcesForPost } from "../data/travelResourcesData";
+import { formatInlineText } from "../utils/formatText";
 
 interface BlogArchiveProps {
   onBackToHome: () => void;
@@ -372,7 +373,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                         </h3>
                       )}
                       <p className="font-normal text-zinc-300 text-lg sm:text-xl leading-relaxed">
-                        {section.body}
+                        {formatInlineText(section.body)}
                       </p>
                     </div>
                   );
@@ -408,7 +409,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                         </span>
                       </div>
                       <p className="font-sans text-base sm:text-lg leading-relaxed text-zinc-200">
-                        {section.body}
+                        {formatInlineText(section.body)}
                       </p>
                     </div>
                   );
@@ -418,7 +419,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                   return (
                     <div key={index} className="border-l-4 border-amber-400 pl-6 py-4 my-8 bg-zinc-900/50 rounded-r-xl">
                       <p className="font-serif italic text-xl sm:text-2xl text-amber-100 leading-relaxed">
-                        "{section.body}"
+                        "{formatInlineText(section.body)}"
                       </p>
                     </div>
                   );
@@ -444,7 +445,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                             <span className="mt-1 text-amber-400 flex-shrink-0">
                               <CheckCircle2 size={16} />
                             </span>
-                            <span className="font-normal">{item}</span>
+                            <span className="font-normal">{formatInlineText(item)}</span>
                           </li>
                         ))}
                       </ul>
@@ -546,7 +547,7 @@ export const BlogArchive = memo(({ onBackToHome, openBlogPostId, onSelectBlogPos
                           Route & Access
                         </span>
                         <p className="text-base sm:text-lg font-serif font-semibold text-white">
-                          {activePost.quickStats.routeAccess}
+                          {formatInlineText(activePost.quickStats.routeAccess)}
                         </p>
                       </div>
                     </div>

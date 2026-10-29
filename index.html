@@ -9,8 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
-    <link rel="dns-prefetch" href="https://images.unsplash.com" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" />
+    <!-- Non-blocking Google Fonts loading -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" />
+    </noscript>
     <meta name="theme-color" content="#0c0c0e" />
 
     <!-- Favicon -->
@@ -26,6 +30,7 @@
     <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="description" content="Lens & Latitude by Khilesh Sammal — A premium travel portfolio, slow-travel diaries, professional performance marketing, and subterranean visual gallery of regional and international expeditions." />
     <link rel="canonical" href="https://lensandlattitude.in/" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://lensandlattitude.in/sitemap.xml" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />

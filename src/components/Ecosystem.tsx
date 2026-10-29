@@ -195,14 +195,16 @@ const Ecosystem = ({ onAddToCart, onBuyNow }: { onAddToCart: () => void, onBuyNo
             <div className="flex flex-col sm:flex-row gap-4 w-full">
               <button 
                 onClick={onAddToCart}
-                className="group relative inline-flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-white px-8 py-4 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all w-full sm:w-auto"
+                aria-label="Add 2026 Lightroom Presets to Cart"
+                className="group relative inline-flex items-center justify-center gap-3 bg-white/5 border border-white/10 text-white px-8 py-4 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all w-full sm:w-auto cursor-pointer"
               >
                 Add to Cart
               </button>
               
               <button 
                 onClick={onBuyNow}
-                className="group relative inline-flex items-center justify-center gap-3 bg-white text-slate-950 px-8 py-4 md:px-10 md:py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-slate-200 transition-all overflow-hidden w-full sm:w-auto"
+                aria-label="Buy 2026 Lightroom Presets for ₹1,499 now"
+                className="group relative inline-flex items-center justify-center gap-3 bg-white text-slate-950 px-8 py-4 md:px-10 md:py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-slate-200 transition-all overflow-hidden w-full sm:w-auto cursor-pointer"
               >
                 <span className="relative z-10 flex items-center justify-center gap-3 w-full">
                   {isBuying ? "Processing..." : "Buy Now — ₹1,499"} 
@@ -229,6 +231,8 @@ const Ecosystem = ({ onAddToCart, onBuyNow }: { onAddToCart: () => void, onBuyNo
                 src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=80" 
                 className="w-full h-full object-cover transition-all duration-700" 
                 alt="Lens & Latitude limited edition travel photography presets and digital collection" 
+                loading="lazy"
+                decoding="async"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />

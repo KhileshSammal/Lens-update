@@ -308,7 +308,8 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
           <div className="flex items-center space-x-2 md:space-x-4">
             <button 
               onClick={toggleTheme}
-              aria-label="Toggle Theme"
+              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
+              title={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
               className={`p-2 rounded-full transition-all duration-300 flex items-center justify-center hover:scale-110 cursor-pointer ${
                 isLightHeader 
                   ? "bg-zinc-100 hover:bg-zinc-200 text-zinc-800" 
@@ -324,6 +325,8 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
 
             <button 
               onClick={() => onNavigate("checkout")}
+              aria-label={`Shopping cart containing ${totalCartItems} ${totalCartItems === 1 ? "item" : "items"}`}
+              title="Shopping Cart"
               className={`relative p-2 flex items-center gap-1.5 font-ui text-[11px] uppercase tracking-[0.25em] font-semibold transition-colors cursor-pointer ${
                 currentView === "checkout" 
                   ? "text-accent" 
@@ -333,11 +336,13 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
               }`}
             >
               <ShoppingCart size={15} className="text-accent hover:scale-110 transition-transform" />
-              <span className="hidden sm:inline">Cart</span>
+              <span className="sr-only">Shopping Cart ({totalCartItems})</span>
+              <span className="hidden sm:inline" aria-hidden="true">Cart</span>
               {totalCartItems > 0 && (
                 <motion.span 
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
+                  aria-hidden="true"
                   className="absolute -top-1 -right-2 bg-amber-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-black"
                 >
                   {totalCartItems}
@@ -346,7 +351,8 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
             </button>
 
             <button 
-              aria-label="Menu" 
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"} 
+              title={isMobileMenuOpen ? "Close menu" : "Open menu"}
               onClick={() => setIsMobileMenuOpen(prev => !prev)}
               className={`lg:hidden flex items-center gap-2 text-[10px] font-bold font-ui tracking-widest backdrop-blur-sm px-3 py-2 rounded-sm border transition-colors cursor-pointer ${
                 isLightHeader
@@ -389,6 +395,8 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
                   {searchQuery && (
                     <button 
                       onClick={() => setSearchQuery("")}
+                      aria-label="Clear search query"
+                      title="Clear search query"
                       className={`absolute right-3.5 hover:scale-110 transition-transform cursor-pointer ${
                         theme === "light" ? "text-zinc-600 hover:text-zinc-900" : "text-zinc-400 hover:text-white"
                       }`}

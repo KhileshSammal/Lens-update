@@ -1,0 +1,56 @@
+{
+  "$schema": "https://agent-manifest.org/schemas/v1/ai-catalog.json",
+  "name": "Lens & Latitude",
+  "version": "1.0.0",
+  "description": "Documentary travel photography, slow-travel guides, cultural expeditions, and fine art prints by Khilesh Sammal.",
+  "homepage": "https://lensandlattitude.in",
+  "documentation": "https://lensandlattitude.in/llms.txt",
+  "author": {
+    "name": "Khilesh Sammal",
+    "email": "khileshsammal.work@gmail.com",
+    "url": "https://lensandlattitude.in/bio"
+  },
+  "resources": [
+    {
+      "id": "destinations",
+      "name": "Travel Destinations & Expeditions",
+      "description": "Comprehensive itineraries, logistical road maps, and photography from Uttarakhand, Punjab, Kerala, Goa, Thailand, Malaysia, and Vietnam.",
+      "url": "https://lensandlattitude.in/destinations",
+      "type": "content"
+    },
+    {
+      "id": "journal",
+      "name": "Travel Journal & Analytical Guides",
+      "description": "Actionable slow-travel essays, packing checklists, food guides, and route tips.",
+      "url": "https://lensandlattitude.in/blog",
+      "type": "content"
+    },
+    {
+      "id": "patal-bhuvaneshwar",
+      "name": "Patal Bhuvaneshwar Expedition Guide",
+      "description": "Subterranean limestone cave temple guide, route access from Kathgodam, and historical folklore.",
+      "url": "https://lensandlattitude.in/destination/patal-bhuvaneshwar",
+      "type": "content"
+    },
+    {
+      "id": "shop",
+      "name": "Archival Print Store",
+      "description": "Museum-grade fine-art photography prints on archival cotton rag paper.",
+      "url": "https://lensandlattitude.in/shop",
+      "type": "ecommerce"
+    },
+    {
+      "id": "contact",
+      "name": "Direct Inquiries & Editorial Inquiries",
+      "description": "Licensing, editorial assignments, and direct contact form.",
+      "url": "https://lensandlattitude.in/contact",
+      "type": "form"
+    }
+  ],
+  "capabilities": [
+    "travel-planning",
+    "photography-portfolio",
+    "editorial-guides",
+    "fine-art-prints"
+  ]
+}

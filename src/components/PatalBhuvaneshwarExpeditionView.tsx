@@ -22,6 +22,7 @@ import {
 import { SocialShareButtons } from "./SocialShareButtons";
 import { TripCopyBanner } from "./TripCopyBanner";
 import { DestinationBlogLinkCard } from "./DestinationBlogLinkCard";
+import { formatInlineText } from "../utils/formatText";
 
 interface DayItinerary {
   day: number;
@@ -65,9 +66,9 @@ const ITINERARY_DATA: DayItinerary[] = [
   { 
     day: 1, 
     date: "Day 1: Rise to Nainital Lake Town", 
-    city: "Haldwani to Nainital", 
+    city: "Kathgodam / Haldwani to Nainital", 
     theme: "Hills Transition & Lake View", 
-    morning: "Begin early in Haldwani. Secure the mountain-spec rental scooty. Ascend from the plains into the lower Kumaon hills, feeling the temperature drop as winding valley roads reveal themselves.", 
+    morning: "Begin early in Haldwani or the Kathgodam railhead. Secure your mountain-ready rental scooty or motorcycle (available through credible local sources like [Uttarakhand Bike Rental](https://uttarakhandbikerental.in/) located right at Kathgodam). Ascend from the plains into the lower Kumaon hills, feeling the temperature drop as winding valley roads reveal themselves.", 
     afternoon: "Reach Nainital, complete checking in. Spend the afternoon exploring the peaceful Naini Lake and walking along Mall Road.", 
     evening: "Enjoy a scenic sunset overlooking the lake, dine at local hotspots, and settle in Nainital for Night 1.",
     route: "Ascending from the plains into the lower Kumaon hills. Winding lake-view roads.",
@@ -131,6 +132,7 @@ const DIRECTORY_DATA = {
     { name: "Almora Heritage Retreat", location: "Almora Ridge", feature: "Stunning forest viewpoints & wooden cottages" }
   ] as DirectoryHotel[],
   stops: [
+    { name: "Kathgodam Bike Rental Hub", location: "Kathgodam Railhead", description: "Credible local source for serviced mountain bikes and automatic scooties for riding up to Bhimtal, Nainital, Almora, and Patal Bhuvaneshwar ([uttarakhandbikerental.in](https://uttarakhandbikerental.in/))." },
     { name: "Kainchi Dham Ashram", location: "Bhowali Highway", description: "World-famous serene spiritual retreat of Neem Karoli Baba" },
     { name: "Jageshwar Dham", location: "Jageshwar Forest", description: "Cluster of 124 ancient stone-carved heritage temples" },
     { name: "Patal Bhuvaneshwar Cave", location: "Patal Bhuvaneshwar", description: "Deep limestone cave with incredible mythological stone carvings" },
@@ -147,7 +149,7 @@ const LEDGER_CATEGORIES: LedgerCategory[] = [
 
 const LOG_ENTRIES: LogEntry[] = [
   { item: "Accommodations (4 Nights)", cost: "₹14,000", sub: "Hotel Moon / BN Resort base rate (Assuming twin sharing split)" },
-  { item: "Mountain Fuel & Scooty Upkeep", cost: "₹2,500", sub: "Thorough prep, multi-stage petrol refills, and mountain safety check" },
+  { item: "Mountain Fuel & Rental Upkeep", cost: "₹2,500", sub: "Two-wheeler rental from Kathgodam (uttarakhandbikerental.in), refills, and mountain check" },
   { item: "Kumaoni Food Trails", cost: "₹3,500", sub: "Khairna Samosas, Sonam Momos, hot mountain tea, and local dal-bhaat" },
   { item: "Cave Guided Entrance", cost: "₹300", sub: "Mandatory local expert guide and cave system access fee" },
   { item: "Secure Mountain Parking", cost: "₹100", sub: "Scooty parking fees at temple checkpoints and Jageshwar" },
@@ -342,7 +344,7 @@ export const PatalBhuvaneshwarExpeditionView = memo(({ onBackToHome, onOpenBlog 
                         <div className="space-y-1">
                           <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-slate-500 font-ui">Morning block</span>
                           <p className="text-zinc-300 text-base md:text-lg leading-relaxed font-light max-w-xl font-sans">
-                            {activeDay.morning}
+                            {formatInlineText(activeDay.morning)}
                           </p>
                         </div>
                       </div>
@@ -435,7 +437,7 @@ export const PatalBhuvaneshwarExpeditionView = memo(({ onBackToHome, onOpenBlog 
                     </h4>
                     <div className="flex flex-col gap-1 text-xs md:text-sm">
                       <span className="text-slate-400 font-medium uppercase tracking-wider text-[10px] font-ui">{r.location}</span>
-                      <span className="text-amber-100/80 italic font-sans font-light leading-relaxed">{r.description}</span>
+                      <span className="text-amber-100/80 italic font-sans font-light leading-relaxed">{formatInlineText(r.description)}</span>
                     </div>
                   </div>
                 ))}
@@ -510,7 +512,7 @@ export const PatalBhuvaneshwarExpeditionView = memo(({ onBackToHome, onOpenBlog 
                             </span>
                           </div>
                           <p className="text-[10px] text-slate-500 font-medium italic">
-                            {l.sub}
+                            {formatInlineText(l.sub)}
                           </p>
                         </div>
                       ))}

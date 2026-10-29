@@ -83,6 +83,7 @@ export const Directory = memo(({ onSelectTrip }: DirectoryProps) => {
                 <h3 className="text-base sm:text-xl font-serif mb-2 sm:mb-4 leading-tight text-white">{trip.title}</h3>
                 <button 
                   onClick={() => onSelectTrip(trip.id)}
+                  aria-label={`View expedition details for ${trip.title} - ${trip.subtitle}`}
                   className="px-3 py-1.5 sm:px-5 sm:py-2.5 text-[9px] sm:text-[11px] font-bold font-ui uppercase tracking-widest border border-white/40 hover:bg-white hover:text-black transition-all w-fit flex items-center gap-1.5 sm:gap-2 cursor-pointer text-left"
                 >
                   View <Eye size={12} className="sm:w-4 sm:h-4" />

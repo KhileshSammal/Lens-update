@@ -101,7 +101,7 @@ export const PortfolioGallery = memo(() => {
       image: ALL_GALLERY_PHOTOS.map((item) => ({
         "@type": item.type === "video" ? "VideoObject" : "ImageObject",
         name: item.title,
-        contentUrl: item.url.startsWith("http") ? item.url : `https://lensandlatitude.com${item.url}`,
+        contentUrl: item.url.startsWith("http") ? item.url : `https://lensandlattitude.in${item.url}`,
         description: item.seoDescription || item.alt,
         caption: item.caption,
         contentLocation: {
@@ -151,6 +151,7 @@ export const PortfolioGallery = memo(() => {
                   key={filter.id}
                   id={`gallery-filter-${filter.id.toLowerCase().replace(/\s+/g, "-")}`}
                   onClick={() => setActiveFilter(filter.id)}
+                  aria-label={`Filter gallery by ${filter.label}`}
                   className={`px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold font-ui tracking-wide rounded-xl transition-all duration-300 cursor-pointer ${
                     isActive
                       ? "bg-amber-400 text-black font-extrabold shadow-md scale-[1.02]"

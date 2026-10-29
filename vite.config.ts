@@ -7,9 +7,6 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
     plugins: [react(), tailwindcss()],
-    define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
@@ -20,6 +17,7 @@ export default defineConfig(({mode}) => {
       cssCodeSplit: true,
       minify: 'esbuild',
       sourcemap: false,
+      modulePreload: false,
       chunkSizeWarningLimit: 800,
       rollupOptions: {
         output: {

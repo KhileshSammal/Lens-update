@@ -207,7 +207,7 @@ export const TRAVEL_RESOURCES_BY_POST: Record<string, PremiumTravelResource> = {
     ],
     planningChecklist: [
       { timeframe: "2 months out", action: "Reserve accommodation at KMVN Tourist Rest House Patal Bhuvaneshwar or nearby Gangolihat" },
-      { timeframe: "1 month", action: "Hire experienced mountain taxi from Kathgodam railway station or Pantnagar airport" },
+      { timeframe: "1 month", action: "Arrange mountain transit from Kathgodam railway station—hire an experienced hill cab or reserve a mountain touring bike from [Uttarakhand Bike Rental](https://uttarakhandbikerental.in/) located at Kathgodam" },
       { timeframe: "2 weeks", action: "Monitor Himalayan weather forecasts and road condition advisories along the Almora-Berinag route" },
       { timeframe: "1 day before", action: "Hydrate well and rest to acclimatize to high Himalayan ridge elevation (1,350m)" },
       { timeframe: "On arrival", action: "Arrive at temple gate by 8:00 AM to secure early entrance token and avoid mid-day queues" }
@@ -221,6 +221,7 @@ export const TRAVEL_RESOURCES_BY_POST: Record<string, PremiumTravelResource> = {
     ],
     practicalTips: [
       "The descent involves holding heavy iron chains through a narrow 80-foot rock crevice—wear flexible, non-restrictive clothing.",
+      "Motorcycle road-trippers tackling the scenic Kathgodam-Almora-Gangolihat highway should secure well-serviced machines with good hill climbing torque from credible providers like [Uttarakhand Bike Rental](https://uttarakhandbikerental.in/) at Kathgodam before climbing into high Kumaon passes.",
       "Travelers with severe claustrophobia, heart conditions, or advanced respiratory ailments should evaluate the steep descent carefully.",
       "Cash is king in Gangolihat and Berinag; mountain ATMs frequently run out of bills or face power outages.",
       "Avoid visiting during peak monsoon months (July to August) when heavy rains cause landslides on Kumaon mountain roads."
@@ -495,7 +496,7 @@ export const TRAVEL_RESOURCES_BY_POST: Record<string, PremiumTravelResource> = {
     planningChecklist: [
       { timeframe: "2 months out", action: "Book a heritage lake-facing stay along Mallital or a serene nature cottage in Sattal/Pangot" },
       { timeframe: "1 month", action: "Book Kathgodam Shatabdi Express train tickets from New Delhi to Kathgodam railway station" },
-      { timeframe: "2 weeks", action: "Hire a trusted local hill cab driver for lake tours (Bhimtal, Naukuchiatal, Sattal, Khurpatal)" },
+      { timeframe: "2 weeks", action: "Hire a trusted local hill cab or pick up a serviced motorcycle/scooter from [Uttarakhand Bike Rental](https://uttarakhandbikerental.in/) at Kathgodam for flexible lake tours (Bhimtal, Naukuchiatal, Sattal, Khurpatal)" },
       { timeframe: "1 week", action: "Check mountain weather updates and pack proper thermal layers for cool evenings" },
       { timeframe: "On arrival", action: "Buy boating tickets only from official municipal ticket counters along Naini Lake" }
     ],
@@ -508,9 +509,10 @@ export const TRAVEL_RESOURCES_BY_POST: Record<string, PremiumTravelResource> = {
     ],
     practicalTips: [
       "Stroll along Thandi Sadak (the quiet pedestrian path opposite Mall Road) at 7:00 AM for tranquil lake views without vehicular noise.",
+      "Riding a two-wheeler makes navigating narrow mountain curves and parking around Bhimtal, Sattal, and Naukuchiatal effortless; verified bike rentals are available right outside Kathgodam railway station via [Uttarakhand Bike Rental](https://uttarakhandbikerental.in/).",
       "Take the aerial ropeway or hike to Snow View Point before 10:00 AM for clear, panoramic views of the Himalayan peaks (Trisul, Nanda Devi).",
       "Escape the Mall Road tourist crowds by spending a day kayaking and forest walking around the tranquil Seven Lakes of Sattal.",
-      "Pre-book Kathgodam railway taxis through registered transport counters to avoid inflated fares at the train station exit."
+      "Pre-book Kathgodam railway taxis or rental two-wheelers through registered transport counters to avoid inflated fares at the train station exit."
     ]
   },
 

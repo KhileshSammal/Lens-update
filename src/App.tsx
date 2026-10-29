@@ -96,6 +96,19 @@ function AppContent() {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
+  // Handle initial deep-linking anchor scrolling (e.g. #directory, #gallery)
+  useEffect(() => {
+    const route = parseCurrentRoute(window.location.pathname, window.location.hash);
+    if (route.targetHash) {
+      setTimeout(() => {
+        const element = document.querySelector(route.targetHash!);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    }
+  }, []);
+
   // Save cart changes to localStorage
   useEffect(() => {
     try {
@@ -372,6 +385,29 @@ function AppContent() {
       case "bio":
         return <BioView onBackToHome={handleBackToHome} />;
 
+      case "portfolio":
+        return (
+          <div className="pt-20">
+            <PortfolioGallery />
+          </div>
+        );
+
+      case "destinations":
+        return (
+          <>
+            <Hero />
+            <Directory onSelectTrip={handleSelectTrip} />
+            <ExpeditionHub 
+              cartItems={cart}
+              onAddToCart={handleAddToCart}
+              onOpenCheckout={handleOpenCheckout}
+            />
+            <BlogSection onSelectPost={handleSelectPost} />
+            <FAQSection />
+            <ContactSection onNavigate={handleNavigate} />
+          </>
+        );
+
       case "privacy-policy":
         return <PolicyPageView policyType="privacy-policy" onNavigate={handleNavigate} />;
 
@@ -389,13 +425,20 @@ function AppContent() {
 
       default:
         return (
-          <CheckoutView 
-            cartItems={cart}
-            onRemoveFromCart={handleRemoveFromCart}
-            onUpdateQuantity={handleUpdateQuantity}
-            onClearCart={handleClearCart}
-            onBackToHome={handleBackToHome}
-          />
+          <>
+            <Hero />
+            <About onReadBio={() => handleNavigate("bio")} />
+            <Directory onSelectTrip={handleSelectTrip} />
+            <PortfolioGallery />
+            <ExpeditionHub 
+              cartItems={cart}
+              onAddToCart={handleAddToCart}
+              onOpenCheckout={handleOpenCheckout}
+            />
+            <BlogSection onSelectPost={handleSelectPost} />
+            <FAQSection />
+            <ContactSection onNavigate={handleNavigate} />
+          </>
         );
     }
   };

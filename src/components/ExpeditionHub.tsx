@@ -52,10 +52,15 @@ const ExpeditionHub = ({ cartItems = [], onAddToCart, onOpenCheckout }: Expediti
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0, y: 20 }}
             onClick={onOpenCheckout}
-            className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[90] bg-white text-slate-950 p-5 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center"
+            aria-label={`View shopping cart with ${cartItems.reduce((acc: number, curr: any) => acc + curr.quantity, 0)} items`}
+            title="View Shopping Cart"
+            className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[90] bg-white text-slate-950 p-5 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center cursor-pointer"
           >
             <ShoppingCart size={24} />
-            <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-[10px] font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white">
+            <span className="sr-only">
+              Shopping Cart with {cartItems.reduce((acc: number, curr: any) => acc + curr.quantity, 0)} items
+            </span>
+            <span aria-hidden="true" className="absolute -top-1 -right-1 bg-amber-500 text-white text-[10px] font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white">
               {cartItems.reduce((acc: number, curr: any) => acc + curr.quantity, 0)}
             </span>
           </motion.button>
