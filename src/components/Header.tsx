@@ -7,6 +7,8 @@ import {
   Search, 
   Sun, 
   Moon, 
+  Sparkles,
+  Loader2,
   X as CloseIcon 
 } from "lucide-react";
 import React, { useState, useEffect, useMemo, memo } from "react";
@@ -171,6 +173,27 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [aiAdvice, setAiAdvice] = useState<string | null>(null);
+  const [isAiLoading, setIsAiLoading] = useState(false);
+
+  const fetchAiAdvice = async (query: string) => {
+    if (!query.trim() || isAiLoading) return;
+    setIsAiLoading(true);
+    setAiAdvice(null);
+    try {
+      const res = await fetch("/api/ai/expedition-advisor", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query }),
+      });
+      const data = await res.json();
+      setAiAdvice(data.reply || "No insights found for this query.");
+    } catch {
+      setAiAdvice("Unable to load AI expedition intelligence at this moment.");
+    } finally {
+      setIsAiLoading(false);
+    }
+  };
 
   const filteredTrips = useMemo(() => {
     if (!searchQuery.trim()) return [];
@@ -178,6 +201,16 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
     return TRIPS.filter(trip => 
       trip.title.toLowerCase().includes(query) || 
       (trip.subtitle && trip.subtitle.toLowerCase().includes(query))
+    );
+  }, [searchQuery]);
+
+  const filteredBlogPosts = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    const query = searchQuery.toLowerCase();
+    return DETAILED_BLOG_POSTS.filter(post => 
+      post.title.toLowerCase().includes(query) || 
+      post.tag.toLowerCase().includes(query) ||
+      (post.excerpt && post.excerpt.toLowerCase().includes(query))
     );
   }, [searchQuery]);
 
@@ -307,6 +340,20 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
 
           <div className="flex items-center space-x-2 md:space-x-4">
             <button 
+              onClick={() => setIsMobileMenuOpen(true)}
+              aria-label="Search trips, guides, and prints"
+              title="Search dispatches & AI expedition advisor"
+              className={`p-2 rounded-full transition-all duration-300 flex items-center justify-center hover:scale-110 cursor-pointer ${
+                isLightHeader 
+                  ? "bg-zinc-100 hover:bg-zinc-200 text-zinc-800" 
+                  : "bg-white/5 hover:bg-white/10 text-accent"
+              }`}
+            >
+              <Search size={15} className="text-accent" aria-hidden="true" />
+              <span className="sr-only">Search</span>
+            </button>
+
+            <button 
               onClick={toggleTheme}
               aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
               title={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
@@ -325,8 +372,8 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
 
             <button 
               onClick={() => onNavigate("checkout")}
-              aria-label={`Shopping cart containing ${totalCartItems} ${totalCartItems === 1 ? "item" : "items"}`}
-              title="Shopping Cart"
+              aria-label={`Shopping Cart with ${totalCartItems} ${totalCartItems === 1 ? "item" : "items"}`}
+              title={`Shopping Cart (${totalCartItems} items)`}
               className={`relative p-2 flex items-center gap-1.5 font-ui text-[11px] uppercase tracking-[0.25em] font-semibold transition-colors cursor-pointer ${
                 currentView === "checkout" 
                   ? "text-accent" 
@@ -335,18 +382,16 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
                     : "text-white hover:text-accent"
               }`}
             >
-              <ShoppingCart size={15} className="text-accent hover:scale-110 transition-transform" />
-              <span className="sr-only">Shopping Cart ({totalCartItems})</span>
-              <span className="hidden sm:inline" aria-hidden="true">Cart</span>
+              <ShoppingCart size={15} className="text-accent hover:scale-110 transition-transform" aria-hidden="true" />
+              <span className="inline">Cart</span>
+              <span className="sr-only">({totalCartItems} items)</span>
               {totalCartItems > 0 && (
-                <motion.span 
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  aria-hidden="true"
+                <span 
                   className="absolute -top-1 -right-2 bg-amber-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-black"
+                  aria-hidden="true"
                 >
                   {totalCartItems}
-                </motion.span>
+                </span>
               )}
             </button>
 
@@ -383,9 +428,17 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
                   <Search size={18} className="absolute left-3.5 text-zinc-400" />
                   <input
                     type="text"
-                    placeholder="Search trips, destinations, or shop..."
+                    placeholder="Search trips, destinations, bike rentals, photo gear..."
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={(e) => {
+                      setSearchQuery(e.target.value);
+                      if (aiAdvice) setAiAdvice(null);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && searchQuery.trim()) {
+                        fetchAiAdvice(searchQuery);
+                      }
+                    }}
                     className={`w-full border rounded-sm py-3 pl-11 pr-10 text-sm placeholder-zinc-500 focus:outline-none focus:border-accent transition-colors font-sans ${
                       theme === "light"
                         ? "bg-zinc-100 border-zinc-200 text-zinc-900"
@@ -394,7 +447,10 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
                   />
                   {searchQuery && (
                     <button 
-                      onClick={() => setSearchQuery("")}
+                      onClick={() => {
+                        setSearchQuery("");
+                        setAiAdvice(null);
+                      }}
                       aria-label="Clear search query"
                       title="Clear search query"
                       className={`absolute right-3.5 hover:scale-110 transition-transform cursor-pointer ${
@@ -409,6 +465,72 @@ export const Header = memo(({ currentView, onNavigate, onSelectPost, totalCartIt
 
               {searchQuery.trim() !== "" ? (
                 <div className="flex-1 space-y-6 animate-fadeIn py-2">
+                  {/* AI Expedition Intelligence Card */}
+                  <div className={`p-4 rounded-lg border transition-all ${
+                    theme === "light" 
+                      ? "bg-amber-500/5 border-amber-500/20" 
+                      : "bg-amber-400/5 border-amber-400/20"
+                  }`}>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-accent">
+                        <Sparkles size={14} className="text-accent animate-pulse" />
+                        AI Expedition Intelligence (Gemini 3.8 Flash)
+                      </span>
+                      <button
+                        onClick={() => fetchAiAdvice(searchQuery)}
+                        disabled={isAiLoading}
+                        className="text-[10px] uppercase font-mono font-bold px-2 py-1 rounded bg-accent/20 hover:bg-accent hover:text-black text-accent transition-colors flex items-center gap-1 cursor-pointer disabled:opacity-50"
+                      >
+                        {isAiLoading ? <Loader2 size={10} className="animate-spin" /> : <Sparkles size={10} />}
+                        {isAiLoading ? "Consulting..." : "Consult Advisor"}
+                      </button>
+                    </div>
+
+                    {aiAdvice ? (
+                      <p className={`text-xs leading-relaxed font-sans ${theme === "light" ? "text-zinc-700" : "text-zinc-300"}`}>
+                        {aiAdvice}
+                      </p>
+                    ) : (
+                      <p className={`text-xs font-sans ${theme === "light" ? "text-zinc-500" : "text-zinc-400"}`}>
+                        Tap "Consult Advisor" or press Enter for instant route logistics, bike rentals, camera gear tips, and packing blueprints for "{searchQuery}".
+                      </p>
+                    )}
+                  </div>
+
+                  {filteredBlogPosts.length > 0 && (
+                    <div>
+                      <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-accent font-bold mb-3">Field Guides & Notes ({filteredBlogPosts.length})</h3>
+                      <div className="grid gap-2">
+                        {filteredBlogPosts.slice(0, 4).map(post => (
+                          <div
+                            key={post.id}
+                            onClick={() => {
+                              setIsMobileMenuOpen(false);
+                              setSearchQuery("");
+                              if (onSelectPost) onSelectPost(post.id);
+                            }}
+                            className={`flex items-center gap-3 p-2.5 rounded border transition-all cursor-pointer group ${
+                              theme === "light"
+                                ? "bg-zinc-100 hover:bg-zinc-200 border-zinc-200"
+                                : "bg-white/5 hover:bg-white/10 border-white/5"
+                            }`}
+                          >
+                            <img src={post.img} alt={post.title} className="w-12 h-12 object-cover rounded-sm group-hover:scale-105 transition-transform shrink-0" referrerPolicy="no-referrer" />
+                            <div className="flex-1 min-w-0">
+                              <span className="text-[9px] uppercase tracking-wider text-accent font-mono font-bold">{post.tag}</span>
+                              <p className={`text-sm font-serif line-clamp-1 group-hover:text-accent transition-colors ${
+                                theme === "light" ? "text-zinc-900" : "text-white"
+                              }`}>{post.title}</p>
+                              <p className={`text-[10px] font-sans line-clamp-1 ${
+                                theme === "light" ? "text-zinc-500" : "text-zinc-400"
+                              }`}>{post.excerpt}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   <div>
                     <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-accent font-bold mb-3">Trip Diaries ({filteredTrips.length})</h3>
                     {filteredTrips.length > 0 ? (

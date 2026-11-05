@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { motion } from "motion/react";
 import { SOCIAL_LINKS } from "../constants";
 
 export const Hero = memo(() => (
@@ -15,30 +14,25 @@ export const Hero = memo(() => (
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#0c0c0e]"></div>
     </div>
     
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      className="relative z-10 text-center px-6 max-w-4xl"
-    >
+    <div className="relative z-10 text-center px-6 max-w-4xl">
       <h1 className="text-3xl sm:text-5xl md:text-8xl font-serif italic mb-4 text-white drop-shadow-2xl">Lens & Latitude</h1>
       <p className="text-[9px] sm:text-xs md:text-base uppercase tracking-[0.2em] md:tracking-[0.5em] text-[#ffcc00] font-bold font-ui">Documenting the Unseen — 2025 - ∞</p>
       
       <div className="mt-8 md:mt-10 flex justify-center space-x-6 md:space-x-8 text-white">
         {SOCIAL_LINKS.map((social) => (
-          <motion.a 
+          <a 
             key={social.label}
-            whileHover={{ scale: 1.1, color: "#ffcc00" }}
             href={social.href} 
             target="_blank" 
+            rel="noopener noreferrer"
             aria-label={social.label} 
-            className="p-2 text-white hover:text-[#ffcc00] transition-colors"
+            className="p-2 text-white hover:text-[#ffcc00] hover:scale-110 transition-all duration-200"
           >
             <social.icon size={24} />
-          </motion.a>
+          </a>
         ))}
       </div>
-    </motion.div>
+    </div>
   </section>
 ));
 

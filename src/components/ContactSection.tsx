@@ -18,14 +18,32 @@ export const ContactSection = memo(({ onNavigate }: ContactSectionProps) => (
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="lg:col-span-5"
+          className="lg:col-span-5 flex flex-col justify-between"
         >
-          <span className="text-accent uppercase tracking-widest text-[10px] font-bold mb-4 block font-ui">Let's Connect</span>
-          <h2 className="text-4xl md:text-7xl font-serif leading-[1.1] mb-5 md:mb-8">Follow the <br /><span className="italic text-text-dim">Expedition.</span></h2>
-          <p className="text-text-dim text-base md:text-lg font-serif italic max-w-sm">The journey is the lens through which we find ourselves.</p>
+          <div>
+            <span className="text-accent uppercase tracking-widest text-[10px] font-bold mb-4 block font-ui">Let's Connect</span>
+            <h2 className="text-4xl md:text-7xl font-serif leading-[1.1] mb-5 md:mb-8">Follow the <br /><span className="italic text-text-dim">Expedition.</span></h2>
+            <p className="text-text-dim text-base md:text-lg font-serif italic max-w-sm mb-6">The journey is the lens through which we find ourselves.</p>
+          </div>
+
+          <div className="mt-4 p-5 rounded border border-border-main bg-card-bg/60 backdrop-blur-sm max-w-md">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[10px] uppercase font-mono font-bold tracking-widest text-text-dim">Field Expedition Dispatches</span>
+            </div>
+            <p className="text-xs text-text-dim font-sans leading-relaxed mb-3">
+              Real-time behind-the-lens moments, raw photography reels, 4K documentary films, and uncurated mountain journeys across India and Southeast Asia.
+            </p>
+            <a 
+              href="mailto:khileshsammal.business@gmail.com" 
+              className="text-[11px] font-ui font-bold uppercase tracking-wider text-accent hover:underline inline-flex items-center gap-1.5"
+            >
+              Collaborations & Licensing Inquiries <ArrowUpRight size={13} />
+            </a>
+          </div>
         </motion.div>
 
-        <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+        <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6">
           {CONTACT_SOCIALS.map((social, idx) => (
             <motion.a 
               key={social.name}
@@ -36,16 +54,70 @@ export const ContactSection = memo(({ onNavigate }: ContactSectionProps) => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-              className="bg-card-bg border border-border-main p-8 md:p-10 flex flex-col justify-between aspect-square group rounded-sm hover:border-accent transition-all duration-500"
+              className="bg-card-bg border border-border-main p-6 sm:p-7 flex flex-col justify-between group rounded hover:border-accent hover:shadow-xl hover:shadow-black/5 transition-all duration-500 overflow-hidden relative"
             >
-              <div className="flex justify-between items-start">
-                <social.icon size={32} className="text-accent" />
-                <ArrowUpRight className="text-text-dim/60 group-hover:text-accent transition-colors" size={20} />
+              <div>
+                {/* Header Row: Icon, Channel Badge, and Arrow */}
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-11 h-11 rounded-lg bg-accent/10 border border-accent/25 flex items-center justify-center text-accent group-hover:scale-105 transition-transform duration-300">
+                      <social.icon size={22} className="text-accent" />
+                    </div>
+                    <div>
+                      <span className="font-ui text-[9px] uppercase tracking-widest text-text-dim block font-bold">{social.name}</span>
+                      <span className="text-[10px] font-mono font-bold text-accent">{social.badge}</span>
+                    </div>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-border-main/40 flex items-center justify-center text-text-dim group-hover:text-accent group-hover:bg-accent/10 transition-all duration-300">
+                    <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
+                </div>
+
+                {/* Photography / Video Visual Preview */}
+                <div className="relative h-36 rounded overflow-hidden mb-5 border border-border-main/60 bg-black/40">
+                  <img 
+                    src={social.previewImg} 
+                    alt={`${social.name} visual preview`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white">
+                    <span className="text-[10px] font-ui uppercase tracking-wider font-semibold bg-black/60 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
+                      {social.subtitle}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Channel Title & Handle */}
+                <h3 className="font-serif text-xl sm:text-2xl font-bold group-hover:text-accent transition-colors leading-tight mb-2">
+                  {social.handle}
+                </h3>
+                
+                {/* Channel Description */}
+                <p className="text-text-dim text-xs font-sans leading-relaxed mb-4">
+                  {social.description}
+                </p>
+
+                {/* Topic Hashtags / Badges */}
+                <div className="flex flex-wrap gap-1.5 mb-6">
+                  {social.tags.map(tag => (
+                    <span key={tag} className="text-[10px] font-mono text-text-dim bg-border-main/30 px-2 py-0.5 rounded border border-border-main/50">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="mt-8">
-                <p className="font-ui text-[9px] uppercase tracking-widest text-text-dim mb-2 font-bold">{social.name}</p>
-                <h3 className="font-serif text-xl md:text-3xl transition-all leading-tight">{social.handle}</h3>
-                <div className="h-1 w-0 group-hover:w-full bg-accent mt-4 transition-all duration-500"></div>
+
+              {/* Action Button & Bottom Progress Accent */}
+              <div>
+                <div className="pt-3 border-t border-border-main/50 flex items-center justify-between text-xs font-ui uppercase tracking-wider font-bold text-accent transition-colors">
+                  <span>{social.cta}</span>
+                  <ArrowUpRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </div>
+                <div className="h-[2px] w-0 group-hover:w-full bg-accent mt-3 transition-all duration-500" />
               </div>
             </motion.a>
           ))}

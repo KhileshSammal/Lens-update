@@ -175,10 +175,32 @@ export const FAQS = [
 
 /**
  * CONTACT_SOCIALS:
- * Direct social handles for social footer triggers.
+ * Direct social channels for social footer triggers and field dispatches.
  */
 export const CONTACT_SOCIALS = [
-  { name: "Instagram", handle: "@mr.khilesh__", href: "https://www.instagram.com/mr.khilesh__", icon: Instagram },
-  { name: "YouTube", handle: "Khilesh Sammal Vlogs", href: "https://www.youtube.com/c/KhileshSammalVlogs2125", icon: Youtube },
+  { 
+    name: "Instagram", 
+    handle: "@mr.khilesh__", 
+    href: "https://www.instagram.com/mr.khilesh__", 
+    icon: Instagram,
+    badge: "Daily Dispatches",
+    subtitle: "Visual Field Journal",
+    description: "Raw travel compositions, behind-the-lens moments, and real-time field photography reels across Asia.",
+    tags: ["#TravelPhotography", "#FieldNotes", "#SlowTravel"],
+    previewImg: "https://images.unsplash.com/photo-1681459878397-14dc6d270fe4?auto=format&fit=crop&w=800&q=80",
+    cta: "Follow on Instagram"
+  },
+  { 
+    name: "YouTube", 
+    handle: "Khilesh Sammal Vlogs", 
+    href: "https://www.youtube.com/c/KhileshSammalVlogs2125", 
+    icon: Youtube,
+    badge: "4K Cinematics",
+    subtitle: "Documentary Travel Vlogs",
+    description: "In-depth expedition films, walking journeys, realistic budget breakdowns, and slow-travel itinerary guides.",
+    tags: ["#TravelVlogs", "#4KExpeditions", "#Itineraries"],
+    previewImg: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=800&q=80",
+    cta: "Subscribe on YouTube"
+  },
 ];
 

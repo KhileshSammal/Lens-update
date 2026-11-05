@@ -1,56 +1,85 @@
 {
-  "$schema": "https://agent-manifest.org/schemas/v1/ai-catalog.json",
+  "$schema": "https://agenticresourcediscovery.org/schemas/v0.91/ard.json",
   "name": "Lens & Latitude",
-  "version": "1.0.0",
-  "description": "Documentary travel photography, slow-travel guides, cultural expeditions, and fine art prints by Khilesh Sammal.",
-  "homepage": "https://lensandlattitude.in",
-  "documentation": "https://lensandlattitude.in/llms.txt",
-  "author": {
+  "description": "Documentary travel photography, slow-travel guides, cultural expeditions, and fine-art prints by Khilesh Sammal.",
+  "publisher": {
     "name": "Khilesh Sammal",
+    "domain": "lensandlattitude.in",
     "email": "khileshsammal.work@gmail.com",
     "url": "https://lensandlattitude.in/bio"
   },
-  "resources": [
+  "entries": [
     {
-      "id": "destinations",
-      "name": "Travel Destinations & Expeditions",
-      "description": "Comprehensive itineraries, logistical road maps, and photography from Uttarakhand, Punjab, Kerala, Goa, Thailand, Malaysia, and Vietnam.",
+      "identifier": "urn:air:lensandlattitude.in:expeditions:destinations",
+      "displayName": "Destinations & Expeditions",
+      "type": "text/html",
       "url": "https://lensandlattitude.in/destinations",
-      "type": "content"
+      "description": "Comprehensive itineraries, logistical road maps, and photography from Uttarakhand, Punjab, Kerala, Goa, Thailand, Malaysia, and Vietnam.",
+      "representativeQueries": [
+        "travel itineraries Uttarakhand Kerala Vietnam",
+        "Kumaon Himalayas travel guide",
+        "cultural travel expeditions"
+      ]
     },
     {
-      "id": "journal",
-      "name": "Travel Journal & Analytical Guides",
-      "description": "Actionable slow-travel essays, packing checklists, food guides, and route tips.",
+      "identifier": "urn:air:lensandlattitude.in:journal:articles",
+      "displayName": "Travel Journal & Analytical Guides",
+      "type": "text/html",
       "url": "https://lensandlattitude.in/blog",
-      "type": "content"
+      "description": "Actionable slow-travel essays, packing checklists, food guides, and route tips.",
+      "representativeQueries": [
+        "slow travel philosophy",
+        "travel packing checklists",
+        "field intelligence and travel logistics"
+      ]
     },
     {
-      "id": "patal-bhuvaneshwar",
-      "name": "Patal Bhuvaneshwar Expedition Guide",
-      "description": "Subterranean limestone cave temple guide, route access from Kathgodam, and historical folklore.",
+      "identifier": "urn:air:lensandlattitude.in:guide:patal-bhuvaneshwar",
+      "displayName": "Patal Bhuvaneshwar Caves Guide",
+      "type": "text/html",
       "url": "https://lensandlattitude.in/destination/patal-bhuvaneshwar",
-      "type": "content"
+      "description": "Subterranean limestone cave temple guide, route access from Kathgodam, and historical folklore.",
+      "representativeQueries": [
+        "Patal Bhuvaneshwar cave timings and route",
+        "Kathgodam to Pithoragarh travel route",
+        "underground cave temple Uttarakhand"
+      ]
     },
     {
-      "id": "shop",
-      "name": "Archival Print Store",
-      "description": "Museum-grade fine-art photography prints on archival cotton rag paper.",
+      "identifier": "urn:air:lensandlattitude.in:guide:nainital-kumaon",
+      "displayName": "Nainital & Kumaon Lakes Itinerary",
+      "type": "text/html",
+      "url": "https://lensandlattitude.in/blog/nainital-heights-2025",
+      "description": "5-day mountain route covering Nainital, Bhimtal, Sattal, and local Kathgodam transit logistics.",
+      "representativeQueries": [
+        "Nainital 5-day itinerary",
+        "Bhimtal Sattal bike rental Kathgodam",
+        "Kumaon lakes travel guide"
+      ]
+    },
+    {
+      "identifier": "urn:air:lensandlattitude.in:shop:fine-art-prints",
+      "displayName": "Archival Print Store",
+      "type": "text/html",
       "url": "https://lensandlattitude.in/shop",
-      "type": "ecommerce"
+      "description": "Museum-grade fine-art photography prints on archival cotton rag paper.",
+      "representativeQueries": [
+        "fine art travel prints",
+        "documentary landscape photography prints",
+        "archival cotton rag photo prints"
+      ]
     },
     {
-      "id": "contact",
-      "name": "Direct Inquiries & Editorial Inquiries",
-      "description": "Licensing, editorial assignments, and direct contact form.",
+      "identifier": "urn:air:lensandlattitude.in:contact:licensing",
+      "displayName": "Editorial & Commercial Licensing Inquiries",
+      "type": "text/html",
       "url": "https://lensandlattitude.in/contact",
-      "type": "form"
+      "description": "Licensing, editorial assignments, and commercial photography contact channel.",
+      "representativeQueries": [
+        "contact travel photographer",
+        "photo licensing Khilesh Sammal",
+        "commercial photography assignments"
+      ]
     }
-  ],
-  "capabilities": [
-    "travel-planning",
-    "photography-portfolio",
-    "editorial-guides",
-    "fine-art-prints"
   ]
 }

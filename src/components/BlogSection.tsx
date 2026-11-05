@@ -35,20 +35,11 @@ export const BlogSection = memo(({ onSelectPost }: BlogSectionProps) => {
           <motion.article 
             key={post.id} 
             onClick={() => onSelectPost(post.id)}
-            role="link"
-            tabIndex={0}
-            aria-label={`Read article: ${post.title}`}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                onSelectPost(post.id);
-              }
-            }}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: idx * 0.15, ease: "easeOut" }}
-            className="group cursor-pointer focus:outline-none focus:ring-1 focus:ring-accent"
+            className="group cursor-pointer focus:outline-none"
           >
             <div className="aspect-video overflow-hidden mb-5 rounded-sm bg-card-bg border border-border-main">
               <img 
@@ -65,10 +56,29 @@ export const BlogSection = memo(({ onSelectPost }: BlogSectionProps) => {
               <span className="w-1.5 h-1.5 bg-border-main rounded-full"></span>
               <span className="text-text-dim font-normal flex items-center gap-1"><Clock size={12} /> {post.read}</span>
             </div>
-            <h3 className="text-xl md:text-2xl font-serif mb-4 leading-tight transition-all group-hover:text-accent">{post.title}</h3>
-            <span className="text-[10px] uppercase tracking-widest font-bold border-b-2 border-border-main pb-1 group-hover:text-accent group-hover:border-accent inline-flex items-center gap-2 font-ui transition-all">
+            <h3 className="text-xl md:text-2xl font-serif mb-4 leading-tight transition-all group-hover:text-accent">
+              <a 
+                href={`/blog/${post.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSelectPost(post.id);
+                }}
+                className="hover:underline focus:outline-none"
+              >
+                {post.title}
+              </a>
+            </h3>
+            <a 
+              href={`/blog/${post.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onSelectPost(post.id);
+              }}
+              aria-label={`Read full post: ${post.title}`}
+              className="text-[10px] uppercase tracking-widest font-bold border-b-2 border-border-main pb-1 group-hover:text-accent group-hover:border-accent inline-flex items-center gap-2 font-ui transition-all"
+            >
               Read Post <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-            </span>
+            </a>
           </motion.article>
         ))}
       </div>

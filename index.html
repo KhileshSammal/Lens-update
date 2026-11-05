@@ -9,11 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
-    <!-- Non-blocking Google Fonts loading -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <!-- Streamlined Non-blocking Google Fonts loading -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" />
     </noscript>
     <meta name="theme-color" content="#0c0c0e" />
 
@@ -21,7 +20,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
 
-    <!-- Meta Tags for SEO -->
+    <!-- Meta Tags for SEO & Monetization -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4403028175426468"
      crossorigin="anonymous"></script>
     <meta name="google-site-verification" content="goMh6Wraj7dB2uuf8wyNQWp-0w2QHU1MPoEwsCm5Xxs" />
@@ -31,6 +30,9 @@
     <meta name="description" content="Lens & Latitude by Khilesh Sammal — A premium travel portfolio, slow-travel diaries, professional performance marketing, and subterranean visual gallery of regional and international expeditions." />
     <link rel="canonical" href="https://lensandlattitude.in/" />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://lensandlattitude.in/sitemap.xml" />
+    <link rel="ard" type="application/json" title="Agentic Resource Discovery" href="https://lensandlattitude.in/.well-known/ard.json" />
+    <link rel="alternate" type="application/json" title="Agentic Resource Catalog" href="https://lensandlattitude.in/ai-catalog.json" />
+    <link rel="alternate" type="text/markdown" title="LLM Training Context" href="https://lensandlattitude.in/llms.txt" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -69,7 +71,15 @@
           "publisher": {
             "@id": "https://lensandlattitude.in/#organization"
           },
-          "inLanguage": "en-US"
+          "inLanguage": "en-US",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://lensandlattitude.in/?search={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
         },
         {
           "@type": "Organization",
@@ -86,6 +96,11 @@
             "height": 512
           },
           "image": "https://lensandlattitude.in/logo.png",
+          "sameAs": [
+            "https://twitter.com/mr_khilesh",
+            "https://instagram.com/mr_khilesh",
+            "https://linkedin.com/in/khileshsammal"
+          ],
           "founder": {
             "@type": "Person",
             "name": "Khilesh Sammal",
@@ -98,6 +113,18 @@
           "@id": "https://lensandlattitude.in/#author",
           "name": "Khilesh Sammal",
           "jobTitle": "Travel Writer, Photographer & Digital Nomad",
+          "sameAs": [
+            "https://twitter.com/mr_khilesh",
+            "https://instagram.com/mr_khilesh",
+            "https://linkedin.com/in/khileshsammal"
+          ],
+          "knowsAbout": [
+            "Slow Travel Photography",
+            "Uttarakhand Mountain Itineraries",
+            "Southeast Asia Expeditions",
+            "Patal Bhuvaneshwar Caves",
+            "Fine Art Landscape Printing"
+          ],
           "worksFor": {
             "@id": "https://lensandlattitude.in/#organization"
           },
